@@ -2,9 +2,10 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Lấy Survey khách hàng</title>
 </head>
 <body>
+<form>
     <div>
         <h3> Market Research Survey</h3>
         <p>Please take a few moments to complete this satisfaction survey.</p>
@@ -31,7 +32,6 @@
         <label><b>Gender Identity</b></label><br>
         <label><input type="radio" name="abc"> Male </label><br>
         <label><input type="radio" name="abc"> FeMale </label><br>
-        <label><input type="radio" name="abc"> Nonbinary </label><br>
         <label ><input type="radio" name="abc"> Other  </label>
     </div>
     <div style="line-height: 30px">
@@ -54,15 +54,68 @@
     </div>
     <div>
         <p><b>What features would you like to see in the new product.</b></p>
-        <textarea rows="5" cols="90"> </textarea>
+        <textarea rows="5" cols="127"> </textarea>
     </div>
     <div>
         <p> Pleas rate your level of agreement wiht the following statements.</p>
-        <table>
-            <tr>
-
+        <table border="1">
+            <tr align="center">
+                <th></th>
+                <th width="120px">Strongly Disagree</th>
+                <th width="120px">Disagree</th>
+                <th width="120px">Agree</th>
+                <th width="120px">Strongly Agree</th>
+            </tr>
+            <tr align="center">
+                <td> <b>Our products are priced fairly.</b></td>
+                <td>
+                    <label><input type="radio" name="rd"><br> 1 </label>
+                </td>
+                <td>
+                    <label><input type="radio" name="rd"><br>2 </label>
+                </td>
+                <td>
+                    <label><input type="radio" name="rd"><br>3 </label>
+                </td>
+                <td>
+                    <label><input type="radio" name="rd"><br>4 </label>
+                </td>
+            </tr>
+            <tr align="center">
+                <td> <b>Our product are high quality.</b></td>
+                <td>
+                    <label><input type="radio" name="dd"><br> 1 </label>
+                </td>
+                <td>
+                    <label><input type="radio" name="dd"><br>2 </label>
+                </td>
+                <td>
+                    <label><input type="radio" name="dd"><br>3 </label>
+                </td>
+                <td>
+                    <label><input type="radio" name="dd"><br>4 </label>
+                </td>
+            </tr>
+            <tr align="center">
+                <td> <b>You would like recommend our product to a friend or coworker.</b></td>
+                <td>
+                    <label><input type="radio" name="cd"><br> 1 </label>
+                </td>
+                <td>
+                    <label><input type="radio" name="cd"><br>2 </label>
+                </td>
+                <td>
+                    <label><input type="radio" name="cd"><br>3 </label>
+                </td>
+                <td>
+                    <label><input type="radio" name="cd"><br>4 </label>
+                </td>
             </tr>
         </table>
     </div>
+    <div><br>
+        <input type="submit" name="submitform" value="Submit" style=" width: 80px;height:35px ">
+    </div>
+</form>
 </body>
 </html>
