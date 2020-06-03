@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tong cac mon hoc</title>
+</head>
+<body>
+<script>
+    var inputHOAHOC;
+    var inputSINHHOC;
+    var inputVATLI;
+    inputHOAHOC=prompt("Nhập điểm Hóa");
+    inputSINHHOC=prompt("Nhập điểm Sinh");
+    inputVATLI=prompt("Nhập điểm Vật Lí");
+    var HOAHOC = parseFloat(inputHOAHOC);
+    var SINHHOC=parseFloat(inputSINHHOC);
+    var VATLI=parseFloat(inputVATLI);
+    var Sum=HOAHOC+SINHHOC+VATLI;
+    var Averge=(HOAHOC+SINHHOC+VATLI)/3;
+    document.write("TỔNG: "+ Sum);
+    document.write("<br/>");
+    document.write("Điểm trung bình: "+ Averge);
+</script>
+</body>
+</html>
