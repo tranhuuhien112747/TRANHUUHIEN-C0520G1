@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label>amount</label><br>
+<input style="height: 20px" type="number" name="so" id="input"><br>
+<label>fromcurrency </label><br>
+<select style="height: 25px;width: 120px" id="from">
+    <option value="vn"> VND </option>
+    <option value="usd"> USD </option>
+</select><br>
+<label> tocurrency </label><br>
+<select style="height: 25px;width: 120px" id="to">
+    <option value="vn"> VND </option>
+    <option value="usd"> USD </option>
+</select>
+</label><br><br>
+<input type="button" onclick="chuyenTien();" value="Convert" style="height: 30px;
+                            background-color: yellow;font-weight: bold;color: red">
+<p id="result"></p>
+<script>
+    let amount;
+    let formCurrency;
+    let toCurrency;
+    let ketqua
+    function chuyenTien() {
+        amount=document.getElementById("input").value;
+        formCurrency=document.getElementById("from").value;
+        toCurrency=document.getElementById("to").value;
+        if (formCurrency=="vn"){
+            if(toCurrency=="vn"){
+                ketqua = amount
+            }
+            else {
+                ketqua = amount / 23000
+            }
+        }
+        else {
+             if (toCurrency=="vn"){
+                 ketqua = amount*23000
+             }
+            else{
+                ketqua=amount
+            }
+        }
+        document.getElementById("result").innerHTML= ('RESULT:' + ketqua);
+    }
+
+</script>
+</body>
+</html>
