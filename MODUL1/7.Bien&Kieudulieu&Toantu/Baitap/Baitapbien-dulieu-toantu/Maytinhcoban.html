@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>CACULATOR</h2>
+<form>
+    <div>
+        <input type="number" name="screen1" id="screen1">
+        <input type="number" name="screen2" id="screen2">
+    </div>
+    <div><br>
+        <input type="button" onclick="kick0();" value="Add(+)">
+        <input type="button" onclick="kick1();" value="Sub(-)">
+        <input type="button" onclick="kick2();" value="Multip(x)">
+        <input type="button" onclick="kick3();" value="Div(/)">
+    </div>
+    <p id="result"></p>
+</form>
+<script>
+    let number1;
+    let number2;
+    function kick0() {
+        number1 = parseInt(document.getElementById("screen1").value);
+        number2 = parseInt(document.getElementById("screen2").value);
+        let sum = number1 + number2;
+        document.getElementById("result").innerHTML=('Tong la: '+ sum);
+    }
+    function kick1() {
+        number1 = parseInt(document.getElementById("screen1").value);
+        number2 = parseInt(document.getElementById("screen2").value);
+        let sub = number1 - number2;
+        document.getElementById("result").innerHTML=('Hieu la: '+ sub);
+    }
+    function kick2() {
+        number1 = parseInt(document.getElementById("screen1").value);
+        number2 = parseInt(document.getElementById("screen2").value);
+        let mul = number1 * number2;
+        document.getElementById("result").innerHTML=('Tich la: '+ mul);
+    }
+function kick3() {
+        number1 = parseInt(document.getElementById("screen1").value);
+        number2 = parseInt(document.getElementById("screen2").value);
+        let Div = number1 / number2;
+        document.getElementById("result").innerHTML=('Thuong la: '+ Div);
+    }
+</script>
+</body>
+</html>
