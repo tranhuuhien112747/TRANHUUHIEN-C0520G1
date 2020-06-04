@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let year=parseInt(prompt("Nhập số năm ?"));
+    let leapyear= false;
+    let leapyear4= year % 4==0;
+    if (leapyear4) {
+        let Divleapyear100 = year % 100 == 0;
+        if (Divleapyear100) {
+            let Divleapyear400 = year % 400 == 0;
+            if (Divleapyear400) {
+                leapyear = true;
+            }
+        }else {
+            leapyear = true;
+        }
+    }
+        if (leapyear) {
+            alert('Đây là năm nhuận');
+        } else {
+            alert("Đây không phải là năm nhuận");
+        }
+
+</script>
+</body>
+</html>
