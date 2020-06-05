@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form>
+        <div>
+        <label> GOOD </label>
+            <input type="range" max="1" min="0" onclick="thatOk('good');" id="good" value="0" >
+        </div>
+        <div>
+        <label> FAST </label>
+            <input type="range" max="1" min="0" onclick="thatOk('fast');" id="fast" value="0" >
+        </div>
+        <div>
+        <label> CHEAP </label>
+            <input type="range" max="1" min="0" onclick="thatOk('cheap');" id="cheap" value="0">
+        </div>
+    </form>
+    <script>
+        function thatOk(obj) {
+            let goodObj=document.getElementById("good");
+            let fastObj=document.getElementById("fast");
+            let cheapObj=document.getElementById("cheap");
+            switch (obj) {
+                case 'good':
+                    if(goodObj.value==1 && fastObj.value==1){
+                        cheapObj.value=0;
+                    }
+                    break;
+                case 'fast':
+                    if(fastObj.value==1 && cheapObj.value==1){
+                        goodObj.value=0;
+                    }
+                    break;
+                case'cheap':
+                    if(cheapObj.value==1 && goodObj.value==1){
+                        fastObj.value=0;
+                    }
+                    break;
+            }
+
+        }
+    </script>
+</body>
+</html>

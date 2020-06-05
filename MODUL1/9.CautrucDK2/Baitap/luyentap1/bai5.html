@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let name=prompt('họ và tên?:');
+    let a=parseFloat(prompt("Điểm kiểm tra?:"));
+    let b=parseFloat(prompt("Điểm thi giữa kì?;"));
+    let c=parseFloat(prompt("Điểm thi cuối kì?:"));
+    let number=(a+b+c)/3;
+    if(number>=8){
+        alert(name + " là học sinh giỏi");
+    }else if(6.5 <= number){
+        alert(name + " là học sinh khá");
+        }else if(5<=number){
+        alert(name + " là học sinh trung bình");
+        }else {
+        alert(name + " là học sinh yếu");
+        }
+</script>
+</body>
+</html>

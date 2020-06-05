@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <p><b>DO YOU LOVE ME ?</b></p>
+        <input type="button" onclick="sayOk();" value="Yes">
+        <input id="no1" type="button" onmouseover="mouse();" value="No" style="position: absolute">
+    </div>
+    <script>
+        window.innerHeight;
+        window.innerWidth;
+        function sayOk() {
+            alert('<3');
+        }
+        function init() {
+           move= document.getElementById('no1');
+           move.style.left= '100px';
+           move.style.top= '50px';
+        }
+        function mouse() {
+            let a = Math.random()*500 + '0px';
+            if(a> window.innerWidth){
+               a ='0px';
+            }
+            move.style.left = parseInt(a) +'px';
+            move.style.top = parseInt(a) +'px';
+        }
+        window.onload = init;
+    </script>
+</body>
+</html>

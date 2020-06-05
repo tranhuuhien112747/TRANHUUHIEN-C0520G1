@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    img{
+        height: 100px;
+        width: 90px;
+    }
+</style>
+<body >
+    <img src="a1.jpg" onclick="change1();" id="pict1"/><BR>
+    <img src="c1.jpg" onclick="change2();" id="pict2"/><BR>
+    <img src="b1.jpg"  onclick="change3();" id="pict3"/><BR>
+    <script>
+        var number1 =1;
+        var number2 =1;
+        var number3 =1;
+        function change1() {
+            number1 +=1;
+            document.getElementById('pict1').src = 'a' + number1 + '.jpg';
+            if(number1==4){
+                number1 =0;
+            }
+            setTimeout(supRight,1000);
+        }
+        function change2() {
+            number2 +=1;
+            document.getElementById('pict2').src = 'b' + number2 + '.jpg';
+            if(number2==4){
+                number2 =0;
+            }
+            setTimeout(supRight,1000);
+        }
+        function change3() {
+            number3 +=1;
+            document.getElementById('pict3').src = 'c' + number3 + '.jpg';
+            if(number3==4){
+                number3 =0;
+            }
+            setTimeout(supRight,500);
+        }
+        function supRight() {
+            if(number1==number2 && number2==number3){
+                alert("CHÚC MỪNG");
+            }
+        }
+    </script>
+
+</body>
+</html>
