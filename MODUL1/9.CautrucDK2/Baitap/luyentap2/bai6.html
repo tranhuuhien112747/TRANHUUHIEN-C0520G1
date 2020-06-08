@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let a=parseFloat(prompt("a ? : "));
+        let b=parseFloat(prompt("b ? : "));
+        while (isNaN(a) || (isNaN(b))){
+            alert("Giá trị Không đúng");
+            a=parseFloat(prompt("a?: " ));
+            b=parseFloat(prompt("b?: "));
+        }
+        if(a==0){
+            if(b==0){
+                alert("PT vô số nghiệm");
+            }else {
+                alert("PT vô nghiệm ");
+            }
+        }else if(b==0){
+            alert("PT có nghiệm x = 0");
+        }else {
+            let x =parseFloat(- (a/b));
+            alert('PT có nghiệm là: ' + x);
+        }
+    </script>
+</body>
+</html>

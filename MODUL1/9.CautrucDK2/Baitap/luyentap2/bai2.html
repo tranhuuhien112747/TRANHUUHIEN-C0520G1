@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let m=parseFloat(prompt("Nhập số mét?:"));
+
+    while (isNaN(m)){
+        alert("Giá trị Không đúng");
+        m=parseFloat(prompt("Nhập số m?:" ));
+    }
+        ft=parseFloat(m * 3.2808);
+        alert(m + " mét bằng " + ft + " feet ") ;
+</script>
+</body>
+</html>

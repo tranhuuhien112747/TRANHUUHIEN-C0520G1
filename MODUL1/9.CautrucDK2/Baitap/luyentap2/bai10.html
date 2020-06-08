@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a=parseFloat(prompt("Nhập số Kwh?:  "));
+    let kwh=(a>400)?1:(a>300)?2:(a>200)?3:(a>100)?4:(a>50)?5:6;
+    while (isNaN(a)){
+        alert("Giá trị Không đúng");
+        a = parseFloat(prompt("Nhập số Kwh?:"));
+    }
+        switch (parseFloat(kwh)) {
+            case 1:
+                alert("Giá điện là " + a*3000 + " VNĐ ");
+                break;
+            case 2:
+                alert("Giá điện là " + a*2900 + " VNĐ ");
+                break;
+            case 3:
+                alert("Giá điện là " + a*2700 + " VNĐ ");
+                break;
+            case 4:
+                alert("Giá điện là " + a*2500 + " VNĐ ");
+                break;
+            case 5:
+                alert("Giá điện là " + a*2000 + " VNĐ ");
+                break;
+            case 6:
+                alert("Giá điện là " + a*1800 + " VNĐ ");
+                break;
+             default:
+                 alert("not value");
+        }
+
+</script>
+</body>
+</html>

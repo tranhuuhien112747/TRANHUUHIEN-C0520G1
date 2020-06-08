@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let a=parseFloat(prompt("a ? : "));
+        let b=parseFloat(prompt("b ? : "));
+        while (isNaN(a) || (isNaN(b))){
+            alert("Giá trị Không đúng");
+            a=parseFloat(prompt("a?: " ));
+            b=parseFloat(prompt("b?: "));
+        }
+            area=parseFloat((a*b)/2);
+            alert("Diện tích tam giác vuông là: " + area);
+    </script>
+</body>
+</html>

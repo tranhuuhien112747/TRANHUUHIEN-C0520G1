@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let a=parseFloat(prompt("a ? : "));
+        let b=parseFloat(prompt("b ? : "));
+        let c=parseFloat(prompt("c ? : "));
+        while (isNaN(a) || (isNaN(b)) || (isNaN(c))){
+            alert("Giá trị Không đúng");
+            a=parseFloat(prompt("a?: " ));
+            b=parseFloat(prompt("b?: "));
+            c=parseFloat(prompt("c?: "));
+        }if(a==0){
+            alert("phương trình có nghiệm là:" + (-c/b));
+        }else{
+            denTa=parseFloat(b**2-4*a*c);
+        }
+            if(denTa<0){
+                alert("PT vô nghiệm");
+            }else if(denTa==0){
+                alert("PT có nghiệm kép : "+ (-b/2*a))
+            }else {
+                x1=(-b + Math.sqrt(denTa))/(2*a);
+                x2=(-b - Math.sqrt(denTa))/(2*a);
+                alert("PT có 2 nghiệm phân biệt là: " + x1 +' và '+ x2 );
+            }
+     </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let doC=parseFloat(prompt("Nhập độ C?:",0));
+        while (isNaN(doC)){
+            alert("Giá trị Không đúng");
+            doC=parseFloat(prompt("Nhập độ C?:", 0));
+        }
+        doF=parseFloat((doC*9-160)/5);
+            alert(doC  + " Độ C bằng "+ doF + " độ F") ;
+    </script>
+</body>
+</html>

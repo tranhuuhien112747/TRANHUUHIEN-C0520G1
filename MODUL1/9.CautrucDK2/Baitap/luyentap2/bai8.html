@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a=parseFloat(prompt("nhập a ? :"));
+    let old=false;
+        while (isNaN(a)){
+            alert("Giá trị Không đúng");
+            a=parseFloat(prompt("Nhập a?:" ));
+        }if(a > 0){
+            if(a < 120){
+                old=true;
+            }
+        }
+        if(old){
+            alert(a + " là tuổi của 1 người");
+        }else {
+            alert("đây k phải là tuổi của 1 người");
+        }
+</script>
+</body>
+</html>

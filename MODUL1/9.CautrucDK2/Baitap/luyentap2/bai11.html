@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let income=parseFloat(prompt("Thu nhập 1 tháng?:"));
+        //TNCN chịu thuế
+        let isYT=parseFloat(income*0.015);
+        let isXH=parseFloat(income*0.08);
+        let isTN=parseFloat(income*0.01);
+        let iC=parseFloat(isTN+ isXH + isYT + 9000000);
+        //các khoản miễn trừ thuế TNCN
+        let iCThue=parseFloat(income-iC);
+        // TNCN tính thuế
+        while (isNaN(income)){
+            alert("Giá trị Không đúng");
+            income=parseFloat(prompt("Thu nhập 1 tháng?:"));
+        }
+            if(income<=10000000){
+                alert("Không phải nộp phí thuế");
+            }else if(iC<=5000000){
+                    alert("Thuế phải nộp là: " + iCThue*0.05);
+                }else if(iC<=10000000){
+                        alert("Thuế phải nộp là: " + iCThue*0.1);
+                     }else if(iC<=18000000){
+                            alert("Thuế phải nộp là: " + iCThue*0.15);
+                         }else if(iC<=32000000){
+                                alert("Thuế phải nộp là: " + iCThue*0.2);
+                            }else if(iC<=50000000) {
+                                    alert("Thuế phải nộp là: " + iCThue * 0.25);
+                                }else if(iC<=80000000){
+                                        alert("Thuế phải nộp là: " + iCThue*0.30);
+                                    }else {
+                                         alert("Thuế phải nộp là: " + iCThue*0.35);
+                                    }
+    </script>
+</body>
+</html>

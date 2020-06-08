@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let a=parseFloat(prompt("nhập a ? : "));
+        let b=parseFloat(prompt("nhập b ? : "));
+        let c=parseFloat(prompt("nhập c ? : "));
+        let abcTam=false;
+        while (isNaN(a) || (isNaN(b)) || (isNaN(c))){
+            alert("Giá trị Không đúng");
+            a=parseFloat(prompt("a?: " ));
+            b=parseFloat(prompt("b?: "));
+            c=parseFloat(prompt("c?: "));}
+            if(a,b,c>0);{
+                if (a + b > c && b + c > a && a + c > b) {
+                    abcTam = true;
+                }
+            }
+            if(abcTam){
+                alert("Đây là 1 hình tam giác");
+            }else {
+                alert("đây không phải 1 tam giác");
+            }
+    </script>
+</body>
+</html>
