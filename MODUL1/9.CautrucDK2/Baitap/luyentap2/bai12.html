@@ -5,6 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-
+    <script>
+        let a=parseFloat(prompt("Số tiền vay?: "));
+        let b=parseInt(prompt("Số tháng vay?:"));
+        let inMonth=parseFloat(a*0.12/b);
+        let tienMonth= inMonth+ a/b;
+         for(let i=1;i<=b;i++){
+                 document.write("Tháng thứ "+ i + " phải trả " + tienMonth + " VNĐ " +"<br>");
+         }
+    </script>
 </body>
 </html>

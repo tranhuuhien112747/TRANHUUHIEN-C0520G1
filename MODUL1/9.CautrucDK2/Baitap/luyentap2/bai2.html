@@ -8,12 +8,12 @@
 <script>
     let m=parseFloat(prompt("Nhập số mét?:"));
 
-    while (isNaN(m)){
-        alert("Giá trị Không đúng");
-        m=parseFloat(prompt("Nhập số m?:" ));
-    }
-        ft=parseFloat(m * 3.2808);
-        alert(m + " mét bằng " + ft + " feet ") ;
+        while (isNaN(m) || (m < 0)){
+            alert("Giá trị Không đúng");
+            m=parseFloat(prompt("Nhập số m?:" ));
+            }
+            ft=parseFloat(m * 3.2808);
+            alert(m + " mét bằng " + ft + " feet ") ;
 </script>
 </body>
 </html>

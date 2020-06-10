@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    input{
+        background-color: gold;
+        color: blue;
+        border:2px solid red;
+        width: 240px;
+        height: 50px;
+        font-size: 40px;
+        font-weight: bolder;
+    }
+</style>
+    <form>
+        <input type="button" onclick="openGame();" value="Play Game" >
+    </form>
+    <script>
+        function openGame() {
+            let star=parseInt(prompt("Nhập số muốn đoán"));
+            let ranger=parseInt(prompt("Nhập khoảng bạn muốn đoán"));
+            let value= Math.floor(Math.random() * ranger);
+            let winGame=true;
+            while(winGame){
+                if(isNaN(star)){
+                    star=parseInt(prompt("(Giá trị k đúng vui lòng nhập lại). Số muốn đoán? "));
+                }else if(isNaN(ranger)){
+                    ranger=parseInt(prompt("Nhập khoảng bạn muốn đoán"));
+                     }else if(star > value){
+                           star =parseInt(prompt(" Gợi ý: (Nhỏ hơn):"));
+                            }else if(star < value){
+                            star =parseInt(prompt(" Gợi ý: (Lớn hơn):"));
+                                }else{
+                                    winGame=false;
+                                    alert("Chúc mừng");
+                }
+            }
+        }
+
+
+    </script>
+</body>
+</html>

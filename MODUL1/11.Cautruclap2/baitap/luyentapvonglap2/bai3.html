@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //----------------hình 1------------
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 5; j++) {
+                if (i >= j) {
+                    document.write('*');
+                } else {
+                    document.write('&nbsp &nbsp');
+                }
+            }
+            document.write('<br>');
+        }
+        document.write("<br>");
+        //----------------hình 2------------
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 5; j++) {
+                if (i <= j) {
+                    document.write('*');
+                } else {
+                    document.write('');
+                }
+            }
+            document.write('<br>');
+        }
+        document.write("<br>");
+        //----------------hình 3------------
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 5; j++) {
+                if (i +j>=4) {
+                    document.write('*');
+                } else {
+                    document.write('&nbsp&nbsp');
+                }
+            }
+            document.write('<br>');
+        }
+        document.write("<br>");
+        //----------------hình 4------------
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 5; j++) {
+                if (i <= j) {
+                    document.write('*');
+                } else {
+                    document.write('&nbsp&nbsp');
+                }
+            }
+            document.write('<br>');
+        }
+    </script>
+</body>
+</html>

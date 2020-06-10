@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let number = prompt('Muốn in ra bao nhiêu số trong dãy Fibonacci:');
+        let count = 0;
+        let number1 = 1;
+        let number2 = 0;
+        let value=0
+        while (count < number){
+            value=number1;
+            number1  += number2 ;
+            number2=value;
+            if(number2 % 5===0){
+                document.write("số đầu tiên chia hết cho 5 là: " + number2);
+                break;
+            }
+            count++
+        }
+    </script>
+</body>
+</html>

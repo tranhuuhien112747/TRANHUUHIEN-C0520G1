@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let alt = prompt('Nhập số muốn tính giai thừa:');
+        let n = 1;
+        if (alt < 1) {
+            alt = prompt('Giá Trị Không Hợp Lệ.');
+        } else {
+            for (let i = 1; i <= alt; i++) {
+                 n= n* i;
+            }
+            document.write('Giai thừa của ' + alt + ' là ' + n);
+        }
+    </script>
+</body>
+</html>
