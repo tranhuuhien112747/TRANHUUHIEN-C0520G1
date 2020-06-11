@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload="docReady()">
+<div>
+    <h3 style="color: red">Từ điển màu sắc</h3>
+    <input type="text" id="block" placeholder="What is color ?">
+    <input type="button" id="find" value="Tìm kiếm" onclick="findstring();" style="color: blue; font-weight: bolder">
+    <p id="result"></p>
+</div>
+<script>
+    let string;
+    let stringlower;
+    let english = ["red", "blue", "yellow", "green", "white", "black", "oranger", "purple", "pink",];
+    let vietnam = ["đỏ", "xanh", "vàng", "xanh", "trắng", "đen", "cam", "tím", "hồng"];
+    let content;
+    let data = '';
+
+    function findstring() {
+        EnterPressed();
+    }
+
+    function moveSelection(evt) {
+        switch (evt.keyCode) {
+            case 13:
+                EnterPressed();
+                break;
+
+        }
+    }
+
+    function EnterPressed() {
+        let abc = false;
+        string = document.getElementById('block').value;
+        stringlower = string.toLowerCase();
+        for (let x = 0; x < english.length; x++) {
+            if (stringlower == english[x]) {
+                content = x;
+                abc = true;
+                break;
+            }
+        }
+        if (abc) {
+            data += '<br>';
+            data += stringlower + " : &nbsp màu " + vietnam[content];
+            document.getElementById('result').innerHTML = data;
+        } else {
+            alert("Từ điển chưa được chủ nhân cập nhật. vui lòng quay lại sau");
+        }
+        document.getElementById('block').value = '';
+    }
+
+
+    function docReady() {
+        window.addEventListener('keydown', moveSelection);
+    }
+
+</script>
+</body>
+</html>

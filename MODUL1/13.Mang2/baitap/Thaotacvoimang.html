@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+         // let myColor = ["Red", "Green", "White", "Black"];
+         // alert(myColor.join(","));
+    //----------------------------------------------------------
+            // let number=prompt("nhập số?:");
+            // let value= number.toString();
+            // let result= [value[0]];
+            // for(let x=1;x<number.length;x++){
+            //     if( value[x-1]%2===0 && value[x]%2===0){
+            //         result.push("-",value[x]);
+            //     }else {
+            //         result.push(value[x]);
+            //     }
+            // }
+            // document.write(result.join(''));
+    //---------------------------------------------------------
+        let str=prompt("nhap chu khong dau ");
+        let upper='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let lower='abcdefghijklmnopqrstuvwxyz';
+        let result=[];
+        for(let x=0 ; x<str.length ; x++){
+            if(upper.indexOf(str[x])!= -1){
+                result.push(str[x].toLowerCase());
+            }else if(lower.indexOf(str[x]) != -1){
+                result.push(str[x].toUpperCase());
+                }else {
+                result.push(str[x]);
+            }
+        }
+        document.write(str +" -------> " + result.join(""));
+    </script>
+</body>
+</html>

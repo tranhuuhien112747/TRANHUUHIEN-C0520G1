@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1 style="color: red">Caro Game Simple</h1>
+    <p id="carogame" style="margin-left: 30px"></p>
+    <input type='button' value='PLAY GAME' onclick='changeValue();' style="color: blue; font-weight: bolder">
+</div>
+<script>
+    let board = [];
+    let data = "";
+    let count = 0;
+    for (let i = 0; i < 10; i++) {
+        board[i] = new Array(".", ".", ".", ".", ".", ".", ".", ".", ".", ".");
+    }
+    for (let i = 0; i < 10; i++) {
+        data += "<br/>";
+        for (let j = 0; j < 10; j++) {
+            data += board[i][j] + "&nbsp;&nbsp;&nbsp&nbsp&nbsp;&nbsp&nbsp;&nbsp";
+        }
+    }
+    document.getElementById("carogame").innerHTML = data;
+
+    function changeValue() {
+        let X = prompt("X: ");
+        let Y = prompt("Y: ");
+        data = "";
+        if (count % 2 === 0 && board[X][Y] === ".") {
+            board[X][Y] = "o";
+            count++;
+        } else if (count % 2 !== 0 && board[X][Y] === ".") {
+            board[X][Y] = "x";
+            count++;
+        } else {
+            alert("sfdsfsd");
+        }
+        for (let i = 0; i < 10; i++) {
+            data += "<br/>";
+            for (let j = 0; j < 10; j++) {
+                data += board[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp";
+            }
+        }
+        document.getElementById("carogame").innerHTML = data;
+    }
+    if(board[X][Y]==board[X][Y+1] && board[X][Y+1]==board[X][Y+2] ){
+        alert("chiến thắng");
+    }
+
+</script>
+</body>
+</html>
