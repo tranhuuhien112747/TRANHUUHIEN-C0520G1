@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <label>Giá Trị</label><br>
+    <input style="height: 20px" type="number" name="so" id="input"><br>
+    <label>Đơn vị</label><br>
+    <select style="height: 25px;width: 120px" id="from">
+        <option value="m"> Met</option>
+        <option value="feet"> Feet</option>
+    </select><br>
+    <label> Đơn vị đổi </label><br>
+    <select style="height: 25px;width: 120px" id="to">
+        <option value="m"> Met</option>
+        <option value="feet"> Feet</option>
+    </select>
+    </label><br><br>
+    <input type="button" onclick="chuyenDonvi();" value="Convert" style="height: 30px;
+                            background-color: yellow;font-weight: bold;color: red">
+    <p id="result"></p>
+</div>
+<script>
+    let value;
+    let num1;
+    let num2;
+    let ketqua;
+
+    function chuyenDonvi() {
+        value = document.getElementById("input").value;
+        num1 = document.getElementById("from").value;
+        num2 = document.getElementById("to").value;
+        if (num1 == "m") {
+            if (num2 == "m") {
+                ketqua = value;
+            } else {
+                ketqua =  3.279* value;
+            }
+        } else {
+            if (num2 == "m") {
+                ketqua = 0.305 * value;
+            } else {
+                ketqua = value;
+            }
+
+        }
+        document.getElementById("result").innerHTML = ('Result: ' + " " + " " + ketqua);
+    }
+
+</script>
+</body>
+</html>

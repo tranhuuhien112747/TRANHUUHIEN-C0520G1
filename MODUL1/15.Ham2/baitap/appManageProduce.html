@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1>Add New Product</h1><br><br>
+    <input type="text" placeholder="New Product" id="addNew">
+    <input type="button" name="addProduct" onclick="addProduct()" value="Add">
+    <h3>Display All Products</h3>
+    <h4><span> Product Name</span> &nbsp;&nbsp; <span id="tong" style="margin-left: 350px"></span></h4>
+    <p id="where"></p>
+</div>
+<script>
+    let myProduct = new Array("Sony Ericson", "Motorola", "Samsung", "Nokia", "Apple", "Oppo", "Huwei", "B-Phone", "Vertu JS5", "Xphone W3");
+    let myLen = myProduct.length;
+
+    function addProduct() {
+        let newProduct = document.getElementById('addNew').value;
+        myProduct.push(newProduct);
+        myLen++;
+        document.getElementById('addNew').value = '';
+        displayPro();
+    }
+
+    function deletePro(x) {
+        let question = confirm("Bạn có thực sự muốn xóa nó khỏi danh sách ?");
+        if (question) {
+            myProduct.splice(x, 1);
+            myLen--;
+            displayPro();
+        }
+    }
+
+    function editPro(x) {
+        let edit = prompt("Biên tập tên sản phẩm: " + myProduct[x]);
+        myProduct[x] = edit;
+        displayPro();
+    }
+
+    function displayPro() {
+        let proString = "";
+        proString += '<table border="2px" style="border-collapse: ">';
+        proString += '<tr>' +
+            '      <th>Product Name</th>' +
+            '        <th colspan="2"></th>' +
+            '    </tr>';
+        for (let i = 0; i < myLen; i++) {
+                proString += '<tr>';
+                proString += '<td width="250" height="50">' + myProduct[i] + '</td>';
+                proString += '<td width="150" height="50">' +
+                    '<input type="button" onclick="editPro('+i+')" value="Edit">' + '</td>';
+                proString += '<td width="150" height="50">' +
+                    '<input type="button" onclick="deletePro()" value="Delete">' + '</td>';
+                proString += '</tr>';
+            }
+            proString += '</table>';
+            document.getElementById('where').innerHTML = proString;
+            document.getElementById('tong').innerHTML = myLen + " products.";
+    }
+
+    displayPro();
+</script>
+</body>
+</html>

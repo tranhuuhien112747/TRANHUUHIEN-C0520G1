@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a = prompt("nhập số phần tử muốn tạo?:");
+    let matrix = new Array(a);
+    let count = 0;
+    for (let i = 0; i < a; i++) {
+        matrix[i] = Math.floor((Math.random() * 20) + 1);
+        if (matrix[i] >= 10) {
+            count++;
+        }
+    }
+    alert("maxtrix=[" + matrix + "]" + '\n' + "có " + count + " số lớn hơn 10. ");
+</script>
+</body>
+</html>

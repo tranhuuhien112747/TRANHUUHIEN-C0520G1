@@ -5,37 +5,127 @@
     <title>Title</title>
 </head>
 <body>
-    <div>
-        <h1 style="color: red">Caro Game Simple</h1>
-        <p id="carogame" style="margin-left: 30px"></p>
-        <input  type='button' value='Change Value' onclick='changeValue();' style="color: blue; font-weight: bolder">
-    </div>
-    <script>
-        let board = [];
-        let data = "";
-        for (let i = 0; i < 5; i++) {
-            board[i] = new Array(0, 0, 0, 0, 0);
+<!--<div>-->
+<!--    <h1 style="color: red">Caro Game Simple</h1>-->
+<!--    <p id="carogame" style="margin-left: 30px"></p>-->
+<!--    <input type='button' value='Change Value' onclick='changeValue();' style="color: blue; font-weight: bolder">-->
+<!--</div>-->
+<p id="result"></p>
+<script>
+    // let board = [];
+    // let data = "";
+    // for (let i = 0; i < 5; i++) {
+    //     board[i] = new Array(0, 0, 0, 0, 0);
+    // }
+    // for (let i = 0; i < 5; i++) {
+    //     data += "<br/>";
+    //     for (let j = 0; j < 5; j++) {
+    //         data += board[i][j] + "&nbsp;&nbsp;&nbsp&nbsp";
+    //     }
+    // }
+    // document.getElementById("carogame").innerHTML= data;
+    // function changeValue() {
+    //     let positionX = prompt("X: ");
+    //     let positionY = prompt("Y: ");
+    //     data = "";
+    //     board[positionX][positionY] = "x";
+    //     for (let i = 0; i < 5; i++) {
+    //         data += "<br/>";
+    //         for (let j = 0; j < 5; j++) {
+    //             data += board[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;";
+    //         }
+    //     }
+    //    document.getElementById("carogame").innerHTML= data;
+    // }
+    let array = new Array(10);
+    for (let i = 0; i < 10; i++) {
+        array[i] = new Array(10);
+        for (let j = 0; j < 10; j++) {
+            array[i][j] = ""
         }
-        for (let i = 0; i < 5; i++) {
-            data += "<br/>";
-            for (let j = 0; j < 5; j++) {
-                data += board[i][j] + "&nbsp;&nbsp;&nbsp&nbsp";
+    }
+    let checkPlayer1 = true;
+    display();
+
+    function display() {
+        let tableString = "<table border=\"1\">";
+        for (let i = 0; i < 10; i++) {
+            tableString += "<tr>";
+            for (let j = 0; j < 10; j++) {
+                tableString += "<td style=\"height: 25px;width: 25px\" onclick='play(" + i + "," + j + ")'>" + array[i][j] + "</td>"
+            }
+            tableString += "</tr>";
+        }
+        tableString += "</table>";
+        document.getElementById("result").innerHTML = tableString;
+    }
+
+    function play(i, j) {
+        if (checkPlayer1 && !checkInputed(i, j)) {
+            array[i][j] = "X";
+            checkPlayer1 = false;
+            if (checkWin1()) {
+                alert(" player1 win!!!")
+            }
+        } else if (!checkPlayer1 && !checkInputed(i, j)) {
+            array[i][j] = "O";
+            checkPlayer1 = true;
+            if (checkWin2()) {
+                alert(" Player2 win!!!");
             }
         }
-        document.getElementById("carogame").innerHTML= data;
-        function changeValue() {
-            let positionX = prompt("X: ");
-            let positionY = prompt("Y: ");
-            data = "";
-            board[positionX][positionY] = "x";
-            for (let i = 0; i < 5; i++) {
-                data += "<br/>";
-                for (let j = 0; j < 5; j++) {
-                    data += board[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;";
+        display();
+    }
+
+    function checkInputed(i, j) {
+        if (array[i][j] == "X" || array[i][j] == "O") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function checkWin1() {
+        for (let i = 0; i < 10; i++) {
+            for (let j = 0; j < 10; j++) {
+                if (array[i][j] == "X") {
+                    if (array[i][j + 1] == "X" && array[i][j + 2] == "X") {
+                        return true;
+                    }
+                    if (array[i + 1][j] == "X" && array[i + 2][j] == "X") {
+                        return true;
+                    }
+                    if (array[i + 1][j + 1] == "X" && array[i + 2][j + 2] == "X") {
+                        return true;
+                    }
+                    if (array[i + 1][j - 1] == "X" && array[i + 2][j - 2] == "X") {
+                        return true;
+                    }
                 }
             }
-           document.getElementById("carogame").innerHTML= data;
         }
-    </script>
+    }
+
+    function checkWin2() {
+        for (let i = 0; i < 10; i++) {
+            for (let j = 0; j < 10; j++) {
+                if (array[i][j] == "O") {
+                    if (array[i][j + 1] == "O" && array[i][j + 2] == "O") {
+                        return true;
+                    }
+                    if (array[i + 1][j] == "O" && array[i + 2][j] == "O") {
+                        return true;
+                    }
+                    if (array[i + 1][j + 1] == "O" && array[i + 2][j + 2] == "O") {
+                        return true;
+                    }
+                    if (array[i + 1][j - 1] == "O" && array[i + 2][j - 2] == "O") {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+
+</script>
 </body>
 </html>

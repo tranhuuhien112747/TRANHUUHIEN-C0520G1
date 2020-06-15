@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function check() {
+        let myArray = [];
+        let count = 0;
+        let data=0;
+        for (let i = 0; i < 10; i++) {
+            myArray[i] = prompt("nhập phần tử thứ " + i);
+        }
+        for (let i = 0; i < 10; i++) {
+            if (isFinite(myArray[i])) {
+                count++;
+            }
+            data++;
+        }
+        alert("myArray= "+ myArray+"\n"+"Mãng có kích thước là "+ data + "\n" + "Có "+ count + " kí tự số trong mãng");
+    }
+    check();
+</script>
+</body>
+</html>

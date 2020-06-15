@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a = prompt("nhập số phần tử muốn tạo?:");
+    let matrix = new Array(a);
+    for (let i = 0; i < a; i++) {
+        matrix[i] = Math.floor((Math.random() * 10) + 1);
+    } alert("Matrix=["+ matrix +"]" +  "\n"+ "dao nguoc : " + matrix.reverse().join());
+
+</script>
+</body>
+</html>

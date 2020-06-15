@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <input type="button" id="find" value=" Bạn có muốn tìm kiếm ngôi sao?" onclick="Search();">
+    <p id="result"></p>
+</div>
+<script>
+    let nameStar = ['POLARIS', 'ALDEBARAN', 'DENED', 'VEGA', 'ALTAIR', 'DUBHE ', 'REGULUS'];
+    let star = ['URSA', 'MIBOR', 'TARURUS', 'CYGNUS', 'LYRA', 'AQUILA', 'URSA', 'MAJOR', 'LEO'];
+    function Search() {
+        let num;
+        let data="";
+        let string = prompt("nhập ngôi sao?:");
+        let stringLower = string.toUpperCase();
+        let check = false;
+        for (let x = 0; x < star.length; x++) {
+            if (stringLower == star[x]) {
+                num = x;
+                check = true;
+                break;
+            }
+        }
+        if (check) {
+            data = nameStar[num];
+            alert("ten ngoi sao la: " + data);
+        } else {
+            alert("teen ngoi sao k co");
+        }
+
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function soNguyenam() {
+        let myArray = [];
+        let number = " ";
+        let count = 0;
+        for (let x = 0; x < 8; x++) {
+            myArray[x] = parseFloat(prompt("Nhập các phần tử muốn tạo?"));
+            number += myArray[x] + ","
+        }
+        for (let i = 0; i < myArray.length; i++) {
+            if (myArray[i] < 0) {
+                count++;
+            }
+        }
+        alert("myArray=[ " + myArray + " ]" + "\n" + " Có " + count + " số nguyên âm trong mãng");
+    }
+
+    soNguyenam();
+</script>
+</body>
+</html>

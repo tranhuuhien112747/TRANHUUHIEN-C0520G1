@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function taoHam() {
+        let myArray = [];
+        for (let i = 0; i < 10; i++) {
+            myArray[i] = prompt("nhập phần tử thứ " + i);
+            myArray.reverse();
+        }
+        alert(myArray.join(''));
+    }
+    taoHam();
+</script>
+</body>
+</html>

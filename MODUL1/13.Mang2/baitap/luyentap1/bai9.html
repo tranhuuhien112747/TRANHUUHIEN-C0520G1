@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function taoMang() {
+        let a = parseFloat(prompt("Nhập số phần tử muốn tạo mảng a?"));
+        let b = parseFloat(prompt("Nhập số phần tử muốn tạo mảng b ?"));
+        let arrayA = new Array(a);
+        let arrayB = new Array(b);
+        let arrayC;
+        for (let i = 0; i < a; i++) {
+            arrayA[i] = Math.floor((Math.random() * 20) + 1);
+            arrayB[i] = Math.floor((Math.random() * 20) + 1);
+        }
+        arrayC = arrayA.concat(arrayB);
+        alert("arrayA= " + arrayA + "\n" + "arrayB= " + arrayB + "\n" + "arrayC= " + arrayC);
+    }
+
+    taoMang();
+</script>
+</body>
+</html>

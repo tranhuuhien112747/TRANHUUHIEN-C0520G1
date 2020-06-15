@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function taoMang() {
+        let a = prompt("nhập số phần tử muốn tạo?:");
+        let b = prompt("nhập phần tử muốn kiểm tra?:");
+        let count = 0;
+        let abc = false;
+        let myArray = new Array(a);
+        for (let i = 0; i < a; i++) {
+            myArray[i] = Math.floor((Math.random() * 20) + 1);
+        }
+        for (let x in myArray) {
+            if (b == myArray[x]) {
+                abc = true;
+                count++;
+            }
+        }
+        if (abc) {
+            alert(myArray + "\n" + b + " xuất hiện " + count + " lần ");
+        } else {
+            return alert(-1);
+        }
+    }
+
+    taoMang();
+</script>
+</body>
+</html>

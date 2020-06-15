@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a = parseFloat(prompt("nhập a?:"));
+    let b = parseFloat(prompt("nhập b?:"));
+    let c = parseFloat(prompt("nhập c?:"));
+    alert(numberMin());
+
+    function numberMin() {
+        if (a < b) {
+            if (a < c) {
+                return ("số nhỏ nhất là " + a);
+            } else {
+                return ("số nhỏ nhất là " + c);
+            }
+        } else if (b > c) {
+            return ("số nhỏ nhất là " + c);
+        } else {
+            return ("số nhỏ nhất là " + b);
+        }
+    }
+
+
+</script>
+</body>
+</html>

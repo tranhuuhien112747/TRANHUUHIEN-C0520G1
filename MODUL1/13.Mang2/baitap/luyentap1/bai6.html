@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="result"></p>
+<input type="button" name="butt" onclick="check()" value="Check Match">
+<p id="match"></p>
+<script>
+    let a = prompt("nhập số phần tử muốn tạo?:");
+    let myArray = new Array(a);
+    for (let i = 0; i < a; i++) {
+        myArray[i] = Math.floor((Math.random() * 10) + 1);
+    }
+    document.getElementById('result').innerHTML = ("myArray: " + myArray);
+
+    function check() {
+        let b = parseInt(prompt("Enter a searching value: "));
+        for (let x in myArray) {
+            if (b == myArray[x]) {
+                document.getElementById('match').innerHTML = b + " is in the array";
+                break;
+            } else {
+                document.getElementById('match').innerHTML = b + " is not in the array";
+            }
+        }
+    }
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let array = new Array(10);
+    for(let i = 0; i < array.length; i++){
+        array[i] = prompt('Nhập Phần tử thứ '+(i+1));
+    }
+    let V = prompt('Nhập V');
+    let isFind = false;
+    let index;
+    for (let i = 0; i < array.length; i++){
+        if (V == array[i]){
+            isFind = true;
+            index = i;
+            break;
+        }
+    }
+    if(isFind){
+        array.splice(index,1);
+    }
+    alert(array);
+
+</script>
+</body>
+</html>
