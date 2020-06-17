@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //----------------------checkName--------------------
+    let name = prompt(".Customer Name: ");
+    name = name.toLowerCase();
+    let myArray = name.split(" ");
+    let fullname = "";
+    for (let i = 0; i < myArray.length; i++) {
+        if (myArray[i] !== "") {
+            myArray[i] = myArray[i].charAt(0).toUpperCase() + myArray[i].substr(1);
+            fullname += myArray[i] + " ";
+        }
+    }
+    //--------------------checkAddress---------------------------
+    let address = prompt("Customer Address: ");
+    address = address.toLowerCase();
+    let myAddress = address.split(" ");
+    let fulladdress = "";
+    for (let i = 0; i < myAddress.length; i++) {
+        if (myAddress[i] !== "") {
+            myAddress[i] = myAddress[i].charAt(0).toUpperCase() + myAddress[i].substr(1);
+            fulladdress += myAddress[i] + " ";
+        }
+    }
+
+    //-----------------------checkCustomer------------------------
+    let typeCustomer = parseInt(prompt("6.Customer type (1.Diamond/2.Platinum/3.Gold/4.Silver/5.Member): "));
+    switch (typeCustomer) {
+        case 1:
+            typeCustomer = "Diamond";
+            break;
+        case 2:
+            typeCustomer = "Platinum";
+            break;
+        case 3:
+            typeCustomer = "Gold";
+            break;
+        case 4:
+            typeCustomer = "Silver";
+            break;
+        case 5:
+            typeCustomer = "Member";
+        default:
+            typeCustomer = "Fail";
+    }
+    //---------------------------------checkEmail----------------------------
+    check = false;
+    do {
+        let email = prompt("Customer Email: ");
+        let count1 = 0;
+        let count2 = 0;
+        for (let i = 0; i < email.length; i++) {
+            if (email.charAt(i) === "@") {
+                count1++;
+            }
+        }
+        for (let j = 0; j < email.length; j++) {
+            if (email.charAt(j) === ".") {
+                count2++;
+            }
+        }
+        if (count1 !== 1 || count2 < 1) {
+            alert("Email không hợp lệ");
+        } else {
+            check = true;
+        }
+
+    } while (!check);
+    //----------------checkId-----------------------
+    check = false;
+    let cardId;
+    do {
+        cardId = prompt("Customer ID: ");
+        if (!isNaN(cardId)) {
+            cardId = Number.parseFloat(cardId);
+        }
+        if (!Number.isInteger(cardId)) {
+            alert("ID không hợp lệ");
+            continue;
+        }
+        if (cardId < 10000000 || cardId > 99999999) {
+            alert("ID không hợp lệ");
+            continue;
+        } else {
+            check = true;
+        }
+    } while (!check);
+
+    //---------------------------checkBirthday-----------------
+    let birthday;
+    check = false;
+    do {
+        birthday = prompt("Customer Day of birthday: ");
+        if (birthday.charAt(2) === "/" && birthday.charAt(5) === "/") {
+            let day = birthday.substring(0, 2);
+            let month = birthday.substring(3, 5);
+            let year = birthday.substring(6, 10);
+            if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
+                day = Number.parseFloat(day);
+                month = Number.parseFloat(month);
+                year = Number.parseFloat(year);
+                if (Number.isInteger(day) && Number.isInteger(month) && Number.isInteger(year)) {
+                    if (day < 32 && month < 13) {
+                        check = true;
+                    }
+                }
+            }
+        }
+        if (!check) {
+            alert("ngày tháng năm sinh không hợp lệ");
+        }
+    } while (!check);
+    //---------------------------checkRoom--------------------------
+    let typeRoom = prompt("Room type rented (1.Vip/2.Business/3.Normal): ");
+    switch (typeRoom) {
+        case "1":
+            typeRoom = 'Vip';
+            break;
+        case "2":
+            typeRoom = 'Business';
+            break;
+        case "3":
+            typeRoom = 'Normal';
+            break;
+        default:
+            typeRoom = null;
+            alert("Input is invalid");
+    }
+    //-------------checkdiscount=----------------
+    let discount;
+    do {
+        discount = parseInt(prompt("Discount (%): "));
+    } while (discount <= 0 || !Number.isInteger(discount));
+    //---------------checkrenday--------------
+    let rentDays;
+    do {
+        rentDays = parseInt(prompt("Rent days: "));
+    } while (rentDays <= 0 || !Number.isInteger(rentDays));
+    //--------------------checkPeople---------------------
+    let amountPeople;
+    do {
+        amountPeople = parseInt(prompt("How many people are with you?: "));
+    } while (amountPeople <= 0 || !Number.isInteger(amountPeople));
+    //-------------checkService-------------------
+    let typeService = prompt(" Service type (1.Villa/2.House/3.Room): ");
+    switch (typeService) {
+        case "1":
+            typeService = "Villa";
+            break;
+        case "2":
+            typeService = "House";
+            break;
+        case "3":
+            typeService = "Room";
+            break;
+        default:
+            typeService = null;
+            alert("Input is invalid");
+    }
+
+</script>
+</body>
+</html>

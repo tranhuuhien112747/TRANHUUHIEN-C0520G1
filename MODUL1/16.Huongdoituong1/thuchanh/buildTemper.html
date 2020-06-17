@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Temperter {
+        constructor(C) {
+            this.C = C;
+        }
+
+        doF() {
+            return this.C * 1.8 + 32;
+        }
+
+        doK() {
+            return this.C + 273;
+
+        }
+
+        dk() {
+            if (this.C > -277) {
+                return true;
+            }
+        }
+    }
+
+    let num = new Temperter(parseFloat(prompt("nhap so:")));
+    if (num.dk()){
+        alert("do F la:" + num.doF() + "\n" + "do k la" + num.doK());
+    } else {
+        alert("fail");
+    }
+</script>
+</body>
+</html>

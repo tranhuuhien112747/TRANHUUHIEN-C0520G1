@@ -5,45 +5,45 @@
     <title>Title</title>
 </head>
 <body>
-    <script>
-        let name = prompt("1.Customer Name: ");
-        let cardId = prompt("2.Customer ID: ");
-        let birthday = prompt("3.Customer Day of birthday: ");
-        let email = prompt("4.Customer Email: ");
-        let address = prompt("5.Customer Address: ");
-        let typeCustomer = prompt("6.Customer type (Diamond/Platinum/Gold/Silver/Member): ");
-        let discount = parseInt(prompt("7.Discount (%): "));
-        let amountPeople = prompt("8.How many people are with you?: ");
-        let rentDays =parseInt(prompt("9.Rent days: "));
-        let typeService = prompt("10.Service type (villa/house/room): ");
-        let typeRoom = prompt("11.Room type rented (vip/business/normal): ");
-        let villa = 500;
-        let house = 300;
-        let room = 100;
-        let moneyPay=0
-            if(typeService=="villa"){
-                moneyPay=500*rentDays*(1-discount/100);
-            }else if(typeService=="house"){
-                moneyPay=300*rentDays*(1-discount/100);
-                }else if(typeService=="room") {
-                moneyPay=100*rentDays*(1-discount/100);
-            }else {
-                alert("Không hợp lê");
-            }
-            //--------------------------------------------------
-            alert("CUSTOMER INFORMATION" + "\n" +
-                "1.Customer name: " + name + "\n" +
-                "2.Customer ID: " + cardId +"\n" +
-                "3.Customer Day of birthday: " + birthday + "\n" +
-                "4.Customer Email: " + email + "\n" +
-                "5.Customer Address: " + address + "\n" +
-                "6.Customer type: " + typeCustomer + "\n" +
-                "7.Discount (%): " + discount + "\n" +
-                "8.How many people are with you: " + amountPeople + "\n" +
-                "9.Rent days: " + rentDays + "\n" +
-                "10.Service type: " + typeService + "\n" +
-                "11.Room type rented: " + typeRoom + "\n" +
-                "12.Total payment: " + moneyPay +'$');
-        </script>
+<script>
+    let name = prompt("1.Customer Name: ");
+    let cardId = prompt("2.Customer ID: ");
+    let dayofBirthday = prompt("3.Customer Day of birthday: ");
+    let email = prompt("4.Customer Email: ");
+    let address = prompt("5.Customer Address: ");
+    let typeCustomer = prompt("6.Customer type (Diamond/Platinum/Gold/Silver/Member): ");
+    let discount = parseInt(prompt("7.Discount (%): "));
+    let amountPeople = prompt("8.How many people are with you?: ");
+    let rentDays = parseInt(prompt("9.Rent days: "));
+    let typeService = prompt("10.Service type (villa/house/room): ");
+    let typeRoom = prompt("11.Room type rented (vip/business/normal): ");
+    let villa = 500;
+    let house = 300;
+    let room = 100;
+    let moneyPay = 0;
+    if (typeService == "villa") {
+        moneyPay = 500 * rentDays * (1 - discount / 100);
+    } else if (typeService == "house") {
+        moneyPay = 300 * rentDays * (1 - discount / 100);
+    } else if (typeService == "room") {
+        moneyPay = 100 * rentDays * (1 - discount / 100);
+    } else {
+        alert("Không hợp lê");
+    }
+    //--------------------------------------------------
+    alert("CUSTOMER INFORMATION" + "\n" +
+        "1.Customer name: " + name + "\n" +
+        "2.Customer ID: " + cardId + "\n" +
+        "3.Customer Day of birthday: " + dayofBirthday + "\n" +
+        "4.Customer Email: " + email + "\n" +
+        "5.Customer Address: " + address + "\n" +
+        "6.Customer type: " + typeCustomer + "\n" +
+        "7.Discount (%): " + discount + "\n" +
+        "8.How many people are with you: " + amountPeople + "\n" +
+        "9.Rent days: " + rentDays + "\n" +
+        "10.Service type: " + typeService + "\n" +
+        "11.Room type rented: " + typeRoom + "\n" +
+        "12.Total payment: " + moneyPay + '$');
+</script>
 </body>
 </html>

@@ -5,131 +5,197 @@
     <title>task 2</title>
 </head>
 <body>
-    <script>
-        let n;
-        let name = "trần hữu hiên";
-        let cardId = 2095758333;
-        let birthday = 24;
-        let email ="hihihihihi@gmail.com";
-        let address = 'đà nẵng';
-        let typeCustomer = "diamond";
-        let discount =0;
-        let amountPeople = 2;
-        let rentDays = 7;
-        let typeService ="villa";
-        let typeRoom = "vip";
-        let temp=0;
-        let temp1=0;
-        let temp2=0;
-        let temp3=0;
-        temp=temp1+temp2+temp3;
-        function editCustom() {
-             n = parseInt(prompt("CUSTOMER INFORMATION" + "\n" +
-                "1.Customer name: " + name + "\n" +
-                "2.Customer ID: " + cardId + "\n" +
-                "3.Customer Day of birthday: " + birthday + "\n" +
-                "4.Customer Email: " + email + "\n" +
-                "5.Customer Address: " + address + "\n" +
-                "6.Customer type: " + typeCustomer + "\n" +
-                "7.Discount (%): " + discount + "\n" +
-                "8.How many people are with you: " + amountPeople + "\n" +
-                "9.Rent days: " + rentDays + "\n" +
-                "10.Service type: " + typeService + "\n" +
-                "11.Room type rented: " + typeRoom + "\n"));
+<script>
+    let n;
+    let name = "trần hữu hiên";
+    let cardId = 2095758333;
+    let dayofBirthday = "11/4/1996";
+    let email = "hihihihihi@gmail.com";
+    let address = 'đà nẵng';
+    let typeCustomer = "diamond";
+    let discount = 10;
+    let amountPeople = 2;
+    let rentDays = 7;
+    let typeService = "villa";
+    let typeRoom = "vip";
+    let moneyPay;
+    let birthday;
+
+    function editCustom() {
+        n = parseInt(prompt("CUSTOMER INFORMATION" + "\n" +
+            "1.Customer name: " + name + "\n" +
+            "2.Customer ID: " + cardId + "\n" +
+            "3.Customer Day of birthday: " + birthday + "\n" +
+            "4.Customer Email: " + email + "\n" +
+            "5.Customer Address: " + address + "\n" +
+            "6.Customer type: " + typeCustomer + "\n" +
+            "7.Discount (%): " + discount + "\n" +
+            "8.How many people are with you: " + amountPeople + "\n" +
+            "9.Rent days: " + rentDays + "\n" +
+            "10.Service type: " + typeService + "\n" +
+            "11.Room type rented: " + typeRoom + "\n"));
+    }
+
+    //-----------------------------------------------------
+    function showCustom() {
+        alert("CUSTOMER INFORMATION" + "\n" +
+            "1.Customer name: " + name + "\n" +
+            "2.Customer ID: " + cardId + "\n" +
+            "3.Customer Day of birthday: " + birthday + "\n" +
+            "4.Customer Email: " + email + "\n" +
+            "5.Customer Address: " + address + "\n" +
+            "6.Customer type: " + typeCustomer + "\n" +
+            "7.Discount (%): " + discount + "\n" +
+            "8.How many people are with you: " + amountPeople + "\n" +
+            "9.Rent days: " + rentDays + "\n" +
+            "10.Service type: " + typeService + "\n" +
+            "11.Room type rented: " + typeRoom + "\n");
+    }
+
+    //-----------------khuyến mãi------------------------------------------------------------------
+    function totalMoney() {
+        switch (typeService) {
+            case  "villa":
+                moneyPay = 500 * rentDays * (1 - discount / 100);
+                break;
+            case"house":
+                moneyPay = 300 * rentDays * (1 - discount / 100);
+                break;
+            case "room":
+                moneyPay = 100 * rentDays * (1 - discount / 100);
+                break;
+            default:
+                alert("Không hợp lê");
         }
-        //-----------------------------------------------------
-        function showCustom() {
-            alert("CUSTOMER INFORMATION" + "\n" +
-                "1.Customer name: " + name + "\n" +
-                "2.Customer ID: " + cardId + "\n" +
-                "3.Customer Day of birthday: " + birthday + "\n" +
-                "4.Customer Email: " + email + "\n" +
-                "5.Customer Address: " + address + "\n" +
-                "6.Customer type: " + typeCustomer + "\n" +
-                "7.Discount (%): " + discount + "\n" +
-                "8.How many people are with you: " + amountPeople + "\n" +
-                "9.Rent days: " + rentDays + "\n" +
-                "10.Service type: " + typeService + "\n" +
-                "11.Room type rented: " + typeRoom + "\n");
+        let beformoneyPay=moneyPay;
+
+        switch (address) {
+            case 'đà nẵng':
+                moneyPay -= 20;
+                break;
+            case "huế":
+                moneyPay -= 10;
+                break;
+            case"quảng nam":
+                moneyPay -= 5;
+                break;
+            default:
+                moneyPay -= 0;
         }
-        //---------------------------------------
-        function money(){
-            if(address=='đà nẵng'){
-                temp=20;
-            }else if(address =="huế") {
-                    temp=10;
-                 }else if(address=="quảng nam") {
-                    temp=5;
-            }
+
+        if (rentDays >= 7) {
+            moneyPay -= 30;
+        } else if (rentDays > 5) {
+            moneyPay -= 20;
+        } else if (rentDays > 2) {
+            moneyPay -= 10;
         }
-        //---------------------------------------------
-        function manyDays(){
-            if(rentDays>7){
-            }
+
+        switch (typeCustomer) {
+            case "diamond":
+                moneyPay -= 15;
+                break;
+            case "platium":
+                moneyPay -= 10;
+                break;
+            case "gold":
+                moneyPay -= 5;
+                break;
+            default:
+                moneyPay -= 0;
         }
-        let choose=parseInt(prompt("1.Show Information Customer."+ "\n"
-            +"2.Edit Information Customer."+ "\n"+"3.Show the amount to be paid after discount"));
-            switch (choose) {
+        let currentYear = new Date().getFullYear();
+        birthday = new Date(dayofBirthday).getFullYear();
+        let ageCustomer = currentYear - birthday;
+        if (ageCustomer >= 30 && address === "đà nẵng") {
+            moneyPay -= 2;
+        } else if (ageCustomer > 20 && address === "đà nẵng") {
+            moneyPay -= 1;
+        } else {
+            moneyPay -= 0;
+        }
+        let aptermoneyPay=moneyPay;
+        alert("1.Service type:" + typeService +"\n" +"2 .Customer Day of birthday: " + ageCustomer + "\n"
+        +"3.Customer Address: " + address + "\n" +"4.Customer type: " + typeCustomer
+        + "\n" +" 5.Discount (%): " + discount + "\n" + "6.Rent days: " + rentDays + "\n" +"6.Service type: " + typeService + "\n" +"\n"
+        +" Tổng tiền: "+ beformoneyPay+"$"+ "\n" + "Số tiền sau khi giảm: " + aptermoneyPay +"$");
+
+    }
+
+    let choose = parseInt(prompt("1.Show Information Customer." + "\n"
+        + "2.Edit Information Customer." + "\n" + "3.Show the amount to be paid after discount"));
+    switch (choose) {
+        case 1:
+            showCustom();
+            break;
+        case 2:
+            editCustom();
+            switch (n) {
                 case 1:
+                    name = prompt("1.Customer Name: ");
                     showCustom();
+                    editCustom();
                     break;
                 case 2:
+                    cardId = prompt("2.Customer ID: ");
+                    showCustom();
                     editCustom();
-                        switch (n) {
-                            case 1:
-                                name = prompt("1.Customer Name: ");
-                                showCustom();
-                                break;
-                            case 2:
-                                cardId = prompt("2.Customer ID: ");
-                                showCustom();
-                                break;
-                            case 3:
-                                birthday = prompt("3.Customer Day of birthday: ");
-                                showCustom();
-                                break;
-                            case 4:
-                                email = prompt("4.Customer Email: ");
-                                showCustom();
-                                break;
-                            case 5:
-                                address = prompt("5.Customer Address: ");
-                                showCustom();
-                                break;
-                            case 6:
-                                typeCustomer = prompt("6.Customer type (Diamond/Platinum/Gold/Silver/Member): ");
-                                showCustom();
-                                break;
-                            case 7:
-                                discount = parseInt(prompt("7.Discount (%): "));
-                                showCustom();
-                                break;
-                            case 8:
-                                amountPeople = prompt("8.How many people are with you?: ");
-                                showCustom();
-                                break;
-                            case 9:
-                                rentDays =parseInt(prompt("9.Rent days: "));
-                                showCustom();
-                                break;
-                            case 10:
-                                typeService = prompt("10.Service type (villa/house/room): ");
-                                showCustom();
-                                break;
-                            case 11:
-                                typeRoom = prompt("11.Room type rented (vip/business/normal): ");
-                                showCustom();
-                                break;
-                            default:
-                                alert("Failed");
-                    }
                     break;
                 case 3:
+                    birthday = prompt("3.Customer Day of birthday: ");
+                    showCustom();
+                    editCustom();
+                    break;
+                case 4:
+                    email = prompt("4.Customer Email: ");
+                    showCustom();
+                    editCustom();
+                    break;
+                case 5:
+                    address = prompt("5.Customer Address: ");
+                    showCustom();
+                    editCustom();
+                    break;
+                case 6:
+                    typeCustomer = prompt("6.Customer type (Diamond/Platinum/Gold/Silver/Member): ");
+                    showCustom();
+                    editCustom();
+                    break;
+                case 7:
+                    discount = parseInt(prompt("7.Discount (%): "));
+                    showCustom();
+                    editCustom();
+                    break;
+                case 8:
+                    amountPeople = prompt("8.How many people are with you?: ");
+                    showCustom();
+                    editCustom();
+                    break;
+                case 9:
+                    rentDays = parseInt(prompt("9.Rent days: "));
+                    showCustom();
+                    editCustom();
+                    break;
+                case 10:
+                    typeService = prompt("10.Service type (villa/house/room): ");
+                    showCustom();
+                    editCustom();
+                    break;
+                case 11:
+                    typeRoom = prompt("11.Room type rented (vip/business/normal): ");
+                    showCustom();
                     editCustom();
                     break;
                 default:
-                    alert("sự lựa chọn của bạn không có trong đơn");
+                    alert("Failed");
             }
-    </script>
+            break;
+        case 3:
+            totalMoney();
+            break;
+        default:
+            alert("sự lựa chọn của bạn không có trong đơn");
+    }
+</script>
 </body>
 </html>

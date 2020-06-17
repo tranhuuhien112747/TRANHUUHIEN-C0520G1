@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img id="img" src="pic_bulboff.gif"><br><br>
+<input type="button" onclick="on_off()" value="ONN/OFF">
+<p id="out"></p>
+<script>
+    class ElectricLamp {
+        constructor(status) {
+            this.status = status;
+        }
+        turnof_onSwith(){
+            this.status=!this.status;
+        }
+        getStatus(){
+            return this.status;
+        }
+    }
+    class SwithButton{
+        constructor(swith) {
+        }
+        tunrLight(){
+            if(swith.getStatus()===true){
+                document.getElementById("img").src="pic_bulbon.gif";
+                document.getElementById("out").innerHTML="Đèn đang bật";
+            }else {
+                document.getElementById("img").src="pic_bulboff.gif";
+                document.getElementById("out").innerHTML="Đèn đang tắt";
+            }
+        }
+    }
+    let swith= new ElectricLamp(true);
+    let light=new SwithButton(swith);
+    function on_off() {
+        swith.turnof_onSwith();
+        light.tunrLight();
+    }
+
+</script>
+</body>
+</html>
