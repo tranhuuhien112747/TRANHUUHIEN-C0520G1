@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let arrNameCustomers = [];
+    let namecustomer;
+    while (true) {
+        let chose = parseFloat(prompt("1.Add New Customer" + "\n" + "2.Delete Customer"));
+        switch (chose) {
+            case 1:
+                let number = parseFloat(prompt("Nhập số lượng muốn thêm vào"));
+                for (let i = 0; i < number; i++) {
+                    namecustomer = prompt("Nhập name customer");
+                    arrNameCustomers.push(namecustomer);
+                }
+                let data = "";
+                arrNameCustomers.sort();
+                for (let i = 0; i < arrNameCustomers.length; i++) {
+                    data += (i + 1) + arrNameCustomers[i] + "\n";
+                }
+                alert(data);
+                break;
+            case 2:
+                deleteCustomer();
+                break;
+
+            default:
+                alert("failed");
+        }
+    }
+
+    function deleteCustomer() {
+        let check = false;
+        let data1 = "";
+        let customername = ["chuong", "toan", "quang", "nhat", "hien", "hai", "chanh", "khanh", "tuong", "dat"];
+        let value = prompt("nhap ten muon xoa");
+        for (let i = 0; i < customername.length; i++) {
+            if (customername[i] === value) {
+                customername.splice(i, 1);
+                check = true;
+            }
+        }
+        if (!check) {
+            alert("ten k co trong danh sach");
+        }
+        customername = customername.sort();
+        for (let i = 0; i < customername.length; i++) {
+            data1 += (i + 1) + customername[i] + "\n";
+        }
+        alert(data1);
+    }
+
+
+</script>
+</body>
+</html>

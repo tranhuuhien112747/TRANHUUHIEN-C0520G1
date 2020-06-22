@@ -5,22 +5,81 @@
     <title>Title</title>
 </head>
 <body>
-    <script>
-        let n = parseInt(prompt("muốn bao nhiêu?:"));
-        let count = 0;
-        let sum=0;
-        let number=0;
-        while (count < n) {
-            if (number % 7 === 0) {
-                sum += number;
-                document.write(number+ "&nbsp");
-                number++;
-                count++;
-            }else {
-                number++;
+<script>
+    class Human {
+        constructor(name, gender, weight) {
+            this.name = name;
+            this.gender = gender;
+            this.weight = weight;
+        }
+
+        isMale() {
+            if (this.gender === 'male') {
+                return true;
+            } else {
+                return false;
             }
         }
-        document.write("<br>" + "Tổng là "+ sum);
-    </script>
+
+        setGender(arg) {
+            this.gender = arg;
+        }
+
+        checkApple(apple) {
+            return apple.weight;
+        }
+
+        eat(apple) {
+            this.weight++;
+            apple.decrease();
+        }
+
+        say(string) {
+            alert(string);
+        }
+
+        getWeight() {
+            return this.weight;
+        }
+
+    }
+
+    class Apple {
+        constructor(weight) {
+            this.weight = weight;
+        }
+
+        decrease() {
+            this.weight--;
+        }
+
+        isEmpty() {
+            if (this.weight === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        getWeight() {
+            return this.weight;
+        }
+    }
+
+    let apple = new Apple(10);
+    let Adam = new Human('Adam', 'Male', 30);
+    let Eva = new Human('Eva', 'Female', 25);
+    Adam.say('hello, Eva');
+    Eva.say('hi, Adam');
+    Adam.say('Ăn táo không ?');
+    Eva.say('Ăn nè!');
+    Adam.say('Khối lượng quả táo là :' + Adam.checkApple(apple));
+    Eva.eat(apple);
+    Adam.eat(apple);
+    Adam.say('Khối lượng quả táo là :' + Adam.checkApple(apple));
+    Adam.say('Khối lượng của Adam là :' + Adam.getWeight());
+    Eva.say('Khối lượng của Eva là :' + Eva.getWeight());
+
+</script>
 </body>
 </html>

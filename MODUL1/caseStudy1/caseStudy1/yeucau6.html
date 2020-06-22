@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" onclick="selectMainMenu() " value="Application Furama Resort Management" style="font-weight: bolder;
+color: #d61b06 ;background-color: gold;width: 400px;height: 50px;font-size: 20px" >
+<script>
+    //--------------------------------------------------------TASK 1-------------------------------------------------------
+    let villa = 500;
+    let house = 300;
+    let room = 100;
+
+    class Customer {
+        constructor(name, cardId, dayofBirthday, email, address, typeCustome, discount, amountPeople, rentDays, typeService, typeRoom) {
+            this.name = name;
+            this.cardID = cardId;
+            this.dayofBirthday = dayofBirthday;
+            this.email = email;
+            this.address = address;
+            this.typeCustome = typeCustome;
+            this.discount = discount;
+            this.amountPeople = amountPeople;
+            this.rentdays = rentDays;
+            this.typeService = typeService;
+            this.typeRoom = typeRoom;
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        setName(str) {
+            this.name = str;
+        }
+
+        getCardID() {
+            return this.cardID;
+        }
+
+        setCardID(num) {
+            this.cardID = num;
+        }
+
+        getDayofBirthday() {
+            return this.dayofBirthday;
+        }
+
+        setDayofBirthday(num) {
+            this.dayofBirthday = num;
+        }
+
+        getEmail() {
+            return this.email;
+        }
+
+        setEmail(str) {
+            this.email = str;
+        }
+
+        getAddress() {
+            return this.address;
+        }
+
+        setAddress(str) {
+            this.address = str;
+        }
+
+        getTypecustomer() {
+            return this.typeCustome;
+        }
+
+        setTypecustomer(str) {
+            this.typeCustome = str;
+        }
+
+        getDiscount() {
+            return this.discount;
+        }
+
+        setDiscount(num) {
+            this.discount = num;
+        }
+
+        getAmountPeople() {
+            return this.amountPeople;
+        }
+
+        setAmountPeople(num) {
+            this.amountPeople = num;
+        }
+
+        getRentdays() {
+            return this.rentdays;
+        }
+
+        setRentdays(num) {
+            this.rentdays = num;
+        }
+
+        getTypeService() {
+            return this.typeService;
+        }
+
+        setTypeService(str) {
+            this.typeService = str;
+        }
+
+        getTypeRoom() {
+            return this.typeRoom;
+        }
+
+        setTypeRoom(str) {
+            this.typeRoom = str;
+        }
+
+        getTotalpay() {
+            let moneyPay;
+            if (this.typeService === "Villa") {
+                moneyPay = villa * this.rentdays * (1 - this.discount / 100);
+            } else if (this.typeService === "House") {
+                moneyPay = house * this.rentdays * (1 - this.discount / 100);
+            } else if (this.typeService === "Room") {
+                moneyPay = room * this.rentdays * (1 - this.discount / 100);
+            }
+            return moneyPay;
+        }
+
+    }
+
+    function mainmenuCustomer() {
+        let chose = parseFloat(prompt(" MAIN MENU " + "\n" + "\n" + "1.Add New Customer" + "\n" +
+            '2. Display Information Customer' + "\n" + "3.Display total pay of customer" + "\n"
+            + "4.Edit Information Customer" + "\n" + "5.Delete Customer" + "\n" + "6.Exit"));
+        switch (chose) {
+            case 1:
+                addNewCustomer();
+                break;
+            case 2:
+                displayCustomers();
+                break;
+            case 3:
+                displayTotalpayofcustomer();
+                break;
+            case 4:
+                editCustomer();
+                break;
+            case 5:
+                deleteCustomer();
+                break;
+            case 6:
+                let a = confirm("DO YOU REALLY WANT TO EXIT ?");
+                if (a) {
+                    selectMainMenu();
+                } else {
+                    mainmenuCustomer();
+                }
+                break;
+            default:
+                alert("Please select the function");
+                mainmenuCustomer();
+        }
+    }
+
+    let arrListCustomers = [];
+
+    function addNewCustomer() {
+        let newCustomer = new Customer();
+        let temp = [];
+        let name = newCustomer.setName(checkname(prompt("Customer Name: ")));
+        let cardId = newCustomer.setCardID(checkID(parseFloat(prompt("Customer ID: "))));
+        let dayofBirthday = newCustomer.setDayofBirthday(checkDayofBirthday(prompt("Customer Day of birthday: ")));
+        let email = newCustomer.setEmail(checkEmail(prompt("Customer Email: ")));
+        let address = newCustomer.setAddress(checkAddress(prompt("Customer Address: ")));
+        let typeCustomer = newCustomer.setTypecustomer(checkTypecustomer(parseFloat(prompt("Customer type:" + "\n" +
+            "(1.Diamond / 2.Platinum / 3.Gold / 4.Silver / 5.Member): "))));
+        let discount = newCustomer.setDiscount(checkdiscount(parseInt(prompt("Discount (%): "))));
+        let amountPeople = newCustomer.setAmountPeople(checkPeople(parseFloat(prompt("How many people are with you?: "))));
+        let rentDays = newCustomer.setRentdays(checkRendays(parseInt(prompt("Rent days: "))));
+        let typeService = newCustomer.setTypeService(checkSevice(parseFloat(prompt(" Service type (1.Villa / 2.House / 3.Room): "))));
+        let typeRoom = newCustomer.setTypeRoom(checkRoom(prompt("Room type rented (1.Vip / 2.Business / 3.Normal): ")));
+        newCustomer.getTotalpay();
+        temp.push(newCustomer.getName(name));
+        temp.push(newCustomer.getCardID(cardId));
+        temp.push(newCustomer.getDayofBirthday(dayofBirthday));
+        temp.push(newCustomer.getEmail(email));
+        temp.push(newCustomer.getAddress(address));
+        temp.push(newCustomer.getTypecustomer(typeCustomer));
+        temp.push(newCustomer.getDiscount(discount));
+        temp.push(newCustomer.getAmountPeople(amountPeople));
+        temp.push(newCustomer.getRentdays(rentDays));
+        temp.push(newCustomer.getTypeService(typeService));
+        temp.push(newCustomer.getTypeRoom(typeRoom));
+        temp.push(newCustomer.getTotalpay());
+        arrListCustomers.push(temp);
+        alert("COMPLETE");
+        mainmenuCustomer();
+    }
+
+    function displayCustomers() {
+        let check = false;
+        let data = "";
+        for (let i = 0; i < arrListCustomers.length; i++) {
+            data += i + ". " + "Name: " + arrListCustomers[i][0] + "\n";
+        }
+        let select = parseFloat(prompt("CUSTOMER LISTS  " + "\n" + "-1. Back To Main Menu  " + "\n" + "\n" + data));
+        do {
+            if (isNaN(select) || select >= arrListCustomers.length || select < -1) {
+                select = parseFloat(prompt("Please choose the correct " + "\n" + "-1. Back To Main Menu " + "\n" + "\n" + data));
+            } else {
+                check = true;
+            }
+        } while (!check) ;
+        switch (select) {
+            case -1:
+                mainmenuCustomer();
+                break;
+            case select:
+                alert("CUSTOMER INFORMATION" + "\n" +
+                    "1.Customer name: " + arrListCustomers[select][0] + "\n" +
+                    "2.Customer ID: " + arrListCustomers[select][1] + "\n" +
+                    "3.Customer Day of birthday: " + arrListCustomers[select][2] + "\n" +
+                    "4.Customer Email: " + arrListCustomers[select][3] + "\n" +
+                    "5.Customer Address: " + arrListCustomers[select][4] + "\n" +
+                    "6.Customer type: " + arrListCustomers[select][5] + "\n" +
+                    "7.Discount (%): " + arrListCustomers[select][6] + "\n" +
+                    "8.How many people are with you: " + arrListCustomers[select][7] + "\n" +
+                    "9.Rent days: " + arrListCustomers[select][8] + "\n" +
+                    "10.Service type: " + arrListCustomers[select][9] + "\n" +
+                    "11.Room type rented: " + arrListCustomers[select][10]);
+                displayCustomers();
+                break;
+        }
+    }
+
+    function editCustomer() {
+        let check = false;
+        let data = "";
+        for (let i = 0; i < arrListCustomers.length; i++) {
+            data += i + ". " + "Name: " + arrListCustomers[i][0] + "\n";
+        }
+        let select = parseFloat(prompt("CUSTOMER LISTS " + "\n" + "-1. Back To Main Menu  " + "\n" + "\n" + data));
+        do {
+            if (isNaN(select) || select >= arrListCustomers.length || select < -1) {
+                select = parseFloat(prompt("Please choose the correct " + "\n" + "-1. Back To Main Menu " + "\n" + "\n" + data));
+            } else {
+                check = true;
+            }
+        } while (!check) ;
+        switch (select) {
+            case -1:
+                mainmenuCustomer();
+                break;
+            case select:
+                let selectEdit = parseFloat(prompt("CUSTOMER INFORMATION" + "\n" + "0. Back" + "\n" + "\n" +
+                    "1.Customer name: " + arrListCustomers[select][0] + "\n" +
+                    "2.Customer ID: " + arrListCustomers[select][1] + "\n" +
+                    "3.Customer Day of birthday: " + arrListCustomers[select][2] + "\n" +
+                    "4.Customer Email: " + arrListCustomers[select][3] + "\n" +
+                    "5.Customer Address: " + arrListCustomers[select][4] + "\n" +
+                    "6.Customer type: " + arrListCustomers[select][5] + "\n" +
+                    "7.Discount (%): " + arrListCustomers[select][6] + "\n" +
+                    "8.How many people are with you: " + arrListCustomers[select][7] + "\n" +
+                    "9.Rent days: " + arrListCustomers[select][8] + "\n" +
+                    "10.Service type: " + arrListCustomers[select][9] + "\n" +
+                    "11.Room type rented: " + arrListCustomers[select][10] + "\n"));
+                switch (selectEdit) {
+                    case 0:
+                        editCustomer();
+                        break;
+                    case 1:
+                        arrListCustomers[select][0] = checkname(prompt("Customer Name: "));
+                        break;
+                    case 2:
+                        arrListCustomers[select][1] = checkID(parseFloat(prompt("Customer ID: ")));
+                        break;
+                    case 3:
+                        arrListCustomers[select][2] = checkDayofBirthday(prompt("Customer Day of birthday: "));
+                        break;
+                    case 4:
+                        arrListCustomers[select][3] = checkEmail(prompt("Customer Email: "));
+                        break;
+                    case 5:
+                        arrListCustomers[select][4] = checkAddress(prompt("Customer Address: "));
+                        break;
+                    case 6:
+                        arrListCustomers[select][5] = checkTypecustomer(parseFloat(prompt("Customer " +
+                            "type: Please choose the correct order number:" + "\n" + "(1.Diamond / 2.Platinum / 3.Gold / 4.Silver / 5.Member): ")));
+                        break;
+                    case 7:
+                        arrListCustomers[select][6] = checkdiscount(parseInt(prompt("Discount (%): ")));
+                        break;
+                    case 8:
+                        arrListCustomers[select][7] = checkPeople(parseFloat(prompt("How many people are with you?: ")));
+                        break;
+                    case 9:
+                        arrListCustomers[select][8] = checkRendays(parseInt(prompt("Rent days: ")));
+                        break;
+                    case 10:
+                        arrListCustomers[select][9] = checkSevice(prompt(" Service type (1.Villa / 2.House / 3.Room): "));
+                        break;
+                    case 11:
+                        arrListCustomers[select][10] = checkRoom(prompt("Room type rented (1.Vip / 2.Business / 3.Normal): "));
+                        break;
+                    default:
+                        alert("Please select the correct number and information to edit");
+                }
+                editCustomer();
+        }
+    }
+
+    function displayTotalpayofcustomer() {
+        let check = false;
+        let data = "";
+        for (let i = 0; i < arrListCustomers.length; i++) {
+            data += i + "/ " + "Name: " + arrListCustomers[i][0] + "\n";
+        }
+        let select = parseFloat(prompt("CUSTOMER LISTS" + "\n" + "-1. Back To Main Menu " + "\n" + "\n" + data));
+        do {
+            if (isNaN(select) || select >= arrListCustomers.length || select < -1) {
+                select = parseFloat(prompt("Please choose the correct " + "\n" + "-1. Back To Main Menu " + "\n" + "\n" + data));
+            } else {
+                check = true;
+            }
+        } while (!check) ;
+        switch (select) {
+            case -1:
+                mainmenuCustomer();
+                break;
+            case select:
+                alert(arrListCustomers[select][0] + " total payment is " + arrListCustomers[select][11] + " $");
+                displayTotalpayofcustomer();
+                break;
+        }
+    }
+
+    function deleteCustomer() {
+        let check = false;
+        let data = "";
+        for (let i = 0; i < arrListCustomers.length; i++) {
+            data += i + ". " + "Name: " + arrListCustomers[i][0] + "\n";
+        }
+        let select = parseFloat(prompt(" CUSTOMER LISTS" + "\n" + "-1. Back To Main Menu " + "\n" + "\n" + data));
+        do {
+            if (isNaN(select) || select >= arrListCustomers.length || select < -1) {
+                select = parseFloat(prompt("Please choose the correct " + "\n" + "-1.Back To Main Menu" + "\n" + "\n" + data));
+            } else {
+                check = true;
+            }
+        } while (!check) ;
+        switch (select) {
+            case -1:
+                mainmenuCustomer();
+                break;
+            case select:
+                let a = confirm("Do you want to delete" + arrListCustomers[select][0] + " from lists?");
+                if (a) {
+                    arrListCustomers.splice(select, 1);
+                    deleteCustomer();
+                } else {
+                    deleteCustomer();
+                }
+                break;
+        }
+    }
+
+    //-------------------------------------------------------TASK 2---------------------------------------------------------
+    class Employee extends Customer {
+        constructor(name, cardId, dayofBirthday, email, address, typeEmployee) {
+            super(name, cardId, dayofBirthday, email, address);
+            this.typeEmployee = typeEmployee;
+        }
+
+        getTypeEmployee() {
+            return this.typeEmployee;
+        }
+
+        setTypeEmployee(str) {
+            this.typeEmployee = str;
+        }
+
+        getSelary() {
+            let selary;
+            if (this.typeEmployee === "Manager") {
+                selary = 500
+            }
+            if (this.typeEmployee === "Sale") {
+                selary = 300
+            }
+            if (this.typeEmployee === "Marketing") {
+                selary = 200
+            }
+            return selary;
+        }
+    }
+
+    let arrEmployees = [];
+
+    function mainmenuEmployee() {
+        let chose = parseFloat(prompt(" MAIN MENU " + "\n" + "\n" + "1.Add New Employee" + "\n" +
+            '2. Display Information Employee' + "\n" + "3.Display selary of Employee" + "\n"
+            + "4.Edit Information Employee" + "\n" + "5.Delete Employee" + "\n" + "6.Exit"));
+        switch (chose) {
+            case 1:
+                addNewEmployee();
+                break;
+            case 2:
+                displayEmployee();
+                break;
+            case 3:
+                displayselaryofEmployee();
+                break;
+            case 4:
+                editEmployee();
+                break;
+            case 5:
+                deleteEmployee();
+                break;
+            case 6:
+                let a = confirm("DO YOU REALLY WANT TO EXIT ?");
+                if (a) {
+                    selectMainMenu();
+                } else {
+                    mainmenuEmployee();
+                }
+                break;
+            default:
+                alert("Please select the function");
+                mainmenuEmployee();
+        }
+    }
+
+    function addNewEmployee() {
+        let employees = new Employee();
+        let temp1 = [];
+        let name = employees.setName(checkname(prompt("Employee Name: ")));
+        let cardId = employees.setCardID(checkID(parseFloat(prompt("Employee ID: "))));
+        let dayofBirthday = employees.setDayofBirthday(checkDayofBirthday(prompt("Employee Day of birthday: ")));
+        let email = employees.setEmail(checkEmail(prompt("Employee Email: ")));
+        let address = employees.setAddress(checkAddress(prompt("Employee Address: ")));
+        let typeEployee = employees.setTypeEmployee(checkTypeEmployee(parseFloat(prompt("Customer type:" +
+            "\n" + "(1.Manager / 2.Sale / 3.Marketing"))));
+        employees.getSelary();
+        temp1.push(employees.getName(name));
+        temp1.push(employees.getCardID(parseFloat(cardId)));
+        temp1.push(employees.getDayofBirthday(dayofBirthday));
+        temp1.push(employees.getEmail(email));
+        temp1.push(employees.getAddress(address));
+        temp1.push(employees.getTypeEmployee(typeEployee));
+        temp1.push(employees.getSelary());
+        arrEmployees.push(temp1);
+        alert("COMPLETE");
+        mainmenuEmployee();
+    }
+
+    function displayEmployee() {
+        let check = false;
+        let data = "";
+        for (let i = 0; i < arrEmployees.length; i++) {
+            data += i + "/ " + "Name: " + arrEmployees[i][0] + "\n";
+        }
+        let select = parseFloat(prompt("EMPLOYEE LISTS  " + "\n" + "-1. Back To Main Menu  " + "\n" + "\n" + data));
+        do {
+            if (isNaN(select) || select >= arrEmployees.length || select < -1) {
+                select = parseFloat(prompt("Please choose the correct " + "\n" + "-1. Back To Main Menu " + "\n" + "\n" + data));
+            } else {
+                check = true;
+            }
+        } while (!check) ;
+        switch (select) {
+            case -1:
+                mainmenuEmployee();
+                break;
+            case select:
+                alert("CUSTOMER INFORMATION" + "\n" +
+                    "1.Customer name: " + arrEmployees[select][0] + "\n" +
+                    "2.Customer ID: " + arrEmployees[select][1] + "\n" +
+                    "3.Customer Day of birthday: " + arrEmployees[select][2] + "\n" +
+                    "4.Customer Email: " + arrEmployees[select][3] + "\n" +
+                    "5.Customer Address: " + arrEmployees[select][4] + "\n" +
+                    "6.Customer type: " + arrEmployees[select][5] + "\n");
+                displayEmployee();
+                break;
+        }
+    }
+
+    function displayselaryofEmployee() {
+        let check = false;
+        let data = "";
+        for (let i = 0; i < arrEmployees.length; i++) {
+            data += i + "/ " + "Name: " + arrEmployees[i][0] + "\n";
+        }
+        let select = parseFloat(prompt("EMPLOYEE LISTS  " + "\n" + "-1. Back To Main Menu  " + "\n" + "\n" + data));
+        do {
+            if (isNaN(select) || select >= arrEmployees.length || select < -1) {
+                select = parseFloat(prompt("Please choose the correct " + "\n" + "-1. Back To Main Menu " + "\n" + "\n" + data));
+            } else {
+                check = true;
+            }
+        } while (!check) ;
+        switch (select) {
+            case -1:
+                mainmenuEmployee();
+                break;
+            case select:
+                alert(arrEmployees[select][0] + " total selary is " + arrEmployees[select][6] + " $");
+                displayselaryofEmployee();
+                break;
+        }
+    }
+
+    function editEmployee() {
+        let check = false;
+        let data = "";
+        for (let i = 0; i < arrEmployees.length; i++) {
+            data += i + "/ " + "Name: " + arrEmployees[i][0] + "\n";
+        }
+        let select = parseFloat(prompt("EMPLOYEE LISTS  " + "\n" + "-1. Back To Main Menu  " + "\n" + "\n" + data));
+        do {
+            if (isNaN(select) || select >= arrEmployees.length || select < -1) {
+                select = parseFloat(prompt("Please choose the correct " + "\n" + "-1. Back To Main Menu " + "\n" + "\n" + data));
+            } else {
+                check = true;
+            }
+        } while (!check) ;
+        switch (select) {
+            case -1:
+                mainmenuEmployee();
+                break;
+            case select:
+                let selectEdit = parseFloat(prompt("CUSTOMER INFORMATION" + "\n" + "0. Back" + "\n" + "\n" +
+                    "1.Customer name: " + arrEmployees[select][0] + "\n" +
+                    "2.Customer ID: " + arrEmployees[select][1] + "\n" +
+                    "3.Customer Day of birthday: " + arrEmployees[select][2] + "\n" +
+                    "4.Customer Email: " + arrEmployees[select][3] + "\n" +
+                    "5.Customer Address: " + arrEmployees[select][4] + "\n" +
+                    "6.Customer type: " + arrEmployees[select][5] + "\n"));
+                switch (selectEdit) {
+                    case 0:
+                        editEmployee();
+                        break;
+                    case 1:
+                        arrEmployees[select][0] = checkname(prompt("Employee Name: "));
+                        break;
+                    case 2:
+                        arrEmployees[select][1] = checkID(parseFloat(prompt("Employee ID: ")));
+                        break;
+                    case 3:
+                        arrEmployees[select][2] = checkDayofBirthday(parseFloat(prompt("Employee Day of birthday: ")));
+                        break;
+                    case 4:
+                        arrEmployees[select][3] = checkEmail(prompt("Employee Email: "));
+                        break;
+                    case 5:
+                        arrEmployees[select][4] = checkAddress(prompt("Employee Address: "));
+                        break;
+                    case 6:
+                        arrEmployees[select][5] = checkTypeEmployee(parseFloat(prompt("Employee type:" + "\n" +
+                            "(1.Manager / 2.Sale / 3.Marketing")));
+                        break;
+                    default:
+                        alert("Please select the correct number and information to edit");
+                }
+                editEmployee();
+        }
+    }
+
+    function deleteEmployee() {
+        let check = false;
+        let data = "";
+        for (let i = 0; i < arrEmployees.length; i++) {
+            data += i + "/ " + "Name: " + arrEmployees[i][0] + "\n";
+        }
+        let select = parseFloat(prompt("EMPLOYEE LISTS  " + "\n" + "-1. Back To Main Menu  " + "\n" + "\n" + data));
+        do {
+            if (isNaN(select) || select >= arrEmployees.length || select < -1) {
+                select = parseFloat(prompt("Please choose the correct " + "\n" + "-1. Back To Main Menu " + "\n" + "\n" + data));
+            } else {
+                check = true;
+            }
+        } while (!check) ;
+        switch (select) {
+            case -1:
+                mainmenuEmployee();
+                break;
+            case select:
+                let a = confirm("Do you want to delete" + arrEmployees[select][0] + " from lists?");
+                if (a) {
+                    arrEmployees.splice(select, 1);
+                    deleteEmployee();
+                } else {
+                    deleteEmployee();
+                }
+                break;
+            default:
+        }
+    }
+
+    //--------------------------------------------CHẠY CHƯƠNG TRÌNH--------------------------------------------------------------
+    function selectMainMenu() {
+        let chose = parseFloat(prompt("THE MAIN OPTION WINDOWS OF THE FURAMA RESORT" + "\n" + "\n" + "1. CUSTOMER" + "\n" + "\n"
+            + "2.EMPLOYEE" + "\n" + "\n" + "3.EXIT"));
+        switch (chose) {
+            case 1:
+                mainmenuCustomer();
+                break;
+            case 2:
+                mainmenuEmployee();
+                break;
+            case 3:
+                let a = confirm("DO YOU REALLY WANT TO EXIT ?");
+                if (!a) {
+                    selectMainMenu();
+                }
+                break;
+            default:
+                alert("Please select the function");
+                selectMainMenu();
+
+        }
+    }
+
+    //------------------------------------TASK 3-----------CÁC HÀM CHECK------------------------------------------------------
+    function checkname(value) {
+        let check = false;
+        do {
+            if (value === "") {
+                value = prompt("Customer Name: ");
+            } else {
+                check = true;
+            }
+        } while (!check);
+        if (check) {
+            value.toLowerCase();
+            let myArray = value.split(" ");
+            let fullname = "";
+            for (let i = 0; i < myArray.length; i++) {
+                if (myArray[i] !== "") {
+                    myArray[i] = myArray[i].charAt(0).toUpperCase() + myArray[i].substr(1);
+                    fullname += myArray[i] + " ";
+                }
+            }
+            return fullname;
+        }
+    }
+
+    function checkID(x) {
+        let check = false;
+        do {
+            if (isNaN(x) || x < 10000000 || x > 99999999) {
+                x = parseFloat(prompt("Invalid ID. Please enter again "));
+            } else {
+                check = true;
+            }
+
+        } while (!check);
+        return x;
+    }
+
+    function checkTypecustomer(x) {
+        let check = false;
+        do {
+            if (x <= 0 || x > 5 || isNaN(x)) {
+                x = parseFloat(prompt("Invalid selection.Please choose the correct order number:"
+                    + "\n" + "(1.Diamond / 2.Platinum / 3.Gold / 4.Silver / 5.Member): "));
+            } else {
+                check = true;
+            }
+        } while (!check);
+        if (check) {
+            if (x === 1) {
+                x = "Diamond";
+            } else if (x === 2) {
+                x = "Platinum";
+            } else if (x === 3) {
+                x = "Gold";
+            } else if (x === 4) {
+                x = "Silver";
+            } else if (x === 5) {
+                x = "Member";
+            }
+        } else {
+            check = true;
+        }
+        return x;
+    }
+
+    function checkEmail(st) {
+        check = false;
+        do {
+            let count1 = 0;
+            let count2 = 0;
+            for (let i = 0; i < st.length; i++) {
+                if (st.charAt(i) === "@") {
+                    count1++;
+                }
+            }
+            for (let j = 0; j < st.length; j++) {
+                if (st.charAt(j) === ".") {
+                    count2++;
+                }
+            }
+            if (count1 !== 1 || count2 < 1) {
+                st = prompt("Invalid Email. Please enter again");
+            } else {
+                check = true;
+            }
+
+        } while (!check);
+        return st;
+    }
+
+    function checkAddress(str) {
+        str.toLowerCase();
+        let myAddress = str.split(" ");
+        let fulladdress = "";
+        for (let i = 0; i < myAddress.length; i++) {
+            if (myAddress[i] !== "") {
+                myAddress[i] = myAddress[i].charAt(0).toUpperCase() + myAddress[i].substr(1);
+                fulladdress += myAddress[i] + " ";
+            }
+        }
+        return fulladdress;
+    }
+
+    function checkDayofBirthday(x) {
+        check = false;
+        do {
+            if (x.charAt(2) === "/" && x.charAt(5) === "/") {
+                let day = x.substring(0, 2);
+                let month = x.substring(3, 5);
+                let year = x.substring(6, 10);
+                if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
+                    day = Number.parseFloat(day);
+                    month = Number.parseFloat(month);
+                    year = Number.parseFloat(year);
+                    if (Number.isInteger(day) && Number.isInteger(month) && Number.isInteger(year)) {
+                        if (day < 32 && month < 13) {
+                            check = true;
+                        }
+                    }
+                }
+            }
+            if (!check) {
+                x = prompt("Please enter the correct format (dd/mm/yyyy):");
+            }
+
+        } while (!check);
+        return x;
+    }
+
+    function checkdiscount(x) {
+        let check = false;
+        do {
+            if (x <= 0 || isNaN(x)) {
+                x = parseFloat(prompt("Discount (%): "));
+            } else {
+                check = true
+            }
+        } while (!check);
+        return x;
+    }
+
+    function checkRendays(x) {
+        let check = false;
+        do {
+            if (x <= 0 || isNaN(x)) {
+                x = parseInt(prompt("Rent days: "));
+            } else {
+                check = true
+            }
+        } while (!check);
+        return x;
+    }
+
+    function checkPeople(x) {
+        let check = false;
+        do {
+            if (x < 0 || isNaN(x)) {
+                x = parseFloat(prompt("How many people are with you?: "));
+            } else {
+                check = true
+            }
+        } while (!check);
+        return x;
+    }
+
+    function checkSevice(x) {
+        let check = false;
+        do {
+            if (x <= 0 || x > 3 || isNaN(x)) {
+                x = parseFloat(prompt("Invalid selection.Please choose the correct order number:"
+                    + "\n" + "(1.Villa / 2.House / 3.Room )"));
+            } else {
+                check = true;
+            }
+        } while (!check);
+        if (check) {
+            if (x === 1) {
+                x = "Villa";
+            } else if (x === 2) {
+                x = "House";
+            } else if (x === 3) {
+                x = "Room";
+            }
+        }
+        return x;
+    }
+
+    function checkRoom(x) {
+        let check = false;
+        do {
+            if (x <= 0 || x > 3 || isNaN(x)) {
+                x = parseFloat(prompt("Invalid selection.Please choose the correct order number:"
+                    + "\n" + "(1.Vip / 2.Business / 3.Normal):"));
+            } else {
+                check = true;
+            }
+        } while (!check);
+        if (check) {
+            if (x === 1) {
+                x = "Vip";
+            } else if (x === 2) {
+                x = "Business ";
+            } else if (x === 3) {
+                x = "Normal";
+            }
+        }
+        return x;
+    }
+
+    function checkTypeEmployee() {
+        let check = false;
+        do {
+            if (x <= 0 || x > 3 || isNaN(x)) {
+                x = parseFloat(prompt("Invalid selection.Please choose the correct order number:"
+                    + "\n" + "(1.Manager / 2.Sale / 3.Marketing"));
+            } else {
+                check = true;
+            }
+        } while (!check);
+        if (check) {
+            if (x === 1) {
+                x = "Manager";
+            } else if (x === 2) {
+                x = "Sale";
+            } else if (x === 3) {
+                x = "Marketing";
+            }
+        }
+        return x;
+    }
+
+
+</script>
+</body>
+</html>
