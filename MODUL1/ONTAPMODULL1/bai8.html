@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //--------------------bai8---------------------
+    function getucln(a,b) {
+        while (a!=b){
+            if ( a>b)
+                a = a - b;
+            else
+                b= b- a;
+        }
+        return a;
+    }
+    function getbcnn(a, b, num) {
+        return a*b/num;
+    }
+    let a = prompt("moi nhap so thu 1: ");
+    let b = prompt("moi nhap so thu 2: ");
+    let bcnn= getucln(a,b);
+    let ucln= getbcnn(a,b,bcnn);
+    alert(a + " va " +b +" co uoc chung lon nhat la: "+bcnn+ " va boi chung nho nhat la: "+ucln);
+</script>
+</body>
+</html>

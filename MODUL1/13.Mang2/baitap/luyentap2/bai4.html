@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //Viết một chương trình để đếm số từ trong một chuỗi
+    let str = prompt("nhap chuoi: ");
+    let count = 0;
+    for (let i = 0; i < str.length; i++) {
+        if (str.charAt(i) === " ") {
+            str = str.slice(i).trim();
+            i = 0;
+            if (str.indexOf(" ") === -1) {
+                count++;
+            }
+            count++;
+        }
+    }
+    document.write( "số từ có là: " + count);
+</script>
+</body>
+</html>

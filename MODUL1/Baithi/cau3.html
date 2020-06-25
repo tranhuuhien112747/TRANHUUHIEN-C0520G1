@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Câu 3</title>
+</head>
+<body>
+<script>
+    manyDay();
+
+    function manyDay() {
+        let value = check(prompt("Nhập vao tháng năm MM/YYYY"));
+        let month = value.substr(0, 2);
+        let year = value.substr(3, 4);
+        if (!isNaN(month) && !isNaN(year)) {
+            month = Number.parseFloat(month);
+            year = Number.parseFloat(year);
+        }
+        let leapyear = false;
+        let leapyear4 = year % 4 === 0;
+        if (leapyear4) {
+            let Divleapyear100 = year % 100 === 0;
+            if (Divleapyear100) {
+                let Divleapyear400 = year % 400 === 0;
+                if (Divleapyear400) {
+                    leapyear = true;
+                }
+            } else {
+                leapyear = true;
+            }
+        }
+        switch (month) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                alert(31);
+                break;
+            case 2:
+                if (leapyear) {
+                    alert(29);
+                } else {
+                    alert(28);
+                }
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                alert(30);
+                break;
+            default:
+        }
+    }
+
+    function check(str) {
+        let check = true;
+        do {
+            let patNgay = /^((0[1-9]|1[0-2])\/(19\d{2}|(20[0-2]\d)))$/;
+            check = patNgay.test(str);
+            if (check) {
+                return str;
+            } else {
+                str = prompt("Nhập vao tháng năm MM/YYYY");
+            }
+        } while (!check) ;
+    }
+</script>
+</body>
+</html>

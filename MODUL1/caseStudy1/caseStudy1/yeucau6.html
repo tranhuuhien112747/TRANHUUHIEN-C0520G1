@@ -6,7 +6,7 @@
 </head>
 <body>
 <input type="button" onclick="selectMainMenu() " value="Application Furama Resort Management" style="font-weight: bolder;
-color: #d61b06 ;background-color: gold;width: 400px;height: 50px;font-size: 20px" >
+color: #d61b06 ;background-color: yellow;width: 400px;height: 50px;font-size: 20px;border: 3px solid darkblue" >
 <script>
     //--------------------------------------------------------TASK 1-------------------------------------------------------
     let villa = 500;
@@ -355,7 +355,7 @@ color: #d61b06 ;background-color: gold;width: 400px;height: 50px;font-size: 20px
                 mainmenuCustomer();
                 break;
             case select:
-                let a = confirm("Do you want to delete" + arrListCustomers[select][0] + " from lists?");
+                let a = confirm("Do you want to delete " + arrListCustomers[select][0] + " from lists?");
                 if (a) {
                     arrListCustomers.splice(select, 1);
                     deleteCustomer();
@@ -542,7 +542,7 @@ color: #d61b06 ;background-color: gold;width: 400px;height: 50px;font-size: 20px
                         editEmployee();
                         break;
                     case 1:
-                        arrEmployees[select][0] = checkname(prompt("Employee Name: "));
+                        arrEmployees[select][0] =checkname(prompt("Employee Name: "));
                         break;
                     case 2:
                         arrEmployees[select][1] = checkID(parseFloat(prompt("Employee ID: ")));
@@ -586,7 +586,7 @@ color: #d61b06 ;background-color: gold;width: 400px;height: 50px;font-size: 20px
                 mainmenuEmployee();
                 break;
             case select:
-                let a = confirm("Do you want to delete" + arrEmployees[select][0] + " from lists?");
+                let a = confirm("Do you want to delete " + arrEmployees[select][0] + " from lists?");
                 if (a) {
                     arrEmployees.splice(select, 1);
                     deleteEmployee();
@@ -831,7 +831,7 @@ color: #d61b06 ;background-color: gold;width: 400px;height: 50px;font-size: 20px
         return x;
     }
 
-    function checkTypeEmployee() {
+    function checkTypeEmployee(x) {
         let check = false;
         do {
             if (x <= 0 || x > 3 || isNaN(x)) {
@@ -852,7 +852,6 @@ color: #d61b06 ;background-color: gold;width: 400px;height: 50px;font-size: 20px
         }
         return x;
     }
-
 
 </script>
 </body>

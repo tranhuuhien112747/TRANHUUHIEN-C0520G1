@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Câu 2 </title>
+</head>
+<body>
+<script>
+    function checkSohoanhao() {
+        let number = parseInt(prompt("Nhập số bạn cho là hoàn hảo?:"));
+        let count = 0;
+        let sum = 0;
+        while (count < number) {
+            if (number % count === 0) {
+                sum += count;
+                count++;
+            } else {
+                count++;
+            }
+        }
+        if (sum === number) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    checkSohoanhao();
+</script>
+</body>
+</html>

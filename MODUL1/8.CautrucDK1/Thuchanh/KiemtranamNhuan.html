@@ -8,11 +8,11 @@
 <script>
     let year=parseInt(prompt("Nhập số năm ?"));
     let leapyear= false;
-    let leapyear4= year % 4==0;
+    let leapyear4= year % 4===0;
     if (leapyear4) {
-        let Divleapyear100 = year % 100 == 0;
+        let Divleapyear100 = year % 100 === 0;
         if (Divleapyear100) {
-            let Divleapyear400 = year % 400 == 0;
+            let Divleapyear400 = year % 400 === 0;
             if (Divleapyear400) {
                 leapyear = true;
             }

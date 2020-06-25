@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="khung" style="margin-left: 200px;width: 700px;height: 500px">
+    <h1 style="margin-left: 150px">Quản lý Nhân Viên</h1>
+    <p id="display"></p>
+</div>
+​
+<script>
+    let listNhanVien = [];
+    hienThi();
+
+    function hienThi() {
+        let tableString = '<table border="1">\n' +
+            '<tr>\n' +
+            '<th>Số thứ tự</th>\n' +
+            '<th> Tên nhân Viên</th>\n' +
+            '<th> Ngày tháng năm sinh</th>\n' +
+            '<th> Địa chỉ</th>\n' +
+            '<th> Lương</th>\n' +
+            '<th> Chức vụ</th>\n' +
+            '<th style="background: yellow"> Sửa</th>\n' +
+            '<th style="background: red"> Xóa</th>\n' +
+            '</tr>';
+        for (let i = 0; i < listNhanVien.length; i++) {
+            tableString += ' <tr>\n' +
+                '<td>' + (i + 1) + '</td>\n' +
+                '<td>' + listNhanVien[i].getTen() + '</td>' +
+                '<td>' + listNhanVien[i].getNgaySinh() + '</td>\n' +
+                '<td>' + listNhanVien[i].getDiaChi() + '</td>\n' +
+                '<td>' + listNhanVien[i].getLuong() + '</td>\n' +
+                '<td>' + listNhanVien[i].getChucVu() + '</td>\n' +
+                '</tr>';
+        }
+        document.getElementById("display").innerHTML = tableString;
+    }
+
+    function themNhanVien() {
+        let ten = prompt("nhập tên công nhân:");
+        let ngaySinh = prompt("nhập ngày tháng năm sinh:");
+        let diaChi = prompt("nhập địa chỉ:");
+        let luong = prompt("nhập lương:");
+        let chucVu = prompt("nhập chức vụ:");
+        let nhanVien = new NhanVien(ten, ngaySinh, diaChi, luong, chucVu);
+        listNhanVien.push(nhanVien);
+        alert("thêm thành công");
+        hienThi();
+    }
+
+    function suaThongTin(i) {
+        let selet = parseFloat(prompt("1.tên" + listNhanVien[i].getTen() + "\n" + "2.NS" + listNhanVien[i].getNgaySinh() + "\n"
+            + "3.đc" + listNhanVien[i].getDiaChi() + "\n" + "4.luong " + listNhanVien[i].getLuong() +
+            "\n" + "5.chuc vu" + listNhanVien[i].getChucVu()));
+        switch (selet) {
+            case 1:
+                listNhanVien[i].setTen(prompt("nhập tên công nhân:"));
+                break;
+            case 2:
+                listNhanVien[i].setNgaySinh(prompt("nhập ngày tháng năm sinh:"));
+                break;
+            case 3:
+                listNhanVien[i].setDiaChi(prompt("nhập địa chỉ:"));
+                break;
+            case 4:
+                listNhanVien[i].setLuong(prompt("nhập lương:"));
+                break;
+            case 5:
+                listNhanVien[i].setChuVu(prompt("nhập chức vụ:"));
+                break;
+            default:
+                alert("failed");
+                suaThongTin();
+        }
+        hienThi();
+    }
+
+    function xoaNhanVien(id) {
+        let xacNhanXoa = confirm("Bạn có muốn xóa  " + listNhanVien[id].getTen() + "không?");
+        if (xacNhanXoa) {
+            listNhanVien.splice(id, 1);
+        }
+        hienThi();
+    }
+
+    class NhanVien {
+        constructor(ten, ngaySinh, diaChi, luong, chucVu) {
+            this.ten = ten;
+            this.ngaySinh = ngaySinh;
+            this.diaChi = diaChi;
+            this.luong = luong;
+            this.chucVu = chucVu;
+        }
+
+        setTen(ten) {
+            this.ten = ten;
+        }
+
+        getTen() {
+            return this.ten;
+        }
+
+        setNgaySinh(ngaySinh) {
+            this.ngaySinh = ngaySinh
+        }
+
+        getNgaySinh() {
+            return this.ngaySinh;
+        }
+
+        setDiaChi(diaChi) {
+            this.diaChi = diaChi;
+        }
+
+        getDiaChi() {
+            return this.diaChi;
+        }
+
+        setLuong(luong) {
+            this.luong = luong;
+        }
+
+        getLuong() {
+            return this.luong;
+        }
+
+        setChuVu(chucVu) {
+            this.chucVu = chucVu;
+        }
+
+        getChucVu() {
+            return this.chucVu;
+        }
+    }
+</script>
+</body>
+</html>

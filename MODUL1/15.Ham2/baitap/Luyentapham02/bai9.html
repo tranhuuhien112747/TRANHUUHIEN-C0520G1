@@ -16,7 +16,7 @@
             myArray[i] = Math.floor((Math.random() * 20) + 1);
         }
         for (let x in myArray) {
-            if (b == myArray[x]) {
+            if (b === myArray[x]) {
                 abc = true;
                 count++;
             }
@@ -24,7 +24,7 @@
         if (abc) {
             alert(myArray + "\n" + b + " xuất hiện " + count + " lần ");
         } else {
-            return alert(-1);
+            return alert(myArray+"\n"+-1);
         }
     }
 

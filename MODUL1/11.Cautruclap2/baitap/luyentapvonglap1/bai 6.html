@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let count = 0;
+    let sum = 0;
+    let n = parseFloat(prompt("nhap so"));
+    let number = 7;
+    while (count < n) {
+        if (number % 7 === 0) {
+            sum += number;
+            document.write(number + " ");
+            number++;
+            count++
+        } else {
+            number++;
+        }
+    }
+    document.write("<br>"+"tong " + n + " số đầu tiên chia hết cho 7 là " + sum);
+    // let number = prompt('Tính tổng của N số chia hết cho 7 đầu tiên trong các số tự nhiên. Nhập số N.');
+    // let count = 0;
+    // let sum = 0;
+    // let naturalNumber = 0;
+    // while (count < number){
+    //     if (naturalNumber % 7 === 0){
+    //         sum += naturalNumber;
+    //         document.write(naturalNumber + '&nbsp');
+    //         naturalNumber++;
+    //         count++;
+    //     }else {
+    //         naturalNumber++;
+    //     }
+    // }
+    // document.write('<br>'+ 'Tổng của '+number+' số tự nhiên đầu tiên chia hết cho 7 là: ' + sum);
+
+</script>
+</body>
+</html>

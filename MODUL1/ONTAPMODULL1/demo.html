@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //nhập ngày tháng năm bất kì kiểm tra tính hợp lệ của ngày tháng năm đó/
+    let check=true;
+
+    do {
+        let ngay = prompt("nhap ngay dd/MM/yyyy");
+        let patNgay=/^((0[1-9]|1[0-2])\/(19\d{2}|(20[0-2]\d)))$/;
+        check=patNgay.test(ngay);
+        if(check){
+           alert(ngay);
+        }else {
+            alert("k hop le");
+        }
+    }while (!check);
+
+</script>
+</body>
+</html>

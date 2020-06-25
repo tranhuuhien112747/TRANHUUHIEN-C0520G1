@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="khung" style="margin-left: 200px;width: 700px;height: 500px">
+    <h1 style="margin-left: 150px">Quản lý Công Nhân</h1>
+    <p id="display"></p>
+</div>
+<script>
+    class Congnhan {
+        constructor(ten, ngaySinh, diaChi, luong, chucVu) {
+            this.ten = ten;
+            this.ngaySinh = ngaySinh;
+            this.diaChi = diaChi;
+            this.luong = luong;
+            this.chucVu = chucVu;
+        }
+
+        setTen(ten) {
+            this.ten = ten;
+        }
+
+        getTen() {
+            return this.ten;
+        }
+
+        setNgaySinh(ngaySinh) {
+            this.ngaySinh = ngaySinh
+        }
+
+        getNgaySinh() {
+            return this.ngaySinh;
+        }
+
+        setDiaChi(diaChi) {
+            this.diaChi = diaChi;
+        }
+
+        getDiaChi() {
+            return this.diaChi;
+        }
+
+        setLuong(luong) {
+            this.luong = luong;
+        }
+
+        getLuong() {
+            return this.luong;
+        }
+
+        setChuVu(chucVu) {
+            this.chucVu = chucVu;
+        }
+
+        getChucVu() {
+            return this.chucVu;
+        }
+    }
+
+    let listNhanVien = [];
+    let nhanvien1 = new Congnhan("Lê Văn An", "11/08/1996", "Đà Nẵng", 5000, "Công nhân");
+    let nhanvien2 = new Congnhan("Nguyễn Văn Tí", "17/04/1998", "Đà Nẵng", 8000, "Quản lí");
+    let nhanvien3 = new Congnhan("Trần Văn Bé", "21/07/1986", "Đà Nẵng", 5000, "Công nhân");
+    let nhanvien4 = new Congnhan("Huỳnh Văn Lớn", "13/05/1989", "Đà Nẵng", 5000, "Công nhân");
+    listNhanVien.push(nhanvien1);
+    listNhanVien.push(nhanvien2);
+    listNhanVien.push(nhanvien3);
+    listNhanVien.push(nhanvien4);
+
+    function hienThi() {
+        let tableString = '<table border="1">\n' +
+            '<tr>\n' +
+            '<th>Số thứ tự</th>\n' +
+            '<th> Họ và tên </th>\n' +
+            '<th> Ngày tháng năm sinh</th>\n' +
+            '<th> Địa chỉ</th>\n' +
+            '<th> Lương</th>\n' +
+            '<th> Chức vụ</th>\n' +
+            '</tr>';
+        for (let i = 0; i < listNhanVien.length; i++) {
+            tableString += ' <tr>' +
+                '<td>' + (i + 1) + '</td>' +
+                '<td>' + listNhanVien[i].getTen() + '</td>' +
+                '<td>' + listNhanVien[i].getNgaySinh() + '</td>' +
+                '<td>' + listNhanVien[i].getDiaChi() + '</td>' +
+                '<td>' + listNhanVien[i].getLuong() + '</td>' +
+                '<td>' + listNhanVien[i].getChucVu() + '</td>' +
+                '</tr>';
+        }
+        document.getElementById("display").innerHTML = tableString;
+    }
+
+    function sortList() {
+        let temp=[];
+        for(let i=0,)
+
+    sortList();
+</script>
+</body>
+</html>

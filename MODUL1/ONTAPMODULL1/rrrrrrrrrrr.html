@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form></form>
+<script>
+    //----------------bai 1------------
+    // let n=parseFloat(prompt("nhaapj n?"));
+    // for (let i = 0; i < n; i++) {
+    //     for (let j = 0; j < 5; j++) {
+    //             document.write('*');
+    //     }
+    //     document.write('<br>');
+    // }
+    //----------------Bai2-------------------
+    // let S=0;
+    // let n=parseFloat(prompt("nhap n?:"));
+    // for (let i=1;i<=n;i++){
+    //     S+=1/(i);
+    // }
+    // alert("tong la: "+S);
+    //--------------------bai3--------------------------
+    //  let m =prompt("nhap m");
+    //  let sum = 0;
+    //  let tich = 1;
+    // for (let i=0;i< m.length;i++){
+    //     sum+=parseFloat(m.charAt(i));
+    //     tich*=parseFloat(m.charAt(i));
+    //  }
+    //  alert(sum + "\n" + tich);
+    //--------------------bai8---------------------
+    // function getGcd(a,b) {
+    //     while (a!=b){
+    //         if ( a>b)
+    //             a = a - b;
+    //         else
+    //             b= b- a;
+    //     }
+    //     return a;
+    // }
+    // function getLcm(a, b, num) {
+    //     return a*b/num;
+    // }
+    // let a = prompt("moi nhap so thu 1: ");
+    // let b = prompt("moi nhap so thu 2: ");
+    // let bcnn= getGcd(a,b);
+    // let ucln= getLcm(a,b,bcnn);
+    // alert(a + " va " +b +" co uoc chung nho nhat la: "+bcnn+ " va boi chung nho nhat la: "+ucln);
+    //-----------------------------bai9---------------------------------
+    //     let n=prompt("nhaap chuoi n?");
+    //     let value='';
+    //     for (let i=n.length;i>=0;i--){
+    //         value+=n.charAt(i);
+    //     }
+    //     document.write(value+"<br>"+value.toLowerCase()+"<br>"+value.toUpperCase()+'<br>');
+    //     if(n!==n.toUpperCase()){
+    //         document.write(n.toUpperCase());
+    //     }else {
+    //         document.write(n.toLowerCase());
+    //     }
+    //-------------------bai10-----------------
+    // let str = prompt("Customer Address: ");
+    // let mystr = str.split(" ");
+    //let fullstr = "";
+    // let count=0;
+    // for (let i = 0; i < mystr.length; i++) {
+    //     if (mystr[i] !== " ") {
+    //         fullstr = mystr[i] + "<br>";
+    //         count++
+    //     }
+    //     document.write(fullstr);
+    // }
+    // document.write("có "+count +" từ trong chuổi");
+    let str = prompt("nhap chuoi: ");
+    let fullstr = "";
+    let count=0;
+    for (let i = 0; i < str.length; i++) {
+        if (str.charAt(i) === " ") {
+            fullstr += str.substr(0, i) + "<br>";
+            str = str.slice(i).trim();
+            i=0;
+            if(str.indexOf(" ")===-1){
+                fullstr+=str;
+                count++;
+            }
+            count++;
+        }
+    }
+    document.write(fullstr+"<br>"+"số từ có là: "+count);
+    //--------------------------------------------------
+
+</script>
+</body>
+</html>

@@ -6,6 +6,8 @@
 </head>
 <body>
 <script>
+    //Viết chương trình khởi tạo mảng số nguyên. Hiển hiện giá trị lớn nhất trong mảng đó. In ra giá trị trung bình
+    // của các phần tử trong mảng.
     let a = prompt("nhập số phần tử muốn tạo?:");
     let matrix = new Array(a);
     let max;
@@ -21,7 +23,16 @@
         }
     }
     alert("maxtrix=[" + matrix + "]" + '\n' + "Max là: " + max + '\n' + "Trung bình là " + data / a);
-
+    // let x = [-3, 5, 1, 3, 2, 10, 4, -5, 30];
+    // let max = x[0];
+    // let index = 0;
+    // for(let i = 1; i < x.length; i++) {
+    //     if(max < x[i]) {
+    //         max = x[i];
+    //         index = i;
+    //     }
+    // }
+    // document.write("Max value is " + max + " at index " + index);
 </script>
 </body>
 </html>

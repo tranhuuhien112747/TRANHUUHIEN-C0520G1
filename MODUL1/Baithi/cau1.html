@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> câu 1</title>
+</head>
+<body>
+<script>
+    let sum = 0;
+    let count = 0;
+    let number = new Array(n);
+        for (let i = 0; i < n; i++) {
+            number[i] = parseFloat(prompt("Nhập phần tử thứ " + i));
+        }
+        alert(number);
+        for (let i = 0; i < number.length; i++) {
+            if (number[i] % 3 === 0) {
+                sum += number[i];
+                count++;
+            }
+        }
+    }
+    alert("Trung bình cộng là: " + sum / count);
+</script>
+</body>
+</html>
