@@ -21,11 +21,11 @@
     let house = 300;
     let room = 100;
     let moneyPay = 0;
-    if (typeService == "villa") {
+    if (typeService === "villa") {
         moneyPay = 500 * rentDays * (1 - discount / 100);
-    } else if (typeService == "house") {
+    } else if (typeService === "house") {
         moneyPay = 300 * rentDays * (1 - discount / 100);
-    } else if (typeService == "room") {
+    } else if (typeService === "room") {
         moneyPay = 100 * rentDays * (1 - discount / 100);
     } else {
         alert("Không hợp lê");
