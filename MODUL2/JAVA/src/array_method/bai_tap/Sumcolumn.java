@@ -4,7 +4,7 @@ public class Sumcolumn {
     public static void main(String[] args) {
         Scanner myScanner = new Scanner(System.in);
         int row, col;
-        System.out.print("Nhập độ dài mảng 2D ");
+        System.out.print("Nhập độ dài mảng 2D: ");
         row = myScanner.nextInt();
         System.out.print("Nhập độ dài cột: ");
         col = myScanner.nextInt();

@@ -26,11 +26,7 @@ public class Tongphantuduongcheohinhvuong {
 
         int sum = 0;
         for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                if (i == j) {
-                    sum += arr[i][j];
-                }
-            }
+                    sum += arr[i][i];
         }
         System.out.println("Tổng các phần tử ở đường chéo chính của ma trận là: " + sum);
     }

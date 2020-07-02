@@ -6,7 +6,6 @@ public class Timminarray {
     public static void main(String[] args) {
         int size;
         int[] array;
-        int index = -1;
         Scanner scanner = new Scanner(System.in);
         do {
             System.out.print("Nhập độ dài mảng: ");
@@ -26,8 +25,9 @@ public class Timminarray {
             System.out.print(array[i] + "\t");
         }
         int min = array[0];
+        int index = 0;
         for (int j = 0; j < array.length; j++) {
-            if (array[j] < min) {
+            if (min > array[j]) {
                 min = array[j];
                 index = j;
             }
