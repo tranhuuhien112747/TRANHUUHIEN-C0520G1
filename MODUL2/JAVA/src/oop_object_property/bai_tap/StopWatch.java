@@ -1,55 +1,40 @@
 package oop_object_property.bai_tap;
 
 import java.util.Date;
-import java.util.Scanner;
 
 public class StopWatch {
-    public Date startTime;
-    public Date endTime;
+    public long startTime;
+    public long endTime;
 
     public StopWatch() {
     }
 
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public void start() {
         Date date = new Date();
-        this.startTime = date;
+        this.startTime = date.getTime();
+        // this.startTime=System.currentTimeMillis();
     }
 
     public void stop() {
         Date date = new Date();
-        this.endTime = date;
+        this.endTime = date.getTime();
+        //this.endTime = System.currentTimeMillis();
+        //lấy ngày và giờ hiện tại.
     }
 
-    public long getElapsedTime() {
-        return endTime.getSeconds() - startTime.getSeconds();
+    public double getElapsedTime() {
+        return this.endTime - this.startTime;
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         StopWatch date = new StopWatch();
         date.start();
-        for (int i = 0; i < 2; i++) {
-            System.out.println("tung nui");
-            int khanhdeptrai = scanner.nextInt();
-            System.out.println("1" + khanhdeptrai);
+        int size = 9000000;
+        int[] arr = new int[size];
+        for (int i = 0; i < size; i++) {
+            arr[i] = (int) (Math.random() * size + 1);
         }
         date.stop();
-        System.out.println(date.getElapsedTime() + " giay");
+        System.out.print("Time elapsed:" + date.getElapsedTime() / 1000 + " seconds.");
     }
 }
