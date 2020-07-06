@@ -29,12 +29,12 @@ public class StopWatch {
     public static void main(String[] args) {
         StopWatch date = new StopWatch();
         date.start();
-        int size = 9000000;
+        int size = 1000000;
         int[] arr = new int[size];
         for (int i = 0; i < size; i++) {
             arr[i] = (int) (Math.random() * size + 1);
         }
         date.stop();
-        System.out.print("Time elapsed:" + date.getElapsedTime() / 1000 + " seconds.");
+        System.out.print("Time elapsed:" + date.getElapsedTime() + " miliseconds.");
     }
 }
