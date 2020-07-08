@@ -5,105 +5,80 @@ import java.util.Scanner;
 public class TestStudentCodeGym {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        StudentCodeGym student1 = new StudentCodeGym(1, "Tran", "11/04/1996");
-        StudentCodeGym student2 = new StudentCodeGym(2, "Huu", "11/05/1997");
-        StudentCodeGym student3 = new StudentCodeGym(3, "Hien", "13/06/1997");
+        StudentCodeGym student1 = new StudentCodeGym(1, "Tran A", "11/04/1996");
+        StudentCodeGym student2 = new StudentCodeGym(2, "Nguyen B", "11/05/1997");
+        StudentCodeGym student3 = new StudentCodeGym(3, "Le C", "13/06/1997");
+        StudentCodeGym student4 = new StudentCodeGym(4, "Huynh D", "11/08/1995");
+        StudentCodeGym student5 = new StudentCodeGym(5, "Ngo E", "22/04/1993");
+        StudentCodeGym student6 = new StudentCodeGym(6, "Pham F", "23/09/1992");
         StudentCodeGymClass listStudent = new StudentCodeGymClass();
         listStudent.register(student1);
         listStudent.register(student2);
         listStudent.register(student3);
+        listStudent.register(student4);
+        listStudent.register(student5);
+        listStudent.register(student6);
         listStudent.displayListStudent();
-        listStudent.graduate(2);
-        listStudent.displayListStudent();
-    }
-
-    static class StudentCodeGym {
-        private int id;
-        private String name;
-        private String dayofbirth;
-
-        public StudentCodeGym(int id, String name, String dayofbirth) {
-            this.id = id;
-            this.name = name;
-            this.dayofbirth = dayofbirth;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getDayofBirth() {
-            return dayofbirth;
-        }
-
-        public void setDayofBirth(String dayofbirth) {
-            this.dayofbirth = dayofbirth;
-        }
-    }
-
-    static class StudentCodeGymClass {
-        private static StudentCodeGym[] listStudent;
-        private static int count = 0;
-
-        static {
-            listStudent = new StudentCodeGym[20];
-        }
-
-        public int getIdStudent(int num) {
-            return listStudent[num].getId();
-        }
-
-        public String getNameStudent(int num) {
-            return listStudent[num].getName();
-        }
-
-        public String getDateOfBirthStudent(int num) {
-            return listStudent[num].getDayofBirth();
-        }
-
-        public void register(StudentCodeGym student) {
-            if (count > 20) {
-                System.out.println("Class full");
-            } else {
-                System.out.println("Added successfully " + student.getName() + " on the list!");
-                listStudent[count] = student;
-                count++;
-            }
-        }
-
-        public void graduate(int id) {
-            for (int i = 0; i < listStudent.length - 1; i++) {
-                if (listStudent[i].getId() == id) {
-                    System.out.println("Congratulate " + listStudent[i].getName());
-                    for (int j = i; j < listStudent.length - 1; j++) {
-                        listStudent[j] = listStudent[j + 1];
+        boolean check;
+        while (true) {
+            System.out.println("Menu");
+            System.out.println("1. Add New Student.");
+            System.out.println("2. Delete Student.");
+            System.out.println("3. Display All Student.");
+            System.out.println("0. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = input.nextInt();
+            switch (choice) {
+                case 1:
+                    int addId;
+                    do {
+                        check = false;
+                        System.out.print("Enter id: ");
+                        addId = input.nextInt();
+                        for (int i = 0; i < listStudent.getSize(); i++) {
+                            if (listStudent.getIdStudent(i) == addId) {
+                                System.out.println("ID already in the list. Please enter");
+                                check = true;
+                                break;
+                            }
+                        }
+                    } while (check);
+                    input.nextLine();
+                    System.out.print("Enter name: ");
+                    String addName = input.nextLine();
+                    System.out.print("Enter date of birth: ");
+                    String addDate = input.nextLine();
+                    StudentCodeGym student = new StudentCodeGym(addId, addName, addDate);
+                    listStudent.register(student);
+                    break;
+                case 2:
+                    check = false;
+                    System.out.println("Enter id you want to delete: ");
+                    int delId = input.nextInt();
+                    int index = 0;
+                    for (int i = 0; i < listStudent.getSize(); i++) {
+                        if (delId == listStudent.getIdStudent(i)) {
+                            check = true;
+                            index = i;
+                        }
+                    }
+                    if (check) {
+                        input.nextLine();
+                        System.out.println("You to remove " + listStudent.getNameStudent(index) + " this student!!!");
+                        listStudent.graduate(delId);
+                    } else {
+                        System.out.println("No exist this student.");
                     }
                     break;
-                }
-            }
-            listStudent[listStudent.length - 1] = null;
-            count--;
-        }
-
-        public void displayListStudent() {
-            System.out.println();
-            for (int i = 0; i < count; i++) {
-                System.out.print(i + 1 + "\t" + listStudent[i].getId() + "\t" + listStudent[i].getName() + "\t"
-                        + listStudent[i].getDayofBirth());
-                System.out.println();
+                case 3:
+                    listStudent.displayListStudent();
+                    break;
+                case 0:
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid value!!!");
             }
         }
     }
 }
+
