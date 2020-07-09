@@ -1,6 +1,6 @@
 package inheritance.exercise;
 
-public class Point2D {
+public class  Point2D {
     private float x = 0.0f, y = 0.0f;
 
     public Point2D() {
