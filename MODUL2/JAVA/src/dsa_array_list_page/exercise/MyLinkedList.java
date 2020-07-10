@@ -1,7 +1,7 @@
 package dsa_array_list_page.exercise;
 
 public class MyLinkedList<E> {
-    private Node heal;              // Phần tử đầu tiên trong linkedList.
+    private Node head;              // Phần tử đầu tiên trong linkedList.
     private int numNode = 0;        // Số lượng phần tử trong linkedList.
 
     private class Node {
@@ -22,17 +22,17 @@ public class MyLinkedList<E> {
 
     public void addFist(E element) {
         //khai báo một biến temp trỏ đến heal.
-        Node temp = heal;
+        Node temp = head;
         //Biến heal nhận giá trị một node mới.
-        heal = new Node(element);
+        head = new Node(element);
         //muốn chèn element vào phần tử đầu tiên thì phải trỏ heal.next đến temp.
-        heal.next = temp;
+        head.next = temp;
         numNode++;
     }
 
     public void addLast(E element) {
         //khai báo biến temp trỏ đến heal
-        Node temp = heal;
+        Node temp = head;
         //Cho con trỏ chạy đến phần tử cuối danh sách.
         while (temp.next != null) {
             //biến cuối cùng là temp.next.
@@ -44,7 +44,7 @@ public class MyLinkedList<E> {
     }
 
     public void add(int index, E element) {
-        Node temp = heal;
+        Node temp = head;
         Node holder;
         //cho con trỏ chạy tới vị trí index-1.
         for (int i = 0; i < index - 1 && temp.next != null; i++) {
@@ -60,7 +60,7 @@ public class MyLinkedList<E> {
     }
 
     public E get(int index) {
-        Node temp = heal;
+        Node temp = head;
         //chạy vòng for để chạy đến vị trí index.
         for (int i = 0; i < index; i++) {
             temp = temp.next;
@@ -78,12 +78,12 @@ public class MyLinkedList<E> {
             throw new IllegalArgumentException("NOT ERROR");
         }
         Object data;
-        Node temp = heal;
+        Node temp = head;
         if (index == 0) {
             //index=0 sẻ trả về data hiện tại.
             data = temp.data;
             //khi remove heal đầu tiên thì heal mới sẽ là heal tiếp theo
-            heal = heal.next;
+            head = head.next;
             numNode--;
         } else {
             for (int i = 0; i < index - 1 & temp.next != null; i++) {
@@ -100,11 +100,11 @@ public class MyLinkedList<E> {
     }
 
     public boolean remove(E element) {
-        if (heal.data.equals(element)) {
+        if (head.data.equals(element)) {
             remove(0);
             return true;
         } else {
-            Node temp = heal;
+            Node temp = head;
             while ((temp.next != null)) {
                 //nếu như tồn tại một phần tử trong data truyền vào thì sẽ remove phần tử đó.
                 if (temp.next.data.equals(element)) {
@@ -126,11 +126,11 @@ public class MyLinkedList<E> {
             throw new NullPointerException("Linkedlisst null");
         } else {
             MyLinkedList<E> myLinkedList = new MyLinkedList<>();
-            Node temp = heal;
+            Node temp = head;
             myLinkedList.addFist((E) temp.data);
             temp = temp.next;
             //chạy vòng lặp để đưa các phần tử danh sách cũ vào danh sách mới
-            while (temp.next != null) {
+            while (temp != null) {
                 myLinkedList.addLast((E) temp.data);
                 temp = temp.next;
             }
@@ -140,7 +140,7 @@ public class MyLinkedList<E> {
     }
 
     public boolean contains(E element) {
-        Node temp = heal;
+        Node temp = head;
         while (temp.next != null) {
             if (temp.next.data.equals(element)) {
                 return true;
@@ -151,7 +151,7 @@ public class MyLinkedList<E> {
     }
 
     public int indexOf(E element) {
-        Node temp = heal;
+        Node temp = head;
         for (int i = 0; i < numNode && temp.next != null; i++) {
             if (temp.next.data.equals(element)) {
                 return i;
@@ -164,16 +164,16 @@ public class MyLinkedList<E> {
     public void clear() {
         numNode = 0;
         for (int i = 0; i <numNode; i++) {
-            heal.data = null;
+            head.data = null;
         }
     }
 
     public E getFist() {
-        return (E) heal.data;
+        return (E) head.data;
     }
 
     public E getLast() {
-        Node temp = heal;
+        Node temp = head;
         while (temp.next != null) {
             temp = temp.next;
         }
