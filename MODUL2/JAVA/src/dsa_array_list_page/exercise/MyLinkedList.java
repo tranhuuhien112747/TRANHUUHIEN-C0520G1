@@ -1,5 +1,7 @@
 package dsa_array_list_page.exercise;
 
+import java.util.Arrays;
+
 public class MyLinkedList<E> {
     private Node head;              // Phần tử đầu tiên trong linkedList.
     private int numNode = 0;        // Số lượng phần tử trong linkedList.
@@ -105,7 +107,7 @@ public class MyLinkedList<E> {
             return true;
         } else {
             Node temp = head;
-            while ((temp.next != null)) {
+            while ((temp != null)) {
                 //nếu như tồn tại một phần tử trong data truyền vào thì sẽ remove phần tử đó.
                 if (temp.next.data.equals(element)) {
                     temp.next = temp.next.next;
