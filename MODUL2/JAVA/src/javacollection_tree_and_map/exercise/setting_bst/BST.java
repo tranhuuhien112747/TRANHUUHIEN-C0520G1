@@ -44,9 +44,8 @@ public class BST<E extends Comparable<E>> {
         size++;
     }
 
-    /**
-     * left--->root--->right
-     */
+
+    //left--->root--->right
     public void inOrder(TreeNode<E> root) {
         if (root != null) {
             inOrder(root.left);
@@ -56,8 +55,9 @@ public class BST<E extends Comparable<E>> {
     }
 
     /**
-     * left--->right--->root
+     * [Optional] [Bài tập] Cài đặt thao tác duyệt theo thứ tự postorder trong Binary Search Tree
      */
+    // left--->right--->root
     public void postOrder(TreeNode<E> root) {
         if (root != null) {
             postOrder(root.left);
@@ -67,8 +67,9 @@ public class BST<E extends Comparable<E>> {
     }
 
     /**
-     * root--->left--->right
+     * [Optional] [Bài tập] Cài đặt thao tác duyệt theo thứ tự preorder trong Binary Search Tree.
      */
+    // root--->left--->right
     public void preOder(TreeNode<E> root) {
         if (root != null) {
             System.out.print("->" + root.element);
@@ -77,9 +78,7 @@ public class BST<E extends Comparable<E>> {
         }
     }
 
-    /**
-     * by lever 1-->2-->3......
-     */
+    //by lever 1-->2-->3......
     public void breathfirst(TreeNode<E> root) {
         if (root != null) {
             Queue<TreeNode> queue = new LinkedList<>();
