@@ -55,7 +55,7 @@ public class BST<E extends Comparable<E>> {
     }
 
     /**
-     * [Optional] [Bài tập] Cài đặt thao tác duyệt theo thứ tự postorder trong Binary Search Tree
+     * [Optional] [Bài tập] Cài đặt thao tác duyệt theo thứ tự postorder trong Binary Search Tree.
      */
     // left--->right--->root
     public void postOrder(TreeNode<E> root) {
@@ -97,7 +97,7 @@ public class BST<E extends Comparable<E>> {
     }
 
     /**
-     * [Optional] [Bài tập] Cài đặt thao tác tìm kiếm trong Binary Search Tree
+     * [Optional] [Bài tập] Cài đặt thao tác tìm kiếm trong Binary Search Tree.
      */
     public boolean searchBST(E data) {
         boolean hasNode = false;
@@ -113,5 +113,13 @@ public class BST<E extends Comparable<E>> {
             }
         }
         return hasNode;
+    }
+
+    /**
+     * [Optional] [Bài tập] Cài đặt thao tác xoá trong Binary Search Tree.
+     */
+    public void deleteBST(E number) {
+        
+
     }
 }

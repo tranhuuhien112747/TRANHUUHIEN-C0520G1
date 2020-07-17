@@ -28,7 +28,10 @@ public class TestBST {
         treeBST.breathfirst(treeBST.root);
         System.out.println();
         System.out.println("Size " + treeBST.getSize());
-
+        System.out.println("----------------------------SearchBST");
+        System.out.println("Tree has number 45? " + treeBST.searchBST(45));
+        System.out.println("Tree has number 555? " + treeBST.searchBST(555));
+        System.out.println("Tree has number 101? " + treeBST.searchBST(101));
     }
 
 }
