@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
- * [Bài tập] Tìm chuỗi tăng dần có độ dài lớn nhất
+ * [Bài tập] Tìm chuỗi tăng dần có độ dài lớn nhất.
  */
 public class FindStringAscendingMax {
     public static void main(String[] args) {
@@ -12,10 +12,9 @@ public class FindStringAscendingMax {
 
         System.out.print("Enter a string: ");
         String string = input.nextLine();
-
+        LinkedList<Character> list = new LinkedList<>();
         LinkedList<Character> max = new LinkedList<>();
         for (int i = 0; i < string.length(); i++) {
-            LinkedList<Character> list = new LinkedList<>();
             list.add(string.charAt(i));
             for (int j = i + 1; j < string.length(); j++) {
                 if (string.charAt(j) > list.getLast()) {
