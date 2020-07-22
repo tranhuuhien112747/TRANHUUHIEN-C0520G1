@@ -12,9 +12,13 @@ import java.util.List;
 public class CopyFileText {
     public static void main(String[] args) {
         try {
-            FileReader fileReader = new FileReader("src/ss15_text_file/exercise/SourceFile");
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            File file = new File("E:\\TRANHUUHIEN-C0520G1\\MODUL2\\JAVA\\src\\ss15_text_file\\exercise\\SourceFile");
+            if (!file.exists()) {
+                throw new FileNotFoundException();
+            }
+            FileReader fileReader = new FileReader(file);
             FileWriter fileWriter = new FileWriter("src/ss15_text_file/exercise/TargetFile");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             String line;
 //            List<String> list = new ArrayList<>();
