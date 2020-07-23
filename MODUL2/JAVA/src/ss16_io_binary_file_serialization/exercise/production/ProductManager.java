@@ -23,7 +23,7 @@ public class ProductManager {
             codeProduct = input.nextLine();
             for (int i = 0; i < listProduct.size(); i++) {
                 if (codeProduct.equals(listProduct.get(i).getCodeProduct())) {
-                    System.err.println("ID already in the list. Please enter");
+                    System.err.println("Code Product already in the list. Please enter");
                     check = true;
                     break;
                 }
@@ -64,12 +64,16 @@ public class ProductManager {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
+            objectOutputStream.flush();
             objectOutputStream.close();
         }
     }
 
     public void showListProduct() throws IOException {
-            readerBynary();
+        readerBynary();
+        for (Production production : listProduct) {
+            System.out.println(production.toString());
+        }
     }
 
     public void readerBynary() throws IOException {
@@ -78,19 +82,14 @@ public class ProductManager {
         try {
             fis = new FileInputStream(FILE_PATH);
             objectInputStream = new ObjectInputStream(fis);
-            List<Production> listProduct = (List<Production>) objectInputStream.readObject();
-            for (Production production : listProduct) {
-                System.out.println(production.toString());
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } finally {
+            listProduct = (List<Production>) objectInputStream.readObject();
             objectInputStream.close();
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
         }
+//        finally {
+//            objectInputStream.close();
+//        }
     }
 
     public Production searchProduct(String name) {
@@ -138,24 +137,20 @@ public class ProductManager {
     public void deleteProduct(String code) throws IOException {
         Production temp = null;
         boolean check = false;
-        if (listProduct.isEmpty()) {
-            System.out.println("List is empty!!!");
+        for (Production product : listProduct) {
+            if (code.equals(product.getCodeProduct())) {
+                temp = product;
+                check = true;
+                break;
+            }
+        }
+
+        if (check) {
+            listProduct.remove(temp);
+            System.out.println("Delete successful :  " + temp);
+
         } else {
-            for (Production product : listProduct) {
-                if (code.equals(product.getCodeProduct())) {
-                    temp = product;
-                    check = true;
-                    break;
-                }
-            }
-
-            if (check) {
-                listProduct.remove(temp);
-                System.out.println("Delete successful :  " + temp);
-
-            } else {
-                System.out.println("No exist !!!");
-            }
+            System.out.println("No exist !!!");
         }
         writerBynary();
     }

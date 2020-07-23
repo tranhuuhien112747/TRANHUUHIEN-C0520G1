@@ -7,6 +7,7 @@ public class MainProduct {
     public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
         ProductManager productManager = new ProductManager();
+        productManager.readerBynary();
         while (true) {
             System.out.println("Menu: ");
             System.out.println("1. Add New Product: ");
