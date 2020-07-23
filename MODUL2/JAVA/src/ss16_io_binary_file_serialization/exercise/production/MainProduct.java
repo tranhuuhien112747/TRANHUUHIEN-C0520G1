@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class MainProduct {
     public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
-       ProductManager productManager = new ProductManager();
+        ProductManager productManager = new ProductManager();
         while (true) {
             System.out.println("Menu: ");
             System.out.println("1. Add New Product: ");
@@ -34,13 +34,13 @@ public class MainProduct {
                     System.out.println("Enter the product code you want to edit");
                     input.nextLine();
                     String code = input.nextLine();
-                   productManager.editProduct(code);
+                    productManager.editProduct(code);
                     break;
-                    case 5:
-                        System.out.println("Enter the product code you want to delete");
-                        input.nextLine();
-                        String codeDel = input.nextLine();
-                   productManager.deleteProduct(codeDel);
+                case 5:
+                    System.out.println("Enter the product code you want to delete");
+                    input.nextLine();
+                    String codeDel = input.nextLine();
+                    productManager.deleteProduct(codeDel);
                     break;
                 case 6:
                     System.exit(0);

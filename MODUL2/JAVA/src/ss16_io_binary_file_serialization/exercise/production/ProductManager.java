@@ -1,7 +1,5 @@
 package ss16_io_binary_file_serialization.exercise.production;
 
-import javacollection_tree_and_map.exercise.arraylist.Product;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +16,7 @@ public class ProductManager {
         String nameProduct;
         String manufacturer;
         String description;
-       boolean check;
+        boolean check;
         do {
             check = false;
             System.out.println("Enter Code Product : ");
@@ -52,7 +50,8 @@ public class ProductManager {
         listProduct.add(product);
         writerBynary();
     }
-    public void writerBynary() throws IOException{
+
+    public void writerBynary() throws IOException {
         FileOutputStream fos = null;
         ObjectOutputStream objectOutputStream = null;
         try {
@@ -68,12 +67,9 @@ public class ProductManager {
             objectOutputStream.close();
         }
     }
+
     public void showListProduct() throws IOException {
-        if (listProduct.isEmpty()) {
-            System.out.println("The list is empty");
-        } else {
-           readerBynary();
-        }
+            readerBynary();
     }
 
     public void readerBynary() throws IOException {
@@ -138,12 +134,13 @@ public class ProductManager {
         }
         writerBynary();
     }
+
     public void deleteProduct(String code) throws IOException {
         Production temp = null;
         boolean check = false;
-        if(listProduct.isEmpty()){
+        if (listProduct.isEmpty()) {
             System.out.println("List is empty!!!");
-        }else {
+        } else {
             for (Production product : listProduct) {
                 if (code.equals(product.getCodeProduct())) {
                     temp = product;
