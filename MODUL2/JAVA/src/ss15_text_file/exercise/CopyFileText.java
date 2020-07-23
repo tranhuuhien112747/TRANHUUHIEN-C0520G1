@@ -20,7 +20,7 @@ public class CopyFileText {
             FileWriter fileWriter = new FileWriter("src/ss15_text_file/exercise/TargetFile");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            String line;
+            String line=null;
 //            List<String> list = new ArrayList<>();
 //            while ((line = bufferedReader.readLine()) != null) {
 //                list.add(line);

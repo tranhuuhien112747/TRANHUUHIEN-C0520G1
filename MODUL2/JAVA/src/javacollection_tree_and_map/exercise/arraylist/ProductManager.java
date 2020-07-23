@@ -90,6 +90,31 @@ public class ProductManager {
         }
         return data;
     }
+    public Product delete(){
+        Product temp = null;
+        boolean isExist = false;
+        if(myList.isEmpty()){
+            System.out.println("List is empty!!!");
+        }else {
+            System.out.println("Enter product's id you want to remove: ");
+            int id = input.nextInt();
+            for (Product product : myList) {
+                if (product.getiD() == id) {
+                    temp = product;
+                    isExist = true;
+                    break;
+                }
+            }
+
+            if (isExist) {
+                myList.remove(temp);
+                System.out.println("Successful!!!");
+            } else {
+                System.out.println("No exist !!!");
+            }
+        }
+        return temp;
+    }
 
     public void sortProdutc() {
         System.out.println("1. AscendingSort");

@@ -27,6 +27,7 @@ public class Main {
                     productManager.editProduct(id);
                     break;
                 case 3:
+                    productManager.delete();
                     break;
                 case 4:
                     productManager.showListProduct();
