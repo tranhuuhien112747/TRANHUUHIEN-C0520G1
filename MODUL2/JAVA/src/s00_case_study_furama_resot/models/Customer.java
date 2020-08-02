@@ -1,15 +1,15 @@
 package s00_case_study_furama_resot.models;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import s00_case_study_furama_resot.commons.RegexCustomer;
+
+import java.util.*;
 
 /**
  * Create a class named Customer with the following properties: Customer name, Date of birth, Gender, ID card number,
  * Phone number, Email, Guest type, Address and attribute using the service whose object type is Services, and showInformation() method.
  */
 
-public class Customer {
+public class Customer implements Comparable<Customer> {
     private String idCard;
     private String nameCustomer;
     private String dateOfBirth;
@@ -116,8 +116,9 @@ public class Customer {
         this.services = services;
     }
 
-    public void showInformationCustomer() {
-        System.out.printf("%-15s%-25s%-17s%-12s%-16s%-30s%-18s%-25s", this.idCard, this.nameCustomer, this.dateOfBirth,
+
+    public void showInformationCustomer(int count) {
+        System.out.printf("%-5s%-15s%-25s%-17s%-12s%-16s%-30s%-18s%-25s", count, this.idCard, this.nameCustomer, this.dateOfBirth,
                 this.gender, this.phoneNumber, this.email, this.typeCustomer, this.address);
 
     }
@@ -127,26 +128,44 @@ public class Customer {
         Customer customer;
         String idCard, nameCustomer, dateOfBirth, gender, phoneNumber, email, typeCustomer, address;
         System.out.println("Enter ID Card customer: ");
-        idCard = input.nextLine();
+        idCard = RegexCustomer.checkIDCard(input.nextLine());
         System.out.println("Enter customer's name:");
-        nameCustomer = input.nextLine();
+        nameCustomer = RegexCustomer.checkNameFormat(input.nextLine());
         System.out.println("Enter date of birth customer:");
-        dateOfBirth = input.nextLine();
-        System.out.println("Enter gender customer:");
-        gender = input.nextLine();
+        dateOfBirth = RegexCustomer.checkDate(input.nextLine());
+        System.out.println("Enter gender customer(Male, Female or Unknown):");
+        gender = RegexCustomer.checkGender(input.nextLine());
         System.out.println("Enter phone number customer: ");
-        phoneNumber = input.nextLine();
+        phoneNumber = RegexCustomer.checkPhone(input.nextLine());
         System.out.println("Enter email customer:");
-        email = input.nextLine();
-        System.out.println("Enter type customer:");
-        typeCustomer = input.nextLine();
+        email = RegexCustomer.checkEmail(input.nextLine());
+        System.out.println("Enter type customer(Diamond, Platinum, Gold, Silver, Member):");
+        typeCustomer = RegexCustomer.checkType(input.nextLine());
         System.out.println("Enter address customer:");
         address = input.nextLine();
         System.out.println("ENTER THE INFORMATION SUCCESSFULLY !");
         customer = new Customer(idCard, nameCustomer, dateOfBirth, gender, phoneNumber, email, typeCustomer, address);
         customerList.add(customer);
-        customer.showInformationCustomer();
     }
 
+    public String getNameSort(String nameCustomer) {
+        String[] array = nameCustomer.split(" ");
+        return array[array.length - 1];
+    }
+
+    public String getYear(String dateOfBirth) {
+        String[] array = dateOfBirth.split("/");
+        return array[2];
+    }
+
+
+    @Override
+    public int compareTo(Customer customer) {
+        int result = this.getNameSort(this.nameCustomer).compareTo(customer.getNameSort(customer.nameCustomer));
+        if (result == 0) {
+            return Integer.compare(Integer.parseInt(this.getYear(this.dateOfBirth)), Integer.parseInt(customer.getYear(customer.dateOfBirth)));
+        }
+        return result;
+    }
 
 }

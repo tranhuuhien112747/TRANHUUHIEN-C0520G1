@@ -1,5 +1,7 @@
 package s00_case_study_furama_resot.models;
 
+import s00_case_study_furama_resot.commons.RegexService;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -51,17 +53,17 @@ public class Room extends Services {
         double areaUsed, rentalCosts;
         int maxPeople;
         System.out.print("Enter Id: ");
-        id = input.nextLine();
+        id = RegexService.checkIdRoom(input.nextLine());
         System.out.print("Enter Services name's : ");
-        nameService = input.nextLine();
+        nameService = RegexService.checkFormat(input.nextLine());
         System.out.print("Enter Area: ");
-        areaUsed = Double.parseDouble(input.nextLine());
+        areaUsed = RegexService.checkArea((input.nextLine()));
         System.out.print("Enter rental Costs: ");
-        rentalCosts = Double.parseDouble(input.nextLine());
+        rentalCosts = RegexService.checkRentalCost(input.nextLine());
         System.out.print("Enter the maximum number of people: ");
-        maxPeople = Integer.parseInt(input.nextLine());
+        maxPeople = RegexService.checkMaxPeople(input.nextLine());
         System.out.print("Enter rental type: ");
-        typeOfRent = input.nextLine();
+        typeOfRent = RegexService.checkFormat(input.nextLine());
         System.out.print("Enter the free service included: ");
         freeServices = input.nextLine();
         System.out.println("ENTER THE INFORMATION SUCCESSFULLY !!!!");

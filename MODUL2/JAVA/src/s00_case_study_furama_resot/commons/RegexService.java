@@ -115,7 +115,7 @@ public class RegexService {
      **/
 
     public static String checkFormat(String nameService) {
-        final String NAME_SERVICE_REGEX = "^[A-Z][a-z]{0,9}(([ ][A-Z][a-z]{0,9}){0,3})$";
+        final String NAME_SERVICE_REGEX = "^[A-Z][a-z]{0,9}(([ ][A-Z][a-z]{0,9})*)$";
         Scanner input = new Scanner(System.in);
         Pattern pattern = Pattern.compile(NAME_SERVICE_REGEX);
         Matcher matcher = pattern.matcher(nameService);

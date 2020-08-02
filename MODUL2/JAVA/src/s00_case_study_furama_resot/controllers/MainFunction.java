@@ -10,12 +10,13 @@ import s00_case_study_furama_resot.models.Room;
 import s00_case_study_furama_resot.models.Villa;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Scanner;
 
-public class MainController {
+public class MainFunction {
     public void displayMainMenu() throws IOException {
-        VillaFile.readVilla();
-        CustomerFile.readerFileCustomer();
+//        VillaFile.readVilla();
+//        CustomerFile.readerFileCustomer();
         Scanner input = new Scanner(System.in);
         int choose;
         while (true) {
@@ -30,7 +31,6 @@ public class MainController {
             System.out.println("7. Exit.");
             System.out.print("Enter your choice: ");
             choose = input.nextInt();
-
             switch (choose) {
                 case 1:
                     addNewServices();
@@ -158,19 +158,16 @@ public class MainController {
         CustomerFile.writerFileCustomer();
     }
 
-    public static void main(String[] args) throws IOException {
-        MainController mainController = new MainController();
-        mainController.displayMainMenu();
-    }
-
     public void showInformationOfCustomer() {
-        System.out.printf("%-15s%-25s%-17s%-12s%-16s%-30s%-18s%-25s", "ID Card", "Name Customer", "Date Of Birth", "Gender",
+        Collections.sort(Customer.getCustomerList());
+        System.out.printf("%-5s%-15s%-25s%-17s%-12s%-16s%-30s%-18s%-25s", "NO", "ID Card", "Name Customer", "Date Of Birth", "Gender",
                 "Phone number", "Email Customer", "Type Customer", "Address");
         System.out.println("\n");
+        int count = 0;
         for (Customer customer : Customer.getCustomerList()) {
-            customer.showInformationCustomer();
+            customer.showInformationCustomer(++count);
             System.out.println("\n");
         }
-
     }
+
 }
