@@ -23,12 +23,12 @@ public class Room extends Services {
         this.freeServices = freeServices;
     }
 
-    public Room(String nameService, double areaUsed, double rentalCosts, int maxPeople, String typeOfRent, String id,
-                String freeServices, AccompaniedService accompaniedService) {
-        super(nameService, areaUsed, rentalCosts, maxPeople, typeOfRent, id, accompaniedService);
-        this.freeServices = freeServices;
-        this.accompaniedService = accompaniedService;
-    }
+//    public Room(String nameService, double areaUsed, double rentalCosts, int maxPeople, String typeOfRent, String id,
+//                String freeServices, AccompaniedService accompaniedService) {
+//        super(nameService, areaUsed, rentalCosts, maxPeople, typeOfRent, id, accompaniedService);
+//        this.freeServices = freeServices;
+//        this.accompaniedService = accompaniedService;
+//    }
 
     public static List<Room> getRoomList() {
         return roomList;
@@ -62,10 +62,10 @@ public class Room extends Services {
         rentalCosts = RegexService.checkRentalCost(input.nextLine());
         System.out.print("Enter the maximum number of people: ");
         maxPeople = RegexService.checkMaxPeople(input.nextLine());
-        System.out.print("Enter rental type: ");
+        System.out.print("Enter rental type(including rent by year, month, day, time): ");
         typeOfRent = RegexService.checkFormat(input.nextLine());
         System.out.print("Enter the free service included: ");
-        freeServices = input.nextLine();
+        freeServices = RegexService.checkDescription(input.nextLine());
         System.out.println("ENTER THE INFORMATION SUCCESSFULLY !!!!");
         room = new Room(id, nameService, areaUsed, rentalCosts, maxPeople, typeOfRent, freeServices);
         roomList.add(room);

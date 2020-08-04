@@ -50,17 +50,21 @@ public class RegexCustomer {
      * -----------------------------------------CHECK GENDER----------------------------------------------------------
      */
     public static String checkGender(String gender) {
-        final String GENDER_REGEX = "^(Male|Female|Unknown)$";
+        final String GENDER_REGEX = "^(male|female|unknown)$";
         String data;
-        data = gender.toUpperCase().charAt(0) + gender.toLowerCase().substring(1);
+        while (gender.equals("")) {
+            System.out.println("Enter gender customer(Male, Female or Unknown):");
+            gender = input.nextLine().toLowerCase();
+        }
         Pattern pattern = Pattern.compile(GENDER_REGEX);
-        Matcher matcher = pattern.matcher(data);
+        Matcher matcher = pattern.matcher(gender);
         while (!matcher.matches()) {
             System.err.println("Gender must be Male, Female or Unknown ");
             System.out.println("Enter again:");
-            data = checkGender(input.nextLine());
-            matcher = pattern.matcher(data);
+            gender = input.nextLine().toLowerCase();
+            matcher = pattern.matcher(gender);
         }
+        data = gender.toUpperCase().charAt(0) + gender.substring(1);
         return data;
     }
 
@@ -112,17 +116,21 @@ public class RegexCustomer {
      * -----------------------------------CHECK TYPE CUSTOMER-----------------------------------------------------------
      */
     public static String checkType(String typeCustomer) {
-        final String TYPE_REGEX = "^(Diamond|Platinum|Gold|Silver|Member)$";
+        final String TYPE_REGEX = "^(diamond|platinum|gold|silver|member)$";
         String data;
-        data = typeCustomer.toUpperCase().charAt(0) + typeCustomer.toLowerCase().substring(1);
-        Pattern pattern = Pattern.compile(TYPE_REGEX);
-        Matcher matcher = pattern.matcher(data);
-        while (!matcher.matches()) {
-            System.err.println("Customer type must be Diamond, Platinum, Gold, Silver or Member.");
-            System.out.println("Enter again:");
-            data = checkType(input.nextLine());
-            matcher = pattern.matcher(data);
+        while (typeCustomer.equals("")) {
+            System.out.println("Enter type customer(Diamond, Platinum, Gold, Silver, Member):");
+            typeCustomer = input.nextLine().toLowerCase();
         }
+        Pattern pattern = Pattern.compile(TYPE_REGEX);
+        Matcher matcher = pattern.matcher(typeCustomer);
+        while (!matcher.matches()) {
+            System.err.println("Type Customer must be(Diamond, Platinum, Gold, Silver, Member):");
+            System.out.println("Enter again:");
+            typeCustomer = input.nextLine().toLowerCase();
+            matcher = pattern.matcher(typeCustomer);
+        }
+        data = typeCustomer.toUpperCase().charAt(0) + typeCustomer.substring(1);
         return data;
     }
 
@@ -140,6 +148,7 @@ public class RegexCustomer {
             number = input.nextLine();
             matcher = pattern.matcher(number);
         }
-        return number;
+        String data = number.substring(0, 4) + "." + number.substring(4, 7) + "." + number.substring(7);
+        return data;
     }
 }

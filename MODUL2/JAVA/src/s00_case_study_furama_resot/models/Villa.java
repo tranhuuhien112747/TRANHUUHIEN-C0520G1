@@ -1,10 +1,10 @@
 package s00_case_study_furama_resot.models;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+        import java.util.ArrayList;
+        import java.util.List;
+        import java.util.Scanner;
 
-import s00_case_study_furama_resot.commons.RegexService;
+        import s00_case_study_furama_resot.commons.RegexService;
 
 /**
  * Villa will have more information: Standard room, Description other , Pool area, Number of floors.
@@ -14,7 +14,7 @@ public class Villa extends Services {
     private String descriptionOther;
     private double areaPool;
     private int numberFloors;
-    private static List<Villa> villaList = new ArrayList<Villa>();
+    private static List<Villa> villaList = new ArrayList<>();
 
     public static List<Villa> getVillaList() {
         return villaList;
@@ -37,14 +37,14 @@ public class Villa extends Services {
     }
 
 
-    public Villa(String id, String nameService, double areaUsed, double rentalCosts, int maxPeople, String typeOfRent,
-                 String standardRoom, String descriptionOther, double areaPool, int numberFloors, AccompaniedService accompaniedService) {
-        super(nameService, areaUsed, rentalCosts, maxPeople, typeOfRent, id, accompaniedService);
-        this.standardRoom = standardRoom;
-        this.descriptionOther = descriptionOther;
-        this.areaPool = areaPool;
-        this.numberFloors = numberFloors;
-    }
+//    public Villa(String id, String nameService, double areaUsed, double rentalCosts, int maxPeople, String typeOfRent,
+//                 String standardRoom, String descriptionOther, double areaPool, int numberFloors, AccompaniedService accompaniedService) {
+//        super(nameService, areaUsed, rentalCosts, maxPeople, typeOfRent, id, accompaniedService);
+//        this.standardRoom = standardRoom;
+//        this.descriptionOther = descriptionOther;
+//        this.areaPool = areaPool;
+//        this.numberFloors = numberFloors;
+//    }
 
     public String getStandardRoom() {
         return standardRoom;
@@ -78,6 +78,14 @@ public class Villa extends Services {
         this.numberFloors = numberFloors;
     }
 
+
+    @Override
+    public void showInformation() {
+        System.out.printf("%-15s%-20s%-20.3f%-20.3f%-15d%-15s%-20s%-25s%-20.3f%-15d", super.getId(), super.getNameService(),
+                super.getAreaUsed(), super.getRentalCosts(), super.getMaxPeople(), super.getTypeOfRent(), standardRoom,
+                descriptionOther, areaPool, numberFloors);
+    }
+
     public void addNewVilla() {
         Villa villa;
         String id, typeOfRent, nameService, standardRoom, descriptionOther;
@@ -94,12 +102,12 @@ public class Villa extends Services {
         rentalCosts = RegexService.checkRentalCost(input.nextLine());
         System.out.print("Enter the maximum number of people:");
         maxPeople = RegexService.checkMaxPeople((input.nextLine()));
-        System.out.print("Enter rental type:");
+        System.out.print("Enter rental type(including rent by year, month, day, time):");
         typeOfRent = RegexService.checkFormat(input.nextLine());
-        System.out.print("Enter room standard:");
-        standardRoom = RegexService.checkFormat(input.nextLine());
+        System.out.print("Enter room standard (Vip, Business, Normal):");
+        standardRoom = RegexService.checkRoomStandard(input.nextLine().toLowerCase());
         System.out.println("Enter another comfort description:");
-        descriptionOther = input.nextLine();
+        descriptionOther = RegexService.checkDescription(input.nextLine());
         System.out.print("Enter pool area:");
         areaPool = RegexService.checkArea((input.nextLine()));
         System.out.print("Enter number of floor:");
@@ -108,13 +116,7 @@ public class Villa extends Services {
         villa = new Villa(id, nameService, areaUsed, rentalCosts, maxPeople, typeOfRent, standardRoom, descriptionOther, areaPool, numberFloors);
         villaList.add(villa);
         villa.showInformation();
-    }
 
-    @Override
-    public void showInformation() {
-        System.out.printf("%-15s%-20s%-20.3f%-20.3f%-15d%-15s%-20s%-25s%-20.3f%-15d", super.getId(), super.getNameService(),
-                super.getAreaUsed(), super.getRentalCosts(), super.getMaxPeople(), super.getTypeOfRent(), standardRoom,
-                descriptionOther, areaPool, numberFloors);
     }
 
 

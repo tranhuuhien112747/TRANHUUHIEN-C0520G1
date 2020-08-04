@@ -118,7 +118,7 @@ public class Customer implements Comparable<Customer> {
 
 
     public void showInformationCustomer(int count) {
-        System.out.printf("%-5s%-15s%-25s%-17s%-12s%-16s%-30s%-18s%-25s", count, this.idCard, this.nameCustomer, this.dateOfBirth,
+        System.out.printf("%-5s%-15s%-25s%-17s%-12s%-17s%-30s%-18s%-25s", count, this.idCard, this.nameCustomer, this.dateOfBirth,
                 this.gender, this.phoneNumber, this.email, this.typeCustomer, this.address);
 
     }
@@ -134,13 +134,13 @@ public class Customer implements Comparable<Customer> {
         System.out.println("Enter date of birth customer:");
         dateOfBirth = RegexCustomer.checkDate(input.nextLine());
         System.out.println("Enter gender customer(Male, Female or Unknown):");
-        gender = RegexCustomer.checkGender(input.nextLine());
+        gender = RegexCustomer.checkGender(input.nextLine().toLowerCase());
         System.out.println("Enter phone number customer: ");
         phoneNumber = RegexCustomer.checkPhone(input.nextLine());
         System.out.println("Enter email customer:");
         email = RegexCustomer.checkEmail(input.nextLine());
         System.out.println("Enter type customer(Diamond, Platinum, Gold, Silver, Member):");
-        typeCustomer = RegexCustomer.checkType(input.nextLine());
+        typeCustomer = RegexCustomer.checkType(input.nextLine().toLowerCase());
         System.out.println("Enter address customer:");
         address = input.nextLine();
         System.out.println("ENTER THE INFORMATION SUCCESSFULLY !");

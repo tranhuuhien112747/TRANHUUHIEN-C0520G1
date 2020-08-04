@@ -1,9 +1,6 @@
 package s00_case_study_furama_resot.controllers;
 
-import s00_case_study_furama_resot.commons.CustomerFile;
-import s00_case_study_furama_resot.commons.HouseFile;
-import s00_case_study_furama_resot.commons.RoomFile;
-import s00_case_study_furama_resot.commons.VillaFile;
+import s00_case_study_furama_resot.commons.ReadAndWriteFile;
 import s00_case_study_furama_resot.models.Customer;
 import s00_case_study_furama_resot.models.House;
 import s00_case_study_furama_resot.models.Room;
@@ -15,8 +12,10 @@ import java.util.Scanner;
 
 public class MainFunction {
     public void displayMainMenu() throws IOException {
-//        VillaFile.readVilla();
-//        CustomerFile.readerFileCustomer();
+        ReadAndWriteFile.readFileCustomer(ReadAndWriteFile.getFileCustomerPath());
+//        ReadAndWriteFile.readFile(ReadAndWriteFile.getFileVillaPath());
+//        ReadAndWriteFile.readFile(ReadAndWriteFile.getFileHousePath());
+//        ReadAndWriteFile.readFile(ReadAndWriteFile.getFileRoomPath());
         Scanner input = new Scanner(System.in);
         int choose;
         while (true) {
@@ -67,22 +66,19 @@ public class MainFunction {
         int choose = input.nextInt();
         switch (choose) {
             case 1:
-
                 Villa villa = new Villa();
                 villa.addNewVilla();
-                VillaFile.writeVilla();
+                ReadAndWriteFile.writerFile(ReadAndWriteFile.getFileVillaPath());
                 break;
             case 2:
                 House house = new House();
-                HouseFile houseFile = new HouseFile();
                 house.addNewHouse();
-                houseFile.writeHouse();
+                ReadAndWriteFile.writerFile(ReadAndWriteFile.getFileHousePath());
                 break;
             case 3:
-                RoomFile roomFile = new RoomFile();
                 Room room = new Room();
                 room.addNewRoom();
-                roomFile.writeRoom();
+                ReadAndWriteFile.writerFile(ReadAndWriteFile.getFileRoomPath());
                 break;
             case 4:
                 displayMainMenu();
@@ -155,12 +151,12 @@ public class MainFunction {
 
     public void addNewCustomer() throws IOException {
         Customer.addNewCustomer();
-        CustomerFile.writerFileCustomer();
+        ReadAndWriteFile.writerFile(ReadAndWriteFile.getFileCustomerPath());
     }
 
     public void showInformationOfCustomer() {
         Collections.sort(Customer.getCustomerList());
-        System.out.printf("%-5s%-15s%-25s%-17s%-12s%-16s%-30s%-18s%-25s", "NO", "ID Card", "Name Customer", "Date Of Birth", "Gender",
+        System.out.printf("%-5s%-15s%-25s%-17s%-12s%-17s%-30s%-18s%-25s", "NO", "ID Card", "Name Customer", "Date Of Birth", "Gender",
                 "Phone number", "Email Customer", "Type Customer", "Address");
         System.out.println("\n");
         int count = 0;

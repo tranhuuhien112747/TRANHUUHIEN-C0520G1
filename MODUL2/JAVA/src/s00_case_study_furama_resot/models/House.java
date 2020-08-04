@@ -34,13 +34,13 @@ public class House extends Services {
         this.numberFloors = numberFloors;
     }
 
-    public House(String id, String nameService, double areaUsed, double rentalCosts, int maxPeople, String typeOfRent,
-                 String standardRoom, String descriptionOther, int numberFloors, AccompaniedService accompaniedService) {
-        super(nameService, areaUsed, rentalCosts, maxPeople, typeOfRent, id, accompaniedService);
-        this.standardRoom = standardRoom;
-        this.descriptionOther = descriptionOther;
-        this.numberFloors = numberFloors;
-    }
+//    public House(String id, String nameService, double areaUsed, double rentalCosts, int maxPeople, String typeOfRent,
+//                 String standardRoom, String descriptionOther, int numberFloors, AccompaniedService accompaniedService) {
+//        super(nameService, areaUsed, rentalCosts, maxPeople, typeOfRent, id, accompaniedService);
+//        this.standardRoom = standardRoom;
+//        this.descriptionOther = descriptionOther;
+//        this.numberFloors = numberFloors;
+//    }
 
     public String getStandardRoom() {
         return standardRoom;
@@ -82,12 +82,12 @@ public class House extends Services {
         rentalCosts = RegexService.checkRentalCost(input.nextLine());
         System.out.print("Enter the maximum number of people:");
         maxPeople = RegexService.checkMaxPeople(input.nextLine());
-        System.out.print("Enter rental type:");
+        System.out.print("Enter rental type(including rent by year, month, day, time):");
         typeOfRent = RegexService.checkFormat(input.nextLine());
-        System.out.print("Enter room standard: ");
-        standardRoom = RegexService.checkFormat(input.nextLine());
+        System.out.print("Enter room standard (Vip, Business, Normal): ");
+        standardRoom = RegexService.checkRoomStandard(input.nextLine().toLowerCase());
         System.out.println("Enter another comfort description: ");
-        descriptionOther = input.nextLine();
+        descriptionOther = RegexService.checkDescription(input.nextLine());
         System.out.print("Enter number of floor:");
         numberFloors = RegexService.checkFloor(input.nextLine());
         System.out.println("ENTER THE INFORMATION SUCCESSFULLY !!!!");

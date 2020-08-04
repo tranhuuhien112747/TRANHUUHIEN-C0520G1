@@ -7,19 +7,19 @@ import java.io.Serializable;
  * các thông tin: Tên dịch vụ, diện tích sử dụng, chi phí thuê, Số lượng người tối đa, Kiểu thuê (bao gồm thuê theo năm,
  * tháng, ngày, giờ).Resort còn cung cấp các dịch vụ đi kèm.
  */
-abstract class Services implements Serializable {
+abstract class Services {
     private String id;
     private String nameService;
     private double areaUsed;
     private double rentalCosts;
     private int maxPeople;
     private String typeOfRent;
-    protected AccompaniedService accompaniedService;
+//    protected AccompaniedService accompaniedService;
 
     public Services() {
     }
 
-    public Services(String id,String nameService, double areaUsed, double rentalCosts, int maxPeople, String typeOfRent) {
+    public Services(String id, String nameService, double areaUsed, double rentalCosts, int maxPeople, String typeOfRent) {
         this.nameService = nameService;
         this.areaUsed = areaUsed;
         this.rentalCosts = rentalCosts;
@@ -28,16 +28,16 @@ abstract class Services implements Serializable {
         this.id = id;
     }
 
-    public Services(String nameService, double areaUsed, double rentalCosts, int maxPeople, String typeOfRent, String id
-            , AccompaniedService accompaniedService) {
-        this.nameService = nameService;
-        this.areaUsed = areaUsed;
-        this.rentalCosts = rentalCosts;
-        this.maxPeople = maxPeople;
-        this.typeOfRent = typeOfRent;
-        this.id = id;
-        this.accompaniedService = accompaniedService;
-    }
+//    public Services(String nameService, double areaUsed, double rentalCosts, int maxPeople, String typeOfRent, String id
+//            , AccompaniedService accompaniedService) {
+//        this.nameService = nameService;
+//        this.areaUsed = areaUsed;
+//        this.rentalCosts = rentalCosts;
+//        this.maxPeople = maxPeople;
+//        this.typeOfRent = typeOfRent;
+//        this.id = id;
+//        this.accompaniedService = accompaniedService;
+//    }
 
     public String getId() {
         return id;
