@@ -1,26 +1,26 @@
 package s00_case_study_furama_resot.controllers;
 
 import s00_case_study_furama_resot.commons.ReadAndWriteFile;
-import s00_case_study_furama_resot.models.Customer;
-import s00_case_study_furama_resot.models.House;
-import s00_case_study_furama_resot.models.Room;
-import s00_case_study_furama_resot.models.Villa;
+import s00_case_study_furama_resot.models.*;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Scanner;
 
 public class MainFunction {
-    public void displayMainMenu() throws IOException {
+    public void readAllFile() throws IOException {
         ReadAndWriteFile.readFileCustomer(ReadAndWriteFile.getFileCustomerPath());
-//        ReadAndWriteFile.readFile(ReadAndWriteFile.getFileVillaPath());
-//        ReadAndWriteFile.readFile(ReadAndWriteFile.getFileHousePath());
-//        ReadAndWriteFile.readFile(ReadAndWriteFile.getFileRoomPath());
+        ReadAndWriteFile.readFile(ReadAndWriteFile.getFileVillaPath());
+        ReadAndWriteFile.readFile(ReadAndWriteFile.getFileHousePath());
+        ReadAndWriteFile.readFile(ReadAndWriteFile.getFileRoomPath());
+    }
+
+    public void displayMainMenu() throws IOException {
         Scanner input = new Scanner(System.in);
         int choose;
         while (true) {
             System.out.println("\n");
-            System.out.println("Menu");
+            System.out.println("******************~*-MENU-*~*********************");
             System.out.println("1. Add New Services.");
             System.out.println("2. Show Services.");
             System.out.println("3. Add New Customer.");
@@ -28,6 +28,7 @@ public class MainFunction {
             System.out.println("5. Add New Booking.");
             System.out.println("6. Show Information of Employee.");
             System.out.println("7. Exit.");
+            System.out.println("-------------------------------------------------");
             System.out.print("Enter your choice: ");
             choose = input.nextInt();
             switch (choose) {
@@ -44,6 +45,7 @@ public class MainFunction {
                     showInformationOfCustomer();
                     break;
                 case 5:
+                    addNewBooking();
                     break;
                 case 6:
                     break;
@@ -55,6 +57,7 @@ public class MainFunction {
         }
     }
 
+    //-----------------------------------1. ADD NEW SERVICES---------------------------
     public void addNewServices() throws IOException {
         Scanner input = new Scanner(System.in);
         System.out.println("1. Add New Villa.");
@@ -90,6 +93,7 @@ public class MainFunction {
         }
     }
 
+    //---------------------------------------2. SHOW SERVICES------------------------------
     public void showServices() throws IOException {
         Scanner input = new Scanner(System.in);
         System.out.println("1. Show all Villa.");
@@ -104,41 +108,28 @@ public class MainFunction {
         int choose = input.nextInt();
         switch (choose) {
             case 1:
-                System.out.printf("%-15s%-20s%-20s%-20s%-15s%-15s%-20s%-25s%-20s%-15s", "ID", "SERVICES",
-                        "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "STANDARD ROOM",
-                        "DESCRIPTION", "AREA POOL", "FLOORS");
-                System.out.println("\n");
-                for (Villa villa : Villa.getVillaList()) {
-                    villa.showInformation();
-                    System.out.println("\n");
-                }
+                Villa villa = new Villa();
+                villa.showInformation();
                 break;
             case 2:
-                System.out.printf("%-15s%-20s%-20s%-20s%-15s%-15s%-20s%-25s%-15s", "ID", "SERVICES",
-                        "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "STANDARD ROOM",
-                        "DESCRIPTION", "FLOORS");
-                System.out.println("\n");
-                for (House house : House.getHouseList()) {
-                    house.showInformation();
-                    System.out.println("\n");
-                }
+                House house = new House();
+                house.showInformation();
                 break;
             case 3:
-                System.out.printf("%-15s%-20s%-20s%-20s%-15s%-15s%-20s", "ID", "SERVICES",
-                        "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "SERVICES FREE");
-                System.out.println("\n");
-                for (Room room : Room.getRoomList()) {
-                    room.showInformation();
-                    System.out.println("\n");
-                }
+                Room room = new Room();
+                room.showInformation();
                 break;
             case 4:
+                Villa.showAllNameVillaNotDuplicate();
                 break;
             case 5:
+                House.showAllNameHouseNotDuplicate();
                 break;
             case 6:
+                Room.showAllNameRoomNotDuplicate();
                 break;
             case 7:
+                displayMainMenu();
                 break;
             case 8:
                 System.exit(0);
@@ -149,11 +140,13 @@ public class MainFunction {
         }
     }
 
+    //---------------------------------------3. ADD NEW CUSTOMER---------------------
     public void addNewCustomer() throws IOException {
         Customer.addNewCustomer();
         ReadAndWriteFile.writerFile(ReadAndWriteFile.getFileCustomerPath());
     }
 
+    //---------------------------------------4. SHOW INFORMATION CUSTOMER------------
     public void showInformationOfCustomer() {
         Collections.sort(Customer.getCustomerList());
         System.out.printf("%-5s%-15s%-25s%-17s%-12s%-17s%-30s%-18s%-25s", "NO", "ID Card", "Name Customer", "Date Of Birth", "Gender",
@@ -164,6 +157,55 @@ public class MainFunction {
             customer.showInformationCustomer(++count);
             System.out.println("\n");
         }
+    }
+
+    //---------------------------------------5. ADD NEW BOOKING-----------------------
+    public void addNewBooking() throws IOException {
+        Scanner input = new Scanner(System.in);
+        System.out.println("-----------------------------LIST CUSTOMER------------------------------------");
+        Customer.showInformationCustomerBooking();
+        System.out.println("\n");
+        System.out.println("Select the customer you want to book :");
+        int select = Integer.parseInt(input.nextLine());
+        Customer customer = Customer.getCustomerList().get(select - 1);
+        System.out.println("Choose services: ");
+        System.out.println("1. Booking Villa");
+        System.out.println("2. Booking House");
+        System.out.println("3. Booking Room");
+        System.out.println("4. Back to Menu");
+        int choose = Integer.parseInt(input.nextLine());
+        switch (choose) {
+            case 1:
+                Villa.showVilla();
+                System.out.println("Choose Villa: ");
+                int chooseV = Integer.parseInt(input.nextLine());
+                Villa villa = Villa.getVillaList().get(chooseV - 1);
+                customer.setServices(villa);
+                ReadAndWriteFile.writerBooking(ReadAndWriteFile.getFileBookingPath());
+                break;
+            case 2:
+                House.showHouse();
+                System.out.println("Choose House");
+                int chooseH = Integer.parseInt(input.nextLine());
+                House house = House.getHouseList().get(chooseH - 1);
+                customer.setServices(house);
+                ReadAndWriteFile.writerBooking(ReadAndWriteFile.getFileBookingPath());
+                break;
+            case 3:
+                Room.showRoom();
+                System.out.println("Choose Room");
+                int chooseR = Integer.parseInt(input.nextLine());
+                Room room = Room.getRoomList().get(chooseR - 1);
+                customer.setServices(room);
+                ReadAndWriteFile.writerBooking(ReadAndWriteFile.getFileBookingPath());
+                break;
+            case 4:
+                displayMainMenu();
+                break;
+            default:
+                System.err.println("Failed");
+        }
+
     }
 
 }

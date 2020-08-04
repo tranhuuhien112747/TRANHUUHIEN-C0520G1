@@ -2,9 +2,7 @@ package s00_case_study_furama_resot.models;
 
 import s00_case_study_furama_resot.commons.RegexService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * House will have more information: Standard room, Description other, Number of floors.
@@ -96,11 +94,38 @@ public class House extends Services {
         house.showInformation();
     }
 
+    public static void showHouse() {
+        System.out.printf("%-5s%-15s%-20s%-20s%-20s%-15s%-15s%-20s%-25s%-20s%-15s", "NO", "ID", "SERVICES",
+                "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "STANDARD ROOM",
+                "DESCRIPTION", "AREA POOL", "FLOORS");
+        System.out.println("\n");
+        int count = 0;
+        for (House house : houseList) {
+            System.out.printf("%-5s%-15s%-20s%-20s%-20s%-15s%-15s%-20s%-25s%-15s", ++count, house.getId(),
+                    house.getNameService(), house.getAreaUsed(), house.getRentalCosts(), house.getMaxPeople(), house.getTypeOfRent(),
+                    house.getStandardRoom(), house.getDescriptionOther(), house.getNumberFloors());
+            System.out.println("\n");
+        }
+    }
+
     @Override
     public void showInformation() {
-        System.out.printf("%-15s%-20s%-20.3f%-20.3f%-10d%-15s%-20s%-25s%-10d", super.getId(), super.getNameService(),
-                super.getAreaUsed(), super.getRentalCosts(), super.getMaxPeople(), super.getTypeOfRent(), standardRoom,
-                descriptionOther, numberFloors);
+        showHouse();
+    }
+
+    public static void showAllNameHouseNotDuplicate() {
+        Set<String> setHouse = new TreeSet<>();
+        for (Services element : House.houseList) {
+            setHouse.add(element.getNameService());
+        }
+        System.out.println("----------------List Name House---------------");
+        int count = 0;
+        System.out.printf("%-5s%-20s", "NO", "Name House");
+        System.out.println("\n");
+        for (String element : setHouse) {
+            System.out.printf("%-5s%-20s", ++count, element);
+            System.out.println("\n");
+        }
     }
 
 

@@ -10,10 +10,15 @@ public class ReadAndWriteFile {
     static final String FILE_VILLA_PATH = "E:\\TRANHUUHIEN-C0520G1\\MODUL2\\JAVA\\src\\s00_case_study_furama_resot\\data\\villa.csv";
     static final String FILE_HOUSE_PATH = "E:\\TRANHUUHIEN-C0520G1\\MODUL2\\JAVA\\src\\s00_case_study_furama_resot\\data\\house.csv";
     static final String FILE_ROOM_PATH = "E:\\TRANHUUHIEN-C0520G1\\MODUL2\\JAVA\\src\\s00_case_study_furama_resot\\data\\room.csv";
+    static final String FILE_BOOKING_PATH = "E:\\TRANHUUHIEN-C0520G1\\MODUL2\\JAVA\\src\\s00_case_study_furama_resot\\data\\booking.csv";
     static List<Villa> villaList = Villa.getVillaList();
     static List<House> houseList = House.getHouseList();
     static List<Room> roomList = Room.getRoomList();
     static List<Customer> customerList = Customer.getCustomerList();
+
+    public static String getFileBookingPath() {
+        return FILE_BOOKING_PATH;
+    }
 
     public static String getFileCustomerPath() {
         return FILE_CUSTOMER_PATH;
@@ -214,6 +219,55 @@ public class ReadAndWriteFile {
         } catch (
                 IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void writerBooking(String filePath) throws IOException {
+        List<Customer> customerList = Customer.getCustomerList();
+        FileWriter fileWriter = null;
+        BufferedWriter bufferedWriter = null;
+        try {
+            fileWriter = new FileWriter(filePath, true);
+            bufferedWriter = new BufferedWriter(fileWriter);
+            for (Customer customer : customerList) {
+                if (customer.getServices() != null) {
+                    bufferedWriter.append(customer.getIdCard());
+                    bufferedWriter.append(",");
+                    bufferedWriter.append(customer.getNameCustomer());
+                    bufferedWriter.append(",");
+                    bufferedWriter.append(customer.getGender());
+                    bufferedWriter.append(",");
+                    bufferedWriter.append(customer.getDateOfBirth());
+                    bufferedWriter.append(",");
+                    bufferedWriter.append(customer.getTypeCustomer());
+                    bufferedWriter.append(",");
+                    bufferedWriter.append(customer.getAddress());
+                    bufferedWriter.append(",");
+                    if (customer.getServices() instanceof Villa) {
+                        Villa villa = (Villa) customer.getServices();
+                        bufferedWriter.append(villa.getId());
+                        bufferedWriter.append(",");
+                        bufferedWriter.append(villa.getNameService());
+                    } else if (customer.getServices() instanceof House) {
+                        House house = (House) customer.getServices();
+                        bufferedWriter.append(house.getId());
+                        bufferedWriter.append(",");
+                        bufferedWriter.append(house.getNameService());
+                    } else if (customer.getServices() instanceof Room) {
+                        Room room = (Room) customer.getServices();
+                        bufferedWriter.append(room.getId());
+                        bufferedWriter.append(",");
+                        bufferedWriter.append(room.getNameService());
+                    }
+                }
+                bufferedWriter.append("\n");
+            }
+            bufferedWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            bufferedWriter.close();
+            fileWriter.close();
         }
     }
 }

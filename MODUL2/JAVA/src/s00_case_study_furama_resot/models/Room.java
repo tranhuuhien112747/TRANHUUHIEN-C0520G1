@@ -2,9 +2,7 @@ package s00_case_study_furama_resot.models;
 
 import s00_case_study_furama_resot.commons.RegexService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * The room has more information: Free service included.
@@ -72,9 +70,36 @@ public class Room extends Services {
         room.showInformation();
     }
 
+    public static void showRoom() {
+        System.out.printf("%-5s%-15s%-20s%-20s%-20s%-15s%-15s%-20s", "NO", "ID", "SERVICES",
+                "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "SERVICES FREE");
+        System.out.println("\n");
+        int count = 0;
+        for (Room room : roomList) {
+            System.out.printf("%-5s%-15s%-20s%-20.3f%-20.3f%-10d%-15s%-30s", ++count, room.getId(),
+                    room.getNameService(), room.getAreaUsed(), room.getRentalCosts(), room.getMaxPeople(), room.getTypeOfRent(),
+                    room.freeServices);
+            System.out.println("\n");
+        }
+    }
+
     @Override
     public void showInformation() {
-        System.out.printf("%-15s%-20s%-20.3f%-20.3f%-10d%-15s%-30s", super.getId(), super.getNameService(),
-                super.getAreaUsed(), super.getRentalCosts(), super.getMaxPeople(), super.getTypeOfRent(), freeServices);
+       showRoom();
+    }
+
+    public static void showAllNameRoomNotDuplicate() {
+        Set<String> setRoom = new TreeSet<>();
+        for (Services element : Room.roomList) {
+            setRoom.add(element.getNameService());
+        }
+        System.out.println("------------List Name Room---------------");
+        int count = 0;
+        System.out.printf("%-5s%-20s", "NO", "Name Room");
+        System.out.println("\n");
+        for (String element : setRoom) {
+            System.out.printf("%-5s%-20s", ++count, element);
+            System.out.println("\n");
+        }
     }
 }

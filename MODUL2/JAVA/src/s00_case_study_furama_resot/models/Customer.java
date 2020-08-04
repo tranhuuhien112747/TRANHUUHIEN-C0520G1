@@ -123,6 +123,17 @@ public class Customer implements Comparable<Customer> {
 
     }
 
+    public static void showInformationCustomerBooking() {
+        int count = 0;
+        System.out.printf("%-5s%-15s%-25s%-12s%-18s", "NO", "ID Card", "Name", "Gender", "Type Customer");
+        System.out.println("\n");
+        for (Customer customer : customerList) {
+            System.out.printf("%-5s%-15s%-25s%-12s%-18s", ++count, customer.idCard, customer.nameCustomer, customer.gender, customer.typeCustomer);
+            System.out.println("\n");
+        }
+
+    }
+
     public static void addNewCustomer() {
         Scanner input = new Scanner(System.in);
         Customer customer;

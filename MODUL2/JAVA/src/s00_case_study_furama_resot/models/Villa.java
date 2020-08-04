@@ -1,10 +1,9 @@
 package s00_case_study_furama_resot.models;
 
-        import java.util.ArrayList;
-        import java.util.List;
-        import java.util.Scanner;
+import java.util.*;
 
-        import s00_case_study_furama_resot.commons.RegexService;
+
+import s00_case_study_furama_resot.commons.RegexService;
 
 /**
  * Villa will have more information: Standard room, Description other , Pool area, Number of floors.
@@ -78,12 +77,23 @@ public class Villa extends Services {
         this.numberFloors = numberFloors;
     }
 
+    public static void showVilla() {
+        System.out.printf("%-5s%-15s%-20s%-20s%-20s%-15s%-15s%-20s%-25s%-20s%-15s", "NO", "ID", "SERVICES",
+                "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "STANDARD ROOM",
+                "DESCRIPTION", "AREA POOL", "FLOORS");
+        System.out.println("\n");
+        int count = 0;
+        for (Villa villa : villaList) {
+            System.out.printf("%-5s%-15s%-20s%-20s%-20s%-15s%-15s%-20s%-25s%-20s%-15s", ++count, villa.getId(),
+                    villa.getNameService(), villa.getAreaUsed(), villa.getRentalCosts(), villa.getMaxPeople(), villa.getTypeOfRent(),
+                    villa.getStandardRoom(), villa.getDescriptionOther(), villa.getAreaPool(), villa.getNumberFloors());
+            System.out.println("\n");
+        }
+    }
 
     @Override
     public void showInformation() {
-        System.out.printf("%-15s%-20s%-20.3f%-20.3f%-15d%-15s%-20s%-25s%-20.3f%-15d", super.getId(), super.getNameService(),
-                super.getAreaUsed(), super.getRentalCosts(), super.getMaxPeople(), super.getTypeOfRent(), standardRoom,
-                descriptionOther, areaPool, numberFloors);
+       showVilla();
     }
 
     public void addNewVilla() {
@@ -117,6 +127,21 @@ public class Villa extends Services {
         villaList.add(villa);
         villa.showInformation();
 
+    }
+
+    public static void showAllNameVillaNotDuplicate() {
+        Set<String> setVilla = new TreeSet<>();
+        for (Services element : Villa.villaList) {
+            setVilla.add(element.getNameService());
+        }
+        System.out.println("----------------List Name Villa---------------");
+        int count = 0;
+        System.out.printf("%-5s%-20s", "NO", "Name Villa");
+        System.out.println("\n");
+        for (String element : setVilla) {
+            System.out.printf("%-5s%-20s", ++count, element);
+            System.out.println("\n");
+        }
     }
 
 
