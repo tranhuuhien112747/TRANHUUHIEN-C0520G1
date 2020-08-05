@@ -234,7 +234,7 @@ public class ReadAndWriteFile {
         FileWriter fileWriter = null;
         BufferedWriter bufferedWriter = null;
         try {
-            fileWriter = new FileWriter(filePath, true);
+            fileWriter = new FileWriter(filePath,true);
             bufferedWriter = new BufferedWriter(fileWriter);
             for (Customer customer : customerList) {
                 if (customer.getServices() != null) {
@@ -266,8 +266,8 @@ public class ReadAndWriteFile {
                         bufferedWriter.append(",");
                         bufferedWriter.append(room.getNameService());
                     }
+                    bufferedWriter.append("\n");
                 }
-                bufferedWriter.append("\n");
             }
             bufferedWriter.flush();
         } catch (IOException e) {

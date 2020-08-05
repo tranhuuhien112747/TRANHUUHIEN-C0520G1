@@ -3,9 +3,9 @@ package s00_case_study_furama_resot.models;
 import java.io.Serializable;
 
 /**
- * Khu nghỉ dưỡng Furama sẽ cung cấp các dịch vụ cho thuê Villa, House, Room, tất cả các dịch vụ này sẽ bao gồm
- * các thông tin: Tên dịch vụ, diện tích sử dụng, chi phí thuê, Số lượng người tối đa, Kiểu thuê (bao gồm thuê theo năm,
- * tháng, ngày, giờ).Resort còn cung cấp các dịch vụ đi kèm.
+ * Furama Resort will provide Villa, House, and Room rental services, all of which will include the following information:
+ * Service name, area of use, rental cost, Maximum number of people, Type of rent (including year, month, day, hour) .
+ * Resort also provides accompanying services.
  */
 abstract class Services {
     private String id;
@@ -14,7 +14,6 @@ abstract class Services {
     private double rentalCosts;
     private int maxPeople;
     private String typeOfRent;
-//    protected AccompaniedService accompaniedService;
 
     public Services() {
     }
@@ -27,17 +26,6 @@ abstract class Services {
         this.typeOfRent = typeOfRent;
         this.id = id;
     }
-
-//    public Services(String nameService, double areaUsed, double rentalCosts, int maxPeople, String typeOfRent, String id
-//            , AccompaniedService accompaniedService) {
-//        this.nameService = nameService;
-//        this.areaUsed = areaUsed;
-//        this.rentalCosts = rentalCosts;
-//        this.maxPeople = maxPeople;
-//        this.typeOfRent = typeOfRent;
-//        this.id = id;
-//        this.accompaniedService = accompaniedService;
-//    }
 
     public String getId() {
         return id;
