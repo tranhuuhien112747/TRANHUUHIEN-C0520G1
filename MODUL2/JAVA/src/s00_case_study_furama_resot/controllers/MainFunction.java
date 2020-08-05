@@ -1,6 +1,7 @@
 package s00_case_study_furama_resot.controllers;
 
 import s00_case_study_furama_resot.commons.ReadAndWriteFile;
+import s00_case_study_furama_resot.commons.RegexService;
 import s00_case_study_furama_resot.models.*;
 
 import java.io.IOException;
@@ -20,18 +21,26 @@ public class MainFunction {
         Scanner input = new Scanner(System.in);
         int choose;
         while (true) {
-            System.out.println("\n");
-            System.out.println("******************~*-MENU-*~*********************");
-            System.out.println("1. Add New Services.");
-            System.out.println("2. Show Services.");
-            System.out.println("3. Add New Customer.");
-            System.out.println("4. Show Information of Customer.");
-            System.out.println("5. Add New Booking.");
-            System.out.println("6. Show Information of Employee.");
-            System.out.println("7. Exit.");
-            System.out.println("-------------------------------------------------");
+            System.out.println(" ____________________** MENU **____________________");
+            System.out.println("|             1. Add New Services.                 |");
+            System.out.println("|             2. Show Services.                    |");
+            System.out.println("|             3. Add New Customer.                 |");
+            System.out.println("|             4. Show Information of Customer.     |");
+            System.out.println("|             5. Add New Booking.                  |");
+            System.out.println("|             6. Show Information of Employee.     |");
+            System.out.println("|             7. 4D Cinema.                        |");
+            System.out.println("|             8. Employee Profile.                 |");
+            System.out.println("|             9. Exit.                             |");
+            System.out.println("|__________________________________________________|");
+//            System.out.println("2. Show Services.");
+//            System.out.println("3. Add New Customer.");
+//            System.out.println("4. Show Information of Customer.");
+//            System.out.println("5. Add New Booking.");
+//            System.out.println("6. Show Information of Employee.");
+//            System.out.println("7. Exit.");
+//            System.out.println("__________________________________________________");
             System.out.print("Enter your choice: ");
-            choose = input.nextInt();
+            choose = RegexService.checkChooseMenu(input.nextLine());
             switch (choose) {
                 case 1:
                     addNewServices();
@@ -52,9 +61,27 @@ public class MainFunction {
                     showInformationOfEmployee();
                     break;
                 case 7:
+                    Cinema4D cinema4D = new Cinema4D();
+                    System.out.println("WELL COME TO CINEMA 4D ");
+                    System.out.println("Currently the theater has  " + cinema4D.getTicketBox() + "  tickets");
+                    if (cinema4D.getTicketBox() == 0) {
+                        System.err.println("Sorry, the ticket is over. Please come back tomorrow. Thank you");
+                    } else {
+                        System.out.println("Enter name customer:");
+                        String name = input.nextLine();
+//                        System.out.println("Enter phone number: ");
+//                        String phone = input.nextLine();
+                        System.out.println("How many tickets do you want to buy ?");
+                        int numberTicket = Integer.parseInt(input.nextLine());
+                        cinema4D.byTicker(name, numberTicket);
+                    }
+                    break;
+                case 8:
+                    break;
+                case 9:
                     System.exit(0);
                 default:
-                    System.out.println("Invalid value!!!");
+                    System.err.println("Value not in menu. Please Enter !!!");
             }
         }
     }
@@ -62,13 +89,14 @@ public class MainFunction {
     //-----------------------------------1. ADD NEW SERVICES---------------------------
     public void addNewServices() throws IOException {
         Scanner input = new Scanner(System.in);
-        System.out.println("1. Add New Villa.");
-        System.out.println("2. Add New House.");
-        System.out.println("3. Add New Room.");
-        System.out.println("4. Back to Menu.");
-        System.out.println("5. Exit.");
+        System.out.println("    1. Add New Villa.");
+        System.out.println("    2. Add New House.");
+        System.out.println("    3. Add New Room.");
+        System.out.println("    4. Back to Menu.");
+        System.out.println("    5. Exit.");
+        System.out.println("____________________________");
         System.out.print("Enter your select: ");
-        int choose = input.nextInt();
+        int choose = RegexService.checkChooseMenu(input.nextLine());
         switch (choose) {
             case 1:
                 Villa villa = new Villa();
@@ -91,7 +119,7 @@ public class MainFunction {
             case 5:
                 System.exit(0);
             default:
-                System.err.println("Invalid value.");
+                System.err.println("Value not in menu. Please Enter !!!");
         }
     }
 
@@ -107,7 +135,7 @@ public class MainFunction {
         System.out.println("7. Back to Menu.");
         System.out.println("8. Exit.");
         System.out.print("Enter your select: ");
-        int choose = input.nextInt();
+        int choose = RegexService.checkChooseMenu(input.nextLine());
         switch (choose) {
             case 1:
                 Villa villa = new Villa();
@@ -136,7 +164,7 @@ public class MainFunction {
             case 8:
                 System.exit(0);
             default:
-                System.err.println("Invalid value.");
+                System.err.println("Value not in menu. Please Enter !!!");
 
 
         }
@@ -209,7 +237,7 @@ public class MainFunction {
         }
     }
 
-    //--------------------------------SHOW INFORMATION OF EMPLOYEE----------------------
+    //------------------------------6. SHOW INFORMATION OF EMPLOYEE----------------------
     public static void showInformationOfEmployee() {
         Employee.showInformation();
     }

@@ -238,4 +238,16 @@ public class RegexService {
         }
         return str;
     }
+
+    public static Integer checkChooseMenu(String choose) {
+        final String CHOOSE = "^\\d$";
+        Pattern pattern = Pattern.compile(CHOOSE);
+        Matcher matcher = pattern.matcher(choose);
+        while (!matcher.matches()) {
+            System.out.println("Choose must be a number. Enter choice again: ");
+            choose = (input.nextLine());
+            matcher = pattern.matcher(choose);
+        }
+        return Integer.parseInt(choose);
+    }
 }

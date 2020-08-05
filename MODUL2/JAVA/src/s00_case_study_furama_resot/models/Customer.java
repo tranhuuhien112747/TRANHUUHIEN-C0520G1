@@ -24,7 +24,10 @@ public class Customer implements Comparable<Customer> {
 
     public Customer() {
     }
-
+    public Customer(String nameCustomer,String phoneNumber) {
+        this.nameCustomer = nameCustomer;
+        this.phoneNumber = phoneNumber;
+    }
     public Customer(String idCard, String nameCustomer, String dateOfBirth, String gender, String phoneNumber,
                     String email, String typeCustomer, String address) {
         this.idCard = idCard;
