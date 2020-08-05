@@ -1,6 +1,7 @@
 package s00_case_study_furama_resot.models;
 
 import s00_case_study_furama_resot.commons.RegexCustomer;
+import s00_case_study_furama_resot.exception.*;
 
 import java.util.*;
 
@@ -137,23 +138,87 @@ public class Customer implements Comparable<Customer> {
     public static void addNewCustomer() {
         Scanner input = new Scanner(System.in);
         Customer customer;
-        String idCard, nameCustomer, dateOfBirth, gender, phoneNumber, email, typeCustomer, address;
-        System.out.println("Enter ID Card customer: ");
-        idCard = RegexCustomer.checkIDCard(input.nextLine());
-        System.out.println("Enter customer's name:");
-        nameCustomer = RegexCustomer.checkNameFormat(input.nextLine());
-        System.out.println("Enter date of birth customer:");
-        dateOfBirth = RegexCustomer.checkDate(input.nextLine());
-        System.out.println("Enter gender customer(Male, Female or Unknown):");
-        gender = RegexCustomer.checkGender(input.nextLine().toLowerCase());
+        String idCard = null, nameCustomer = null, dateOfBirth = null, gender = null, phoneNumber, email = null, typeCustomer, address;
+        boolean check;
+//input ID Card Customer.
+        do {
+            check = true;
+            try {
+                System.out.println("Enter ID Card customer: ");
+                idCard = input.nextLine();
+                if (!RegexCustomer.checkIDCard(idCard)) {
+                    check = false;
+                    throw new NameException("Id Card must be 9 digits and in the format XXX XXX XXX .");
+                }
+            } catch (NameException e) {
+                System.err.println(e.getMessage());
+            }
+        } while (!check);
+//input Name Customer
+        do {
+            check = true;
+            try {
+                System.out.println("Enter customer's name:");
+                nameCustomer = input.nextLine();
+                if (!RegexCustomer.checkNameFormat(nameCustomer)) {
+                    check = false;
+                    throw new IdCardException("Customer Name must capitalize the first character in each word.");
+                }
+            } catch (IdCardException e) {
+                System.err.println(e.getMessage());
+            }
+        } while (!check);
+//input Date Of Birth Customer
+        do {
+            check = true;
+            try {
+                System.out.println("Enter date of birth customer:");
+                dateOfBirth = input.nextLine();
+                if (!RegexCustomer.checkDate(dateOfBirth)) {
+                    check = false;
+                    throw new BirthdayException("The birth year must be > 1900 and 18 years younger than the current year correct format dd / mm / yyyy..");
+                }
+            } catch (BirthdayException e) {
+                System.err.println(e.getMessage());
+            }
+        } while (!check);
+//input Gender Customer
+        do {
+            check = true;
+            try {
+                System.out.println("Enter gender customer(Male, Female or Unknown):");
+                gender = input.nextLine().toLowerCase();
+                if (!RegexCustomer.checkGender(gender)) {
+                    check = false;
+                    throw new GenderException("Gender must be Male, Female or Unknown");
+                }
+                String data = gender.toUpperCase().charAt(0) + gender.substring(1);
+                gender = data;
+            } catch (GenderException e) {
+                System.err.println(e.getMessage());
+            }
+        } while (!check);
+
+//input Phone number
         System.out.println("Enter phone number customer: ");
         phoneNumber = RegexCustomer.checkPhone(input.nextLine());
-        System.out.println("Enter email customer:");
-        email = RegexCustomer.checkEmail(input.nextLine());
+        do {
+            check = true;
+            try {
+                System.out.println("Enter email customer:");
+                email = input.nextLine();
+                if (!RegexCustomer.checkEmail(email)) {
+                    check = false;
+                    throw new EmailException("Email must be in abc@abc.abc format");
+                }
+            } catch (EmailException e) {
+                System.err.println(e.getMessage());
+            }
+        } while (!check);
         System.out.println("Enter type customer(Diamond, Platinum, Gold, Silver, Member):");
         typeCustomer = RegexCustomer.checkType(input.nextLine().toLowerCase());
         System.out.println("Enter address customer:");
-        address = input.nextLine();
+        address = RegexCustomer.checkAddress(input.nextLine().toLowerCase());
         System.out.println("ENTER THE INFORMATION SUCCESSFULLY !");
         customer = new Customer(idCard, nameCustomer, dateOfBirth, gender, phoneNumber, email, typeCustomer, address);
         customerList.add(customer);

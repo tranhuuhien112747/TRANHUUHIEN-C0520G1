@@ -71,12 +71,12 @@ public class Room extends Services {
     }
 
     public static void showRoom() {
-        System.out.printf("%-5s%-15s%-20s%-20s%-20s%-15s%-15s%-20s", "NO", "ID", "SERVICES",
+        System.out.printf("%-5s%-15s%-25s%-20s%-20s%-15s%-15s%-20s", "NO", "ID", "NAME SERVICES",
                 "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "SERVICES FREE");
         System.out.println("\n");
         int count = 0;
         for (Room room : roomList) {
-            System.out.printf("%-5s%-15s%-20s%-20.3f%-20.3f%-10d%-15s%-30s", ++count, room.getId(),
+            System.out.printf("%-5s%-15s%-25s%-20.3f%-20.3f%-10d%-15s%-30s", ++count, room.getId(),
                     room.getNameService(), room.getAreaUsed(), room.getRentalCosts(), room.getMaxPeople(), room.getTypeOfRent(),
                     room.freeServices);
             System.out.println("\n");

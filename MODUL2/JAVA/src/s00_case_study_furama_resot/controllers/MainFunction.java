@@ -13,6 +13,7 @@ public class MainFunction {
         ReadAndWriteFile.readFile(ReadAndWriteFile.getFileVillaPath());
         ReadAndWriteFile.readFile(ReadAndWriteFile.getFileHousePath());
         ReadAndWriteFile.readFile(ReadAndWriteFile.getFileRoomPath());
+        ReadAndWriteFile.readFileEmployee(ReadAndWriteFile.getFileEmployeePath());
     }
 
     public void displayMainMenu() throws IOException {
@@ -48,6 +49,7 @@ public class MainFunction {
                     addNewBooking();
                     break;
                 case 6:
+                    showInformationOfEmployee();
                     break;
                 case 7:
                     System.exit(0);
@@ -205,7 +207,10 @@ public class MainFunction {
             default:
                 System.err.println("Failed");
         }
-
     }
 
+    //--------------------------------SHOW INFORMATION OF EMPLOYEE----------------------
+    public static void showInformationOfEmployee() {
+        Employee.showInformation();
+    }
 }

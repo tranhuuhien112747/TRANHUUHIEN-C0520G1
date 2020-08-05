@@ -4,6 +4,7 @@ import s00_case_study_furama_resot.models.*;
 
 import java.io.*;
 import java.util.List;
+import java.util.Map;
 
 public class ReadAndWriteFile {
     private static final String FILE_CUSTOMER_PATH = "E:\\TRANHUUHIEN-C0520G1\\MODUL2\\JAVA\\src\\s00_case_study_furama_resot\\data\\customer.csv";
@@ -11,13 +12,19 @@ public class ReadAndWriteFile {
     static final String FILE_HOUSE_PATH = "E:\\TRANHUUHIEN-C0520G1\\MODUL2\\JAVA\\src\\s00_case_study_furama_resot\\data\\house.csv";
     static final String FILE_ROOM_PATH = "E:\\TRANHUUHIEN-C0520G1\\MODUL2\\JAVA\\src\\s00_case_study_furama_resot\\data\\room.csv";
     static final String FILE_BOOKING_PATH = "E:\\TRANHUUHIEN-C0520G1\\MODUL2\\JAVA\\src\\s00_case_study_furama_resot\\data\\booking.csv";
+    static final String FILE_EMPLOYEE_PATH = "E:\\TRANHUUHIEN-C0520G1\\MODUL2\\JAVA\\src\\s00_case_study_furama_resot\\data\\employee.csv";
     static List<Villa> villaList = Villa.getVillaList();
     static List<House> houseList = House.getHouseList();
     static List<Room> roomList = Room.getRoomList();
     static List<Customer> customerList = Customer.getCustomerList();
+    static Map<String, Employee> employeeList = Employee.getEmployeeList();
 
     public static String getFileBookingPath() {
         return FILE_BOOKING_PATH;
+    }
+
+    public static String getFileEmployeePath() {
+        return FILE_EMPLOYEE_PATH;
     }
 
     public static String getFileCustomerPath() {
@@ -268,6 +275,37 @@ public class ReadAndWriteFile {
         } finally {
             bufferedWriter.close();
             fileWriter.close();
+        }
+    }
+
+    public static void readFileEmployee(String filePath) throws IOException {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            System.err.println("File Not Found !!");
+        }
+        FileReader fileReader = null;
+        BufferedReader bufferedReader = null;
+        try {
+            fileReader = new FileReader(file);
+            bufferedReader = new BufferedReader(fileReader);
+            String line = null;
+            String[] arrayData;
+            while ((line = bufferedReader.readLine()) != null) {
+                arrayData = line.split(",");
+                String code = arrayData[0];
+                String name = arrayData[1];
+                int age = Integer.parseInt(arrayData[2]);
+                String address = arrayData[3];
+                Employee employeeTemp = new Employee(code, name, age, address);
+                employeeList.put(code, employeeTemp);
+            }
+            Employee.setEmployeeList(employeeList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            bufferedReader.close();
+            fileReader.close();
+
         }
     }
 }

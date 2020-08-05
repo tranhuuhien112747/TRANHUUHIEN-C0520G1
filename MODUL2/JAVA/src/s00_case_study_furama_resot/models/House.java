@@ -95,13 +95,13 @@ public class House extends Services {
     }
 
     public static void showHouse() {
-        System.out.printf("%-5s%-15s%-20s%-20s%-20s%-15s%-15s%-20s%-25s%-20s%-15s", "NO", "ID", "SERVICES",
+        System.out.printf("%-5s%-15s%-25s%-20s%-20s%-15s%-15s%-20s%-25s%-20s%-15s", "NO", "ID", "NAME SERVICES",
                 "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "STANDARD ROOM",
                 "DESCRIPTION", "AREA POOL", "FLOORS");
         System.out.println("\n");
         int count = 0;
         for (House house : houseList) {
-            System.out.printf("%-5s%-15s%-20s%-20s%-20s%-15s%-15s%-20s%-25s%-15s", ++count, house.getId(),
+            System.out.printf("%-5s%-15s%-25s%-20s%-20s%-15s%-15s%-20s%-25s%-15s", ++count, house.getId(),
                     house.getNameService(), house.getAreaUsed(), house.getRentalCosts(), house.getMaxPeople(), house.getTypeOfRent(),
                     house.getStandardRoom(), house.getDescriptionOther(), house.getNumberFloors());
             System.out.println("\n");
