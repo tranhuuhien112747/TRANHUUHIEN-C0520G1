@@ -1,11 +1,11 @@
 package s00_case_study_furama_resot.models;
 
-import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class Cinema4D {
     final static int CINEMA_STICKER = 15;
-    private static Deque<Customer> dequeCinema = new LinkedList<>();
+    private static Queue<Customer> dequeCinema = new LinkedList<>();
     private static int ticketBox = CINEMA_STICKER;
 
     public static int getTicketBox() {

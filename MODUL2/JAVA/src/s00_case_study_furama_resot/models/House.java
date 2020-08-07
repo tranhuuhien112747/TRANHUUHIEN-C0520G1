@@ -95,6 +95,7 @@ public class House extends Services {
     }
 
     public static void showHouse() {
+        System.out.println("");
         System.out.printf("%-5s%-15s%-25s%-20s%-20s%-15s%-15s%-20s%-25s%-20s%-15s", "NO", "ID", "NAME SERVICES",
                 "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "STANDARD ROOM",
                 "DESCRIPTION", "AREA POOL", "FLOORS");
@@ -104,8 +105,9 @@ public class House extends Services {
             System.out.printf("%-5s%-15s%-25s%-20s%-20s%-15s%-15s%-20s%-25s%-15s", ++count, house.getId(),
                     house.getNameService(), house.getAreaUsed(), house.getRentalCosts(), house.getMaxPeople(), house.getTypeOfRent(),
                     house.getStandardRoom(), house.getDescriptionOther(), house.getNumberFloors());
-            System.out.println("\n");
+            System.out.println("");
         }
+        System.out.println("");
     }
 
     @Override

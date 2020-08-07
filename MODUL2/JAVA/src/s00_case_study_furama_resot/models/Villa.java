@@ -1,8 +1,10 @@
 package s00_case_study_furama_resot.models;
 
+import java.io.IOException;
 import java.util.*;
 
 
+import s00_case_study_furama_resot.commons.ReadAndWriteFile;
 import s00_case_study_furama_resot.commons.RegexService;
 
 /**
@@ -78,6 +80,7 @@ public class Villa extends Services {
     }
 
     public static void showVilla() {
+        System.out.println("");
         System.out.printf("%-5s%-15s%-25s%-20s%-20s%-15s%-15s%-20s%-25s%-20s%-15s", "NO", "ID", "NAME SERVICES",
                 "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "STANDARD ROOM",
                 "DESCRIPTION", "AREA POOL", "FLOORS");
@@ -87,13 +90,14 @@ public class Villa extends Services {
             System.out.printf("%-5s%-15s%-25s%-20s%-20s%-15s%-15s%-20s%-25s%-20s%-15s", ++count, villa.getId(),
                     villa.getNameService(), villa.getAreaUsed(), villa.getRentalCosts(), villa.getMaxPeople(), villa.getTypeOfRent(),
                     villa.getStandardRoom(), villa.getDescriptionOther(), villa.getAreaPool(), villa.getNumberFloors());
-            System.out.println();
+            System.out.println("");
         }
+        System.out.println("");
     }
 
     @Override
     public void showInformation() {
-       showVilla();
+        showVilla();
     }
 
     public void addNewVilla() {
@@ -142,6 +146,25 @@ public class Villa extends Services {
             System.out.printf("%-5s%-20s", ++count, element);
             System.out.println("\n");
         }
+    }
+
+    public static void removeVilla(String id) throws IOException {
+        boolean check = false;
+        Villa temp = null;
+        for (Villa villa : villaList) {
+            if (id.equals(villa.getId())) {
+                check = true;
+                temp = villa;
+                break;
+            }
+        }
+        if (check) {
+            villaList.remove(temp);
+            System.out.println("xoa thanh cong" + temp.toString());
+        } else {
+            System.err.println("k tim thay cai can xoa");
+        }
+        ReadAndWriteFile.writerFile(ReadAndWriteFile.getFileVillaPath());
     }
 
 

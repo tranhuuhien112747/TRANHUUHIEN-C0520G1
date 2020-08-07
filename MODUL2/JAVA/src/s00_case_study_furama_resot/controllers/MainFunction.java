@@ -22,7 +22,8 @@ public class MainFunction {
         Scanner input = new Scanner(System.in);
         int choose;
         while (true) {
-            System.out.println(" ____________________** MENU **____________________");
+            System.out.println(" ___________________**  MENU  **___________________ ");
+            System.out.println("|                                                  |");
             System.out.println("|             1. Add New Services.                 |");
             System.out.println("|             2. Show Services.                    |");
             System.out.println("|             3. Add New Customer.                 |");
@@ -69,15 +70,17 @@ public class MainFunction {
         }
     }
 
-    //-----------------------------------1. ADD NEW SERVICES---------------------------
+    //-----------------------------------1. ADD NEW SERVICES-----------------------------------------------
     public void addNewServices() throws IOException {
         Scanner input = new Scanner(System.in);
-        System.out.println("____________________________________");
-        System.out.println("    1. Add New Villa.");
-        System.out.println("    2. Add New House.");
-        System.out.println("    3. Add New Room.");
-        System.out.println("    4. Back to Menu.");
-        System.out.println("    5. Exit.");
+        System.out.println();
+        System.out.println("__________Add New Services__________");
+        System.out.println("                                    ");
+        System.out.println("         1. Add New Villa.          ");
+        System.out.println("         2. Add New House.          ");
+        System.out.println("         3. Add New Room.           ");
+        System.out.println("         4. Back to Menu.           ");
+        System.out.println("         5. Exit.                   ");
         System.out.println("____________________________________");
         System.out.print("Enter your select: ");
         int choose = RegexService.checkChooseMenu(input.nextLine());
@@ -108,10 +111,12 @@ public class MainFunction {
         }
     }
 
-    //---------------------------------------2. SHOW SERVICES------------------------------
+    //---------------------------------------2. SHOW SERVICES--------------------------------------------
     public void showServices() throws IOException {
         Scanner input = new Scanner(System.in);
-        System.out.println("____________________________________");
+        System.out.println();
+        System.out.println("____________Show Services___________");
+        System.out.println("                                    ");
         System.out.println("    1. Show all Villa.              ");
         System.out.println("    2. Show all House.              ");
         System.out.println("    3. Show all Room.               ");
@@ -133,6 +138,10 @@ public class MainFunction {
                 house.showInformation();
                 break;
             case 3:
+//                Room.showRoom();
+//                System.out.println(" nhap id");
+//                String id=input.nextLine();
+//                Room.eDitRoom(id);
                 Room room = new Room();
                 room.showInformation();
                 break;
@@ -158,13 +167,13 @@ public class MainFunction {
         }
     }
 
-    //---------------------------------------3. ADD NEW CUSTOMER---------------------
+    //---------------------------------------3. ADD NEW CUSTOMER----------------------------------------------
     public void addNewCustomer() throws IOException {
         Customer.addNewCustomer();
         ReadAndWriteFile.writerFile(ReadAndWriteFile.getFileCustomerPath());
     }
 
-    //---------------------------------------4. SHOW INFORMATION CUSTOMER------------
+    //---------------------------------------4. SHOW INFORMATION CUSTOMER-----------------------------------
     public void showInformationOfCustomer() {
         Collections.sort(Customer.getCustomerList());
         System.out.printf("%-5s%-15s%-25s%-17s%-12s%-17s%-30s%-18s%-25s", "NO", "ID Card", "Name Customer", "Date Of Birth", "Gender",
@@ -179,7 +188,7 @@ public class MainFunction {
         System.out.println();
     }
 
-    //---------------------------------------5. ADD NEW BOOKING-----------------------
+    //---------------------------------------5. ADD NEW BOOKING----(Task 7)-------------------------------------------
     public void addNewBooking() throws IOException {
         Scanner input = new Scanner(System.in);
         System.out.println("______________________________LIST CUSTOMER______________________________");
@@ -228,12 +237,12 @@ public class MainFunction {
         }
     }
 
-    //------------------------------6. SHOW INFORMATION OF EMPLOYEE----------------------
+    //------------------------------6. SHOW INFORMATION OF EMPLOYEE-----(Task 9)------------------------------
     public static void showInformationOfEmployee() {
         Employee.showInformation();
     }
 
-    //-----------------------------7. BUY CINEMA 4D--------------------------------------------------------------------
+    //-----------------------------7. BUY CINEMA 4D--------------------(Task 10)-------------------------------------
     public static void buyTicketCinema4D() {
         Scanner input = new Scanner(System.in);
         System.out.println("________WELL COME TO CINEMA 4D_______ ");
@@ -261,7 +270,7 @@ public class MainFunction {
         }
     }
 
-    //----------------------------SEARCH EMPLOYEE--------------------------------
+    //----------------------------SEARCH EMPLOYEE-------(Task 11)----------------------------------------
     public static void employeeProfile() {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the code the employee wants to search:");

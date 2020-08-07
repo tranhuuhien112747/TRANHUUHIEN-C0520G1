@@ -1,6 +1,5 @@
 package s00_case_study_furama_resot.models;
 
-import java.util.Scanner;
 import java.util.Stack;
 
 

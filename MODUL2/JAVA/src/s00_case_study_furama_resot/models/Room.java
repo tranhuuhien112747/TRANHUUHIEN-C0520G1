@@ -1,7 +1,9 @@
 package s00_case_study_furama_resot.models;
 
+import s00_case_study_furama_resot.commons.ReadAndWriteFile;
 import s00_case_study_furama_resot.commons.RegexService;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -70,22 +72,33 @@ public class Room extends Services {
         room.showInformation();
     }
 
+    @Override
+    public String toString() {
+        return "Room{" +
+                "freeServices='" + freeServices + '\'' +
+                ", accompaniedService=" + accompaniedService +
+                "} " + super.toString();
+    }
+
     public static void showRoom() {
+        System.out.println("");
+        System.out.println();
         System.out.printf("%-5s%-15s%-25s%-20s%-20s%-15s%-15s%-20s", "NO", "ID", "NAME SERVICES",
                 "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "SERVICES FREE");
         System.out.println("\n");
         int count = 0;
         for (Room room : roomList) {
-            System.out.printf("%-5s%-15s%-25s%-20.3f%-20.3f%-10d%-15s%-30s", ++count, room.getId(),
+            System.out.printf("%-5s%-15s%-25s%-20.3f%-20.3f%-15d%-15s%-20s", ++count, room.getId(),
                     room.getNameService(), room.getAreaUsed(), room.getRentalCosts(), room.getMaxPeople(), room.getTypeOfRent(),
                     room.freeServices);
-            System.out.println("\n");
+            System.out.println("");
         }
+        System.out.println("");
     }
 
     @Override
     public void showInformation() {
-       showRoom();
+        showRoom();
     }
 
     public static void showAllNameRoomNotDuplicate() {
@@ -102,4 +115,69 @@ public class Room extends Services {
             System.out.println("\n");
         }
     }
+
+    public static void searchRoom(String name) {
+        boolean check = false;
+        List<Room> myRoom = new ArrayList<>();
+        int count = 0;
+        for (Room room : roomList) {
+            if (name.equals(room.getNameService())) {
+                myRoom.add(room);
+                count++;
+                check = true;
+            }
+        }
+        if (check) {
+            System.out.println("tim dc " + count + " ket qua :" + name);
+            System.out.printf("%-5s%-15s%-25s%-20s%-20s%-15s%-15s%-20s", "NO", "ID", "NAME SERVICES",
+                    "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "SERVICES FREE");
+            System.out.println("\n");
+            int order = 0;
+            for (Room room : myRoom) {
+                System.out.printf("%-5s%-15s%-25s%-20.3f%-20.3f%-15d%-15s%-20s", ++order, room.getId(),
+                        room.getNameService(), room.getAreaUsed(), room.getRentalCosts(), room.getMaxPeople(), room.getTypeOfRent(),
+                        room.freeServices);
+                System.out.println("");
+            }
+        } else {
+            System.out.println("co " + count + " ket qua :" + name + " trong list room");
+        }
+    }
+
+    public static void eDitRoom(String code) throws IOException {
+        Scanner input = new Scanner(System.in);
+        boolean check = false;
+        System.out.printf("%-15s%-25s%-20s%-20s%-15s%-15s%-20s","ID", "NAME SERVICES",
+                "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "SERVICES FREE");
+        System.out.println("\n");
+        for (Room room : roomList) {
+            if (code.equals(room.getId())) {
+                System.out.printf("%-15s%-25s%-20.3f%-20.3f%-15d%-15s%-20s", room.getId(),
+                        room.getNameService(), room.getAreaUsed(), room.getRentalCosts(), room.getMaxPeople(), room.getTypeOfRent(),
+                        room.freeServices);
+                System.out.print("Enter Id: ");
+                room.setId(RegexService.checkIdRoom(input.nextLine()));
+                System.out.print("Enter Services name's : ");
+                room.setNameService(RegexService.checkFormat(input.nextLine()));
+                System.out.print("Enter Area: ");
+                room.setAreaUsed(RegexService.checkArea(input.nextLine()));
+                System.out.print("Enter rental Costs: ");
+                room.setRentalCosts(RegexService.checkRentalCost(input.nextLine()));
+                System.out.print("Enter the maximum number of people: ");
+                room.setMaxPeople(RegexService.checkMaxPeople(input.nextLine()));
+                System.out.print("Enter rental type(including rent by year, month, day, time): ");
+                room.setTypeOfRent(RegexService.checkFormat(input.nextLine()));
+                System.out.print("Enter the free service included: ");
+                room.setFreeServices(RegexService.checkDescription(input.nextLine()));
+                System.out.println("ENTER THE INFORMATION SUCCESSFULLY !!!!");
+                check = true;
+                break;
+            }
+        }
+        if (!check) {
+            System.out.println("k tìm thấy ");
+        }
+        ReadAndWriteFile.writerFile(ReadAndWriteFile.getFileRoomPath());
+    }
+
 }
