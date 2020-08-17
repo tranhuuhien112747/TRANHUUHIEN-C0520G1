@@ -4,7 +4,7 @@ use my_database;
 
 create table customers (
     customers_number int primary key,
-    fullname varchar(255) not null,
+    full_name varchar(255) not null,
     address varchar(255),
     email varchar(255) unique,
     phone varchar(255) unique
