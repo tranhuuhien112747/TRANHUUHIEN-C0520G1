@@ -62,20 +62,30 @@ select*
 from category;
 
 insert into book values
-	('AA103','SPY 007','Marvel','S.Alex',11/12/2015,1,50000,'',5001),
-	('CH108','Titanit','Sony','F.Thomas',04/06/2013,1,60000,'',5033),
-	('BC113','Ocean','Lumia','L.David',12/05/2018,1,70000,'',5055),
-	('DD105','Animal','Samsumg','K.Elena',10/02/2016,1,30000,'',5011),
-	('QE209','The world','Oppo','H.Agolia',13/07/2019,1,70000,'',5011),
-	('FF301','Avenger','Banasonic','O.Benki',21/04/2001,1,80000,'',5077),
-	('PK88','Ghost Ridger','GL','D.Tina',11/8/2020,1,150000,'',5666);
+	('AA103','SPY 007','Marvel','S.Alex','2015-12-11',1,50000,'',5001),
+	('CH108','Titanit','Sony','F.Thomas','2013-06-04',0,60000,'',5033),
+	('BC113','Ocean','Lumia','L.David','2018-05-12',2,70000,'',5055),
+	('DD105','Animal','Samsumg','K.Elena','2016-02-10',3,30000,'',5011),
+	('QE209','The world','Oppo','H.Agolia','2019-07-13',1,70000,'',5011),
+	('FF301','Avenger','Banasonic','O.Benki','2001-04-21',2,80000,'',5077),
+	('PK88','Ghost Ridger','GL','D.Tina','2020-08-12',4,150000,'',5666);
 
 select*
 from book;
 
 insert into borrow_order values
-(1001,'AA103',16/08/2020,null),
-(1005,'PK88',16/08/2020,19/08/2020),
-(1007,'DD105',15/08/2020,null),
-(1003,'AA103',11/08/2020,15/08/2020),
-(1008,'DD105',10/08/2020,11/08/2020);
+	(1001,'AA103','2020-08-16',null),
+	(1005,'PK88','2020-08-16','2020-08-19'),
+	(1007,'DD105','2020-08-15',null),
+	(1003,'AA103','2020-08-11','2020-08-15'),
+	(1008,'DD105','2020-08-10','2020-08-14');
+
+select student.student_number,student_name,student.address,student.email,borrow_order.code_book,
+borrow_date,returned_date,book_name, produccer,author
+from student
+right join borrow_order on student.student_number = borrow_order.student_number
+ inner join book on book.code_book = borrow_order.code_book ;
+ 
+ select*
+ from student
+ left join borrow_order on student.student_number = borrow_order.student_number;
