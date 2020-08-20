@@ -1,0 +1,16 @@
+div{
+    text-indent: 40px;
+    width: 800px;
+    text-align: justify;
+    font-size: 18px;
+}
+hr{
+    margin-left: 0;
+    width: 800px;
+}
+span{
+    color: blue;
+}
+b.a{
+    color: dodgerblue;
+}
