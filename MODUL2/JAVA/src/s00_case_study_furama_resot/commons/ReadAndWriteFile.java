@@ -84,8 +84,13 @@ public class ReadAndWriteFile {
                         break;
                     }
                     case FILE_ROOM_PATH:
+                        AccompaniedService accompaniedService;
                         String freeServices = arrayData[6];
-                        Room myRoom = new Room(id, nameService, areaUsed, rentalCosts, maxPeople, typeOfRent, freeServices);
+                        String nameAccompain = arrayData[7];
+                        String unit = arrayData[8];
+                        double price = Double.parseDouble(arrayData[9]);
+                        accompaniedService = new AccompaniedService(nameAccompain, unit, price);
+                        Room myRoom = new Room(id, nameService, areaUsed, rentalCosts, maxPeople, typeOfRent, freeServices, accompaniedService);
                         roomList.add(myRoom);
                         Room.setRoomList(roomList);
                         break;
@@ -165,7 +170,14 @@ public class ReadAndWriteFile {
                     bufferedWriter.append(room.getTypeOfRent());
                     bufferedWriter.append(",");
                     bufferedWriter.append(room.getFreeServices());
+                    bufferedWriter.append(",");
+                    bufferedWriter.append(room.getAccompaniedService().getNameAccompaniedService());
+                    bufferedWriter.append(",");
+                    bufferedWriter.append(room.getAccompaniedService().getUnit());
+                    bufferedWriter.append(",");
+                    bufferedWriter.append(String.valueOf(room.getAccompaniedService().getPrice()));
                     bufferedWriter.append("\n");
+
                 }
             } else if (filePath.equals(FILE_CUSTOMER_PATH)) {
                 for (Customer customer : customerList) {
@@ -234,7 +246,7 @@ public class ReadAndWriteFile {
         FileWriter fileWriter = null;
         BufferedWriter bufferedWriter = null;
         try {
-            fileWriter = new FileWriter(filePath,true);
+            fileWriter = new FileWriter(filePath, true);
             bufferedWriter = new BufferedWriter(fileWriter);
             for (Customer customer : customerList) {
                 if (customer.getServices() != null) {

@@ -1,6 +1,6 @@
 package abstract_class_interface.practice;
 
-public class Circle {
+public class Circle{
     private double radius = 1.0;
     private String color = "blue";
     private boolean filled = true;

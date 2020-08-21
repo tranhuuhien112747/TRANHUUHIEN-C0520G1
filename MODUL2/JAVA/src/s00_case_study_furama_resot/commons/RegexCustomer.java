@@ -75,7 +75,7 @@ public class RegexCustomer {
         final String DATE31 = "^(([0][1-9]|[1-2][0-9]|[3][0-1])/([0][13578]|[1][02])";
         final String DATE30 = "|(0[1-9]|[1-2][0-9]|30)/([0][469]|12)";
         final String DATE2 = "|(0[1-9]|[1-2][0-9])/02)";
-        final String YEAR = "/(190[1-9]{2}|19[1-9][0-9]|200[0-2])";
+        final String YEAR = "/(190[1-9]{2}|19[1-9][0-9]|200[0-2])$";
         final String DATE = DATE31 + DATE30 + DATE2 + YEAR;
         //final String DATE_REGEX = "^(([0][1-9]|[1-2][0-9]|[3][0-1])/([0][13578]|[1][02])|(0[1-9]|[1-2][0-9]|30)/([0][469]|12)|(0[1-9]|[1-2][0-9])/02)/(190[1-9]{2}|19[1-9][0-9]|200[0-2])$";
         Pattern pattern = Pattern.compile(DATE);

@@ -14,6 +14,13 @@ public class Room extends Services {
     private AccompaniedService accompaniedService;
     private static List<Room> roomList = new ArrayList<>();
 
+    public AccompaniedService getAccompaniedService() {
+        return accompaniedService;
+    }
+
+    public void setAccompaniedService(AccompaniedService accompaniedService) {
+        this.accompaniedService = accompaniedService;
+    }
 
     public Room() {
     }
@@ -23,12 +30,11 @@ public class Room extends Services {
         this.freeServices = freeServices;
     }
 
-//    public Room(String nameService, double areaUsed, double rentalCosts, int maxPeople, String typeOfRent, String id,
-//                String freeServices, AccompaniedService accompaniedService) {
-//        super(nameService, areaUsed, rentalCosts, maxPeople, typeOfRent, id, accompaniedService);
-//        this.freeServices = freeServices;
-//        this.accompaniedService = accompaniedService;
-//    }
+    public Room(String id, String nameService, double areaUsed, double rentalCosts, int maxPeople, String typeOfRent, String freeServices, AccompaniedService accompaniedService) {
+        super(id, nameService, areaUsed, rentalCosts, maxPeople, typeOfRent);
+        this.freeServices = freeServices;
+        this.accompaniedService = accompaniedService;
+    }
 
     public static List<Room> getRoomList() {
         return roomList;
@@ -50,8 +56,9 @@ public class Room extends Services {
         Scanner input = new Scanner(System.in);
         Room room;
         String id, typeOfRent, nameService, freeServices;
-        double areaUsed, rentalCosts;
+        double areaUsed, rentalCosts, price = 0.0;
         int maxPeople;
+        String nameAccompaniedService = "NOT", unit = "NOT";
         System.out.print("Enter Id: ");
         id = RegexService.checkIdRoom(input.nextLine());
         System.out.print("Enter Services name's : ");
@@ -66,8 +73,19 @@ public class Room extends Services {
         typeOfRent = RegexService.checkFormat(input.nextLine());
         System.out.print("Enter the free service included: ");
         freeServices = RegexService.checkDescription(input.nextLine());
+        System.out.println("ban co muon them dich vu di kem (y/n");
+        char ansew = input.nextLine().toLowerCase().charAt(0);
+        if (ansew == 'y') {
+            System.out.println("nhap ten dich vụ");
+            nameAccompaniedService = input.nextLine();
+            System.out.println("nhap dơn vị thuê");
+            unit = input.nextLine();
+            System.out.println("nhap gia thue");
+            price = Double.parseDouble(input.nextLine());
+        }
+        AccompaniedService accompaniedService = new AccompaniedService(nameAccompaniedService, unit, price);
         System.out.println("ENTER THE INFORMATION SUCCESSFULLY !!!!");
-        room = new Room(id, nameService, areaUsed, rentalCosts, maxPeople, typeOfRent, freeServices);
+        room = new Room(id, nameService, areaUsed, rentalCosts, maxPeople, typeOfRent, freeServices, accompaniedService);
         roomList.add(room);
         room.showInformation();
     }
@@ -83,14 +101,14 @@ public class Room extends Services {
     public static void showRoom() {
         System.out.println("");
         System.out.println();
-        System.out.printf("%-5s%-15s%-25s%-20s%-20s%-15s%-15s%-20s", "NO", "ID", "NAME SERVICES",
-                "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "SERVICES FREE");
+        System.out.printf("%-5s%-15s%-25s%-20s%-20s%-15s%-15s%-20s%-40s", "NO", "ID", "NAME SERVICES",
+                "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "SERVICES FREE", "AccompaniedService");
         System.out.println("\n");
         int count = 0;
         for (Room room : roomList) {
-            System.out.printf("%-5s%-15s%-25s%-20.3f%-20.3f%-15d%-15s%-20s", ++count, room.getId(),
+            System.out.printf("%-5s%-15s%-25s%-20.3f%-20.3f%-15d%-15s%-20s%-40s", ++count, room.getId(),
                     room.getNameService(), room.getAreaUsed(), room.getRentalCosts(), room.getMaxPeople(), room.getTypeOfRent(),
-                    room.freeServices);
+                    room.freeServices, room.accompaniedService);
             System.out.println("");
         }
         System.out.println("");
@@ -117,26 +135,25 @@ public class Room extends Services {
     }
 
     public static void searchRoom(String name) {
-        boolean check = false;
         List<Room> myRoom = new ArrayList<>();
         int count = 0;
         for (Room room : roomList) {
+            //if (room.getNameService().contains(name)){
             if (name.equals(room.getNameService())) {
                 myRoom.add(room);
                 count++;
-                check = true;
             }
         }
-        if (check) {
+        if (!myRoom.isEmpty()) {
             System.out.println("tim dc " + count + " ket qua :" + name);
-            System.out.printf("%-5s%-15s%-25s%-20s%-20s%-15s%-15s%-20s", "NO", "ID", "NAME SERVICES",
-                    "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "SERVICES FREE");
+            System.out.printf("%-5s%-15s%-25s%-20s%-20s%-15s%-15s%-20s%-40s", "NO", "ID", "NAME SERVICES",
+                    "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "SERVICES FREE", "AccompaniedService");
             System.out.println("\n");
             int order = 0;
             for (Room room : myRoom) {
-                System.out.printf("%-5s%-15s%-25s%-20.3f%-20.3f%-15d%-15s%-20s", ++order, room.getId(),
+                System.out.printf("%-5s%-15s%-25s%-20.3f%-20.3f%-15d%-15s%-20s%-35s", ++order, room.getId(),
                         room.getNameService(), room.getAreaUsed(), room.getRentalCosts(), room.getMaxPeople(), room.getTypeOfRent(),
-                        room.freeServices);
+                        room.freeServices, room.accompaniedService);
                 System.out.println("");
             }
         } else {
@@ -147,14 +164,14 @@ public class Room extends Services {
     public static void eDitRoom(String code) throws IOException {
         Scanner input = new Scanner(System.in);
         boolean check = false;
-        System.out.printf("%-15s%-25s%-20s%-20s%-15s%-15s%-20s","ID", "NAME SERVICES",
-                "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "SERVICES FREE");
+        System.out.printf("%-5s%-15s%-25s%-20s%-20s%-15s%-15s%-20s%-35s", "NO", "ID", "NAME SERVICES",
+                "AREA USED", "RENTAL COSTS", "PEOPLE", "TYPE RENT", "SERVICES FREE", "AccompaniedService");
         System.out.println("\n");
         for (Room room : roomList) {
             if (code.equals(room.getId())) {
-                System.out.printf("%-15s%-25s%-20.3f%-20.3f%-15d%-15s%-20s", room.getId(),
+                System.out.printf("%-15s%-25s%-20.3f%-20.3f%-15d%-15s%-20s%-35s", room.getId(),
                         room.getNameService(), room.getAreaUsed(), room.getRentalCosts(), room.getMaxPeople(), room.getTypeOfRent(),
-                        room.freeServices);
+                        room.freeServices, room.accompaniedService.toString());
                 System.out.print("Enter Id: ");
                 room.setId(RegexService.checkIdRoom(input.nextLine()));
                 System.out.print("Enter Services name's : ");
@@ -169,6 +186,8 @@ public class Room extends Services {
                 room.setTypeOfRent(RegexService.checkFormat(input.nextLine()));
                 System.out.print("Enter the free service included: ");
                 room.setFreeServices(RegexService.checkDescription(input.nextLine()));
+                System.out.println("nhap ten dich vu di kem");
+                room.accompaniedService.setNameAccompaniedService(input.nextLine());
                 System.out.println("ENTER THE INFORMATION SUCCESSFULLY !!!!");
                 check = true;
                 break;

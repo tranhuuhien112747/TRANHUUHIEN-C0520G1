@@ -139,9 +139,9 @@ public class MainFunction {
                 break;
             case 3:
 //                Room.showRoom();
-//                System.out.println(" nhap id");
-//                String id=input.nextLine();
-//                Room.eDitRoom(id);
+//                System.out.println(" nhap ten");
+//                String name=input.nextLine();
+//                Room.searchRoom(name);
                 Room room = new Room();
                 room.showInformation();
                 break;

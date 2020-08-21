@@ -46,6 +46,7 @@ public class ReadAndWriteWord {
             fileInputStream = new FileInputStream(file);
             objectInputStream = new ObjectInputStream(fileInputStream);
             dictionary = (Map<String, KeyWord>) objectInputStream.readObject();
+            MainFunction.setWordsMap(dictionary);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

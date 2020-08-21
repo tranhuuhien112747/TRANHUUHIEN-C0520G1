@@ -141,13 +141,12 @@ public class MainFunction {
     }
 
     public void showKeyWord() {
-        MainFunction.setWordsMap(ReadAndWriteWord.getDictionary());
         System.out.println("______DICTIONARY______");
         int count = 0;
         System.out.printf("%-5s%-20s", " ", "   ");
         System.out.println();
         for (String key : wordsMap.keySet()) {
-            System.out.printf("%-5s%-20s", ++count+")", key);
+            System.out.printf("%-5s%-20s", ++count + ")", key);
         }
         System.out.println();
         System.out.println("_______________________");

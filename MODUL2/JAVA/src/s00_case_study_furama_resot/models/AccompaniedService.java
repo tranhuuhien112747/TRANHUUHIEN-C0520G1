@@ -5,9 +5,9 @@ package s00_case_study_furama_resot.models;
  * Dịch vụ đi kèm sẽ bao gồm các thông tin: Tên dịch vụ đi kèm, Đơn vị, Giá tiền
  */
 public class AccompaniedService {
-    private String nameAccompaniedService = "NOT";
-    private String unit = "NOT";
-    private double price = 0.0;
+    private String nameAccompaniedService;
+    private String unit ;
+    private double price;
 
     public AccompaniedService() {
     }
@@ -40,5 +40,10 @@ public class AccompaniedService {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return nameAccompaniedService + "/" + unit + "/" + price;
     }
 }
