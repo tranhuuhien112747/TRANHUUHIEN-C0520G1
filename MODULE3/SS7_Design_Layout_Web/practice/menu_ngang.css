@@ -1,0 +1,64 @@
+body {
+    font-family: Arial;
+}
+
+#menu {
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    background-color: darkblue;
+    border: 2px solid white;
+}
+
+#menu ul, #menu li {
+    padding: 0;
+    margin: 0;
+}
+
+#menu li {
+    position: relative;
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#menu li a {
+    width: 100px;
+    height: 30px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    line-height: 30px;
+    background-color: darkblue;
+    color: white;
+    font-weight: bold;
+    cursor: grabbing;
+}
+
+#menu ul ul li a {
+    width: 200px;
+    text-align: left;
+    padding-left: 10px;
+
+}
+
+#menu li a:hover {
+    background-color: yellowgreen;
+}
+
+#menu ul ul {
+    position: absolute;
+    top: 30px;
+}
+
+#menu ul li ul {
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    visibility: hidden;
+}
+
+#menu ul li:hover ul {
+    visibility: visible;
+}

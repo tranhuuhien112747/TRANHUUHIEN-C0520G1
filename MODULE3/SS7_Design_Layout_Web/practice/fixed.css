@@ -1,0 +1,36 @@
+
+.chinh a {
+    float: left;
+    display: block;
+    background-color: darkblue;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 14px 10px 50px;
+}
+
+.chinh {
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+.noidung {
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+.noidung h1 {
+    color: red;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.noidung h2 {
+    color: darkblue;
+    font-weight: revert;
+}
+.chinh a:hover{
+    background-color: yellowgreen;
+}
