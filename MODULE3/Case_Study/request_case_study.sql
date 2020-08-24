@@ -65,12 +65,21 @@ group by customer_name ;
 
 /* 9. Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng trong 
 	năm 2019 thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.*/
-
+select month(contract_date) as `Month`,count(contract.contract_id) as Amount_Customers, sum(contract.total_amount) as Total
+from contract
+	where year(contract_date) = 2019
+    group by month(contract_date);
 
 /* 10. Hiển thị thông tin tương ứng với từng Hợp đồng thì đã sử dụng bao nhiêu Dịch vụ đi kèm.
 	 Kết quả hiển thị bao gồm IDHopDong, NgayLamHopDong, NgayKetthuc, TienDatCoc, SoLuongDichVuDiKem 
 	 (được tính dựa trên việc count các IDHopDongChiTiet). */
-
+select contract.contract_id, contract_date, contract.finished_date, contract.prepaid_amount, count(contract_details.contract_details_id)
+	as SoLuongDichVuDiKem
+from contract
+	left join contract_details on contract.contract_id = contract_details.contract_id
+    inner join accompanied_service on accompanied_service.accompanied_service_id = contract_details.accompanied_service_id
+    group by contract_details.contract_details_id ;
+    
 /* 11. Hiển thị thông tin các Dịch vụ đi kèm đã được sử dụng bởi những Khách hàng có TenLoaiKhachHang 
 	là “Diamond” và có địa chỉ là “Vinh” hoặc “Quảng Ngãi”.   */
 select accompanied_service.accompanied_service_id, accompanied_service_name, accompanied_price, accompanied_unit, customers.customer_id,
