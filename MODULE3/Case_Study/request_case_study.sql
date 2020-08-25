@@ -94,11 +94,11 @@ from contract
 select accompanied_service.accompanied_service_id, accompanied_service_name, accompanied_price, accompanied_unit, customers.customer_id,
 customer_name, type_customers.type_name
 from accompanied_service
-	left join contract_details on contract_details.accompanied_service_id = accompanied_service.accompanied_service_id
-	left join contract on contract.contract_id = contract_details.contract_id
-	left join customers on contract.customer_id = customers.customer_id
-	left join type_customers on type_customers.type_id = customers.type_id
-	where customers.type_id = 1 and customers.address = 'Vinh' or customers.address = 'Quang Ngai';
+	inner join contract_details on contract_details.accompanied_service_id = accompanied_service.accompanied_service_id
+	inner join contract on contract.contract_id = contract_details.contract_id
+	inner join customers on contract.customer_id = customers.customer_id
+	inner join type_customers on type_customers.type_id = customers.type_id
+	where customers.type_id = 1 and (customers.address = 'Vinh' or customers.address = 'Quang Ngai');
 
 -- -----------------------------------------------------------------------------------------------------------------------------------------------
 /*12. Hiển thị thông tin IDHopDong, TenNhanVien, TenKhachHang, SoDienThoaiKhachHang, TenDichVu, SoLuongDichVuDikem 
@@ -121,12 +121,16 @@ from contract
 -- -----------------------------------------------------------------------------------------------------------------------------------------------    
 /*13. Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng. 
 	(Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau). */
+create or replace view Amount_view as
 select accompanied_service.accompanied_service_id, accompanied_service_name ,accompanied_price,
-		accompanied_unit,count(contract_details.amount) as count_amount
+		accompanied_unit,count(contract_details.amount) as Number_Uses
 from accompanied_service
 	left join contract_details on accompanied_service.accompanied_service_id = contract_details.accompanied_service_id
     inner join contract on contract.contract_id = contract_details.contract_id
     group by accompanied_service_name ;
+    
+select Amount_view.accompanied_service_id,Amount_view.accompanied_service_name, Amount_view.accompanied_price,Amount_view.accompanied_unit, max(Number_Uses)
+from Amount_view ;
 
 -- -----------------------------------------------------------------------------------------------------------------------------------------------
 /*14. Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. 
@@ -144,13 +148,28 @@ from accompanied_service
 -- -----------------------------------------------------------------------------------------------------------------------------------------------
 /*15. Hiển thi thông tin của tất cả nhân viên bao gồm IDNhanVien, HoTen, TrinhDo, TenBoPhan,
 	SoDienThoai, DiaChi mới chỉ lập được tối đa 3 hợp đồng từ năm 2018 đến 2019. */
-
+select employee.employee_id, employee_name, level_employee.level_name, division.division_name, employee.phone,employee.address ,
+		count(contract.contract_id) as Amount_contract 
+from employee
+	inner join level_employee on level_employee.level_id = employee.level_id
+    inner join division on division.division_id = employee.division_id
+    inner join contract on contract.employee_id = employee.employee_id
+    where year(contract_date) in (2018,2019)
+    group by employee_name
+    having Amount_contract <= 3;
+    
+-- ---------------------------------------------------------------------------------------------------------------------------------------------    
 /*16. Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019. */
-
+    delete from employee
+    where employee.employee_id not in (
+		select contract.employee_id
+		from contract
+		where year(contract_date) in (2017,2018,2019));
+    
 /*17. Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond, 
 	chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ.*/     
 
-/*18. Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràngbuộc giữa các bảng). */
+/*18. Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràng buộc giữa các bảng). */
 
 /* 19. Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi. */
 
