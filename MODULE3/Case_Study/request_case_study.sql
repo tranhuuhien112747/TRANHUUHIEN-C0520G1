@@ -177,18 +177,22 @@ select customer_name,customers.type_id, type_customers.type_name, contract.total
 from customers
 	inner join type_customers on customers.type_id = type_customers.type_id
     inner join contract on contract.customer_id = customers.customer_id
-    where year(contract_date) = 2019;
+    where year(contract_date) = 2019  and type_customers.type_id = 2;
     
 update Totalpay
 set type_id = 1
-where total_amount > 10000 and type_id = 1;
+where total_amount = 10000;
 select*from Totalpay;
-select*from customers
+select*from customers;
 
 -- -------------------------------------------------------------------------------------------------------------------------------------------
 /*18. Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràng buộc giữa các bảng). */
 
 /* 19. Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi. */
+
+update accompanied_service
+set accompanied_price = accompanied_price*2
+where 
 
 /* 20.	Hiển thị thông tin của tất cả các Nhân viên và Khách hàng có trong hệ thống, thông tin hiển thị bao gồm ID 
 (IDNhanVien, IDKhachHang), HoTen, Email, SoDienThoai, NgaySinh, DiaChi.*/  
