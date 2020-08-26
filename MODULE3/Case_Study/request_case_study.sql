@@ -181,7 +181,7 @@ from customers
     
 update Totalpay
 set type_id = 1
-where total_amount > 10000;
+where total_amount > 10000 and type_id = 1;
 select*from Totalpay;
 select*from customers
 
