@@ -160,15 +160,32 @@ from employee
     
 -- ---------------------------------------------------------------------------------------------------------------------------------------------    
 /*16. Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019. */
+-- cách 1:
     delete from employee
     where employee.employee_id not in (
 		select contract.employee_id
 		from contract
 		where year(contract_date) in (2017,2018,2019));
-    
-/*17. Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond, 
-	chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ.*/     
+        
+-- cách 2:
 
+-- -------------------------------------------------------------------------------------------------------------------------------------------    
+/*17. Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond, 
+	chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ.*/
+create or replace view Totalpay as
+select customer_name,customers.type_id, type_customers.type_name, contract.total_amount
+from customers
+	inner join type_customers on customers.type_id = type_customers.type_id
+    inner join contract on contract.customer_id = customers.customer_id
+    where year(contract_date) = 2019;
+    
+update Totalpay
+set type_id = 1
+where total_amount > 10000;
+select*from Totalpay;
+select*from customers
+
+-- -------------------------------------------------------------------------------------------------------------------------------------------
 /*18. Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràng buộc giữa các bảng). */
 
 /* 19. Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi. */
