@@ -1,0 +1,108 @@
+
+#naval {
+    list-style-type: none; /* remove bullet points */
+    margin: 29px 0 0 0;
+    padding: 0;
+    float: left;
+    font-size: 16pt;
+    color: red;
+    font-weight: bolder;
+}
+#naval li {
+    display: inline; /* make items horizontal */
+}
+#naval li a:link, #naval li a:visited, #naval li a:active {
+    text-decoration: none; /* remove underline */
+    color: #000000;
+    padding: 0 16px 0 10px; /* space links apart */
+    margin: 0;
+    border-right: 2px solid #B4B4B4; /* divider */
+}
+#naval li a:link.last-link {
+    border-right: 0px;
+}
+#naval li a:hover {
+    /* change color on hover (mouseover) */
+    color: #EB6361;
+}
+
+#top-color-splash {
+    width: 100%;
+    height: 4px;
+    background: #EB6361;
+}
+
+
+.one-third {
+    width: 75%;
+    /*float: left;*/
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+.two-third {
+    width: 25%;
+    float: left;
+    box-sizing: border-box;
+    padding-left: 40px;
+    text-align: right;
+    margin-top: 20px;
+}
+
+#image1 {
+    width: 220px;
+    height: 300px;
+}
+
+.menu_list {
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+.menuitem {
+    background-color: yellow;
+    border: 1px solid #d4d4d4;
+    list-style-type: none;
+    padding: 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 4px;
+    color: #FFFFFF;
+    width: 100px;
+}
+
+.menuitem:hover {
+    background-color: #ffffff;
+}
+
+.no-margin-top {
+    text-align: center;
+    font-size: 20px;
+}
+
+#menu_1 {
+    width: 33%;
+    float: left;
+    box-sizing: border-box; /* ensure padding and borders do not increase the size */
+    margin-top: 20px;
+}
+
+#menu_2 {
+    width: 33%;
+    float: left;
+    box-sizing: border-box; /* ensure padding and borders do not increase the size */
+    margin-top: 20px;
+}
+
+#menu_3 {
+    width: 34%;
+    float: left;
+    box-sizing: border-box; /* ensure padding and borders do not increase the size */
+    margin-top: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}

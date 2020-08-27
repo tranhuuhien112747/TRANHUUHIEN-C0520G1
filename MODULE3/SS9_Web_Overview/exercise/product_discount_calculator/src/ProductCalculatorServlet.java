@@ -14,21 +14,12 @@ public class ProductCalculatorServlet extends HttpServlet {
         double discount = Float.parseFloat(request.getParameter("discount"));
 
         double amount = price * discount * 0.01;
+        request.setAttribute("amount",amount);
+        request.setAttribute("des",des);
+        request.setAttribute("discount",discount);
+        request.setAttribute("price",price);
+        request.getRequestDispatcher("result.jsp").forward(request,response);
 
-        PrintWriter writer = response.getWriter();
-        writer.println("<html>");
-        writer.println("<h1>DisPlay</h1>");
-        writer.println("\n");
-        writer.println("<h2> Product Description: " + des + "</h2>");
-        writer.println("\n");
-        writer.println("<h2>List Price: " + price + "</h2>");
-        writer.println("\n");
-        writer.println("<h2>Discount Percent: " + discount + "</h2>");
-        writer.println("\n");
-        writer.println("<h2>Discount Amount: " + amount + "</h2>");
-        writer.println("\n");
-        writer.println("<h2>Discount Percent</h2>");
-        writer.println("</html>");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -69,6 +69,13 @@ select customers.customer_name
 from customers
 group by customer_name ;
 
+-- cách 3:
+select customers.customer_name
+from customers
+union
+select customers.customer_name
+from customers;
+
 -- -----------------------------------------------------------------------------------------------------------------------------------------------
 /* 9. Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng trong 
 	năm 2019 thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.*/
@@ -187,12 +194,34 @@ select*from customers;
 
 -- -------------------------------------------------------------------------------------------------------------------------------------------
 /*18. Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràng buộc giữa các bảng). */
-
+ delete from customers
+    where customers.customer_id in (
+		select contract.customer_id
+		from contract
+		where year(contract_date) < 2017
+        group by contract.customer_id);
+            
+-- --------------------------------------------------------------------------------------------------------------------------------------------------            
 /* 19. Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi. */
-
 update accompanied_service
-set accompanied_price = accompanied_price*2
-where 
+set accompanied_price = accompanied_price * 2
+where accompanied_service_name in (
+	select* from (
+    select accompanied_service_name
+	from contract_details
+		inner join contract on contract.contract_id= contract_details.contract_id
+        inner join accompanied_service on accompanied_service.accompanied_service_id = contract_details.accompanied_service_id
+        where year( contract_date) = 2019
+        group by accompanied_service_name
+        having count(contract_details.amount) > 10) as Table_Amount10);
+select*from accompanied_service;
 
+-- --------------------------------------------------------------------------------------------------------------------------------
 /* 20.	Hiển thị thông tin của tất cả các Nhân viên và Khách hàng có trong hệ thống, thông tin hiển thị bao gồm ID 
-(IDNhanVien, IDKhachHang), HoTen, Email, SoDienThoai, NgaySinh, DiaChi.*/  
+(IDNhanVien, IDKhachHang), HoTen, Email, SoDienThoai, NgaySinh, DiaChi.*/ 
+select customers.customer_id as id, customers.customer_name as name, customers.email as email, 
+customers.phone as phone, customers.birthday as birthday, customers.address as adress
+from customers
+union all
+select employee.employee_id, employee.employee_name, employee.email, employee.phone, employee.birthday, employee.address
+from employee
