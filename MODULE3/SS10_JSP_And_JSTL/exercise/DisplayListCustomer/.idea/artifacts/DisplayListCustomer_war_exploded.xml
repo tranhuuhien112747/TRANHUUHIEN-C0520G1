@@ -1,11 +1,11 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="product_discount_calculator:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/product_discount_calculator_war_exploded</output-path>
+  <artifact type="exploded-war" name="DisplayListCustomer:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/DisplayListCustomer_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="product_discount_calculator/web/Web" />
+      <element id="javaee-facet-resources" facet="DisplayListCustomer/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="product_discount_calculator" />
+          <element id="module-output" name="DisplayListCustomer" />
         </element>
         <element id="directory" name="lib">
           <element id="file-copy" path="E:/LIBRARY/jstl-1.2.jar/jstl-1.2.jar" />
