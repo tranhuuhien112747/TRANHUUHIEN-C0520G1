@@ -14,7 +14,13 @@
 <body>
 <h1>Product List</h1>
 <div>
-    <a href="/product?action=create" role="button">Create New Product</a>
+    <a href="/product?action=create" role="button">Create New Product</a><br>
+</div>
+<div>
+    <form action="/product">
+        <input type="text" placeholder="Search" name="search">
+        <input type="submit" value="search" name="action">
+    </form>
 </div>
 <table>
     <tr>

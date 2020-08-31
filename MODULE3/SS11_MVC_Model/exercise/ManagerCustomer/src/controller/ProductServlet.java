@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ProductServlet", urlPatterns = "/product")
@@ -29,6 +30,7 @@ public class ProductServlet extends HttpServlet {
                 editProduct(request, response);
                 break;
             case "delete":
+                deleteProduct(request, response);
                 break;
             default:
                 break;
@@ -48,11 +50,13 @@ public class ProductServlet extends HttpServlet {
                 updateEdit(request, response);
                 break;
             case "delete":
+                deleteForm(request, response);
                 break;
             case "view":
                 viewProduct(request, response);
                 break;
             case "search":
+                searchNameProduct(request, response);
                 break;
             default:
                 showListProduct(request, response);
@@ -148,6 +152,61 @@ public class ProductServlet extends HttpServlet {
         }
         try {
             request.getRequestDispatcher("product/update.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void searchNameProduct(HttpServletRequest request, HttpServletResponse response) {
+        List<Product> productList = new ArrayList<>();
+        String name = request.getParameter("search");
+        for (Product product : productBo.findAll()) {
+            if (product.getName().contains(name)) {
+                productList.add(product);
+            }
+        }
+        if (!productList.isEmpty()) {
+            request.setAttribute("list", productList);
+        } else {
+            request.setAttribute("message", "File Not Found");
+        }
+        try {
+            request.getRequestDispatcher("product/list.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
+        String id = request.getParameter("id");
+        Product product = productBo.findById(id);
+        if (product == null) {
+            request.setAttribute("message", "File Not Found");
+        } else {
+            productBo.delete(id);
+            request.setAttribute("message", "Delete " + product.getName() + " Success!!");
+        }
+        try {
+            response.sendRedirect("/product");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void deleteForm(HttpServletRequest request, HttpServletResponse response) {
+        String id = request.getParameter("id");
+        Product product = productBo.findById(id);
+        if (product == null) {
+            request.setAttribute("message", "File Not Found");
+        } else {
+            request.setAttribute("product", product);
+        }
+        try {
+            request.getRequestDispatcher("product/delete.jsp").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
