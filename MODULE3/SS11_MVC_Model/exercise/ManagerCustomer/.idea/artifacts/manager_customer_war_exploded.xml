@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="manager-customer:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/manager_customer_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="manager-customer/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="manager-customer" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="E:/LIBRARY/jstl-1.2.jar/jstl-1.2.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
