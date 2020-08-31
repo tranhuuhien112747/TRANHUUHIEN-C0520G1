@@ -98,13 +98,14 @@ create table services (
     area int not null default 50,
     story_number int not null,
     max_people varchar(45) not null,
-    rent_fee varchar(45) not null,
+    rent_fee double not null,
     rent_type_id int,
     service_type_id int,
     service_status varchar(45) not null,
     foreign key (rent_type_id) references type_of_rent (rent_type_id),
     foreign key (service_type_id) references type_services (service_type_id)
 );
+
      -- tao bang dich vu di kem. 
 create table accompanied_service (
     accompanied_service_id int primary key,
@@ -116,7 +117,7 @@ create table accompanied_service (
         or accompanied_service_name = 'food'
         or accompanied_service_name = 'car rental')
 );
-   
+
     -- tao bang hop dong.
 create table contract (
     contract_id int primary key,
@@ -127,8 +128,8 @@ create table contract (
     finished_date date not null,
     prepaid_amount int not null,
     total_amount int not null,
-    foreign key (employee_id) references employee (employee_id),
-    foreign key (customer_id) references customers (customer_id),
+    foreign key (employee_id) references employee (employee_id) on delete cascade,
+    foreign key (customer_id) references customers (customer_id) on delete cascade,
     foreign key (service_id) references services (service_id)
 );
 
@@ -232,17 +233,36 @@ insert into accompanied_service values
     
 -- * Hợp đồng.
 insert into contract values
-	(11,1001,101,'SVVL-001','2020-08-11','2020-08-17',2000,5000),    
-	(12,1002,105,'SVVL-001','2020-07-10','2020-07-13',2000,5000),    
-	(13,1006,104,'SVHO-011','2020-08-11','2020-09-11',3000,8000),   
-	(14,1011,108,'SVRO-013','2020-08-11','2020-08-15',2000,5000),    
-	(15,1021,106,'SVHO-010','2020-08-07','2020-08-10',4000,6000),    
-	(16,1020,115,'SVVL-007','2020-09-11','2020-09-15',2000,6000);
+	(11,1001,101,'SVVL-001','2019-08-11','2019-08-17',2000,15000),    
+	(12,1002,105,'SVVL-001','2018-07-10','2018-07-13',2000,5000),    
+	(21,1006,104,'SVHO-011','2019-04-11','2019-04-16',3000,8000),   
+	(13,1006,104,'SVHO-011','2019-11-11','2019-11-16',3000,8000),   
+	(14,1011,108,'SVRO-013','2019-03-11','2019-03-15',2000,15000),    
+	(15,1021,106,'SVHO-010','2018-05-07','2018-08-10',4000,6000),    
+	(16,1020,120,'SVVL-007','2016-09-01','2016-09-15',2000,6000),
+	(17,1020,111,'SVVL-111','2019-06-10','2019-07-13',2000,16000),
+	(18,1020,107,'SVHO-011','2017-07-14','2017-08-12',2000,6000),
+	(19,1020,115,'SVVL-007','2020-03-15','2020-05-11',2000,6000),
+	(20,1004,115,'SVRO-013','2019-10-15','2019-10-22',2000,11000),
+	(22,1014,101,'SVVL-001','2018-07-15','2018-10-22',2000,6000),
+	(23,1004,111,'SVRO-013','2017-01-15','2017-02-22',2000,11000),
+    (24,1006,120,'SVVL-007','2016-09-01','2016-09-15',2000,6000);
 
 -- * Hợp đồng chi tiết.
 insert into contract_details values
-	(1,11,'Cho thue 01',1, 1),
-	(2,13,'Cho thue 03',2, 1),
-	(3,14,'Cho thue 06',3, 1),
-	(4,12,'Cho thue 11',4, 1),
-	(5,15,'Cho thue 15',2, 1);
+	(1,11,'Cho thue p01',1, 1),
+	(2,13,'Cho thue o03',2, 1),
+	(3,14,'Cho thue k06',3, 1),
+	(4,12,'Cho thue h11',4, 1),
+	(5,15,'Cho thue g15',1, 1),
+	(6,16,'Cho thue f77',1, 1),
+	(7,17,'Cho thue s32',2, 1),
+	(8,18,'Cho thue d55',1, 1),
+	(9,21,'Cho thue a44',1, 1),
+	(10,20,'Cho thue a33',1, 1),
+	(11,19,'Cho thue y15',1, 1),
+	(12,22,'Cho thue ZZ18',1, 1),
+	(13,23,'Cho thue AB67',1, 1),
+	(14,24,'Cho thue QE34',1, 1);
+    
+    
