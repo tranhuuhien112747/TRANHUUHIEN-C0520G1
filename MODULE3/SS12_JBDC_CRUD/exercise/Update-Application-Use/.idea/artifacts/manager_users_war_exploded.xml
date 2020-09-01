@@ -2,10 +2,10 @@
   <artifact type="exploded-war" name="manager-users:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/manager_users_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="manager-users/web/Web" />
+      <element id="javaee-facet-resources" facet="users-manager/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="manager-users" />
+          <element id="module-output" name="users-manager" />
         </element>
         <element id="directory" name="lib">
           <element id="file-copy" path="E:/LIBRARY/mysql-connector-java-8.0.11/mysql-connector-java-8.0.11.jar" />
