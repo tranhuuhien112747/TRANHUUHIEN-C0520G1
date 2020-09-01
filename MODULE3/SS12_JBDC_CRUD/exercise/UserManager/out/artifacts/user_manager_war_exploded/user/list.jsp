@@ -20,6 +20,7 @@
     <form action="/user">
         <input type="text" placeholder="Search" name="search">
         <input type="submit" value="search" name="action">
+        <input type="submit" value="sort" name="action">
     </form>
 </div>
 <table>
@@ -42,7 +43,6 @@
 </table>
 <div>
     <a role="button" href="/user">Back</a>
-    <input type="submit" value="sort" name="sort">
 </div>
 </body>
 </html>

@@ -2,6 +2,7 @@ package controller;
 
 import bo.UserBo;
 import bo.UserBoImplement;
+import model.SortByName;
 import model.User;
 
 import javax.servlet.ServletException;
@@ -13,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "UserManagerServlet", urlPatterns = {"","/user"})
+@WebServlet(name = "UserManagerServlet", urlPatterns = {"", "/user"})
 public class UserManagerServlet extends HttpServlet {
     private UserBo userBo = new UserBoImplement();
 
@@ -50,18 +51,33 @@ public class UserManagerServlet extends HttpServlet {
                 updateEdit(request, response);
                 break;
             case "delete":
-                 deleteForm(request, response);
+                deleteForm(request, response);
                 break;
             case "view":
                 viewUser(request, response);
                 break;
             case "search":
-                 searchNameUser(request, response);
+                searchNameUser(request, response);
                 break;
+            case "sort":
+                sortListProduct(request, response);
             default:
                 showListProduct(request, response);
                 break;
 
+        }
+    }
+
+    private void sortListProduct(HttpServletRequest request, HttpServletResponse response) {
+        List<User> userList = userBo.findAll();
+        userList.sort(new SortByName());
+        request.setAttribute("list", userList);
+        try {
+            request.getRequestDispatcher("user/list.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -155,7 +171,8 @@ public class UserManagerServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-//
+
+    //
     private void searchNameUser(HttpServletRequest request, HttpServletResponse response) {
         List<User> userArrayList = new ArrayList<>();
         String name = request.getParameter("search");
@@ -180,13 +197,13 @@ public class UserManagerServlet extends HttpServlet {
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) {
-       int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("id"));
         User user = userBo.findById(id);
         if (user == null) {
             request.setAttribute("message", "File Not Found");
         } else {
-           userBo.delete(id);
-           request.setAttribute("message", "Delete " + user.getName() + " Success!!");
+            userBo.delete(id);
+            request.setAttribute("message", "Delete " + user.getName() + " Success!!");
         }
         try {
             response.sendRedirect("/user");
