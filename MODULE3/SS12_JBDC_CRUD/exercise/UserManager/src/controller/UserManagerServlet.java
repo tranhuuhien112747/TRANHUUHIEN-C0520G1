@@ -68,9 +68,21 @@ public class UserManagerServlet extends HttpServlet {
         }
     }
 
+    //    private void sortListProduct(HttpServletRequest request, HttpServletResponse response) {
+//        List<User> userList = userBo.findAll();
+//        userList.sort(new SortByName());
+//        request.setAttribute("list", userList);
+//        try {
+//            request.getRequestDispatcher("user/list.jsp").forward(request, response);
+//        } catch (ServletException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
     private void sortListProduct(HttpServletRequest request, HttpServletResponse response) {
         List<User> userList = userBo.findAll();
-        userList.sort(new SortByName());
+        userList = userBo.sortByName();
         request.setAttribute("list", userList);
         try {
             request.getRequestDispatcher("user/list.jsp").forward(request, response);
@@ -143,7 +155,9 @@ public class UserManagerServlet extends HttpServlet {
         if (user == null) {
             request.setAttribute("message", "File Not Found");
         } else {
-            user = new User(id, name, email, country);
+            user.setName(name);
+            user.setEmail(email);
+            user.setCountry(country);
             userBo.update(user);
             request.setAttribute("user", user);
         }
@@ -173,20 +187,32 @@ public class UserManagerServlet extends HttpServlet {
     }
 
     //
+//    private void searchNameUser(HttpServletRequest request, HttpServletResponse response) {
+////        List<User> userArrayList = new ArrayList<>();
+////        String name = request.getParameter("search");
+////        for (User user : userBo.findAll()) {
+////            if (user.getName().contains(name)) {
+////                userArrayList.add(user);
+////            }
+////        }
+////
+////        if (!userArrayList.isEmpty()) {
+////            request.setAttribute("list", userArrayList);
+////        } else {
+////            request.setAttribute("message", "File Not Found");
+////        }
+////        try {
+////            request.getRequestDispatcher("user/list.jsp").forward(request, response);
+////        } catch (ServletException e) {
+////            e.printStackTrace();
+////        } catch (IOException e) {
+////            e.printStackTrace();
+////        }
+////    }
     private void searchNameUser(HttpServletRequest request, HttpServletResponse response) {
-        List<User> userArrayList = new ArrayList<>();
         String name = request.getParameter("search");
-        for (User user : userBo.findAll()) {
-            if (user.getName().contains(name)) {
-                userArrayList.add(user);
-            }
-        }
-
-        if (!userArrayList.isEmpty()) {
-            request.setAttribute("list", userArrayList);
-        } else {
-            request.setAttribute("message", "File Not Found");
-        }
+        List<User> userArrayList = userBo.searchName(name);
+        request.setAttribute("list", userArrayList);
         try {
             request.getRequestDispatcher("user/list.jsp").forward(request, response);
         } catch (ServletException e) {

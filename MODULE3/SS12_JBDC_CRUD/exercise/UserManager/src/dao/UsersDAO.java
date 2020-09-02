@@ -15,5 +15,7 @@ public interface UsersDAO {
 
     User findById(int id);
 
-//    List<User> SearchName(String name);
+    List<User> SearchName(String name);
+
+    List<User> sortByName();
 }

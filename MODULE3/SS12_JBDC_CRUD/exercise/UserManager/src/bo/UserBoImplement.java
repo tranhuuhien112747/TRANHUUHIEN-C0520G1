@@ -34,8 +34,13 @@ public class UserBoImplement implements UserBo {
         return usersDAO.findById(id);
     }
 
-//    @Override
-//    public List<User> searchName(String name) {
-//        return usersDAO.SearchName(name);
-//    }
+    @Override
+    public List<User> searchName(String byname) {
+        return usersDAO.SearchName(byname);
+    }
+
+    @Override
+    public List<User> sortByName() {
+        return usersDAO.sortByName();
+    }
 }

@@ -15,8 +15,8 @@ public class UserDaoImplement implements UsersDAO {
     private static final String SELECT_USER_BY_ID = "select id,fullname,email,country from users_information where id =?";
     private static final String UPDATE_USERS_SQL = "update users_information set fullname = ?,email= ?, country =? where id = ?";
     private static final String DELETE_USERS_SQL = "delete from users_information where id = ?";
-//    private static final String SELECT_USER_BY_NAME = "select *from users_information where fullname like '?%'";
-
+    private static final String SELECT_USER_BY_NAME = "select *from users_information where fullname like ?";
+    private static final String SORT_BY_NAME = "SELECT * FROM users_information ORDER BY fullname ASC";
     @Override
     public List<User> findAll() {
         Connection connection = DBConnection.getConnection();
@@ -83,10 +83,10 @@ public class UserDaoImplement implements UsersDAO {
         if (connection != null) {
             try {
                 statement = connection.prepareStatement(UPDATE_USERS_SQL);
-                statement.setInt(1, user.getId());
-                statement.setString(2, user.getName());
-                statement.setString(3, user.getEmail());
-                statement.setString(4, user.getCountry());
+                statement.setString(1, user.getName());
+                statement.setString(2, user.getEmail());
+                statement.setString(3, user.getCountry());
+                statement.setInt(4, user.getId());
                 statement.executeUpdate();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -132,30 +132,53 @@ public class UserDaoImplement implements UsersDAO {
         return user;
     }
 //
-//    @Override
-//    public List<User> SearchName(String name) {
-//        Connection connection = DBConnection.getConnection();
-//        User user = null;
-//        PreparedStatement statement = null;
-//        List<User> userArrayList = new ArrayList<>();
-//        if (connection != null) {
-//            try {
-//                statement = connection.prepareStatement(SELECT_USER_BY_NAME);
-//                statement.setString('1', name);
-//                ResultSet rs = statement.executeQuery();
-//                while (rs.next()) {
-//                    int id = rs.getInt("id");
-//                    String email = rs.getString("email");
-//                    String country = rs.getString("country");
-//                    user = new User(id, name, email, country);
-//                    userArrayList.add(user);
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        return  userArrayList;
-//    }
-
+    @Override
+    public List<User> SearchName(String byname) {
+        Connection connection = DBConnection.getConnection();
+        User user = null;
+        PreparedStatement statement = null;
+        List<User> userArrayList = new ArrayList<>();
+        if (connection != null) {
+            try {
+                statement = connection.prepareStatement(SELECT_USER_BY_NAME);
+                statement.setString(1,"%" + byname + "%");
+                ResultSet rs = statement.executeQuery();
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String name = rs.getString("fullname");
+                    String email = rs.getString("email");
+                    String country = rs.getString("country");
+                    user = new User(id, name, email, country);
+                    userArrayList.add(user);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return  userArrayList;
+    }
+    @Override
+    public List<User> sortByName() {
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<User> userList = new ArrayList<>();
+        if (connection != null) {
+            try {
+                preparedStatement = connection.prepareStatement(SORT_BY_NAME);
+                resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String name = resultSet.getString("fullname");
+                    String email = resultSet.getString("email");
+                    String address = resultSet.getString("country");
+                    userList.add(new User(id, name, email, address));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return userList;
+    }
 
 }

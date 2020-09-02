@@ -15,5 +15,6 @@ public interface UserBo {
 
     User findById(int id);
 
-//    List<User> searchName(String name);
+    List<User> searchName(String byname);
+    public List<User> sortByName();
 }
