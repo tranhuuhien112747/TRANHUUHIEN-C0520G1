@@ -2,30 +2,27 @@ package dao;
 
 import model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImplement implements UsersDAO {
-    private static final String SELECT_All_USER = "select * from users_information";
-    private static final String INSERT_USERS_SQL = "insert into users_information (id,fullname,email,country) values (?,?,?,?)";
-    private static final String SELECT_USER_BY_ID = "select id,fullname,email,country from users_information where id =?";
-    private static final String UPDATE_USERS_SQL = "update users_information set fullname = ?,email= ?, country =? where id = ?";
-    private static final String DELETE_USERS_SQL = "delete from users_information where id = ?";
-    private static final String SELECT_USER_BY_NAME = "select *from users_information where fullname like ?";
-    private static final String SORT_BY_NAME = "SELECT * FROM users_information ORDER BY fullname ASC";
+    private static final String SELECT_All_USER = "call showlist_user()";
+    private static final String INSERT_USERS_SQL = "call addnewuser(?,?,?,?)";
+    private static final String SELECT_USER_BY_ID = "call findby_id(?)";
+    private static final String UPDATE_USERS_SQL = "call update_user(?,?,?,?)";
+    private static final String DELETE_USERS_SQL = "call delete_user(?)";
+
+
     @Override
     public List<User> findAll() {
         Connection connection = DBConnection.getConnection();
-        PreparedStatement statement = null;
+       CallableStatement statement=null;
         ResultSet resultSet = null;
         List<User> userArrayList = new ArrayList<>();
         if (connection != null) {
             try {
-                statement = connection.prepareStatement(SELECT_All_USER);
+                statement = connection.prepareCall(SELECT_All_USER);
                 resultSet = statement.executeQuery();
                 User user = null;
                 while (resultSet.next()) {
@@ -54,10 +51,10 @@ public class UserDaoImplement implements UsersDAO {
     @Override
     public void create(User user) {
         Connection connection = DBConnection.getConnection();
-        PreparedStatement statement = null;
+        CallableStatement statement=null;
         if (connection != null) {
             try {
-                statement = connection.prepareStatement(INSERT_USERS_SQL);
+                statement = connection.prepareCall(INSERT_USERS_SQL);
                 statement.setInt(1, user.getId());
                 statement.setString(2, user.getName());
                 statement.setString(3, user.getEmail());
@@ -79,17 +76,19 @@ public class UserDaoImplement implements UsersDAO {
     @Override
     public void update(User user) {
         Connection connection = DBConnection.getConnection();
-        PreparedStatement statement = null;
+        CallableStatement statement=null;
         if (connection != null) {
             try {
-                statement = connection.prepareStatement(UPDATE_USERS_SQL);
-                statement.setString(1, user.getName());
-                statement.setString(2, user.getEmail());
-                statement.setString(3, user.getCountry());
-                statement.setInt(4, user.getId());
+                statement = connection.prepareCall(UPDATE_USERS_SQL);
+                statement.setInt(1, user.getId());
+                statement.setString(2, user.getName());
+                statement.setString(3, user.getEmail());
+                statement.setString(4, user.getCountry());
                 statement.executeUpdate();
             } catch (Exception e) {
                 e.printStackTrace();
+            }finally {
+                DBConnection.close();
             }
         }
     }
@@ -97,14 +96,16 @@ public class UserDaoImplement implements UsersDAO {
     @Override
     public void delete(int id) {
         Connection connection = DBConnection.getConnection();
-        PreparedStatement statement = null;
+        CallableStatement statement=null;
         if (connection != null) {
             try {
-                statement = connection.prepareStatement(DELETE_USERS_SQL);
+                statement = connection.prepareCall(DELETE_USERS_SQL);
                 statement.setInt(1, id);
                 statement.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
+            }finally {
+                DBConnection.close();
             }
         }
     }
@@ -113,10 +114,10 @@ public class UserDaoImplement implements UsersDAO {
     public User findById(int id) {
         Connection connection = DBConnection.getConnection();
         User user = null;
-        PreparedStatement statement = null;
+       CallableStatement statement= null;
         if (connection != null) {
             try {
-                statement = connection.prepareStatement(SELECT_USER_BY_ID);
+                statement = connection.prepareCall(SELECT_USER_BY_ID);
                 statement.setInt(1, id);
                 ResultSet rs = statement.executeQuery();
                 while (rs.next()) {
@@ -127,6 +128,8 @@ public class UserDaoImplement implements UsersDAO {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+            }finally {
+                DBConnection.close();
             }
         }
         return user;
