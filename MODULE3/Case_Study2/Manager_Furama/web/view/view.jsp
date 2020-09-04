@@ -15,12 +15,15 @@
 <script src="/bootstrap_4/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 <script src="/bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
 <body>
-<header class="row" style="height: 70px;background-color: darkseagreen">
-    <img class="col-xl-3" src="/imagi/logo.jpg" alt="picture"
-         style="height: 60px;text-align: center;padding-top: 5px ">
-    <div class="col-xl-9" style=" padding-left: 700px ;align-content: center; text-align: center;padding-top: 5px ">
-        <h4 style="color: red ;font-weight: bolder">TRAN HUU HIEN</h4>
-        <h4>Class: C0520G1 </h4>
+<header class="row" style="height: 75px;background-color: honeydew">
+        <img class="col-xl-3" src="/imagi/logo.jpg" alt="picture"
+             style="height: 60px;text-align: center;padding-top: 7px ">
+    <div class="col-xl-6">
+        <img src="/imagi/unnamed.png" alt="logo" style="height: 69px; width:230px;align-content: center;padding-top: 5px">
+    </div>
+    <div class="col-xl-3" style="align-content: center; text-align: center;padding-top: 7px ">
+        <h5 style="color: red ;font-weight: bolder">TRAN HUU HIEN</h5>
+        <h5>Class: C0520G1 </h5>
     </div>
 </header>
 <nav class="navbar navbar-expand-lg navbar-darkblue"
@@ -52,20 +55,13 @@
 </nav>
 <div class="container-fluid">
     <div class="row" style="height: 400px">
-        <div class="col-xl-2" style="border: 1px solid darkblue">
+        <div class="col-xl-12" style="border: 1px solid darkblue">
             <div>
                 <a href="#">Item one</a>
             </div>
-
-            <div>
-                <a href="#">Item two</a>
+            <div style="text-align: center">
+                <h1>Body</h1>
             </div>
-            <div>
-                <a href="#">Item three</a>
-            </div>
-        </div>
-        <div class="col-xl-10" style="border: 1px solid darkblue;text-align: center">
-            <h1>Body</h1>
         </div>
     </div>
     <div class="row">

@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="demo-jsp-include-header-footer:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/demo_jsp_include_header_footer_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="demo-jsp-include-header-footer/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="demo-jsp-include-header-footer" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="D:/Codegym/002-teach/02-theory-support/jsp/jsp-jstl/jstl-1.2.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

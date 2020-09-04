@@ -1,4 +1,4 @@
 package model;
 
-public class Employ {
+public class Employee {
 }
