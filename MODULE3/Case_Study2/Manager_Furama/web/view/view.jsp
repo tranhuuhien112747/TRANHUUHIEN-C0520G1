@@ -15,7 +15,7 @@
 <script src="/bootstrap_4/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 <script src="/bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
 <body>
-<header class="row" style="height: 70px">
+<header class="row" style="height: 70px;background-color: darkseagreen">
     <img class="col-xl-3" src="/imagi/logo.jpg" alt="picture"
          style="height: 60px;text-align: center;padding-top: 5px ">
     <div class="col-xl-9" style=" padding-left: 700px ;align-content: center; text-align: center;padding-top: 5px ">
