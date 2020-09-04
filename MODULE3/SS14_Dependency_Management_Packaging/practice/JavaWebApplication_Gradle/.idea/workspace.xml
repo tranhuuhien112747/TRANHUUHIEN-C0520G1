@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5fefb995-deeb-41dc-9ea8-e2f34dae26b1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../libr/src/main/Greeter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../libr/src/main/HelloWorld.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../libr/src/test/HelloWorldTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Case_Study2/.idea/Case_Study2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Case_Study2/.idea/Case_Study2.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="E:\TRANHUUHIEN-C0520G1\MODULE3\SS14_Dependency_Management_Packaging\practice\JavaWebApplication_Gradle\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1gzlplWFB8Qs06HVHYCctdpUXGB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5fefb995-deeb-41dc-9ea8-e2f34dae26b1" name="Default Changelist" comment="" />
+      <created>1599125487488</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599125487488</updated>
+      <workItem from="1599125500511" duration="1716000" />
+      <workItem from="1599131211247" duration="551000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="462" y="120" key="FileChooserDialogImpl" timestamp="1599131738854">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="462" y="120" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1599131738854" />
+    <state x="379" y="189" key="com.intellij.ide.util.TipDialog" timestamp="1599131320225">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="379" y="189" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1599131320225" />
+    <state x="65" y="0" key="new project wizard" timestamp="1599131772830">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="65" y="0" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1599131772830" />
+  </component>
+</project>
