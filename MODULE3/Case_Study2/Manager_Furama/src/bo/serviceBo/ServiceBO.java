@@ -11,9 +11,9 @@ public interface ServiceBO {
 
     void update(Service service);
 
-    void delete(int id);
+    void delete(String id);
 
-    Service findById(int id);
+    Service findById(String id);
 
     List<Service> searchName(String name);
 }

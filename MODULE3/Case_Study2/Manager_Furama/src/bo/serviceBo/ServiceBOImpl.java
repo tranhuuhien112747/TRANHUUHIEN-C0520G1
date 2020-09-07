@@ -6,8 +6,9 @@ import model.Service;
 
 import java.util.List;
 
-public class ServiceBOImpl implements ServiceBO{
-    ServiceDAO serviceDAO = new  ServiceDAOImpl();
+public class ServiceBOImpl implements ServiceBO {
+    ServiceDAO serviceDAO = new ServiceDAOImpl();
+
     @Override
     public List<Service> findAllService() {
         return serviceDAO.findAllService();
@@ -15,7 +16,7 @@ public class ServiceBOImpl implements ServiceBO{
 
     @Override
     public void create(Service service) {
-serviceDAO.create(service);
+        serviceDAO.create(service);
     }
 
     @Override
@@ -24,17 +25,17 @@ serviceDAO.create(service);
     }
 
     @Override
-    public void delete(int id) {
-
+    public void delete(String id) {
+        serviceDAO.delete(id);
     }
 
     @Override
-    public Service findById(int id) {
+    public Service findById(String id) {
         return serviceDAO.findById(id);
     }
 
     @Override
     public List<Service> searchName(String name) {
-        return null;
+        return serviceDAO.searchName(name);
     }
 }

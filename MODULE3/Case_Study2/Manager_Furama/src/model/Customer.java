@@ -4,7 +4,7 @@ package model;
 import java.sql.Date;
 
 public class Customer {
-    private int customerId;
+    private String customerId;
     private String customerName;
     private Date customerBirthday;
     private String customerGender;
@@ -17,7 +17,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(int customerId, String customerName, Date customerBirthday, String customerGender, String customerIdCard,
+    public Customer(String customerId, String customerName, Date customerBirthday, String customerGender, String customerIdCard,
                     String customerPhone, String customerEmail, String customerAddress, int customerTypeId) {
         this.customerId = customerId;
         this.customerName = customerName;
@@ -30,11 +30,11 @@ public class Customer {
         this.customerTypeId = customerTypeId;
     }
 
-    public int getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
 

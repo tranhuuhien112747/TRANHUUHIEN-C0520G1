@@ -26,12 +26,12 @@ public class CustomerBoImpl implements CustomerBO {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(String id) {
         customerDAO.delete(id);
     }
 
     @Override
-    public Customer findById(int id) {
+    public Customer findById(String id) {
         return customerDAO.findById(id);
     }
 

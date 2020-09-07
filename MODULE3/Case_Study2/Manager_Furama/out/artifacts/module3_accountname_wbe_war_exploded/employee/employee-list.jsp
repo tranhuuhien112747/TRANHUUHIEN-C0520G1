@@ -15,7 +15,8 @@
     th {
         align-items: center;
         color: #fd7e14;
-        background-color: #343a40;
+        background-color: darkslategray;
+        font-size: 20px;
     }
 
     td {

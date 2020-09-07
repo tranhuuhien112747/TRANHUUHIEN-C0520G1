@@ -52,18 +52,18 @@ values
 -- thêm khách hàng.
 insert into customer
  values
-	(101,1,'Hien','1996-04-04','male','221451452','0326589536','abcde@gmail.com','Phu Yen'),
-	(102,2,'Tung','1993-04-21','male','221436259','0399685478','112jkhd@gmail.com','Da Nang'),
-	(103,3,'Toan','1992-07-08','male','221498458','0355895698','76yujhf@gmail.com','Hue'),
-	(104,1,'Chuong','1989-12-23','male','221499658','0366958451','99oikl@gmail.com','Ha Noi'),
-	(105,2,'Nhat','2000-04-16','male','221433362','0355262589','87huhs@gmail.com','Hue'),
-	(106,1,'Khanh','1991-12-04','male','221466695','0333695847','76yujk@gmail.com','Da Nang'),
-	(107,2,'Hai','1994-09-15','male','221488478','0364587956','11hkskss@gmail.com','Quang Tri'),
-	(108,4,'Hoang','1996-04-17','male','221466625','0312365968','tttsasd@gmail.com','Hue'),
-	(109,1,'Quang','1996-06-03','male','221488874','0365968563','oipkuhyt@gmail.com','Nghe An'),
-	(110,2,'Tra','1995-04-21','male','221499985','0364521562','azxzxzxe@gmail.com','Phu Yen'),   
-	(111,3,'Quynh','1996-11-02','female','221477775','0364536259','bnbnght@gmail.com','Quang Tri'),    
-	(112,3,'Hoa','1994-12-06','female','221489569','0364536259','bnbnght@gmail.com','Vinh');    
+	('101',1,'Hien','1996-04-04','male','221451452','0326589536','abcde@gmail.com','Phu Yen'),
+	('102',2,'Tung','1993-04-21','male','221436259','0399685478','112jkhd@gmail.com','Da Nang'),
+	('103',3,'Toan','1992-07-08','male','221498458','0355895698','76yujhf@gmail.com','Hue'),
+	('104',1,'Chuong','1989-12-23','male','221499658','0366958451','99oikl@gmail.com','Ha Noi'),
+	('105',2,'Nhat','2000-04-16','male','221433362','0355262589','87huhs@gmail.com','Hue'),
+	('106',1,'Khanh','1991-12-04','male','221466695','0333695847','76yujk@gmail.com','Da Nang'),
+	('107',2,'Hai','1994-09-15','male','221488478','0364587956','11hkskss@gmail.com','Quang Tri'),
+	('108',4,'Hoang','1996-04-17','male','221466625','0312365968','tttsasd@gmail.com','Hue'),
+	('109',1,'Quang','1996-06-03','male','221488874','0365968563','oipkuhyt@gmail.com','Nghe An'),
+	('110',2,'Tra','1995-04-21','male','221499985','0364521562','azxzxzxe@gmail.com','Phu Yen'),   
+	('111',3,'Quynh','1996-11-02','female','221477775','0364536259','bnbnght@gmail.com','Quang Tri'),    
+	('112',3,'Hoa','1994-12-06','female','221489569','0364536259','bnbnght@gmail.com','Vinh');    
     
 -- thêm kiểu thuê.
 insert into rent_type 
@@ -84,11 +84,11 @@ values
  -- thêm dịch vụ
  insert into service
  values
-	 (1,'Villa City',800,1500,10,2,1,'Vip','Not',100,3),
-	 (2,'Da House',700,1000,10,3,1,'Normal','Not',90,2),
-	 (3,'House City',700,1200,10,1,2,'Normal','Not',90,3),
-	 (4,'Villa Home',650,900,10,4,2,'Vip','Not',70,2),
-	 (5,'Villa Happy',1000,2000,10,1,2,'Vip','Not',120,4);
+	 ('1','Villa City',800,1500,10,2,1,'Vip','Not',100,3),
+	 ('2','Da House',700,1000,10,3,1,'Normal','Not',90,2),
+	 ('3','House City',700,1200,10,1,2,'Normal','Not',90,3),
+	 ('4','Villa Home',650,900,10,4,2,'Vip','Not',70,2),
+	 ('5','Villa Happy',1000,2000,10,1,2,'Vip','Not',120,4);
  
  -- thêm dịch vụ đi kèm.
  insert into attach_service

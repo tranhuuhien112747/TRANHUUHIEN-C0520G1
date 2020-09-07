@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Contract {
     private int contractId;
@@ -9,14 +9,14 @@ public class Contract {
     private double contractDeposit;
     private double contractMoneyTotal;
     private int employeeId;
-    private int customerId;
-    private int serviceId;
+    private String customerId;
+    private String serviceId;
 
     public Contract() {
     }
 
     public Contract(int contractId, Date contractStart, Date contractEnd, double contractDeposit,
-                    double contractMoneyTotal, int employeeId, int customerId, int serviceId) {
+                    double contractMoneyTotal, int employeeId, String customerId, String serviceId) {
         this.contractId = contractId;
         this.contractStart = contractStart;
         this.contractEnd = contractEnd;
@@ -75,19 +75,19 @@ public class Contract {
         this.employeeId = employeeId;
     }
 
-    public int getCustomerId() {
+    public String  getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(String  customerId) {
         this.customerId = customerId;
     }
 
-    public int getServiceId() {
+    public String getServiceId() {
         return serviceId;
     }
 
-    public void setServiceId(int serviceId) {
+    public void setServiceId(String  serviceId) {
         this.serviceId = serviceId;
     }
 }

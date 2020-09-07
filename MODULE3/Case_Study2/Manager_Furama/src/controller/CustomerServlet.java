@@ -75,7 +75,7 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void showCustomerInformation(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
         Customer customer = customerBO.findById(id);
         if (customer == null) {
             request.setAttribute("message", "Not Found!!!");
@@ -92,7 +92,7 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void createNewCustomer(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
         int type = Integer.parseInt(request.getParameter("typeId"));
         String name = request.getParameter("name");
         Date date = Date.valueOf(request.getParameter("birthday"));
@@ -121,7 +121,7 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void deleteCustomerForm(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
         Customer customer = customerBO.findById(id);
         if (customer == null) {
             request.setAttribute("message", "Not Found !!!");
@@ -138,7 +138,7 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
         Customer customer = customerBO.findById(id);
         if (customer == null) {
             request.setAttribute("message", "Not Found !!!");
@@ -153,7 +153,7 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void updateCustomerForm(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
         Customer customer = customerBO.findById(id);
         if (customer == null) {
             request.setAttribute("message", "Not Found");
@@ -171,7 +171,7 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void editCustomer(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
         Customer customer = customerBO.findById(id);
         if (customer == null) {
             request.setAttribute("message", "Not Found");

@@ -1,7 +1,7 @@
 package model;
 
 public class Service {
-    private int serviceId;
+    private String serviceId;
     private String serviceName;
     private double area;
     private double serviceCost;
@@ -16,7 +16,7 @@ public class Service {
     public Service() {
     }
 
-    public Service(int serviceId, String serviceName, double area, double serviceCost, int maxPeople, int rentTypeId,
+    public Service(String serviceId, String serviceName, double area, double serviceCost, int maxPeople, int rentTypeId,
                    int serviceTypeId, String standardRoom, String description, double areaPool, int numberFloor) {
         this.serviceId = serviceId;
         this.serviceName = serviceName;
@@ -31,7 +31,7 @@ public class Service {
         this.numberFloor = numberFloor;
     }
 
-    public Service(int serviceId, String serviceName, double area, double serviceCost, int maxPeople, int rentTypeId, int serviceTypeId) {
+    public Service(String serviceId, String serviceName, double area, double serviceCost, int maxPeople, int rentTypeId, int serviceTypeId) {
         this.serviceId = serviceId;
         this.serviceName = serviceName;
         this.area = area;
@@ -41,7 +41,7 @@ public class Service {
         this.serviceTypeId = serviceTypeId;
     }
 
-    public Service(int serviceId, String serviceName, double area, double serviceCost, int maxPeople, int rentTypeId,
+    public Service(String serviceId, String serviceName, double area, double serviceCost, int maxPeople, int rentTypeId,
                    int serviceTypeId, String standardRoom, String description, int numberFloor) {
         this.serviceId = serviceId;
         this.serviceName = serviceName;
@@ -55,11 +55,11 @@ public class Service {
         this.numberFloor = numberFloor;
     }
 
-    public int getServiceId() {
+    public String getServiceId() {
         return serviceId;
     }
 
-    public void setServiceId(int serviceId) {
+    public void setServiceId(String serviceId) {
         this.serviceId = serviceId;
     }
 

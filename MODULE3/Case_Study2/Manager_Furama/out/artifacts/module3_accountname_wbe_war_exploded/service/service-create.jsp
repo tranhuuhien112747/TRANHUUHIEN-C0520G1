@@ -8,8 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <link rel="stylesheet" type="text/css" href="../bootstrap_4/bootstrap-4.5.2-dist/css/bootstrap.min.css">
-<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
-<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 <head>
     <title>CREATE</title>
 </head>
@@ -72,12 +70,6 @@
                         <label for="standardRoom">Standard Room:</label>
                         <input type="text" name="standardRoom" class="form-control" id="standardRoom">
                     </div>
-                    <div style="padding-top: 10px">
-                        <input class="btn btn-danger" style="width: 80px" type="submit" role="button"
-                               value="Save">
-                        <a role="button" href="/service" class="btn btn-success"
-                           style="float: right;width: 80px">Back</a>
-                    </div>
                 </div>
                 <div class="col-xl-1"></div>
                 <div class="col-xl-3">
@@ -93,12 +85,19 @@
                         <label for="numberFloor">Number Of Floor:</label>
                         <input type="text" name="numberFloor" class="form-control" id="numberFloor">
                     </div>
+                    <div style="padding-top: 27px">
+                        <input class="btn btn-danger" style="width: 80px" type="submit" role="button"
+                               value="Save">
+                        <a role="button" href="/service" class="btn btn-success"
+                           style="float: right;width: 80px">Back</a>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-xl-1"></div>
     </div>
 </form>
-
+<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
+<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 </body>
 </html>

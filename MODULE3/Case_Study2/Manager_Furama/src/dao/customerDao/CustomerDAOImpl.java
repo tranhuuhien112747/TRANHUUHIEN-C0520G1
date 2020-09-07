@@ -29,7 +29,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                 resultSet = statement.executeQuery();
                 Customer customer = null;
                 while (resultSet.next()) {
-                    int id = resultSet.getInt("customer_id");
+                    String id = resultSet.getString("customer_id");
                     String name = resultSet.getString("customer_name");
                     Date date = resultSet.getDate("customer_birthday");
                     String gender = resultSet.getString("customer_gender");
@@ -57,7 +57,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         if (connection != null) {
             try {
                 statement = connection.prepareStatement(INSERT_CUSTOMER);
-                statement.setInt(1, customer.getCustomerId());
+                statement.setString(1, customer.getCustomerId());
                 statement.setInt(2, customer.getCustomerTypeId());
                 statement.setString(3, customer.getCustomerName());
                 statement.setDate(4, customer.getCustomerBirthday());
@@ -82,7 +82,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         if (connection != null) {
             try {
                 statement = connection.prepareStatement(EDIT_CUSTOMER);
-                statement.setInt(9, customer.getCustomerId());
+                statement.setString(9, customer.getCustomerId());
                 statement.setInt(1, customer.getCustomerTypeId());
                 statement.setString(2, customer.getCustomerName());
                 statement.setDate(3, customer.getCustomerBirthday());
@@ -101,13 +101,13 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(String id) {
         Connection connection = DBConnection.getConnection();
         PreparedStatement statement = null;
         if (connection != null) {
             try {
                 statement = connection.prepareStatement(DELETE_CUSTOMER_BY_ID);
-                statement.setInt(1, id);
+                statement.setString(1, id);
                 statement.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -118,7 +118,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public Customer findById(int id) {
+        public Customer findById(String id) {
         Connection connection = DBConnection.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -126,7 +126,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         if (connection != null) {
             try {
                 statement = connection.prepareStatement(SELECT_CUSTOMER_BY_ID);
-                statement.setInt(1, id);
+                statement.setString(1, id);
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     int customerType = resultSet.getInt("customer_type_id");
@@ -161,7 +161,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                 statement.setString(1, "%" + value + "%");
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
-                    int id = resultSet.getInt("customer_id");
+                    String id = resultSet.getString("customer_id");
                     String name = resultSet.getString("customer_name");
                     Date birthday = resultSet.getDate("customer_birthday");
                     String gender = resultSet.getString("customer_gender");
