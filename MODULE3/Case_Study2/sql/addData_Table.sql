@@ -29,16 +29,16 @@ values
 -- thêm nhân viên.
 insert into employee
 values
-	(1001,'David','1995-12-03',225693564,6000,0987566354,'david@gmail.com','Da Nang',1,2,3,null),
-	(1002,'Thomas','1993-07-16',225968564,5000,0569845631,'thomas@gmail.com','Ha Noi',2,3,4,null),
-	(1003,'Elena','1998-03-21',221789464,4000,0985639847,'elena657@gmail.com','Quang Binh',3,4,2,null),
-	(1004,'Tom','1988-05-13',221012394,7000,0968569536,'tom666@gmail.com','Da Nang',2,4,3,null),
-	(1005,'Jesmy','1992-01-13',221995464,4000,0789563598,'jesmy090@gmail.com','Hue',3,3,3,null),
-	(1006,'Aladin','1990-11-03',221954269,6000,0569325895,'bababa090@gmail.com','Quang Nam',2,1,3,null),
-	(1007,'Beecia','1997-05-11',221978956,5000,0658954563,'cuccoc090@gmail.com','Hue',1,2,3,null),
-	(1008,'Maicon','1993-02-23',221936256,5500,0563258956,'mimimi090@gmail.com','Quang Binh',2,4,2,null),
-	(1009,'Thor','1989-12-13',221966958,4500,0958456324,'kuikids090@gmail.com','Da Nang',1,2,2,null),
-	(1010,'Jack','1988-10-09',221933625,4000,0689547856,'uyuyuyu090@gmail.com','Quang Nam',1,1,2,null); 
+	(1001,'David','1995-12-03','225693564',6000,'0987566354','david@gmail.com','Da Nang',1,2,3,null),
+	(1002,'Thomas','1993-07-16','225968564',5000,'0569845631','thomas@gmail.com','Ha Noi',2,3,4,null),
+	(1003,'Elena','1998-03-21','221789464',4000,'0985639847','elena657@gmail.com','Quang Binh',3,4,2,null),
+	(1004,'Tom','1988-05-13','221012394',7000,'0968569536','tom666@gmail.com','Da Nang',2,4,3,null),
+	(1005,'Jesmy','1992-01-13','221995464',4000,'0789563598','jesmy090@gmail.com','Hue',3,3,3,null),
+	(1006,'Aladin','1990-11-03','221954269',6000,'0569325895','bababa090@gmail.com','Quang Nam',2,1,3,null),
+	(1007,'Beecia','1997-05-11','221978956',5000,'0658954563','cuccoc090@gmail.com','Hue',1,2,3,null),
+	(1008,'Maicon','1993-02-23','221936256',5500,'0563258956','mimimi090@gmail.com','Quang Binh',2,4,2,null),
+	(1009,'Thor','1989-12-13','221966958',4500,'0958456324','kuikids090@gmail.com','Da Nang',1,2,2,null),
+	(1010,'Jack','1988-10-09','221933625',4000,'0689547856','uyuyuyu090@gmail.com','Quang Nam',1,1,2,null); 
 
 -- thêm loại khách hàng. 
 insert into customer_type
@@ -52,18 +52,18 @@ values
 -- thêm khách hàng.
 insert into customer
  values
-	(101,1,'Hien','1996-04-04','male',221451452,0326589536,'abcde@gmail.com','Phu Yen'),
-	(102,2,'Tung','1993-04-21','male',221436259,0399685478,'112jkhd@gmail.com','Da Nang'),
-	(103,3,'Toan','1992-07-08','male',221498458,0355895698,'76yujhf@gmail.com','Hue'),
-	(104,1,'Chuong','1989-12-23','male',221499658,0366958451,'99oikl@gmail.com','Ha Noi'),
-	(105,2,'Nhat','2000-04-16','male',221433362,0355262589,'87huhs@gmail.com','Hue'),
-	(106,1,'Khanh','1991-12-04','male',221466695,0333695847,'76yujk@gmail.com','Da Nang'),
-	(107,2,'Hai','1994-09-15','male',221488478,0364587956,'11hkskss@gmail.com','Quang Tri'),
-	(108,4,'Hoang','1996-04-17','male',221466625,0312365968,'tttsasd@gmail.com','Hue'),
-	(109,1,'Quang','1996-06-03','male',221488874,0365968563,'oipkuhyt@gmail.com','Nghe An'),
-	(110,2,'Tra','1995-04-21','male',221499985,0364521562,'azxzxzxe@gmail.com','Phu Yen'),   
-	(111,3,'Quynh','1996-11-02','female',221477775,0364536259,'bnbnght@gmail.com','Quang Tri'),    
-	(112,3,'Hoa','1994-12-06','female',221489569,0364536259,'bnbnght@gmail.com','Vinh');    
+	(101,1,'Hien','1996-04-04','male','221451452','0326589536','abcde@gmail.com','Phu Yen'),
+	(102,2,'Tung','1993-04-21','male','221436259','0399685478','112jkhd@gmail.com','Da Nang'),
+	(103,3,'Toan','1992-07-08','male','221498458','0355895698','76yujhf@gmail.com','Hue'),
+	(104,1,'Chuong','1989-12-23','male','221499658','0366958451','99oikl@gmail.com','Ha Noi'),
+	(105,2,'Nhat','2000-04-16','male','221433362','0355262589','87huhs@gmail.com','Hue'),
+	(106,1,'Khanh','1991-12-04','male','221466695','0333695847','76yujk@gmail.com','Da Nang'),
+	(107,2,'Hai','1994-09-15','male','221488478','0364587956','11hkskss@gmail.com','Quang Tri'),
+	(108,4,'Hoang','1996-04-17','male','221466625','0312365968','tttsasd@gmail.com','Hue'),
+	(109,1,'Quang','1996-06-03','male','221488874','0365968563','oipkuhyt@gmail.com','Nghe An'),
+	(110,2,'Tra','1995-04-21','male','221499985','0364521562','azxzxzxe@gmail.com','Phu Yen'),   
+	(111,3,'Quynh','1996-11-02','female','221477775','0364536259','bnbnght@gmail.com','Quang Tri'),    
+	(112,3,'Hoa','1994-12-06','female','221489569','0364536259','bnbnght@gmail.com','Vinh');    
     
 -- thêm kiểu thuê.
 insert into rent_type 
@@ -128,4 +128,3 @@ values
 	(10,10,1,4),
 	(11,11,1,3);
     
- select*from contract_detail
