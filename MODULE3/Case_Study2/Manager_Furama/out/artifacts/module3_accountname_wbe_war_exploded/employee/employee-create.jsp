@@ -9,7 +9,6 @@
 <html>
 <link rel="stylesheet" type="text/css" href="../bootstrap_4/bootstrap-4.5.2-dist/css/bootstrap.min.css">
 <script src="../bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
-<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 <head>
     <title>CREATE</title>
 </head>
@@ -60,12 +59,13 @@
                     </div>
                     <div class="form-group">
                         <label for="address">Address Employee:</label>
-                        <input type="text" name="address" class="form-control" id="address" >
+                        <input type="text" name="address" class="form-control" id="address">
                     </div>
                     <div style="padding-top: 10px">
                         <input class="btn btn-danger" style="width: 80px" type="submit" role="button"
                                value="Save">
-                        <a role="button" href="/employee" class="btn btn-success" style="float: right;width: 80px">Back</a>
+                        <a role="button" href="/employee" class="btn btn-success"
+                           style="float: right;width: 80px">Back</a>
                     </div>
                 </div>
                 <div class="col-xl-1"></div>
@@ -101,7 +101,7 @@
                     </div>
                     <div class="form-group">
                         <label for="user">User:</label>
-                        <input type="text" name="user" class="form-control" id="user" >
+                        <input type="text" name="user" class="form-control" id="user">
                     </div>
                 </div>
             </div>

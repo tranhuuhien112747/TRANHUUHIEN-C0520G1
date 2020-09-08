@@ -11,6 +11,7 @@
 <head>
     <title>Customer</title>
 </head>
+<link rel="stylesheet" href="../bootstrap_4/datatables/css/dataTables.bootstrap.min.css">
 <style>
     th {
         align-items: center;
@@ -39,10 +40,11 @@
                 <h2 style="color: red;font-weight: bold;font-size: 25px">List Customer of Furama </h2>
             </div>
             <div style="padding-top: 0px">
-                <a class="btn btn-outline-success" href="/customer?action=create" role="button" style="font-weight: bolder;font-size: 20px">Add New Customer</a>
+                <a class="btn btn-outline-success" href="/customer?action=create" role="button"
+                   style="font-weight: bolder;font-size: 20px">Add New Customer</a>
             </div>
             <div class="table-responsive-lg">
-                <table class="table table-striped">
+                <table class="table table-striped" id="tableStudent" class="table table-striped table-bordered">
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -64,11 +66,15 @@
                             <td>${customer.customerEmail}</td>
                             <td>${customer.customerAddress}</td>
                             <td style="color: goldenrod;font-weight: bolder">
-                                <a href="/customer?action=view&id=${customer.customerId}" class="btn btn-outline-info" role="button"><span
+                                <a href="/customer?action=view&id=${customer.customerId}" class="btn btn-outline-info"
+                                   role="button"><span
                                         class="fas fa-info mr-3">Detail</span></a>
-                                <a href="/customer?action=edit&id=${customer.customerId}" class="btn btn-outline-warning" role="button"><span
+                                <a href="/customer?action=edit&id=${customer.customerId}"
+                                   class="btn btn-outline-warning" role="button"><span
                                         class="fas fa-edit mr-3">Edit</span></a>
-                                <a href="/customer?action=delete&id=${customer.customerId}" class="btn btn-outline-danger" role="button"><span class="fas fa-eraser">Delete</span></a>
+                                <a href="/customer?action=delete&id=${customer.customerId}"
+                                   class="btn btn-outline-danger" role="button"><span
+                                        class="fas fa-eraser">Delete</span></a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -78,6 +84,15 @@
         </div>
     </div>
 </div>
-<%--<%@include file="../common/footer.jsp" %>--%>
+<script>
+    $(document).ready(function () {
+        $('#tableStudent').dataTable({
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 4
+        });
+    });
+</script>
+<script src="../bootstrap_4/datatables/js/jquery.dataTables.min.js"></script>
 </body>
 </html>

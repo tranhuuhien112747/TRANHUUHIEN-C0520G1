@@ -1,8 +1,6 @@
 package dao.serviceDao;
 
 import dao.DBConnection;
-import jdk.nashorn.internal.parser.Scanner;
-import model.Employee;
 import model.Service;
 
 import java.sql.*;
@@ -14,7 +12,7 @@ public class ServiceDAOImpl implements ServiceDAO {
     private static String SELECT_SERVICE_BY_ID = "select*from service where service_id = ? ";
     private static String INSERT_SERVICE = "insert into service values (?,?,?,?,?,?,?,?,?,?,?);";
     private static String DELETE_SERVICE_BY_ID = "delete from service where service_id = ?";
-    private static String SEARCH_NAME_SERVICE = "select*from service where service_name like ?";
+    private static String SEARCH_ID_SERVICE = "select*from service where service_id like ?";
 
     @Override
     public List<Service> findAllService() {
@@ -142,7 +140,7 @@ public class ServiceDAOImpl implements ServiceDAO {
         List<Service> serviceList = new ArrayList<>();
         if (connection != null) {
             try {
-                statement = connection.prepareStatement(SEARCH_NAME_SERVICE);
+                statement = connection.prepareStatement(SEARCH_ID_SERVICE);
                 statement.setString(1, "%" + value + "%");
                 resultSet = statement.executeQuery();
                 Service service = null;

@@ -9,8 +9,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <link rel="stylesheet" type="text/css" href="../bootstrap_4/bootstrap-4.5.2-dist/css/bootstrap.min.css">
-<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
-<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+<%--<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>--%>
+<%--<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>--%>
 <head>
     <title>CREATE NEW CUSTOMER</title>
 </head>
@@ -66,18 +66,19 @@
                     <div class="form-group">
                         <label for="typeId">Type Customer :</label><br>
                         <select id="typeId" name="typeId" style="width: 100%; height: 37px">
-                                <option value="1">Diamond</option>
-                                <option value="2">Platinum</option>
-                                <option value="3">Gold</option>
-                                <option value="4">Silver</option>
-                                <option value="5">Member</option>
+                            <option value="1">Diamond</option>
+                            <option value="2">Platinum</option>
+                            <option value="3">Gold</option>
+                            <option value="4">Silver</option>
+                            <option value="5">Member</option>
                         </select>
                     </div>
                     <div style="padding-top:9px">
                         <br>
                         <input class="btn btn-danger" style="margin-left: 20px;width: 80px" type="submit" role="button"
                                value="Save">
-                        <a role="button" href="/customer" class="btn btn-success" style="margin-left: 110px;width: 80px">Back</a>
+                        <a role="button" href="/customer" class="btn btn-success"
+                           style="margin-left: 110px;width: 80px">Back</a>
                     </div>
                 </div>
             </div>

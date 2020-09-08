@@ -98,6 +98,5 @@
     </div>
 </form>
 <script src="../bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
-<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 </body>
 </html>

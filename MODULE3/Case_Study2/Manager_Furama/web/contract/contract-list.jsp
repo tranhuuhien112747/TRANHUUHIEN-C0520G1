@@ -11,6 +11,8 @@
 <head>
     <title>Title</title>
 </head>
+<link rel="stylesheet" href="../bootstrap_4/bootstrap-4.5.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../bootstrap_4/datatables/css/dataTables.bootstrap.min.css">
 <style>
     th {
         align-items: center;
@@ -43,7 +45,7 @@
                    style="font-weight: bolder;font-size: 20px">Add New Contract</a>
             </div>
             <div class="table-responsive-lg">
-                <table class="table table-striped">
+                <table class="table table-striped" id="tableStudent" class="table table-striped table-bordered">
                     <thead>
                     <tr>
                         <th scope="col">ID-Contract</th>
@@ -75,6 +77,17 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#tableStudent').dataTable({
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 5
+        });
+    });
+</script>
 <%--<%@include file="../common/footer.jsp" %>--%>
 </body>
+<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
+<script src="../bootstrap_4/datatables/js/jquery.dataTables.min.js"></script>
 </html>

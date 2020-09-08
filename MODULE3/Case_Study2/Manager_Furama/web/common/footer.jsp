@@ -11,10 +11,7 @@
     <title>FOOTER</title>
 </head>
 <body>
-<div class="row" style="width: 100%">
-    <div class="col-xl-12" style="border: 1px solid darkblue; text-align: center">
-        <h1>FOOTER</h1>
-    </div>
+<div class="row" style="background-color: cadetblue;height: 10px">
 </div>
 </body>
 </html>

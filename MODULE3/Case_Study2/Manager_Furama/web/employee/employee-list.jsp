@@ -11,6 +11,7 @@
 <head>
     <title>Employee</title>
 </head>
+<link rel="stylesheet" href="../bootstrap_4/datatables/css/dataTables.bootstrap.min.css">
 <style>
     th {
         align-items: center;
@@ -34,7 +35,7 @@
 <%@include file="../common/header.jsp" %>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xl-12" style="border: 1px solid darkblue">
+        <div class="col-xl-12" style="border: 2px solid darkblue">
             <div style="text-align: center;padding-top: 10px">
                 <h2 style="color: red;font-weight: bold;font-size: 25px">List Employee of Furama </h2>
             </div>
@@ -42,7 +43,7 @@
                 <a class="btn btn-outline-success" href="/employee?action=create" role="button"  style="font-weight: bolder;font-size: 20px">Add New Employee</a>
             </div>
             <div class="table-responsive-lg">
-                <table class="table table-striped">
+                <table class="table table-striped" id="tableStudent" class="table table-striped table-bordered">
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -78,6 +79,16 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#tableStudent').dataTable({
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 4
+        });
+    });
+</script>
+<script src="../bootstrap_4/datatables/js/jquery.dataTables.min.js"></script>
 <%--<%@include file="../common/footer.jsp" %>--%>
 </body>
 </html>

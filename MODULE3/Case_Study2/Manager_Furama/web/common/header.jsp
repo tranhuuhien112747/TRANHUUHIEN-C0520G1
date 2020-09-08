@@ -13,42 +13,43 @@
 </head>
 <link rel="stylesheet" type="text/css" href="/bootstrap_4/bootstrap-4.5.2-dist/css/bootstrap.min.css">
 <body>
-<header class="row" style="height: 75px ;width: 100%;background-color: cadetblue">
-    <img class="col-xl-3" src="/image/logo.jpg" alt="picture"
-         style="height: 60px;text-align: center;padding-top: 7px ">
-    <div class="col-xl-6">
+<header class="row" style="height: 75px;width: 101% ;background-color: cadetblue">
+    <div class="col-xl-3">
+        <img src="/image/logo.jpg" alt="picture" style="height: 60px;text-align: center;padding-top: 7px ">
+    </div>
+    <div class="col-xl-9">
         <img src="/image/unnamed.png" alt="logo"
              style="height: 69px; width:230px;align-content: center;padding-top: 5px">
     </div>
-    <div class="col-xl-3" style="align-content: center; text-align: center;padding-top: 7px ">
-    </div>
+<%--    <div class="col-xl-3"></div>--%>
 </header>
 <nav class="navbar navbar-expand-lg navbar-darkblue"
      style="background-color: #e3f2fd;border: 2px solid darkblue;height: 60px;padding-left: 20px">
     <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-weight: bolder;font-size: 20px">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item dropdown">
                 <a class="nav-link " href="/home" tabindex="-1" aria-disabled="true">Home</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item dropdown">
                 <a class="nav-link " href="/employee" tabindex="-1" aria-disabled="true">Employee</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item dropdown">
                 <a class="nav-link " href="/customer" tabindex="-1" aria-disabled="true">Customer</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item dropdown">
                 <a class="nav-link " href="/service" tabindex="-1" aria-disabled="true">Service</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
                     Contract
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="font-weight: bolder;color: darkblue">
+                <div class="dropdown-menu">
                     <a class="dropdown-item" href="/contract">List Contract</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/contractDetail">Contract-Detail</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="">Manager Customer User Service</a>
+                    <a class="dropdown-item" href="/userService">Manager Customer User Service</a>
                 </div>
             </li>
         </ul>

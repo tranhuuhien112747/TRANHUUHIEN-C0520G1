@@ -11,6 +11,7 @@
 <head>
     <title>List</title>
 </head>
+<link rel="stylesheet" href="../bootstrap_4/datatables/css/dataTables.bootstrap.min.css">
 <style>
     th {
         align-items: center;
@@ -43,7 +44,7 @@
                    style="font-weight: bolder;font-size: 20px">Add New Contract Detail</a>
             </div>
             <div class="table-responsive-lg">
-                <table class="table table-striped">
+                <table class="table table-striped" id="tableStudent" class="table table-striped table-bordered">
                     <thead>
                     <tr>
                         <th scope="col">ID-Contract Detail</th>
@@ -81,6 +82,16 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#tableStudent').dataTable({
+            "dom": 'lrtip',
+            "lengthChange": false,
+            "pageLength": 5
+        });
+    });
+</script>
+<script src="../bootstrap_4/datatables/js/jquery.dataTables.min.js"></script>
 <%--<%@include file="../common/footer.jsp" %>--%>
 </body>
 </html>
