@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <link rel="stylesheet" type="text/css" href="../bootstrap_4/bootstrap-4.5.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../bootstrap_4/jquery-ui-1.12.1/jquery-ui.css">
 <script src="../bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
 <head>
     <title>CREATE</title>
@@ -129,5 +130,12 @@
         <div class="col-xl-1"></div>
     </div>
 </form>
+<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
+<script src="../bootstrap_4/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+<script>
+    $( document ).ready(function() {
+        $("#birthday").datepicker({ dateFormat: "dd/mm/yy" });
+    });
+</script>
 </body>
 </html>

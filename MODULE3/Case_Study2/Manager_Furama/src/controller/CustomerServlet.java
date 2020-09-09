@@ -96,13 +96,13 @@ public class CustomerServlet extends HttpServlet {
         String id = request.getParameter("id");
         int type = Integer.parseInt(request.getParameter("typeId"));
         String name = request.getParameter("name");
-        Date date = Date.valueOf(request.getParameter("birthday"));
-        String gender = request.getParameter("gender");
+        String date = request.getParameter("birthday");
+        int  gender = Integer.parseInt(request.getParameter("gender"));
         String card = request.getParameter("card");
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
-        messageList = customerBO.checkValidateCreateCustomer(id, card, phone, email);
+        messageList = customerBO.checkValidateCreateCustomer(id, card, phone, email,date);
         if (messageList.isEmpty()) {
             Customer customer = new Customer(id, name, date, gender, card, phone, email, address, type);
             customerBO.create(customer);
@@ -192,13 +192,13 @@ public class CustomerServlet extends HttpServlet {
         } else {
             customer.setCustomerTypeId(Integer.parseInt(request.getParameter("typeId")));
             customer.setCustomerName(request.getParameter("name"));
-            customer.setCustomerBirthday(Date.valueOf(request.getParameter("birthday")));
-            customer.setCustomerGender((request.getParameter("gender")));
+            customer.setCustomerBirthday(request.getParameter("birthday"));
+            customer.setCustomerGender((Integer.parseInt(request.getParameter("gender"))));
             customer.setCustomerIdCard(request.getParameter("card"));
             customer.setCustomerPhone(request.getParameter("phone"));
             customer.setCustomerEmail(request.getParameter("email"));
             customer.setCustomerAddress(request.getParameter("address"));
-            messageList = customerBO.checkValidateEditCustomer(customer.getCustomerIdCard(), customer.getCustomerPhone(), customer.getCustomerEmail());
+            messageList = customerBO.checkValidateEditCustomer(customer.getCustomerIdCard(), customer.getCustomerPhone(), customer.getCustomerEmail(),customer.getCustomerBirthday());
             if (messageList.isEmpty()) {
                 customerBO.update(customer);
                 request.setAttribute("customer", customer);

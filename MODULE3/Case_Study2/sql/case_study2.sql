@@ -51,7 +51,7 @@ create table employee (
     foreign key (position_id)references position (position_id) on update cascade on delete cascade,
     foreign key (division_id)references division (division_id) on update cascade on delete cascade,
     foreign key (education_degree_id)references education_degree (education_degree_id) on update cascade on delete cascade,
-    foreign key (username)references `user`(username) on update cascade on delete cascade
+    foreign key (username) references `user`(username) on update cascade on delete cascade
 );
 
 create table customer_type (
@@ -60,12 +60,12 @@ create table customer_type (
 );
 
 create table customer (
-	customer_id int primary key,
+	customer_id varchar(45) primary key,
 	customer_type_id int not null,
 	customer_name varchar(45) not null,
 	customer_birthday date not null,
-	customer_gender varchar(45) not null,
-	customer_id_card varchar(45) not null,
+	customer_gender bit not null,
+	customer_card varchar(45) not null,
 	customer_phone varchar(45) not null,
 	customer_email varchar(45) not null,
 	customer_address varchar(45) not null,
@@ -84,7 +84,7 @@ create table service_type (
 );
 
 create table service (
-	service_id int primary key,
+	service_id varchar(45) primary key,
 	service_name varchar(45) not null,
 	service_area int not null,
 	service_cost  double not null,
@@ -109,13 +109,13 @@ create table attach_service (
 
 create table contract (
 	contract_id int primary key,
-	contract_star_date datetime not null,
-	contract_end_date datetime not null,
+	contract_star_date date not null,
+	contract_end_date date not null,
 	contract_deposit double not null,
 	contract_total_money double not null,
 	employee_id int not null,
-	customer_id int not null,
-	service_id int not null,
+	customer_id varchar(45) not null,
+	service_id varchar(45) not null,
 	foreign key (employee_id) references employee (employee_id) on update cascade on delete cascade,
 	foreign key (customer_id) references customer (customer_id) on update cascade on delete cascade,
 	foreign key (service_id) references service (service_id) on update cascade on delete cascade

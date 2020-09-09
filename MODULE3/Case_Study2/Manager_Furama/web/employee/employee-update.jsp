@@ -11,6 +11,7 @@
 <head>
     <title>UPDATE</title>
 </head>
+<link rel="stylesheet" type="text/css" href="../bootstrap_4/jquery-ui-1.12.1/jquery-ui.css">
 <style>
     label {
         color: darkblue;
@@ -171,16 +172,23 @@
                             <option value="4">After university</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="user">User:</label>
-                        <input type="text" name="user" class="form-control" id="user"
-                               value="${requestScope["employee"].userName} " readonly>
-                    </div>
+<%--                    <div class="form-group">--%>
+<%--                        <label for="user">User:</label>--%>
+<%--                        <input type="text" name="user" class="form-control" id="user"--%>
+<%--                               value="${requestScope["employee"].userName}" readonly>--%>
+<%--                    </div>--%>
                 </div>
             </div>
         </div>
         <div class="col-xl-1"></div>
     </div>
 </form>
+<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
+<script src="../bootstrap_4/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+<script>
+    $( document ).ready(function() {
+        $("#birthday").datepicker({ dateFormat: "dd/mm/yy" });
+    });
+</script>
 </body>
 </html>

@@ -26,8 +26,8 @@ public class ContractDAOImpl implements ContractDAO {
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     int id = resultSet.getInt("contract_id");
-                    Date startDate = resultSet.getDate("contract_star_date");
-                    Date endDate = resultSet.getDate("contract_end_date");
+                    String startDate = resultSet.getString("contract_star_date");
+                    String endDate = resultSet.getString("contract_end_date");
                     double deposit = resultSet.getDouble("contract_deposit");
                     double totalMoney = resultSet.getDouble("contract_total_money");
                     int employeeId = resultSet.getInt("employee_id");
@@ -51,8 +51,8 @@ public class ContractDAOImpl implements ContractDAO {
             try {
                 statement = connection.prepareStatement(INSERT_CONTRACT);
                 statement.setInt(1, contract.getContractId());
-                statement.setDate(2, contract.getContractStart());
-                statement.setDate(3, contract.getContractEnd());
+                statement.setString(2, contract.getContractStart());
+                statement.setString(3, contract.getContractEnd());
                 statement.setDouble(4, contract.getContractDeposit());
                 statement.setDouble(5, contract.getContractMoneyTotal());
                 statement.setInt(6, contract.getEmployeeId());
@@ -96,8 +96,8 @@ public class ContractDAOImpl implements ContractDAO {
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     int id = resultSet.getInt("contract_id");
-                    Date startDate = resultSet.getDate("contract_start_date");
-                    Date endDate = resultSet.getDate("contract_end_date");
+                    String startDate = resultSet.getString("contract_start_date");
+                    String endDate = resultSet.getString("contract_end_date");
                     double deposit = resultSet.getDouble("contract_deposit");
                     double totalMoney = resultSet.getDouble("contract_total_money");
                     int employeeId = resultSet.getInt("employee_id");

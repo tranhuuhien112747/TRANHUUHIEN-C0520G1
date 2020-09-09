@@ -11,6 +11,7 @@
 <head>
     <title>Edit</title>
 </head>
+<link rel="stylesheet" type="text/css" href="../bootstrap_4/jquery-ui-1.12.1/jquery-ui.css">
 <style>
     label {
         color: darkblue;
@@ -43,11 +44,24 @@
                         <label for="birthday">Date Of Birthday:</label>
                         <input type="text" name="birthday" class="form-control" id="birthday"
                                value="${requestScope["customer"].customerBirthday}">
+                        <c:if test='${requestScope["message"].get(3) != ""}'>
+                            <p>${requestScope["message"].get(3)}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="gender">Gender:</label>
-                        <input type="text" name="gender" class="form-control" id="gender"
-                               value="${requestScope["customer"].customerGender}">
+                        <select class="col-8 form-control" id="gender" name="gender">
+                            <option value="${requestScope["customer"].customerGender}">
+                                <c:if test='${requestScope["customer"].customerGender == 0}'>
+                                    Female
+                                </c:if>
+                                <c:if test='${requestScope["customer"].customerGender == 1}'>
+                                    Male
+                                </c:if>
+                            </option>
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="card">ID-Card Customer:</label>
@@ -120,5 +134,12 @@
         <div class="col-xl-2"></div>
     </div>
 </form>
+<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
+<script src="../bootstrap_4/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+<script>
+    $( document ).ready(function() {
+        $("#birthday").datepicker({ dateFormat: "dd/mm/yy" });
+    });
+</script>
 </body>
 </html>

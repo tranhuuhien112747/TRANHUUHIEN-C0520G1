@@ -9,8 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <link rel="stylesheet" type="text/css" href="../bootstrap_4/bootstrap-4.5.2-dist/css/bootstrap.min.css">
-<%--<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>--%>
-<%--<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>--%>
+<link rel="stylesheet" type="text/css" href="../bootstrap_4/jquery-ui-1.12.1/jquery-ui.css">
 <head>
     <title>CREATE NEW CUSTOMER</title>
 </head>
@@ -46,10 +45,16 @@
                     <div class="form-group">
                         <label for="birthday">Date Of Birthday :</label>
                         <input type="text" name="birthday" class="form-control" id="birthday" required>
+                        <c:if test='${requestScope["message"].get(4) != ""}'>
+                            <p>${requestScope["message"].get(4)}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="gender">Gender:</label>
-                        <input type="text" name="gender" class="form-control" id="gender"required>
+                        <select  id="gender" name="gender" style="width: 100%; height: 37px">
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="card">ID-Card Customer :</label>
@@ -102,5 +107,14 @@
         <div class="col-xl-2"></div>
     </div>
 </form>
+
+<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
+<script src="../bootstrap_4/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+<script>
+    $( document ).ready(function() {
+        $("#birthday").datepicker({ dateFormat: "dd/mm/yy" });
+    });
+</script>
+
 </body>
 </html>

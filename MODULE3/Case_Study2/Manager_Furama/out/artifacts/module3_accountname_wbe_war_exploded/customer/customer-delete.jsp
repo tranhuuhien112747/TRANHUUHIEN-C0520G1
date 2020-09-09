@@ -41,8 +41,14 @@
                     </div>
                     <div class="form-group">
                         <label for="gender">Gender:</label>
-                        <input type="text" name="gender" class="form-control" id="gender"
-                               value="${requestScope["customer"].customerGender}" readonly>
+                        <c:if test='${requestScope["customer"].customerGender == 0}'>
+                            <input type="text" class="col-8 form-control" id="gender" name="gender"
+                                   value="Female" readonly>
+                        </c:if>
+                        <c:if test='${requestScope["customer"].customerGender == 1}'>
+                            <input type="text" class="col-8 form-control" id="gender" name="gender"
+                                   value="Male" readonly>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="card">ID-Card Customer:</label>

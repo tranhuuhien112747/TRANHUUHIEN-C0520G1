@@ -11,6 +11,7 @@
 <head>
     <title>Title</title>
 </head>
+<link rel="stylesheet" type="text/css" href="../bootstrap_4/jquery-ui-1.12.1/jquery-ui.css">
 <style>
     label {
         color: darkblue;
@@ -97,5 +98,12 @@
         </div>
     </div>
 </form>
+<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
+<script src="../bootstrap_4/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+<script>
+    $( document ).ready(function() {
+        $("#start,#end").datepicker({ dateFormat: "dd/mm/yy" });
+    });
+</script>
 </body>
 </html>

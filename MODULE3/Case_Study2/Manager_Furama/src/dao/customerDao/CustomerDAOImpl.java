@@ -1,5 +1,6 @@
 package dao.customerDao;
 
+import bo.checkValidate.Regex;
 import dao.DBConnection;
 import model.Customer;
 
@@ -15,7 +16,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     private static final String EDIT_CUSTOMER = "UPDATE customer SET customer_type_id = ?, customer_name = ?, " +
             "customer_birthday = ?,customer_gender = ?, customer_card = ?, customer_phone = ?, customer_email = ?," +
             " customer_address = ? WHERE customer_id = ?;";
-    private static String SEARCH_NAME_CUSTOMER = "select*from customer where customer_name like ?";
+    private static String SEARCH_NAME_CUSTOMER = "select*from customer where customer_name like ? or customer_id like ?";
     private static final String CHECK_CUSTOMER_ID_EXISTS = "SELECT 1 FROM customer WHERE customer_id = ?;";
 
     @Override
@@ -32,8 +33,8 @@ public class CustomerDAOImpl implements CustomerDAO {
                 while (resultSet.next()) {
                     String id = resultSet.getString("customer_id");
                     String name = resultSet.getString("customer_name");
-                    Date date = resultSet.getDate("customer_birthday");
-                    String gender = resultSet.getString("customer_gender");
+                    String date = Regex.changeFormatDateDisplay(resultSet.getString("customer_birthday"));
+                    int gender = resultSet.getInt("customer_gender");
                     String card = resultSet.getString("customer_card");
                     String phone = resultSet.getString("customer_phone");
                     String email = resultSet.getString("customer_email");
@@ -61,8 +62,8 @@ public class CustomerDAOImpl implements CustomerDAO {
                 statement.setString(1, customer.getCustomerId());
                 statement.setInt(2, customer.getCustomerTypeId());
                 statement.setString(3, customer.getCustomerName());
-                statement.setDate(4, customer.getCustomerBirthday());
-                statement.setString(5, customer.getCustomerGender());
+                statement.setString(4, Regex.changeFormatDateSQL(customer.getCustomerBirthday()));
+                statement.setInt(5, customer.getCustomerGender());
                 statement.setString(6, customer.getCustomerIdCard());
                 statement.setString(7, customer.getCustomerPhone());
                 statement.setString(8, customer.getCustomerEmail());
@@ -86,8 +87,8 @@ public class CustomerDAOImpl implements CustomerDAO {
                 statement.setString(9, customer.getCustomerId());
                 statement.setInt(1, customer.getCustomerTypeId());
                 statement.setString(2, customer.getCustomerName());
-                statement.setDate(3, customer.getCustomerBirthday());
-                statement.setString(4, customer.getCustomerGender());
+                statement.setString(3, Regex.changeFormatDateSQL(customer.getCustomerBirthday()));
+                statement.setInt(4, customer.getCustomerGender());
                 statement.setString(5, customer.getCustomerIdCard());
                 statement.setString(6, customer.getCustomerPhone());
                 statement.setString(7, customer.getCustomerEmail());
@@ -132,8 +133,8 @@ public class CustomerDAOImpl implements CustomerDAO {
                 while (resultSet.next()) {
                     int customerType = resultSet.getInt("customer_type_id");
                     String name = resultSet.getString("customer_name");
-                    Date birthday = resultSet.getDate("customer_birthday");
-                    String gender = resultSet.getString("customer_gender");
+                    String birthday = Regex.changeFormatDateDisplay(resultSet.getString("customer_birthday"));
+                    int gender = resultSet.getInt("customer_gender");
                     String card = resultSet.getString("customer_card");
                     String phone = resultSet.getString("customer_phone");
                     String email = resultSet.getString("customer_email");
@@ -160,12 +161,13 @@ public class CustomerDAOImpl implements CustomerDAO {
             try {
                 statement = connection.prepareStatement(SEARCH_NAME_CUSTOMER);
                 statement.setString(1, "%" + value + "%");
+                statement.setString(2, "%" + value + "%");
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     String id = resultSet.getString("customer_id");
                     String name = resultSet.getString("customer_name");
-                    Date birthday = resultSet.getDate("customer_birthday");
-                    String gender = resultSet.getString("customer_gender");
+                    String birthday = Regex.changeFormatDateDisplay(resultSet.getString("customer_birthday"));
+                    int gender = resultSet.getInt("customer_gender");
                     String idCard = resultSet.getString("customer_card");
                     String phone = resultSet.getString("customer_phone");
                     String email = resultSet.getString("customer_email");

@@ -101,8 +101,8 @@ public class ContractServlet extends HttpServlet {
         List<String> messageList;
         Contract contract = null;
         int id = Integer.parseInt(request.getParameter("id"));
-        Date startDate = Date.valueOf(request.getParameter("start"));
-        Date endDate = Date.valueOf(request.getParameter("end"));
+        String startDate = request.getParameter("start");
+        String endDate = request.getParameter("end");
         String deposit = request.getParameter("deposit");
         String totalMoney = request.getParameter("money");
         int employeeId = Integer.parseInt(request.getParameter("employeeId"));

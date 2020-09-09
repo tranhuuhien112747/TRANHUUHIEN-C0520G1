@@ -44,13 +44,14 @@ public class CustomerBoImpl implements CustomerBO {
     }
 
     @Override
-    public List<String> checkValidateCreateCustomer(String id, String card, String phone, String email) {
+    public List<String> checkValidateCreateCustomer(String id, String card, String phone, String email,String birthday) {
         List<String> errMessList = new ArrayList<>(4);
         boolean checkValidateId = checkValidateCustomerId(id);
         boolean checkValidateIdCard = Regex.checkRegexIdCard(card);
         boolean checkValidatePhone = Regex.checkRegexPhoneNumber(phone);
         boolean checkValidateEmail = Regex.checkRegexEmail(email);
-        if (!(checkValidateId && checkValidateIdCard && checkValidateEmail && checkValidatePhone)) {
+        boolean checkValidateBirthday = Regex.checkValidateDate(birthday);
+        if (!(checkValidateId && checkValidateIdCard && checkValidateEmail && checkValidatePhone && checkValidateBirthday)) {
             if (!checkValidateId) {
                 errMessList.add("ID format KH-XXXX (X from 0-9) and unlike");
             } else {
@@ -71,17 +72,23 @@ public class CustomerBoImpl implements CustomerBO {
             } else {
                 errMessList.add("");
             }
+            if (!checkValidateBirthday) {
+                errMessList.add("Format dd/mm/yyyy");
+            } else {
+                errMessList.add("");
+            }
         }
         return errMessList;
     }
 
     @Override
-    public List<String> checkValidateEditCustomer(String card, String phone, String email) {
+    public List<String> checkValidateEditCustomer(String card, String phone, String email,String birthday) {
         List<String> errMessList = new ArrayList<>();
         boolean checkValidateIdCard = Regex.checkRegexIdCard(card);
         boolean checkValidatePhone = Regex.checkRegexPhoneNumber(phone);
         boolean checkValidateEmail = Regex.checkRegexEmail(email);
-        if (!(checkValidateIdCard && checkValidateEmail && checkValidatePhone)) {
+        boolean checkValidateBirthday = Regex.checkValidateDate(birthday);
+        if (!(checkValidateIdCard && checkValidateEmail && checkValidatePhone && checkValidateBirthday )) {
             if (!checkValidateIdCard) {
                 errMessList.add("ID format KH-XXXX (X from 0-9) and unlike");
             } else {
@@ -94,6 +101,11 @@ public class CustomerBoImpl implements CustomerBO {
             }
             if (!checkValidateEmail) {
                 errMessList.add("Email format abc@abc.abc");
+            } else {
+                errMessList.add("");
+            }
+            if (!checkValidateBirthday) {
+                errMessList.add("Format dd/mm/yyyy");
             } else {
                 errMessList.add("");
             }

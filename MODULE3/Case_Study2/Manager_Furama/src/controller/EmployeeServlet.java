@@ -2,7 +2,6 @@ package controller;
 
 import bo.employeeBo.EmployeeBO;
 import bo.employeeBo.EmployeeBoImpl;
-import model.Customer;
 import model.Employee;
 
 import javax.servlet.ServletException;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,10 +27,10 @@ public class EmployeeServlet extends HttpServlet {
                 createNewEmployee(request, response);
                 break;
             case "delete":
-                deleteEmployee(request, response);
+//                deleteEmployee(request, response);
                 break;
             case "edit":
-                editCustomer(request, response);
+                editEmployee(request, response);
                 break;
             default:
                 break;
@@ -49,7 +47,7 @@ public class EmployeeServlet extends HttpServlet {
                 createFormEmployee(request, response);
                 break;
             case "delete":
-                deleteEmployeeForm(request, response);
+                deleteEmployee(request,response);
                 break;
             case "edit":
                 updateEmployeeForm(request, response);
@@ -100,7 +98,7 @@ public class EmployeeServlet extends HttpServlet {
         Employee employee = null;
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
-        Date date = Date.valueOf(request.getParameter("birthday"));
+        String date = request.getParameter("birthday");
         String card = request.getParameter("card");
         String salary = request.getParameter("salary");
         String phone = request.getParameter("phone");
@@ -141,22 +139,22 @@ public class EmployeeServlet extends HttpServlet {
         }
     }
 
-    private void deleteEmployeeForm(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
-        Employee employee = employeeBO.findById(id);
-        if (employee == null) {
-            request.setAttribute("message", "Not Found !!!");
-        } else {
-            request.setAttribute("employee", employee);
-        }
-        try {
-            request.getRequestDispatcher("employee/employee-delete.jsp").forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void deleteEmployeeForm(HttpServletRequest request, HttpServletResponse response) {
+//        int id = Integer.parseInt(request.getParameter("id"));
+//        Employee employee = employeeBO.findById(id);
+//        if (employee == null) {
+//            request.setAttribute("message", "Not Found !!!");
+//        } else {
+//            request.setAttribute("employee", employee);
+//        }
+//        try {
+//            request.getRequestDispatcher("employee/employee-delete.jsp").forward(request, response);
+//        } catch (ServletException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     private void deleteEmployee(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -165,10 +163,12 @@ public class EmployeeServlet extends HttpServlet {
             request.setAttribute("message", "Not Found !!!");
         } else {
             employeeBO.delete(id);
+            List<Employee> employeeList = employeeBO.findAllEmployee();
+            request.setAttribute("employeeList", employeeList);
         }
         try {
-            response.sendRedirect("/employee");
-        } catch (IOException e) {
+            request.getRequestDispatcher("employee/employee-list.jsp").forward(request, response);
+        } catch (IOException | ServletException e) {
             e.printStackTrace();
         }
     }
@@ -190,7 +190,7 @@ public class EmployeeServlet extends HttpServlet {
         }
     }
 
-    private void editCustomer(HttpServletRequest request, HttpServletResponse response) {
+    private void editEmployee(HttpServletRequest request, HttpServletResponse response) {
         List<String> messageList = new ArrayList<>();
         int id = Integer.parseInt(request.getParameter("id"));
         Employee employee = employeeBO.findById(id);
@@ -199,7 +199,7 @@ public class EmployeeServlet extends HttpServlet {
         } else {
             employee.setEmployeeId(Integer.parseInt(request.getParameter("id")));
             employee.setEmployeeName(request.getParameter("name"));
-            employee.setEmployeeBirthday(Date.valueOf(request.getParameter("birthday")));
+            employee.setEmployeeBirthday(request.getParameter("birthday"));
             employee.setEmployeeIdCard(request.getParameter("card"));
             employee.setEmployeeSalary(Double.parseDouble(request.getParameter("salary")));
             employee.setEmployeePhone(request.getParameter("phone"));
@@ -208,7 +208,6 @@ public class EmployeeServlet extends HttpServlet {
             employee.setEmployeePosition(Integer.parseInt(request.getParameter("position")));
             employee.setEmployeeDivision(Integer.parseInt(request.getParameter("division")));
             employee.setEmployeeEducation(Integer.parseInt(request.getParameter("education")));
-            employee.setUserName(request.getParameter("user"));
             messageList = employeeBO.checkValidateEditEmployee(employee.getEmployeeIdCard(), String.valueOf(employee.getEmployeeSalary()),
                     employee.getEmployeePhone(), employee.getEmployeeEmail());
             if (messageList.isEmpty()) {

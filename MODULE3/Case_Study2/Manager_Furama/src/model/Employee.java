@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Employee {
     private int employeeId;
     private String employeeName;
-    private Date employeeBirthday;
+    private String employeeBirthday;
     private String employeeIdCard;
     private double employeeSalary;
     private String employeePhone;
@@ -19,7 +19,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int employeeId, String employeeName, Date employeeBirthday, String employeeIdCard,
+    public Employee(int employeeId, String employeeName, String employeeBirthday, String employeeIdCard,
                     double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress
             , int employeePosition, int employeeDivision, int employeeEducation, String userName) {
         this.employeeId = employeeId;
@@ -52,11 +52,11 @@ public class Employee {
         this.employeeName = employeeName;
     }
 
-    public Date getEmployeeBirthday() {
+    public String getEmployeeBirthday() {
         return employeeBirthday;
     }
 
-    public void setEmployeeBirthday(Date employeeBirthday) {
+    public void setEmployeeBirthday(String employeeBirthday) {
         this.employeeBirthday = employeeBirthday;
     }
 

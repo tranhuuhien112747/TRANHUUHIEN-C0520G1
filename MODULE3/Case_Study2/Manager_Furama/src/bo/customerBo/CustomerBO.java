@@ -17,7 +17,7 @@ public interface CustomerBO {
 
     List<Customer> searchName(String name);
 
-    List<String> checkValidateCreateCustomer(String id, String card, String phone, String email);
+    List<String> checkValidateCreateCustomer(String id, String card, String phone, String email,String birthday);
 
-    List<String> checkValidateEditCustomer(String card, String phone, String email);
+    List<String> checkValidateEditCustomer(String card, String phone, String email,String birthday);
 }

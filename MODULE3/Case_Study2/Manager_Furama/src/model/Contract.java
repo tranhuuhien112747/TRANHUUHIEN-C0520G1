@@ -4,8 +4,8 @@ import java.sql.Date;
 
 public class Contract {
     private int contractId;
-    private Date contractStart;
-    private Date contractEnd;
+    private String contractStart;
+    private String contractEnd;
     private double contractDeposit;
     private double contractMoneyTotal;
     private int employeeId;
@@ -15,7 +15,7 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(int contractId, Date contractStart, Date contractEnd, double contractDeposit,
+    public Contract(int contractId, String contractStart, String contractEnd, double contractDeposit,
                     double contractMoneyTotal, int employeeId, String customerId, String serviceId) {
         this.contractId = contractId;
         this.contractStart = contractStart;
@@ -35,19 +35,19 @@ public class Contract {
         this.contractId = contractId;
     }
 
-    public Date getContractStart() {
+    public String getContractStart() {
         return contractStart;
     }
 
-    public void setContractStart(Date contractStart) {
+    public void setContractStart(String contractStart) {
         this.contractStart = contractStart;
     }
 
-    public Date getContractEnd() {
+    public String getContractEnd() {
         return contractEnd;
     }
 
-    public void setContractEnd(Date contractEnd) {
+    public void setContractEnd(String contractEnd) {
         this.contractEnd = contractEnd;
     }
 

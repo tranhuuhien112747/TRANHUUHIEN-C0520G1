@@ -6,8 +6,8 @@ import java.sql.Date;
 public class Customer {
     private String customerId;
     private String customerName;
-    private Date customerBirthday;
-    private String customerGender;
+    private String customerBirthday;
+    private int customerGender;
     private String customerIdCard;
     private String customerPhone;
     private String customerEmail;
@@ -17,7 +17,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String customerId, String customerName, Date customerBirthday, String customerGender, String customerIdCard,
+    public Customer(String customerId, String customerName, String customerBirthday, int customerGender, String customerIdCard,
                     String customerPhone, String customerEmail, String customerAddress, int customerTypeId) {
         this.customerId = customerId;
         this.customerName = customerName;
@@ -46,19 +46,19 @@ public class Customer {
         this.customerName = customerName;
     }
 
-    public Date getCustomerBirthday() {
+    public String getCustomerBirthday() {
         return customerBirthday;
     }
 
-    public void setCustomerBirthday(Date customerBirthday) {
+    public void setCustomerBirthday(String customerBirthday) {
         this.customerBirthday = customerBirthday;
     }
 
-    public String getCustomerGender() {
+    public int getCustomerGender() {
         return customerGender;
     }
 
-    public void setCustomerGender(String customerGender) {
+    public void setCustomerGender(int customerGender) {
         this.customerGender = customerGender;
     }
 

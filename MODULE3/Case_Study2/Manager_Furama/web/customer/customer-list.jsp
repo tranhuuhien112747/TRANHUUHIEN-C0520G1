@@ -62,7 +62,12 @@
                             <td>${customer.customerId}</td>
                             <td>${customer.customerName}</td>
                             <td>${customer.customerBirthday}</td>
-                            <td>${customer.customerGender}</td>
+                            <c:if test='${customer.customerGender == 0}'>
+                                <td>Female</td>
+                            </c:if>
+                            <c:if test='${customer.customerGender == 1}'>
+                                <td>Male</td>
+                            </c:if>
                             <td>${customer.customerEmail}</td>
                             <td>${customer.customerAddress}</td>
                             <td style="color: goldenrod;font-weight: bolder">
