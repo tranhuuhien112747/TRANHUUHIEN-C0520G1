@@ -17,5 +17,5 @@ public interface CustomerDAO {
 
     List<Customer> searchName(String name);
 
-    List<Customer> sortByName();
+    boolean checkCustomerIdExists(String id);
 }

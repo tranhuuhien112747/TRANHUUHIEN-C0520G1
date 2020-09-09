@@ -92,6 +92,7 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void createNewCustomer(HttpServletRequest request, HttpServletResponse response) {
+        List<String> messageList;
         String id = request.getParameter("id");
         int type = Integer.parseInt(request.getParameter("typeId"));
         String name = request.getParameter("name");
@@ -101,12 +102,24 @@ public class CustomerServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
-        Customer customer = new Customer(id, name, date, gender, card, phone, email, address, type);
-        customerBO.create(customer);
-        try {
-            response.sendRedirect("/customer");
-        } catch (IOException e) {
-            e.printStackTrace();
+        messageList = customerBO.checkValidateCreateCustomer(id, card, phone, email);
+        if (messageList.isEmpty()) {
+            Customer customer = new Customer(id, name, date, gender, card, phone, email, address, type);
+            customerBO.create(customer);
+            try {
+                response.sendRedirect("/customer");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            request.setAttribute("message", messageList);
+            try {
+                request.getRequestDispatcher("customer/customer-create.jsp").forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -173,6 +186,7 @@ public class CustomerServlet extends HttpServlet {
     private void editCustomer(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");
         Customer customer = customerBO.findById(id);
+        List<String> messageList;
         if (customer == null) {
             request.setAttribute("message", "Not Found");
         } else {
@@ -184,13 +198,27 @@ public class CustomerServlet extends HttpServlet {
             customer.setCustomerPhone(request.getParameter("phone"));
             customer.setCustomerEmail(request.getParameter("email"));
             customer.setCustomerAddress(request.getParameter("address"));
-            customerBO.update(customer);
-            request.setAttribute("customer", customer);
-            try {
-                response.sendRedirect("/customer");
-            } catch (IOException e) {
-                e.printStackTrace();
+            messageList = customerBO.checkValidateEditCustomer(customer.getCustomerIdCard(), customer.getCustomerPhone(), customer.getCustomerEmail());
+            if (messageList.isEmpty()) {
+                customerBO.update(customer);
+                request.setAttribute("customer", customer);
+                try {
+                    response.sendRedirect("/customer");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                request.setAttribute("message", messageList);
+                request.setAttribute("customer", customer);
+                try {
+                    request.getRequestDispatcher("customer/customer-update.jsp").forward(request, response);
+                } catch (ServletException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+
         }
     }
 

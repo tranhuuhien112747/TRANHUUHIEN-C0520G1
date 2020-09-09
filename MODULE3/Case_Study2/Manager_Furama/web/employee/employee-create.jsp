@@ -5,6 +5,7 @@
   Time: 4:49 CH
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <link rel="stylesheet" type="text/css" href="../bootstrap_4/bootstrap-4.5.2-dist/css/bootstrap.min.css">
@@ -15,6 +16,10 @@
 <style>
     label {
         color: darkblue;
+    }
+    p{
+        color: red;
+        font-style: italic;
     }
 </style>
 <body>
@@ -28,7 +33,10 @@
                 <div class="col-xl-3">
                     <div class="form-group">
                         <label for="id">ID Employee:</label>
-                        <input type="text" class="form-control" name="id" id="id" placeholder="Example: 1001">
+                        <input type="text" class="form-control" name="id" id="id" placeholder="Example: 1001" required>
+                        <c:if test='${requestScope["message"].get(0) != ""}'>
+                            <p >${requestScope["message"].get(0)}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="name">Name Employee:</label>
@@ -41,6 +49,9 @@
                     <div class="form-group">
                         <label for="card">ID-Card Employee:</label>
                         <input type="text" name="card" class="form-control" id="card">
+                        <c:if test='${requestScope["message"].get(1) != ""}'>
+                            <p >${requestScope["message"].get(1)}</p>
+                        </c:if>
                     </div>
                 </div>
                 <div class="col-xl-1"></div>
@@ -48,14 +59,23 @@
                     <div class="form-group">
                         <label for="salary">Salary Employee:</label>
                         <input type="text" name="salary" class="form-control" id="salary">
+                        <c:if test='${requestScope["message"].get(2) != ""}'>
+                            <p >${requestScope["message"].get(2)}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Employee:</label>
                         <input type="text" name="phone" class="form-control" id="phone">
+                        <c:if test='${requestScope["message"].get(3) != ""}'>
+                            <p >${requestScope["message"].get(3)}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="email">Email Employee:</label>
                         <input type="text" name="email" class="form-control" id="email">
+                        <c:if test='${requestScope["message"].get(4) != ""}'>
+                            <p >${requestScope["message"].get(4)}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="address">Address Employee:</label>

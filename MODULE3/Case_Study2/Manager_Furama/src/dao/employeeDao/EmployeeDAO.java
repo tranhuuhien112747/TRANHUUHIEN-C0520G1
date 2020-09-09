@@ -18,5 +18,5 @@ public interface EmployeeDAO {
 
     List<Employee> searchName(String name);
 
-    List<Employee> sortByName();
+    boolean checkEmployeeIdExists(int id);
 }

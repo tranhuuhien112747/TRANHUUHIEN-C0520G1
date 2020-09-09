@@ -17,4 +17,6 @@ public interface ContractDetailBO {
     ContractDetail findById(int id);
 
     List<Contract> searchName(String name);
+
+    List<String> checkValidateCreateContract(int id, String quantity);
 }

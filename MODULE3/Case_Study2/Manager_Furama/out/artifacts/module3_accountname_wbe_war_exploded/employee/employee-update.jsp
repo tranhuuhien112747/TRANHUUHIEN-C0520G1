@@ -16,13 +16,17 @@
         color: darkblue;
         font-weight: bolder;
     }
+
+    p {
+        color: red;
+        font-style: italic;
+    }
 </style>
 <body>
 <%@include file="../common/header.jsp" %>
 <form method="post">
     <div class="container-fluid">
-        <h3 style="text-align: center;color: #fd7e14;background-color: darkslategray"> You want to delete the
-            [ ${requestScope["employee"].employeeName} ] customer. Are you sure ?</h3>
+        <h3 style="text-align: center;color: #fd7e14;background-color: darkslategray"> Edit Information Employee </h3>
         <div class="row">
             <div class="col-xl-2"></div>
             <div class="row col-xl-9" style="background-color: ghostwhite">
@@ -46,6 +50,9 @@
                         <label for="card">ID-Card Employee:</label>
                         <input type="text" name="card" class="form-control" id="card"
                                value="${requestScope["employee"].employeeIdCard}">
+                        <c:if test='${requestScope["message"].get(0) != ""}'>
+                            <p>${requestScope["message"].get(0)}</p>
+                        </c:if>
                     </div>
                 </div>
                 <div class="col-xl-1"></div>
@@ -54,16 +61,25 @@
                         <label for="salary">Salary Employee:</label>
                         <input type="text" name="salary" class="form-control" id="salary"
                                value="${requestScope["employee"].employeeSalary}">
+                        <c:if test='${requestScope["message"].get(1) != ""}'>
+                            <p>${requestScope["message"].get(1)}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Employee:</label>
                         <input type="text" name="phone" class="form-control" id="phone"
                                value="${requestScope["employee"].employeePhone}">
+                        <c:if test='${requestScope["message"].get(2) != ""}'>
+                            <p>${requestScope["message"].get(2)}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="email">Email Employee:</label>
                         <input type="text" name="email" class="form-control" id="email"
                                value="${requestScope["employee"].employeeEmail}">
+                        <c:if test='${requestScope["message"].get(3) != ""}'>
+                            <p>${requestScope["message"].get(3)}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="address">Address Employee:</label>

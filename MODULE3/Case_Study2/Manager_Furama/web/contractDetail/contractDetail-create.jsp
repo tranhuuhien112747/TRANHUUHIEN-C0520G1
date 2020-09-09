@@ -15,6 +15,10 @@
     label {
         color: darkblue;
     }
+    p{
+        color: red;
+        font-style: italic;
+    }
 </style>
 <body>
 <%@include file="../common/header.jsp" %>
@@ -27,7 +31,10 @@
                 <div class="col-xl-5">
                     <div class="form-group">
                         <label for="id">ID ContractDetail:</label>
-                        <input type="text" class="form-control" name="id" id="id">
+                        <input type="text" class="form-control" name="id" id="id" required>
+                        <c:if test='${requestScope["message"].get(0) != ""}'>
+                            <p >${requestScope["message"].get(0)}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="contractID">ID-Contract :</label>
@@ -52,7 +59,10 @@
                     </div>
                     <div class="form-group">
                         <label for="quantity">Quantity:</label>
-                        <input type="text" class="form-control" name="quantity" id="quantity">
+                        <input type="text" class="form-control" name="quantity" id="quantity" required>
+                        <c:if test='${requestScope["message"].get(1) != ""}'>
+                            <p >${requestScope["message"].get(1)}</p>
+                        </c:if>
                     </div>
                 </div>
             </div>

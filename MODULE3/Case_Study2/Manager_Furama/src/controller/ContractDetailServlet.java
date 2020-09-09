@@ -44,13 +44,13 @@ public class ContractDetailServlet extends HttpServlet {
                 createContractDetailForm(request, response);
                 break;
             default:
-                showContractDetail(request,response);
+                showContractDetail(request, response);
                 break;
         }
     }
 
     private void showContractDetail(HttpServletRequest request, HttpServletResponse response) {
-        List<ContractDetail>contractDetailList=contractDetailBO.findAllContractDetail();
+        List<ContractDetail> contractDetailList = contractDetailBO.findAllContractDetail();
         request.setAttribute("contractDetailList", contractDetailList);
         try {
             request.getRequestDispatcher("contractDetail/contractDetail-list.jsp").forward(request, response);
@@ -71,16 +71,29 @@ public class ContractDetailServlet extends HttpServlet {
     }
 
     private void createContractDetail(HttpServletRequest request, HttpServletResponse response) {
+        List<String> messageList;
         int contractDetailID = Integer.parseInt(request.getParameter("id"));
         int contractId = Integer.parseInt(request.getParameter("contractID"));
         int attachServiceId = Integer.parseInt(request.getParameter("attach"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-        ContractDetail contractDetail = new ContractDetail(contractDetailID, contractId, attachServiceId, quantity);
-        contractDetailBO.create(contractDetail);
-        try {
-            response.sendRedirect("/contractDetail");
-        } catch (IOException e) {
-            e.printStackTrace();
+        String quantity = request.getParameter("quantity");
+        messageList = contractDetailBO.checkValidateCreateContract(contractDetailID, quantity);
+        if (messageList.isEmpty()) {
+            ContractDetail contractDetail = new ContractDetail(contractDetailID, contractId, attachServiceId, Integer.parseInt(quantity));
+            contractDetailBO.create(contractDetail);
+            try {
+                response.sendRedirect("/contractDetail");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            request.setAttribute("message",messageList);
+            try {
+                request.setAttribute("contractList", contractBO.findAllContract());
+                request.getRequestDispatcher("contractDetail/contractDetail-create.jsp").forward(request, response);
+            } catch (ServletException | IOException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 }

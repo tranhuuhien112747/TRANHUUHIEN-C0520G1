@@ -11,7 +11,7 @@ import java.util.List;
 public class ContractDetailDaoImpl implements ContractDetailDao {
     private static String SELECT_ALL_DETAIL = "select*from contract_detail;";
     private static String INSERT_CONTRACT_DETAIL = "insert into contract_detail values (?,?,?,?);";
-
+    private static final String CHECK_CONTRACT_ID_EXISTS = "SELECT 1 FROM contract_detail WHERE contract_detail_id = ?;";
     @Override
     public List<ContractDetail> findAllContractDetail() {
         Connection connection = DBConnection.getConnection();
@@ -79,5 +79,27 @@ public class ContractDetailDaoImpl implements ContractDetailDao {
     @Override
     public List<Contract> searchName(String name) {
         return null;
+    }
+    @Override
+    public boolean checkContractIdExists(int id) {
+        boolean checkExists = false;
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if (connection != null) {
+            try {
+                statement = connection.prepareStatement(CHECK_CONTRACT_ID_EXISTS);
+                statement.setInt(1, id);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    checkExists = true;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                DBConnection.close();
+            }
+        }
+        return checkExists;
     }
 }

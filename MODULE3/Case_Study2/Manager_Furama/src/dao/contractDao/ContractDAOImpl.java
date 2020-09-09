@@ -11,6 +11,7 @@ public class ContractDAOImpl implements ContractDAO {
     private static String INSERT_CONTRACT = "insert into contract values (?,?,?,?,?,?,?,?);";
     private static String SELECT_ALL_CONTRACT = "select*from contract;";
     private static String SEARCH_BY_ID = "select*from contract where contract_id like = ?";
+    private static final String CHECK_CONTRACT_ID_EXISTS = "SELECT 1 FROM contract WHERE contract_id = ?;";
 
     @Override
     public List<Contract> findAllContract() {
@@ -110,5 +111,28 @@ public class ContractDAOImpl implements ContractDAO {
             }
         }
         return contractList;
+    }
+
+    @Override
+    public boolean checkContractIdExists(int id) {
+        boolean checkExists = false;
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if (connection != null) {
+            try {
+                statement = connection.prepareStatement(CHECK_CONTRACT_ID_EXISTS);
+                statement.setInt(1, id);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    checkExists = true;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                DBConnection.close();
+            }
+        }
+        return checkExists;
     }
 }

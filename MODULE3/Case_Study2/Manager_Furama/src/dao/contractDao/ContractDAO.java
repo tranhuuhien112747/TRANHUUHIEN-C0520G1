@@ -8,7 +8,7 @@ import java.util.List;
 public interface ContractDAO {
     List<Contract> findAllContract();
 
-    void create(Contract contract );
+    void create(Contract contract);
 
     void update(Contract contract);
 
@@ -17,4 +17,6 @@ public interface ContractDAO {
     Contract findById(int id);
 
     List<Contract> searchName(String name);
+
+    boolean checkContractIdExists(int id);
 }

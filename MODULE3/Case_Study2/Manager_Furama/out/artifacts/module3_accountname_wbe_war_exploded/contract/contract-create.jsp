@@ -15,6 +15,10 @@
     label {
         color: darkblue;
     }
+    p{
+        color: red;
+        font-style: italic;
+    }
 </style>
 <body>
 <%@include file="../common/header.jsp" %>
@@ -27,26 +31,35 @@
                 <div class="col-xl-5">
                     <div class="form-group">
                         <label for="id">ID Contract:</label>
-                        <input type="text" class="form-control" name="id" id="id">
+                        <input type="text" class="form-control" name="id" id="id" required>
+                        <c:if test='${requestScope["message"].get(0) != ""}'>
+                            <p >${requestScope["message"].get(0)}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="start">Date Start :</label>
-                        <input type="text" name="start" class="form-control" id="start">
+                        <input type="text" name="start" class="form-control" id="start" required>
                     </div>
                     <div class="form-group">
                         <label for="end">Date End :</label>
-                        <input type="text" name="end" class="form-control" id="end">
+                        <input type="text" name="end" class="form-control" id="end" required>
                     </div>
                     <div class="form-group">
                         <label for="deposit">Deposit:</label>
-                        <input type="text" name="deposit" class="form-control" id="deposit">
+                        <input type="text" name="deposit" class="form-control" id="deposit" required>
+                        <c:if test='${requestScope["message"].get(1) != ""}'>
+                            <p >${requestScope["message"].get(1)}</p>
+                        </c:if>
                     </div>
                 </div>
                 <div class="col-xl-2"></div>
                 <div class="col-xl-5">
                     <div class="form-group">
                         <label for="money">Total Money :</label>
-                        <input type="text" name="money" class="form-control" id="money">
+                        <input type="text" name="money" class="form-control" id="money" required>
+                        <c:if test='${requestScope["message"].get(2) != ""}'>
+                            <p >${requestScope["message"].get(2)}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="employeeId">ID-Employee:</label>

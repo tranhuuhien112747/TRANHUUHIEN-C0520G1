@@ -7,7 +7,7 @@ import java.util.List;
 public interface ContractBO {
     List<Contract> findAllContract();
 
-    void create(Contract contract );
+    void create(Contract contract);
 
     void update(Contract contract);
 
@@ -16,4 +16,7 @@ public interface ContractBO {
     Contract findById(int id);
 
     List<Contract> searchName(String name);
+
+    List<String> checkValidateCreateContract(int id, String deposit, String totalMoney);
+
 }

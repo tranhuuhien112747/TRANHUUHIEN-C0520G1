@@ -18,6 +18,10 @@
     label {
         color: darkblue;
     }
+    p{
+        color: red;
+        font-style: italic;
+    }
 </style>
 <body>
 <%@include file="../common/header.jsp" %>
@@ -30,38 +34,50 @@
                 <div class="col-xl-5">
                     <div class="form-group">
                         <label for="id">ID Customer:</label>
-                        <input type="text" class="form-control" name="id" id="id" placeholder="Example: 101">
+                        <input type="text" class="form-control" name="id" id="id" placeholder="Example: KH-1234" required>
+                        <c:if test='${requestScope["message"].get(0) != ""}'>
+                            <p >${requestScope["message"].get(0)}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="name">Name Customer :</label>
-                        <input type="text" name="name" class="form-control" id="name">
+                        <input type="text" name="name" class="form-control" id="name" required>
                     </div>
                     <div class="form-group">
                         <label for="birthday">Date Of Birthday :</label>
-                        <input type="text" name="birthday" class="form-control" id="birthday">
+                        <input type="text" name="birthday" class="form-control" id="birthday" required>
                     </div>
                     <div class="form-group">
                         <label for="gender">Gender:</label>
-                        <input type="text" name="gender" class="form-control" id="gender">
+                        <input type="text" name="gender" class="form-control" id="gender"required>
                     </div>
                     <div class="form-group">
                         <label for="card">ID-Card Customer :</label>
-                        <input type="text" name="card" class="form-control" id="card">
+                        <input type="text" name="card" class="form-control" id="card" required>
+                        <c:if test='${requestScope["message"].get(1) != ""}'>
+                            <p >${requestScope["message"].get(1)}</p>
+                        </c:if>
                     </div>
                 </div>
                 <div class="col-xl-2"></div>
                 <div class="col-xl-5">
                     <div class="form-group">
                         <label for="phone">Phone Customer :</label>
-                        <input type="text" name="phone" class="form-control" id="phone">
+                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Example: 090XXXXXXX" required>
+                        <c:if test='${requestScope["message"].get(2) != ""}'>
+                            <p >${requestScope["message"].get(2)}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="email">Email Customer :</label>
-                        <input type="text" name="email" class="form-control" id="email">
+                        <input type="text" name="email" class="form-control" id="email" required>
+                        <c:if test='${requestScope["message"].get(3) != ""}'>
+                            <p >${requestScope["message"].get(3)}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="address">Address Customer :</label>
-                        <input type="text" name="address" class="form-control" id="address">
+                        <input type="text" name="address" class="form-control" id="address" required>
                     </div>
                     <div class="form-group">
                         <label for="typeId">Type Customer :</label><br>
@@ -73,7 +89,7 @@
                             <option value="5">Member</option>
                         </select>
                     </div>
-                    <div style="padding-top:9px">
+                    <div style="padding-top:15px">
                         <br>
                         <input class="btn btn-danger" style="margin-left: 20px;width: 80px" type="submit" role="button"
                                value="Save">

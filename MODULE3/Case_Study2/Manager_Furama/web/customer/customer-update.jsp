@@ -11,6 +11,15 @@
 <head>
     <title>Edit</title>
 </head>
+<style>
+    label {
+        color: darkblue;
+    }
+    p{
+        color: red;
+        font-style: italic;
+    }
+</style>
 <body>
 <%@include file="../common/header.jsp" %>
 <form method="post">
@@ -44,6 +53,9 @@
                         <label for="card">ID-Card Customer:</label>
                         <input type="text" name="card" class="form-control" id="card"
                                value="${requestScope["customer"].customerIdCard}">
+                        <c:if test='${requestScope["message"].get(0) != ""}'>
+                            <p>${requestScope["message"].get(0)}</p>
+                        </c:if>
                     </div>
                 </div>
                 <div class="col-xl-2"></div>
@@ -52,11 +64,17 @@
                         <label for="phone">Phone Customer:</label>
                         <input type="text" name="phone" class="form-control" id="phone"
                                value="${requestScope["customer"].customerPhone}">
+                        <c:if test='${requestScope["message"].get(1) != ""}'>
+                            <p>${requestScope["message"].get(1)}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="email">Email Customer:</label>
                         <input type="text" name="email" class="form-control" id="email"
                                value="${requestScope["customer"].customerEmail}">
+                        <c:if test='${requestScope["message"].get(2) != ""}'>
+                            <p>${requestScope["message"].get(2)}</p>
+                        </c:if>
                     </div>
                     <div class="form-group">
                         <label for="address">Address Customer:</label>
@@ -76,10 +94,10 @@
                                 <c:if test='${requestScope["customer"].customerTypeId == 3}'>
                                     Gold
                                 </c:if>
-                                <c:if test='${customer.customerTypeId == 4}'>
+                                <c:if test='${requestScope["customer"].customerTypeId == 4}'>
                                     Silver
                                 </c:if>
-                                <c:if test='${customer.customerTypeId == 5}'>
+                                <c:if test='${requestScope["customer"].customerTypeId == 5}'>
                                     Member
                                 </c:if>
                             </option>

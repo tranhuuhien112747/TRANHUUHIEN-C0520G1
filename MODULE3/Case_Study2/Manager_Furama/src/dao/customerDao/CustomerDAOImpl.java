@@ -16,6 +16,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             "customer_birthday = ?,customer_gender = ?, customer_card = ?, customer_phone = ?, customer_email = ?," +
             " customer_address = ? WHERE customer_id = ?;";
     private static String SEARCH_NAME_CUSTOMER = "select*from customer where customer_name like ?";
+    private static final String CHECK_CUSTOMER_ID_EXISTS = "SELECT 1 FROM customer WHERE customer_id = ?;";
 
     @Override
     public List<Customer> findAllCustomer() {
@@ -118,7 +119,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-        public Customer findById(String id) {
+    public Customer findById(String id) {
         Connection connection = DBConnection.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -182,7 +183,25 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public List<Customer> sortByName() {
-        return null;
+    public boolean checkCustomerIdExists(String id) {
+        boolean checkExists = false;
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if (connection != null) {
+            try {
+                statement = connection.prepareStatement(CHECK_CUSTOMER_ID_EXISTS);
+                statement.setString(1, id);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    checkExists = true;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                DBConnection.close();
+            }
+        }
+        return checkExists;
     }
 }

@@ -18,4 +18,6 @@ public interface ServiceDAO {
 
     List<Service> searchName(String name);
 
+    boolean checkServiceIdExists(String id);
 }
+

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ServiceServlet", urlPatterns = "/service")
@@ -24,10 +25,10 @@ public class ServiceServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                createService(request,response);
+                createService(request, response);
                 break;
             case "delete":
-                deleteService(request,response);
+                deleteService(request, response);
                 break;
             default:
                 break;
@@ -41,18 +42,18 @@ public class ServiceServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                serviceCreateForm(request,response);
+                serviceCreateForm(request, response);
                 break;
             case "delete":
-                deleteServiceForm(request,response);
+                deleteServiceForm(request, response);
                 break;
-            case"search":
-                serviceSearch(request,response);
+            case "search":
+                serviceSearch(request, response);
                 break;
             case "view":
-                showInformationService(request,response);
+                showInformationService(request, response);
             default:
-                showServiceList(request,response);
+                showServiceList(request, response);
                 break;
         }
     }
@@ -68,9 +69,10 @@ public class ServiceServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
     private void showInformationService(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");
-        Service service =serviceBO.findById(id);
+        Service service = serviceBO.findById(id);
         if (service == null) {
             request.setAttribute("message", "Not Found");
         } else {
@@ -84,9 +86,10 @@ public class ServiceServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
     private void serviceCreateForm(HttpServletRequest request, HttpServletResponse response) {
         try {
-            request.getRequestDispatcher("service/service-create.jsp").forward(request,response);
+            request.getRequestDispatcher("service/service-create.jsp").forward(request, response);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ServletException e) {
@@ -95,36 +98,92 @@ public class ServiceServlet extends HttpServlet {
     }
 
     private void createService(HttpServletRequest request, HttpServletResponse response) {
+        List<String> messageList;
+        Service service=null;
         String id = request.getParameter("id");
         String name = request.getParameter("name");
-        double area = Double.parseDouble(request.getParameter("area"));
-        double cost = Double.parseDouble(request.getParameter("cost"));
-        int maxPeople = Integer.parseInt(request.getParameter("maxPeople"));
+        String area = request.getParameter("area");
+        String cost = request.getParameter("cost");
+        String maxPeople = request.getParameter("maxPeople");
         int rentType = Integer.parseInt(request.getParameter("rentType"));
         int typeService = Integer.parseInt(request.getParameter("typeService"));
         if (typeService == 1) {
             String standardRoom = request.getParameter("standardRoom");
             String description = request.getParameter("description");
-            double areaPool = Double.parseDouble(request.getParameter("areaPool"));
-            int numberFloor = Integer.parseInt(request.getParameter("numberFloor"));
-            serviceBO.create(new Service(id, name, area, cost, maxPeople, rentType, typeService, standardRoom, description, areaPool, numberFloor));
+            String areaPool = request.getParameter("areaPool");
+            String numberFloor = request.getParameter("numberFloor");
+            messageList = serviceBO.checkValidateCreateService(id, area, cost, maxPeople, areaPool, numberFloor);
+            if (messageList.isEmpty()) {
+                service=new Service(id, name, Double.parseDouble(area), Double.parseDouble(cost), Integer.parseInt(maxPeople),
+                        rentType, typeService, standardRoom, description, Double.parseDouble(areaPool), Integer.parseInt(numberFloor));
+                serviceBO.create(service);
+                try {
+                    response.sendRedirect("/service");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                request.setAttribute("message", messageList);
+                try {
+                    request.getRequestDispatcher("service/service-create.jsp").forward(request, response);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ServletException e) {
+                    e.printStackTrace();
+                }
+            }
         } else if (typeService == 2) {
             String standardRoom = request.getParameter("standardRoom");
             String description = request.getParameter("description");
-            int numberFloor = Integer.parseInt(request.getParameter("numberFloor"));
-            serviceBO.create(new Service(id, name, area, cost, maxPeople, rentType, typeService, standardRoom, description, numberFloor));
+            String numberFloor = request.getParameter("numberFloor");
+            messageList = serviceBO.checkValidateCreateService(id, area, cost, maxPeople, "1", numberFloor);
+            if (messageList.isEmpty()) {
+                service= new Service(id, name, Double.parseDouble(area), Double.parseDouble(cost), Integer.parseInt(maxPeople),
+                        rentType, typeService, standardRoom, description, Integer.parseInt(numberFloor));
+                serviceBO.create(service);
+                try {
+                    response.sendRedirect("/service");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                request.setAttribute("message", messageList);
+                try {
+                    request.getRequestDispatcher("service/service-create.jsp").forward(request, response);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ServletException e) {
+                    e.printStackTrace();
+                }
+            }
         } else if (typeService == 3) {
-            serviceBO.create(new Service(id, name, area, cost, maxPeople, rentType, typeService));
+            messageList = serviceBO.checkValidateCreateService(id, area, cost, maxPeople, "1", "1");
+            if (messageList.isEmpty()) {
+                service = new Service(id, name, Double.parseDouble(area), Double.parseDouble(cost),
+                        Integer.parseInt(maxPeople), rentType, typeService);
+                serviceBO.create(service);
+                try {
+                    response.sendRedirect("/service");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                request.setAttribute("message", messageList);
+                try {
+                    request.getRequestDispatcher("service/service-create.jsp").forward(request, response);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ServletException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-        try {
-            response.sendRedirect("/service");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
+
     private void deleteServiceForm(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");
-        Service service =serviceBO.findById(id);
+        Service service = serviceBO.findById(id);
         if (service == null) {
             request.setAttribute("message", "Not Found !!!");
         } else {
@@ -141,8 +200,8 @@ public class ServiceServlet extends HttpServlet {
 
     private void deleteService(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");
-        Service service =serviceBO.findById(id);
-        if (service== null) {
+        Service service = serviceBO.findById(id);
+        if (service == null) {
             request.setAttribute("message", "Not Found !!!");
         } else {
             serviceBO.delete(id);
@@ -153,6 +212,7 @@ public class ServiceServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
     private void serviceSearch(HttpServletRequest request, HttpServletResponse response) {
         List<Service> serviceList;
         String value = request.getParameter("search");

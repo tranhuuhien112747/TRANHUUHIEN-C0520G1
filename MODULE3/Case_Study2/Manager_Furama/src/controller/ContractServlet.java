@@ -98,21 +98,38 @@ public class ContractServlet extends HttpServlet {
     }
 
     private void createContract(HttpServletRequest request, HttpServletResponse response) {
+        List<String> messageList;
         Contract contract = null;
         int id = Integer.parseInt(request.getParameter("id"));
         Date startDate = Date.valueOf(request.getParameter("start"));
         Date endDate = Date.valueOf(request.getParameter("end"));
-        double deposit = Double.parseDouble(request.getParameter("deposit"));
-        double totalMoney = Double.parseDouble(request.getParameter("money"));
+        String deposit = request.getParameter("deposit");
+        String totalMoney = request.getParameter("money");
         int employeeId = Integer.parseInt(request.getParameter("employeeId"));
         String customerId = request.getParameter("customerId");
         String serviceId = request.getParameter("serviceId");
-        contract = new Contract(id, startDate, endDate, deposit, totalMoney, employeeId, customerId, serviceId);
-        contractBO.create(contract);
-        try {
-            response.sendRedirect("/contract");
-        } catch (IOException e) {
-            e.printStackTrace();
+        messageList=contractBO.checkValidateCreateContract(id,deposit, totalMoney);
+        if(messageList.isEmpty()){
+            contract = new Contract(id, startDate, endDate,Double.parseDouble(deposit) ,Double.parseDouble(totalMoney),employeeId, customerId, serviceId);
+            contractBO.create(contract);
+            try {
+                response.sendRedirect("/contract");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else {
+            request.setAttribute("message",messageList);
+            try {
+                request.setAttribute("customerList",customerBO.findAllCustomer());
+                request.setAttribute("employeeList",employeeBO.findAllEmployee());
+                request.setAttribute("serviceList",serviceBO.findAllService());
+                request.getRequestDispatcher("contract/contract-create.jsp").forward(request, response);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ServletException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 }

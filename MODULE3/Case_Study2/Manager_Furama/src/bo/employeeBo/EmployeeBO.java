@@ -18,5 +18,7 @@ public interface EmployeeBO {
 
     List<Employee> searchName(String name);
 
-    List<Employee> sortByName();
+    List<String> checkValidateCreateEmployee(int id, String card, String salary, String phone, String email);
+
+    List<String> checkValidateEditEmployee(String card, String salary, String phone, String email);
 }

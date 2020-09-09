@@ -17,4 +17,5 @@ public interface ContractDetailDao {
     ContractDetail findById(int id);
 
     List<Contract> searchName(String name);
+    boolean checkContractIdExists(int id);
 }

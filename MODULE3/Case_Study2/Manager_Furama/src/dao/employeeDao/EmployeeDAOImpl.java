@@ -21,7 +21,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             "employee_id_card = ?, employee_salary = ?, employee_phone = ?, employee_email = ?, employee_adress = ? ," +
             "position_id = ?, division_id = ?, education_degree_id = ?, username = ? where employee_id=?;";
     private static String SEARCH_NAME_EMPLOYEE = "select*from employee where employee_name like ?";
-
+    private static final String CHECK_EMPLOYEE_ID_EXISTS = "SELECT 1 FROM employee WHERE employee_id = ?;";
     @Override
     public List<Employee> findAllEmployee() {
         Connection connection = DBConnection.getConnection();
@@ -187,11 +187,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
                     String phone = resultSet.getString("employee_phone");
                     String email = resultSet.getString("employee_email");
                     String address = resultSet.getString("employee_adress");
-                    int posittion = resultSet.getInt("position_id");
+                    int position = resultSet.getInt("position_id");
                     int division = resultSet.getInt("division_id");
                     int education = resultSet.getInt("education_degree_id");
                     String userName = resultSet.getString("username");
-                    employee = new Employee(id, name, date, card, salary, phone, email, address, posittion, division, education, userName);
+                    employee = new Employee(id, name, date, card, salary, phone, email, address, position, division, education, userName);
                     employeeList.add(employee);
                 }
             } catch (SQLException e) {
@@ -204,7 +204,25 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public List<Employee> sortByName() {
-        return null;
+    public boolean checkEmployeeIdExists(int id){
+        boolean checkExists = false;
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if (connection != null) {
+            try {
+                statement = connection.prepareStatement(CHECK_EMPLOYEE_ID_EXISTS);
+                statement.setInt(1, id);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    checkExists = true;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                DBConnection.close();
+            }
+        }
+        return checkExists;
     }
 }

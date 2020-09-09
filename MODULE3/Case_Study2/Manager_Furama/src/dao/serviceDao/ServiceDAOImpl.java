@@ -13,7 +13,7 @@ public class ServiceDAOImpl implements ServiceDAO {
     private static String INSERT_SERVICE = "insert into service values (?,?,?,?,?,?,?,?,?,?,?);";
     private static String DELETE_SERVICE_BY_ID = "delete from service where service_id = ?";
     private static String SEARCH_ID_SERVICE = "select*from service where service_id like ?";
-
+    private static final String CHECK_SERVICE_ID_EXISTS = "SELECT 1 FROM service WHERE service_id = ?;";
     @Override
     public List<Service> findAllService() {
         Connection connection = DBConnection.getConnection();
@@ -166,5 +166,28 @@ public class ServiceDAOImpl implements ServiceDAO {
             }
         }
         return serviceList;
+    }
+
+    @Override
+    public boolean checkServiceIdExists(String id) {
+        boolean checkExists = false;
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if (connection != null) {
+            try {
+                statement = connection.prepareStatement(CHECK_SERVICE_ID_EXISTS);
+                statement.setString(1, id);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    checkExists = true;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                DBConnection.close();
+            }
+        }
+        return checkExists;
     }
 }
