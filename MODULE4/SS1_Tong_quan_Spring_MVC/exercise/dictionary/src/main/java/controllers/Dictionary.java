@@ -3,6 +3,7 @@ package controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ public class Dictionary {
     }
 
     @PostMapping
-    public ModelAndView getMeaning(HttpServletRequest request) {
+    public ModelAndView getMeaning(@RequestParam("english") String english) {
         ModelAndView modelAndView = new ModelAndView("dictionary");
         Map<String, String> dictionaryList = new TreeMap<>();
         dictionaryList.put("hello", "Xin Chao");
@@ -27,7 +28,7 @@ public class Dictionary {
         dictionaryList.put("How", "la ai?");
         dictionaryList.put("where", "o dau?");
         dictionaryList.put("when", "khi nao");
-        String english = request.getParameter("english");
+//        String english = request.getParameter("english");
         String vietnam = null;
         String message = "Not Found";
         if (dictionaryList.get(english) == null) {

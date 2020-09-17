@@ -13,16 +13,6 @@
 </head>
 <link rel="stylesheet" type="text/css" href="../bootstrap_4/bootstrap-4.5.2-dist/css/bootstrap.min.css">
 <body>
-<header class="row" style="height: 75px;width: 101% ;background-color: cadetblue">
-    <div class="col-xl-3">
-        <img src="../image/unnamed.png" alt="picture" style="height: 60px;text-align: center;padding-top: 7px ">
-    </div>
-    <div class="col-xl-9">
-        <img src="../image/unnamed.png" alt="logo"
-             style="height: 69px; width:230px;align-content: center;padding-top: 5px">
-    </div>
-<%--    <div class="col-xl-3"></div>--%>
-</header>
 <nav class="navbar navbar-expand-lg navbar-darkblue"
      style="background-color: #e3f2fd;border: 2px solid darkblue;height: 60px;padding-left: 20px">
     <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-weight: bolder;font-size: 20px">

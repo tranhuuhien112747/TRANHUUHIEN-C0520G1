@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DBConnection {
     private static final String HOST = "localhost";
     private static final String PORT = "3306";
-    private static final String DATABASE = "";
+    private static final String DATABASE = "my_student";
     private static Connection connection;
 
     public static Connection getConnection() {

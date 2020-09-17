@@ -11,7 +11,7 @@
     <title>HEADER</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<link rel="stylesheet" type="text/css" href="../../bootstrap_4/bootstrap-4.5.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../bootstrap_4/bootstrap-4.5.2-dist/css/bootstrap.min.css">
 <body>
 <nav class="navbar navbar-expand-lg navbar-darkblue"
      style="background-color: #e3f2fd;border: 2px solid darkblue;height: 60px;padding-left: 20px">
@@ -52,7 +52,7 @@
         </form>
     </div>
 </nav>
-<script src="../../bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
-<script src="../../bootstrap_4/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/jquery-3.5.1.js"></script>
+<script src="../bootstrap_4/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 </body>
 </html>

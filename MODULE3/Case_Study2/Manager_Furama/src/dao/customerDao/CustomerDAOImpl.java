@@ -160,8 +160,8 @@ public class CustomerDAOImpl implements CustomerDAO {
         if (connection != null) {
             try {
                 statement = connection.prepareStatement(SEARCH_NAME_CUSTOMER);
-                statement.setString(1, "%" + value + "%");
-                statement.setString(2, "%" + value + "%");
+                statement.setString(1,  "%"+ value + "%");
+                statement.setString(2,  "%"+ value + "%");
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     String id = resultSet.getString("customer_id");
