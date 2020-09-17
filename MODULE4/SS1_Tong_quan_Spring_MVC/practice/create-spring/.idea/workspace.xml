@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="34e1e48d-ec08-4595-8644-a60c493f1765" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Bai_Thi/src/bo/ProductBO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Bai_Thi/src/bo/ProductBOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Bai_Thi/src/controller/ProductServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Bai_Thi/src/dao/DBConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Bai_Thi/src/dao/ProductDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Bai_Thi/src/dao/ProductDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Bai_Thi/src/modle/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Bai_Thi/src/modle/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Bai_Thi/web/common/header.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Bai_Thi/web/list.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Bai_Thi/web/product/create.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Bai_Thi/web/product/list.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Bai_Thi/web/product/update.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Demo/Test/src/bo/StudentBO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Demo/Test/src/bo/StudentBOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Demo/Test/src/bo/common/Regex.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Demo/Test/src/controller/StudentServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Demo/Test/src/dao/DBConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Demo/Test/src/dao/StudentDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Demo/Test/src/dao/StudentDAOIMPL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Demo/Test/src/model/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Demo/Test/web/common/header.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Demo/Test/web/student/create.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Demo/Test/web/student/list.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../MODULE3/Demo/Test/web/student/update.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MODULE3/Case_Study2/Manager_Furama/out/artifacts/module3_accountname_wbe_war_exploded/common/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MODULE3/Case_Study2/Manager_Furama/out/artifacts/module3_accountname_wbe_war_exploded/common/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MODULE3/Case_Study2/Manager_Furama/src/dao/customerDao/CustomerDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MODULE3/Case_Study2/Manager_Furama/src/dao/customerDao/CustomerDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../MODULE3/Case_Study2/Manager_Furama/web/common/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../MODULE3/Case_Study2/Manager_Furama/web/common/header.jsp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="E:\TRANHUUHIEN-C0520G1\MODULE4\SS1_Tong_quan_Spring_MVC\practice\create-spring\.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ha8TszUkSxg4TZj8v2JZ79DOxC" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="34e1e48d-ec08-4595-8644-a60c493f1765" name="Default Changelist" comment="" />
+      <created>1600237853389</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600237853389</updated>
+      <workItem from="1600237860020" duration="2022000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="275" y="23" key="#Project_Structure" timestamp="1600237968024">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="23" key="#Project_Structure/0.0.1366.728@0.0.1366.728" timestamp="1600237968024" />
+    <state x="137" y="20" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600238139886">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="20" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1600238139886" />
+    <state x="275" y="23" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable" timestamp="1600237993734">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="23" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable/0.0.1366.728@0.0.1366.728" timestamp="1600237993734" />
+    <state x="462" y="120" key="FileChooserDialogImpl" timestamp="1600240015478">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="462" y="120" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1600240015478" />
+    <state x="65" y="0" key="new project wizard" timestamp="1600240029435">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="65" y="0" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1600240029435" />
+  </component>
+</project>
