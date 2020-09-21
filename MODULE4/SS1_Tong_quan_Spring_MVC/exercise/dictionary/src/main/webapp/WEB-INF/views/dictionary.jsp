@@ -11,12 +11,12 @@
     <title>Dictionary</title>
 </head>
 <body>
-<form method="post" action="/form">
+<form method="post">
     <label>English: </label>
     <input type="text" name="english" placeholder="key english..." value="${english}"><br>
     <br>
     <label>Vietnamese: </label>
-    <input type="text" name="vietnam" value="${vietnam}"><br>
+    <input type="text" name="vietnam" value="${vietnam}" readonly><br>
     <br>
     <input type="submit" value="Translate">
     <a href="/dictionary" role="button">Reset</a>
