@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0306d390-1340-4a32-bb6d-a4ec784fad09" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DemoJPA" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DemoJPA" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DemoJPA" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\Work\BuildTools\Maven_2019\.m2\repository" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1hwSHmtpjP2Bz9ab6Lyks0CAG53" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Work\CodeGym\Class\C0520G1\Module4\source_demo\DemoJPA\src\main\webapp" />
+      <recent name="D:\Work\CodeGym\Class\C0520G1\Module4\source_demo\DemoJPA\src\main\java\vn\codegym" />
+      <recent name="D:\Work\CodeGym\Class\C0520G1\Module4\source_demo\DemoJPA\src\main\java" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.37">
+    <configuration name="DemoJPA [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="DemoJPA [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="Tomcat 9.0.37" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.37" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8081/" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="Gradle : org.example : DemoJPA-1.0-SNAPSHOT.war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_DemoJPA_3" />
+        <option name="HTTP_PORT" value="8081" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="60349" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Gradle : org.example : DemoJPA-1.0-SNAPSHOT.war" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.DemoJPA [build]" />
+      <item itemvalue="Gradle.DemoJPA [clean]" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.37" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.DemoJPA [build]" />
+        <item itemvalue="Gradle.DemoJPA [clean]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <option name="contentProportion" value="0.16666667" />
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0306d390-1340-4a32-bb6d-a4ec784fad09" name="Default Changelist" comment="" />
+      <created>1600920575058</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600920575058</updated>
+      <workItem from="1600920579548" duration="3155000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1920" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600921497896">
+      <screen x="1920" y="0" width="1024" height="728" />
+    </state>
+    <state x="1920" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1024.728@1920.0.1024.728" timestamp="1600921497896" />
+    <state x="2237" y="73" key="#com.intellij.ide.util.MemberChooser" timestamp="1600921610571">
+      <screen x="1920" y="0" width="1024" height="728" />
+    </state>
+    <state x="2237" y="73" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1024.728@1920.0.1024.728" timestamp="1600921610571" />
+    <state x="2162" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600921581104">
+      <screen x="1920" y="0" width="1024" height="728" />
+    </state>
+    <state x="2162" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1024.728@1920.0.1024.728" timestamp="1600921581104" />
+    <state width="1539" height="372" key="GridCell.Tab.0.bottom" timestamp="1600928998898">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="666" height="130" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1024.728@1920.0.1024.728" timestamp="1600922125377" />
+    <state width="1539" height="372" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600928998898" />
+    <state width="1539" height="372" key="GridCell.Tab.0.center" timestamp="1600928998897">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="666" height="130" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1024.728@1920.0.1024.728" timestamp="1600922125376" />
+    <state width="1539" height="372" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600928998897" />
+    <state width="1539" height="372" key="GridCell.Tab.0.left" timestamp="1600928998897">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="666" height="130" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1024.728@1920.0.1024.728" timestamp="1600922125376" />
+    <state width="1539" height="372" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600928998897" />
+    <state width="1539" height="372" key="GridCell.Tab.0.right" timestamp="1600928998897">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="666" height="130" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1024.728@1920.0.1024.728" timestamp="1600922125377" />
+    <state width="1539" height="372" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600928998897" />
+    <state width="1539" height="372" key="GridCell.Tab.1.bottom" timestamp="1600928998898">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="666" height="130" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1024.728@1920.0.1024.728" timestamp="1600922125296" />
+    <state width="1539" height="372" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600928998898" />
+    <state width="1539" height="372" key="GridCell.Tab.1.center" timestamp="1600928998898">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="666" height="130" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1024.728@1920.0.1024.728" timestamp="1600922125296" />
+    <state width="1539" height="372" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600928998898" />
+    <state width="1539" height="372" key="GridCell.Tab.1.left" timestamp="1600928998898">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="666" height="130" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1024.728@1920.0.1024.728" timestamp="1600922125296" />
+    <state width="1539" height="372" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600928998898" />
+    <state width="1539" height="372" key="GridCell.Tab.1.right" timestamp="1600928998898">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="666" height="130" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1024.728@1920.0.1024.728" timestamp="1600922125296" />
+    <state width="1539" height="372" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600928998898" />
+    <state width="1539" height="372" key="GridCell.Tab.2.bottom" timestamp="1600928998899">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="666" height="130" key="GridCell.Tab.2.bottom/0.0.1920.1040/1920.0.1024.728@1920.0.1024.728" timestamp="1600922125297" />
+    <state width="1539" height="372" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1600928998899" />
+    <state width="1539" height="372" key="GridCell.Tab.2.center" timestamp="1600928998898">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="666" height="130" key="GridCell.Tab.2.center/0.0.1920.1040/1920.0.1024.728@1920.0.1024.728" timestamp="1600922125297" />
+    <state width="1539" height="372" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1600928998898" />
+    <state width="1539" height="372" key="GridCell.Tab.2.left" timestamp="1600928998898">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="666" height="130" key="GridCell.Tab.2.left/0.0.1920.1040/1920.0.1024.728@1920.0.1024.728" timestamp="1600922125296" />
+    <state width="1539" height="372" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1600928998898" />
+    <state width="1539" height="372" key="GridCell.Tab.2.right" timestamp="1600928998899">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="666" height="130" key="GridCell.Tab.2.right/0.0.1920.1040/1920.0.1024.728@1920.0.1024.728" timestamp="1600922125297" />
+    <state width="1539" height="372" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1600928998899" />
+    <state x="461" y="162" key="SettingsEditor" timestamp="1600923893965">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1600923893965" />
+  </component>
+</project>
