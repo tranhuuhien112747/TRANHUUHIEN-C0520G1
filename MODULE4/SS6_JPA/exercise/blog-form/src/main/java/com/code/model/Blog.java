@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
     private String name;
     private String title;
     @Transient
@@ -20,11 +20,11 @@ public class Blog {
     public Blog() {
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
