@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--<head th:replace="../templates/::head">-->
+<head th:replace="/common/layout :: head"></head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -22,7 +22,7 @@
     </thead>
     <tbody>
     <tr th:each="category,rowStat : ${listCategory}">
-        <td th:href="@{/category/{id}/views(id=${category.getId()})}" th:text="${category.getName()}"></td>
+        <td><a th:href="@{/category/{id}/views(id=${category.getId()})}" th:text="${category.getName()}"></a></td>
         <td><a th:href="@{/category/{id}/edit(id=${category.getId()})}">Edit</a></td>
         <td><a th:href="@{/category/{id}/delete(id=${category.getId()})}">Delete</a></td>
     </tr>
@@ -33,6 +33,6 @@
     <span th:text="${listCategory.number + 1}"></span>/<span th:text="${listCategory.totalPages}"></span>
     <a th:href="@{'/category'(page=${listCategory.number + 1})}" th:if="${listCategory.hasNext()}">Next</a>
 </div>
-<!--<footer th:replace="/layout::footer"></footer>-->
+<footer th:replace="/common/layout :: footer"></footer>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!--<head th:replace="/layout::head">-->
+<head th:replace="/common/layout :: head"></head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -39,6 +39,6 @@
     <span th:text="${list.number + 1}"></span>/<span th:text="${list.totalPages}"></span>
     <a th:href="@{'/blog'(page=${list.number + 1})}" th:if="${list.hasNext()}">Next</a>
 </div>
-<!--<footer th:replace="/layout::footer"></footer>-->
+<footer th:replace="/common/layout :: footer"></footer>
 </body>
 </html>
