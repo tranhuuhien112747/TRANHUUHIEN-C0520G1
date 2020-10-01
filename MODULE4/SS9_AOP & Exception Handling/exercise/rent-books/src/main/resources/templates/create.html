@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h3>Add Blog</h3>
+<p>
+    <a th:href="@{/book}">
+        Back to Book list
+    </a>
+</p>
+<div>
+    <form th:action="@{/book/save}" th:object="${book}"
+          method="POST" novalidate="novalidate">
+        <div>
+            <label>ID</label>
+            <input type="text" th:field="*{id}"/>
+        </div>
+        <div>
+            <label>Name-Book</label>
+            <input type="text" th:field="*{nameBook}"/>
+        </div>
+        <div>
+            <label>Amount</label>
+            <input type="text" th:field="*{amount}"/>
+        </div>
+        <input type="submit" value="Save">
+    </form>
+</div>
+</body>
+</html>
