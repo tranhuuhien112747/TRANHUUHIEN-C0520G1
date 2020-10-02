@@ -32,6 +32,7 @@ public class BookController {
     @PostMapping("/book/save")
     public ModelAndView save(@ModelAttribute("book") Book book){
         ModelAndView modelAndView=new ModelAndView("redirect:/book");
+        bookService.save(book);
         modelAndView.addObject("book",book);
         return modelAndView;
     }
