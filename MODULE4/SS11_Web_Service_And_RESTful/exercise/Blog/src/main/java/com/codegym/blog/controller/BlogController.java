@@ -43,10 +43,10 @@ public class BlogController {
         return new ResponseEntity<List<Blog>>(blogList, HttpStatus.OK);
     }
 
-//    @ModelAttribute("category")
-//    public List<Category> category() {
-//        return categoryService.findAll();
-//    }
+    @ModelAttribute("category")
+    public List<Category> category() {
+        return categoryService.findAll();
+    }
 
     //-------------------------------SHOW SINGLE BLOG---------------------------------
     @RequestMapping(value = "/blog/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

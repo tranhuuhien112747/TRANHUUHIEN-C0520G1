@@ -77,10 +77,31 @@ public class CartController {
         session.setAttribute("myCartTotal", totalPrice(cartItems));
         return "cart/list";
     }
+    @GetMapping("/update/{id}")
+    public ModelAndView updateCart(@PathVariable("id") Long id, @ModelAttribute("editItem") Cart editItem, HttpSession session){
+        ModelAndView modelAndView = new ModelAndView("redirect:/cart");
+        HashMap<Long, Cart> cartItems = (HashMap<Long, Cart>) session.getAttribute("myCartItems");
+        if(cartItems == null) {
+            cartItems = new HashMap<>();
+        }
+        Product product = productService.findById(id);
+        if(cartItems.containsKey(id)){
+            Cart item = cartItems.get(id);
+            item.setProduct(product);
+            item.setQuantity(editItem.getQuantity());
+            cartItems.put(id, item);
+        }
+        session.setAttribute("myCartItems", cartItems);
+        session.setAttribute("myCartTotalAmount", totalPrice(cartItems));
+        session.setAttribute("myCartNumber", cartItems.size());
 
-    @GetMapping("cart/pay")
-    public ModelAndView pay() {
-        ModelAndView modelAndView = new ModelAndView("cart/index");
         return modelAndView;
+
     }
+
+//    @GetMapping("cart/pay")
+//    public ModelAndView pay() {
+//        ModelAndView modelAndView = new ModelAndView("cart/index");
+//        return modelAndView;
+//    }
 }
