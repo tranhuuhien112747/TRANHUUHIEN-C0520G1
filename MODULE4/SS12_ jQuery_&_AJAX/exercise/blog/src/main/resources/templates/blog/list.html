@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/layout :: head"></head>
+<meta charset="UTF-8">
+<title>Title</title>
+</head>
+<body>
+<form action="/blog/search">
+    <label>Input Search</label>
+    <input type="text" id="input" th:name="search">
+
+</form>
+</body>
+<body id="table-list">
+<h3>List Blog Page</h3>
+<p>
+    <a th:href="@{/blog/create}" style="font-style: italic;font-weight: bolder;font-size:20px ">
+        Add new Blog
+    </a>
+</p>
+<table id="blog">
+    <thead>
+    <tr>
+        <th>Name-Blog</th>
+        <th>Title-Blog</th>
+        <th>Category</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Views</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="blog,rowStat : ${list}">
+        <td th:text="${blog.getName()}"></td>
+        <td th:text="${blog.getTitle()}"></td>
+        <td th:text="${blog.category.name}"></td>
+        <td><a th:href="@{/blog/{id}/edit(id=${blog.getId()})}">Edit</a></td>
+        <td><a th:href="@{/blog/{id}/delete(id=${blog.getId()})}">Delete</a></td>
+        <td><a th:href="@{/blog/{id}/views(id=${blog.getId()})}">Views</a></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a th:href="@{'/blog'(page=${list.number - 1})}" th:if="${list.hasPrevious()}">Previous</a>
+    <span th:text="${list.number + 1}"></span>/<span th:text="${list.totalPages}"></span>
+    <a th:href="@{'/blog'(page=${list.number + 1})}" th:if="${list.hasNext()}">Next</a>
+</div>
+<footer th:replace="/common/layout :: footer"></footer>
+</body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#input').keyup(function () { //bắt sự kiện keyup khi người dùng gõ từ khóa tim kiếm
+            var query = $(this).val(); //lấy gía trị ng dùng gõ
+            if (query !== '') //kiểm tra khác rỗng thì thực hiện đoạn lệnh bên dưới
+            {
+                var token = $('input[name="token"]').val(); // token để mã hóa dữ liệu
+                $.ajax({
+                    url: "/blog/search", // đường dẫn khi gửi dữ liệu đi 'search' là tên route mình đặt bạn mở route lên xem là hiểu nó là cái j.
+                    method: "GET", // phương thức gửi dữ liệu.
+                    data: {query: query, token: token},
+                    success: function (data) { //dữ liệu nhận về
+                        $('#table-list').fadeIn();
+                        $('#table-list').html(data); //nhận dữ liệu dạng html và gán vào cặp thẻ có id là countryList
+                    }
+                });
+            }
+        });
+    });
+</script>
+</html>

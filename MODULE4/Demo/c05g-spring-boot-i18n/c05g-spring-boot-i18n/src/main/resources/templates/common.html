@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <header th:fragment="headerStudent">
+        <ul>
+            <li><a th:href="@{/list}">List</a></li>
+            <li><a th:href="@{/create}">Create</a></li>
+        </ul>
+        <hr>
+    </header>
+
+    <footer th:fragment="footerStudent">
+        <hr>
+        @Codegym...
+    </footer>
+</body>
+</html>

@@ -16,7 +16,7 @@ public class ProductController {
 
     @GetMapping
     public ModelAndView showListPage() {
-        return new ModelAndView("product/list", "productList", productService.findAll());
+        return new ModelAndView("product/list_2", "productList", productService.findAll());
     }
 
     @GetMapping("/detail/{id}")

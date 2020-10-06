@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Title</title>
+</head>
+<body>
+    <header th:replace="common::headerStudent"></header>
+<!--    <p th:text="${userInfo.username}" style="float: right"></p>-->
+    <h2 th:text="#{create.title}"></h2>
+
+    <form th:action="@{/create}" accept-charset="UTF-8" method="post" th:object="${student}">
+        <input th:field="*{name}"/><br>
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+        <input th:field="*{birthday}" /><br>
+        <select th:field="*{classStudent.id}">
+            <option th:each="class : ${listClass}"
+                    th:value="${class.id}" th:text="${class.name}"></option>
+        </select><br>
+        <input type="submit" value="Register" />
+    </form>
+    <footer th:replace="common::footerStudent"></footer>
+</body>
+</html>

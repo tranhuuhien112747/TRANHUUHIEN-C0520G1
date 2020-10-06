@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/layout :: head"></head>
+<body>
+<h3>Delete Blog</h3>
+<p>
+    <a th:href="@{/blog}">
+        Back to Blog list
+    </a>
+</p>
+<div id="form">
+    <form th:action="@{/blog/delete}" th:object="${blog}"
+          method="POST" novalidate="novalidate">
+        <div>
+            <label>ID-Blog</label>
+            <input type="text" th:field="*{id}"/>
+        </div>
+        <div>
+            <label>Name-Blog</label>
+            <input type="text"  th:field="*{name}" readonly/>
+        </div>
+        <div>
+            <label>Title-Blog</label>
+            <input type="text" th:field="*{title}" readonly />
+        </div>
+        <div>
+            <label>Category</label>
+            <input type="text" th:field="*{category.name}" readonly />
+        </div>
+        <input type="submit" value="Remove">
+    </form>
+</div>
+<footer th:replace="/common/layout :: footer"></footer>
+</body>
+</html>

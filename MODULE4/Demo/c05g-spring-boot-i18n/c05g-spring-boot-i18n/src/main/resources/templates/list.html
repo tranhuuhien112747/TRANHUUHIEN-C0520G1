@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+</head>
+<body>
+    <header th:replace="common::headerStudent"></header>
+<!--    <p th:text="${userInfo.username}" style="float: right"></p>-->
+    <h2 th:text="#{list.title}"></h2>
+    <form th:action="@{/list}" method="get">
+        <input type="text" name="keyword" />
+        <input type="submit" value="Search">
+    </form>
+    <table>
+        <th:block th:each="student, row : ${students.content}">
+            <tr>
+                <td th:text="${row.index + 1}"></td>
+                <td th:text="${student.name}"></td>
+                <td th:text="${student.birthday}"></td>
+                <td th:text="${student.classStudent.name}"></td>
+                <td><a th:href="@{/detail(id=${student.id})}">Detail request param</a></td>
+                <td><a th:href="@{/detail/{id}(id=${student.id})}">Detail path variable</a></td>
+                <td><a th:href="@{/detail/__${student.id}__ }">Detail path variable 2</a></td>
+            </tr>
+        </th:block>
+    </table>
+    <div>
+        <a th:if="${students.hasPrevious()}" th:href="@{/list(page=${students.number - 1}, keyword = ${keyword})}">Previous</a>
+        <span th:text="${students.number + 1}"></span>/<span th:text="${students.totalPages}"></span>
+        <a th:if="${students.hasNext()}" th:href="@{/list(page=${students.number + 1}, keyword = ${keyword})}">Next</a>
+    </div>
+
+    <p style="color: green" th:text="${message}"></p>
+
+    <a href="/detail?id=1">Detail Tien</a>
+    <a href="/detail/2">Detail Khanh</a>
+    <footer th:replace="common::footerStudent"></footer>
+</body>
+</html>
