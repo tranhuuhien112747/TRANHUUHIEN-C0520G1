@@ -1,0 +1,77 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
+<!--    <title>Edit Smartphone</title>-->
+<!--    <script src="/js/jquery-3.5.1.min.js"></script>-->
+<!--    <script type="text/javascript">-->
+<!--        $(document).ready(function () {-->
+<!--            $('#editSmartphoneForm').submit(function (event) {-->
+<!--                let producer = $('#producer').val();-->
+<!--                let model = $('#model').val();-->
+<!--                let price = $('#price').val();-->
+<!--                let json = {"producer":producer, "model":model, "price":price};-->
+<!--                $.ajax({-->
+<!--                    url: $("#editSmartphoneForm").attr("action"),-->
+<!--                    data: JSON.stringify(json),-->
+<!--                    type: "POST",-->
+
+<!--                    beforeSend: function (xhr) {-->
+<!--                        xhr.setRequestHeader("Accept", "application/json");-->
+<!--                        xhr.setRequestHeader("Content-Type", "application/json");-->
+<!--                    },-->
+<!--                    success: function (smartphone) {-->
+<!--                        let respContent = "";-->
+
+<!--                        respContent += "<span class='success'>Smartphone was edited: [";-->
+<!--                        respContent += smartphone.producer + " : ";-->
+<!--                        respContent += smartphone.model + " : ";-->
+<!--                        respContent += smartphone.price + "]</span>";-->
+<!--                        $("#sPhoneFromResponse").html(respContent);-->
+<!--                    }-->
+<!--                });-->
+<!--                event.preventDefault();-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div id="container">-->
+<!--    <h1 th:text="#{edit.phone}"></h1>-->
+<!--    <div>-->
+<!--        <p th:text="#{des.phone}"></p>-->
+<!--        <div id="sPhoneFromResponse"></div>-->
+<!--    </div>-->
+<!--    <form id="editSmartphoneForm" th:object="${sPhone}">-->
+<!--        <table>-->
+<!--            <tbody>-->
+<!--            <tr>-->
+<!--                <td th:text="#{producer.phone}"></td>-->
+<!--                <td>-->
+<!--                    <select id="producer" th:field="*{producer}">-->
+<!--                        <option value="NOKIA">Nokia</option>-->
+<!--                        <option value="IPHONE">iPhone</option>-->
+<!--                        <option value="HTC">HTC</option>-->
+<!--                        <option value="SAMSUNG">Samsung</option>-->
+<!--                    </select>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td th:text="#{model.phone}"></td>-->
+<!--                <td><input th:field="*{model}" /></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td th:text="#{price.phone}"></td>-->
+<!--                <td><input th:field="*{price}"/></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td><input type="submit" th:value="#{m.del}"/></td>-->
+<!--                <td></td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </form>-->
+<!--    <a th:href="@{/smartphones}" th:text="#{m.list}"></a>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
