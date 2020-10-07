@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/layout :: head"></head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>List Blog Page</h3>
+<p>
+    <a th:href="@{/blog/create}" style="font-style: italic;font-weight: bolder;font-size:20px " >
+        Add new Blog
+    </a>
+</p>
+
+<table id = "blog">
+    <thead>
+    <tr>
+        <th>Name-Blog</th>
+        <th>Title-Blog</th>
+        <th>Category</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Views</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="blog,rowStat : ${list}">
+        <td th:text="${blog.getName()}"></td>
+        <td th:text="${blog.getTitle()}"></td>
+        <td th:text="${blog.category.name}"></td>
+        <td><a th:href="@{/blog/{id}/edit(id=${blog.getId()})}">Edit</a></td>
+        <td><a th:href="@{/blog/{id}/delete(id=${blog.getId()})}">Delete</a></td>
+        <td><a th:href="@{/blog/{id}/views(id=${blog.getId()})}">Views</a></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a th:href="@{'/blog'(page=${list.number - 1})}" th:if="${list.hasPrevious()}">Previous</a>
+    <span th:text="${list.number + 1}"></span>/<span th:text="${list.totalPages}"></span>
+    <a th:href="@{'/blog'(page=${list.number + 1})}" th:if="${list.hasNext()}">Next</a>
+</div>
+<footer th:replace="/common/layout :: footer"></footer>
+</body>
+</html>
