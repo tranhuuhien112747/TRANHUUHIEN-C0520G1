@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common/layout :: head"></head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>List Category Page</h3>
+<p>
+    <a th:href="@{/category/create}" style="font-style: italic;font-weight: bolder;font-size:20px " >
+        Add new Category
+    </a>
+</p>
+
+<table id = "blog">
+    <thead>
+    <tr>
+        <th>Name-Category</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="category,rowStat : ${listCategory}">
+        <td><a th:href="@{/category/{id}/views(id=${category.getId()})}" th:text="${category.getName()}"></a></td>
+        <td><a th:href="@{/category/{id}/edit(id=${category.getId()})}">Edit</a></td>
+        <td><a th:href="@{/category/{id}/delete(id=${category.getId()})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a th:href="@{'/category'(page=${listCategory.number - 1})}" th:if="${listCategory.hasPrevious()}">Previous</a>
+    <span th:text="${listCategory.number + 1}"></span>/<span th:text="${listCategory.totalPages}"></span>
+    <a th:href="@{'/category'(page=${listCategory.number + 1})}" th:if="${listCategory.hasNext()}">Next</a>
+</div>
+<footer th:replace="/common/layout :: footer"></footer>
+</body>
+</html>

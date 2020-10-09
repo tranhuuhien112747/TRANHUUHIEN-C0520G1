@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping({"", "/blog"})
+@RequestMapping({"/", "/blog"})
 public class BlogController {
     @Autowired
     BlogService blogService;
 
     @Autowired
     CategoryService categoryService;
-
-    @Autowired
-    UserLoginSService userLoginSService;
+//
+//    @Autowired
+//    UserLoginSService userLoginSService;
 
 //    @GetMapping
 //    public ModelAndView showList() {
@@ -42,8 +42,12 @@ public class BlogController {
     @GetMapping
     public ModelAndView showList(@PageableDefault(value = 3) Pageable pageable){
 //        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//        String password = passwordEncoder.encode("123");
-//        userLoginSService.save(new UserLogin("hien", password, "USER", true));
+//        String password = passwordEncoder.encode("12345");
+//        String password1 = passwordEncoder.encode("00000");
+//        String password2 = passwordEncoder.encode("11111");
+//        userLoginSService.save(new UserLogin("customer", password, "ROLE_USER", true));
+//        userLoginSService.save(new UserLogin("supperMaster", password1, "ROLE_MASTER", true));
+//        userLoginSService.save(new UserLogin("admin", password2, "ROLE_ADMIN", true));
         ModelAndView modelAndView = new ModelAndView("/blog/list");
         modelAndView.addObject("list",blogService.findAll(pageable));
         return modelAndView;

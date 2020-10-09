@@ -12,7 +12,7 @@ public class UserController {
     @Autowired
     private UserLoginService userLoginService;
 
-    @GetMapping({"", "/hom"})
+    @GetMapping({"", "/home"})
     public String getHome() {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String password = bCryptPasswordEncoder.encode("761311");
