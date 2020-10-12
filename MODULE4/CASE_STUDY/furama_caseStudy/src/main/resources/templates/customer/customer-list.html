@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/common/layout::header}">
+    <meta charset="UTF-8">
+    <title>CUSTOMER-LIST</title>
+</head>
+<style>
+    th {
+        align-items: center;
+        color: #fd7e14;
+        background-color: darkslategray;
+        font-size: 20px;
+    }
+
+    td {
+
+        height: 35px;
+
+    }
+
+    tr {
+        text-align: center;
+        align-content: center;
+    }
+</style>
+<body>
+<div th:replace="~{/common/layout::navbar}"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12" style="border: 1px solid darkblue">
+            <div style="text-align: center;padding-top: 10px">
+                <h2 style="color: red;font-weight: bold;font-size: 25px">List Customer of Furama </h2>
+            </div>
+            <div style="padding-top: 0px">
+                <a class="btn btn-outline-success" th:href="@{/customer/create}" role="button"
+                   style="font-weight: bolder;font-size: 20px">Add New Customer</a>
+            </div>
+            <div class="table-responsive-lg">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Birthday</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">ID-Card</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Type-Customer</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="customer,rowStat:${customerList}">
+                        <td th:text="${customer.getCustomerId()}"></td>
+                        <td th:text="${customer.getCustomerName()}"></td>
+                        <td th:text="${customer.getCustomerBirthday()}"></td>
+                        <td>
+                            <span th:if="${customer.getCustomerGender()==0}" th:text="Female"></span>
+                            <span th:if="${customer.getCustomerGender()==1}" th:text="Male"></span>
+                        </td>
+                        <td th:text="${customer.getCustomerIdCard()}"></td>
+                        <td th:text="${customer.getCustomerPhone()}"></td>
+                        <td th:text="${customer.getCustomerType().customerTypeName}"></td>
+                        <td th:text="${customer.getCustomerEmail()}"></td>
+                        <td th:text="${customer.getCustomerAddress()}"></td>
+                        <td style="color: goldenrod;font-weight: bolder">
+                            <a th:href="@{/customer/edit/{id}(id=${customer.getCustomerId()})}"
+                               class="btn btn-outline-warning" role="button"><span
+                                    class="fas fa-edit mr-3">Edit</span></a>
+                            <button th:href="@{/customer/delete/{id}(id=${customer.getCustomerId()})}"
+                                    class="btn btn-outline-danger" role="button" data-toggle="modal">Delete
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <a th:href="@{'/customer'(page=${customerList.number - 1})}" th:if="${customerList.hasPrevious()}">Previous</a>
+                    <span th:text="${customerList.number + 1}"></span>/<span
+                        th:text="${customerList.totalPages}"></span>
+                    <a th:href="@{'/customer'(page=${customerList.number + 1})}"
+                       th:if="${customerList.hasNext()}">Next</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="~{/common/layout::footer}"></footer>
+</body>
+</html>
