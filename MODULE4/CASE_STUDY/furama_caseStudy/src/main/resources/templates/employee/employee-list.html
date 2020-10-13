@@ -4,9 +4,122 @@
     <meta charset="UTF-8">
     <title>Employee-LIST</title>
 </head>
+<style>
+    th {
+        align-items: center;
+        color: #fd7e14;
+        background-color: darkslategray;
+        font-size: 20px;
+    }
+
+    td {
+
+        height: 35px;
+
+    }
+
+    tr {
+        text-align: center;
+        align-content: center;
+    }
+    label {
+        color: black;
+        font-weight: bolder;
+
+    }
+</style>
 <div th:replace="~{/common/layout::navbar}"></div>
 <body>
-adsdb
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12" style="border: 1px solid darkblue">
+            <div style="text-align: center;padding-top: 10px">
+                <h2 style="color: red;font-weight: bold;font-size: 25px">List Employee of Furama </h2>
+            </div>
+            <div style="padding-top: 0px">
+                <a class="btn btn-outline-success" th:href="@{/employee/create}" role="button"
+                   style="font-weight: bolder;font-size: 20px"><i class="fas fa-plus-square"></i> Add New Employee</a>
+            </div>
+            <div class="table-responsive-lg">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Birthday</th>
+                        <th scope="col">ID-Card</th>
+                        <th scope="col">Salary</th>
+                        <th scope="col">Phone</th>
+<!--                        <th scope="col">Email</th>-->
+                        <th scope="col">Address</th>
+                        <th scope="col">Education</th>
+                        <th scope="col">Position</th>
+                        <th scope="col">Division</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="employee,rowStat:${employeeList}">
+                        <td th:text="${employee.getEmployeeId()}"></td>
+                        <td th:text="${employee.getEmployeeName()}"></td>
+                        <td th:text="${employee.getEmployeeBirthday()}"></td>
+                        <td th:text="${employee.getEmployeeIdCard()}"></td>
+                        <td th:text="${employee.getEmployeeSalary()}"></td>
+                        <td th:text="${employee.getEmployeePhone()}"></td>
+<!--                        <td th:text="${employee.getEmployeeEmail()}"></td>-->
+                        <td th:text="${employee.getEmployeeAddress()}"></td>
+                        <td th:text="${employee.getEducation().educationName}"></td>
+                        <td th:text="${employee.getPosition().positionName}"></td>
+                        <td th:text="${employee.getDivision().divisionName}"></td>
+                        <td style="color: goldenrod;font-weight: bolder">
+                            <a th:href="@{/employee/edit/{id}(id=${employee.getEmployeeId()})}"
+                               class="btn btn-outline-warning" role="button"><span><i class="fas fa-user-edit"></i> Edit</span></a>
+                            <button th:href="@{/employee/delete/{id}(id=${employee.getEmployeeId()})}"
+                                    class="btn btn-outline-danger" role="button" data-toggle="modal" th:data-target="'#'+${employee.getEmployeeId()}">
+                                <i class="far fa-trash-alt"></i> Delete
+                            </button>
+                        </td>
+                        <div class="modal fade" th:id="${employee.getEmployeeId()}" tabindex="-1"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Do you want to
+                                            delete?</h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p th:text="'ID-Employee : ' + ${employee.getEmployeeId()}"></p>
+                                        <p th:text="'Name-Employee : ' + ${employee.employeeName}"></p>
+                                        <p th:text="'Division : ' + ${employee.division.divisionName}"></p>
+                                        <p th:text="'Position : ' + ${employee.position.positionName}"></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-success"
+                                                data-dismiss="modal">Cancel
+                                        </button>
+                                        <a th:href="@{/employee/delete/{id}(id=${employee.getEmployeeId()})}">
+                                            <button type="button" class="btn btn-outline-danger">Delete</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <a th:href="@{'/employee'(page=${employeeList.number - 1})}" th:if="${employeeList.hasPrevious()}">Previous</a>
+                    <span th:text="${employeeList.number + 1}"></span>/<span th:text="${employeeList.totalPages}"></span>
+                    <a th:href="@{'/employee'(page=${employeeList.number + 1})}" th:if="${employeeList.hasNext()}">Next</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 <footer th:replace="~{/common/layout::footer}"></footer>
 </html>

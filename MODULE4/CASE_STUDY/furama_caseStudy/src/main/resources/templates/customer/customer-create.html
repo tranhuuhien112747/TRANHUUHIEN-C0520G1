@@ -1,82 +1,82 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{/common/layout::header}">
-    <meta charset="UTF-8">
-    <title>ADD NEW CUSTOMER</title>
-</head>
-<link rel="stylesheet" type="text/css" th:href="@{/jquery-ui-1.12.1/jquery-ui.min.css}">
-<body>
-<div th:replace="~{/common/layout::navbar}"></div>
-<form method="POST" th:action="@{/customer/save}" th:object="${customer}">
-    <div class="container-fluid">
-        <h3 style="text-align: center;color: #fd7e14;background-color: darkslategray">Add New Customer</h3>
-        <div class="row">
-            <div class="col-xl-2"></div>
-            <div class="row col-xl-8" style="background-color: ghostwhite">
-                <div class="col-xl-5">
-                    <div class="form-group">
-                        <label>ID Customer:</label>
-                        <input type="text" th:field="*{customerId}" class="form-control" placeholder="Example: KH-1234" >
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Name Customer :</label>
-                        <input type="text" th:field="*{customerName}" class="form-control" id="name" >
-                    </div>
-                    <div class="form-group">
-                        <label for="birthday">Date Of Birthday :</label>
-                        <input type="text" th:field="*{customerBirthday}" class="form-control" id="birthday" >
-                    </div>
-                    <div class="form-group">
-                        <label for="gender">Gender:</label>
-                        <select  id="gender" th:field="*{customerGender}" style="width: 100%; height: 37px">
-                            <option value="1">Male</option>
-                            <option value="0">Female</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="card">ID-Card Customer :</label>
-                        <input type="text" th:field="*{customerIdCard}" class="form-control" id="card">
-                    </div>
-                </div>
-                <div class="col-xl-2"></div>
-                <div class="col-xl-5">
-                    <div class="form-group">
-                        <label for="phone">Phone Customer :</label>
-                        <input type="text" th:field="*{customerPhone}" class="form-control" id="phone" placeholder="Example: 090XXXXXXX" >
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Customer :</label>
-                        <input type="text" th:field="*{customerEmail}" class="form-control" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address Customer :</label>
-                        <input type="text" th:field="*{customerAddress}" class="form-control" id="address" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="typeId">Type Customer :</label><br>
-                        <select id="typeId" th:field="*{customerType}" style="width: 100%; height: 37px">
-                            <option th:each="type : ${typeCustomer}" th:value="${type.customerTypeId}" th:text="${type.customerTypeName}"></option>
-                        </select>
-                    </div>
-                    <div style="padding-top:15px">
-                        <br>
-                        <input class="btn btn-danger" style="margin-left: 20px;width: 80px" type="submit" role="button"
-                               value="Save">
-                        <a role="button" th:href="@{/customer}" class="btn btn-success"
-                           style="margin-left: 110px;width: 80px">Back</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-2"></div>
-    </div>
-</form>
-<footer th:replace="~{/common/layout::footer}"></footer>
-</body>
-<script th:src="@{/jquery-ui-1.12.1/jquery-ui.min.js}"></script>
-<script>
-    $( document ).ready(function() {
-        $("#birthday").datepicker({ dateFormat: "dd/mm/yy" });
-    });
-</script>
-</html>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head th:replace="~{/common/layout::header}">-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>ADD NEW CUSTOMER</title>-->
+<!--</head>-->
+<!--<link rel="stylesheet" type="text/css" th:href="@{/jquery-ui-1.12.1/jquery-ui.min.css}">-->
+<!--<body>-->
+<!--<div th:replace="~{/common/layout::navbar}"></div>-->
+<!--<form method="POST" th:action="@{/customer/save}" th:object="${customer}">-->
+<!--    <div class="container-fluid">-->
+<!--        <h3 style="text-align: center;color: #fd7e14;background-color: darkslategray">Add New Customer</h3>-->
+<!--        <div class="row">-->
+<!--            <div class="col-xl-2"></div>-->
+<!--            <div class="row col-xl-8" style="background-color: ghostwhite">-->
+<!--                <div class="col-xl-5">-->
+<!--                    <div class="form-group">-->
+<!--                        <label>ID Customer:</label>-->
+<!--                        <input type="text" th:field="*{customerId}" class="form-control" placeholder="Example: KH-1234" >-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="name">Name Customer :</label>-->
+<!--                        <input type="text" th:field="*{customerName}" class="form-control" id="name" >-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="birthday">Date Of Birthday :</label>-->
+<!--                        <input type="text" th:field="*{customerBirthday}" class="form-control" id="birthday" >-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="gender">Gender:</label>-->
+<!--                        <select  id="gender" th:field="*{customerGender}" style="width: 100%; height: 37px">-->
+<!--                            <option value="1">Male</option>-->
+<!--                            <option value="0">Female</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="card">ID-Card Customer :</label>-->
+<!--                        <input type="text" th:field="*{customerIdCard}" class="form-control" id="card">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-xl-2"></div>-->
+<!--                <div class="col-xl-5">-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="phone">Phone Customer :</label>-->
+<!--                        <input type="text" th:field="*{customerPhone}" class="form-control" id="phone" placeholder="Example: 090XXXXXXX" >-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="email">Email Customer :</label>-->
+<!--                        <input type="text" th:field="*{customerEmail}" class="form-control" id="email" required>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="address">Address Customer :</label>-->
+<!--                        <input type="text" th:field="*{customerAddress}" class="form-control" id="address" required>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="typeId">Type Customer :</label><br>-->
+<!--                        <select id="typeId" th:field="*{customerType}" style="width: 100%; height: 37px">-->
+<!--                            <option th:each="type : ${typeCustomer}" th:value="${type.customerTypeId}" th:text="${type.customerTypeName}"></option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                    <div style="padding-top:15px">-->
+<!--                        <br>-->
+<!--                        <input class="btn btn-danger" style="margin-left: 20px;width: 80px" type="submit" role="button"-->
+<!--                               value="Save">-->
+<!--                        <a role="button" th:href="@{/customer}" class="btn btn-success"-->
+<!--                           style="margin-left: 110px;width: 80px">Back</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-xl-2"></div>-->
+<!--    </div>-->
+<!--</form>-->
+<!--<footer th:replace="~{/common/layout::footer}"></footer>-->
+<!--</body>-->
+<!--<script th:src="@{/jquery-ui-1.12.1/jquery-ui.min.js}"></script>-->
+<!--<script>-->
+<!--    $( document ).ready(function() {-->
+<!--        $("#birthday").datepicker({ dateFormat: "dd/mm/yy" });-->
+<!--    });-->
+<!--</script>-->
+<!--</html>-->

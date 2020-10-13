@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body th:fragment="navbar" >
-<div class="row">
+<div class="row" style="background-image: url('https://www.gocbao.com/wp-content/uploads/2020/04/hinh-nen-full-hd-1080-bai-bien-xanh-ngat_022854175-1.jpg')">
     <div class="col-4">
         <img src="/image/logo.jpg" style="height: 70px">
     </div>
@@ -23,28 +23,28 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-weight: bolder;font-size: 20px">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link " href="/home" tabindex="-1" aria-disabled="true">Home</a>
+                <a class="nav-link " th:href="@{/home}" tabindex="-1" aria-disabled="true"><i class="fas fa-home"></i> Home</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link " th:href="@{/employee}" tabindex="-1" aria-disabled="true">Employee</a>
+                <a class="nav-link " th:href="@{/employee}" tabindex="-1" aria-disabled="true"><i class="fas fa-user-friends"></i> Employee</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link " th:href="@{/customer}" tabindex="-1" aria-disabled="true">Customer</a>
+                <a class="nav-link " th:href="@{/customer}" tabindex="-1" aria-disabled="true"><i class="fas fa-user-tie"></i> Customer</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link " href="/service" tabindex="-1" aria-disabled="true">Service</a>
+                <a class="nav-link " th:href="@{/service}"  tabindex="-1" aria-disabled="true"><i class="fab fa-servicestack"></i> Service</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                    data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
-                    Contract
+                    <i class="fas fa-address-card"></i> Contract
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/contract">List Contract</a>
+                    <a class="dropdown-item" th:href="@{/contract}">List Contract</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/contractDetail">Contract-Detail</a>
+                    <a class="dropdown-item" th:href="@{/contractDetail}">Contract-Detail</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/userService">Manager Customer User Service</a>
+                    <a class="dropdown-item" th:href="@{/userService}">Manager Customer User Service</a>
                 </div>
             </li>
         </ul>
@@ -59,6 +59,7 @@
 </nav>
 </body>
 <footer th:fragment="footer">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script th:src="@{/js/jquery-3.5.1.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
 </footer>

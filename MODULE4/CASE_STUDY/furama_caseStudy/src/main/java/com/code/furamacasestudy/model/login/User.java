@@ -10,6 +10,7 @@ public class User {
     @Id
     private String userName;
     private String userPassword;
+
     @OneToMany(mappedBy = "user")
     private Set<Employee> employeeSet;
 

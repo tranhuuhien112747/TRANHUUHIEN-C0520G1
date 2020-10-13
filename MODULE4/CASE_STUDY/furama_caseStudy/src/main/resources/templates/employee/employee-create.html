@@ -4,9 +4,88 @@
     <meta charset="UTF-8">
     <title>Employee-Create</title>
 </head>
+<link rel="stylesheet" type="text/css" th:href="@{/jquery-ui-1.12.1/jquery-ui.min.css}">
 <div th:replace="~{/common/layout::navbar}"></div>
 <body>
-adsdb
+<form method="POST" th:action="@{/employee/save}" th:object="${employee}">
+    <div class="container-fluid">
+        <h3 style="text-align: center;color: #fd7e14;background-color: darkslategray">Add New Customer</h3>
+        <div class="row">
+            <div class="col-xl-2"></div>
+            <div class="row col-xl-8" style="background-color: ghostwhite">
+                <div class="col-xl-5">
+                    <div class="form-group">
+                        <label>ID Employee:</label>
+                        <input type="text" th:field="*{employeeId}" class="form-control" placeholder="Example: NV-1234" >
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name Employee :</label>
+                        <input type="text" th:field="*{employeeName}" class="form-control" id="name" >
+                    </div>
+                    <div class="form-group">
+                        <label for="birthday">Date Of Birthday :</label>
+                        <input type="text" th:field="*{employeeBirthday}" class="form-control" id="birthday" >
+                    </div>
+                    <div class="form-group">
+                        <label for="card">ID-Card Employee :</label>
+                        <input type="text" th:field="*{employeeIdCard}" class="form-control" id="card">
+                    </div>
+                    <div class="form-group">
+                        <label for="salary">Salary :</label>
+                        <input type="text" th:field="*{employeeSalary}" class="form-control" id="salary" >
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Employee :</label>
+                        <input type="text" th:field="*{employeePhone}" class="form-control" id="phone" placeholder="Example: 090XXXXXXX" >
+                    </div>
+                </div>
+                <div class="col-xl-2"></div>
+                <div class="col-xl-5">
+                    <div class="form-group">
+                        <label for="email">Email Employee :</label>
+                        <input type="text" th:field="*{employeeEmail}" class="form-control" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address Employee :</label>
+                        <input type="text" th:field="*{employeeAddress}" class="form-control" id="address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="education">Education :</label><br>
+                        <select id="education" th:field="*{education}" style="width: 100%; height: 37px">
+                            <option th:each="edu : ${educationList}" th:value="${edu.educationId}" th:text="${edu.educationName}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="position">Position :</label><br>
+                        <select id="position" th:field="*{position}" style="width: 100%; height: 37px">
+                            <option th:each="po : ${positionList}" th:value="${po.positionId}" th:text="${po.positionName}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="division">Division:</label><br>
+                        <select id="division" th:field="*{division}" style="width: 100%; height: 37px">
+                            <option th:each="di : ${divisionList}" th:value="${di.divisionId}" th:text="${di.divisionName}"></option>
+                        </select>
+                    </div>
+                    <div style="padding-top:15px">
+                        <br>
+                        <input class="btn btn-danger" style="margin-left: 20px;width: 80px" type="submit" role="button"
+                               value="Save">
+                        <a role="button" th:href="@{/employee}" class="btn btn-success"
+                           style="margin-left: 110px;width: 80px">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-2"></div>
+    </div>
+</form>
 </body>
 <footer th:replace="~{/common/layout::footer}"></footer>
+<script th:src="@{/jquery-ui-1.12.1/jquery-ui.min.js}"></script>
+<script>
+    $( document ).ready(function() {
+        $("#birthday").datepicker({ dateFormat: "dd/mm/yy" });
+    });
+</script>
 </html>

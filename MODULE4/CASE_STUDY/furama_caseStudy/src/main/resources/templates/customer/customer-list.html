@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>CUSTOMER-LIST</title>
 </head>
+<link rel="stylesheet" type="text/css" th:href="@{/jquery-ui-1.12.1/jquery-ui.min.css}">
 <style>
     th {
         align-items: center;
@@ -22,6 +23,11 @@
         text-align: center;
         align-content: center;
     }
+    label {
+        color: black;
+        font-weight: bolder;
+
+    }
 </style>
 <body>
 <div th:replace="~{/common/layout::navbar}"></div>
@@ -32,8 +38,8 @@
                 <h2 style="color: red;font-weight: bold;font-size: 25px">List Customer of Furama </h2>
             </div>
             <div style="padding-top: 0px">
-                <a class="btn btn-outline-success" th:href="@{/customer/create}" role="button"
-                   style="font-weight: bolder;font-size: 20px">Add New Customer</a>
+                <a class="btn btn-outline-success" data-toggle="modal" data-target="#elegantModalForm" role="button"
+                   style="font-weight: bolder;font-size: 20px"><i class="fas fa-plus-square"></i> Add New Customer</a>
             </div>
             <div class="table-responsive-lg">
                 <table class="table table-striped">
@@ -67,26 +73,153 @@
                         <td th:text="${customer.getCustomerAddress()}"></td>
                         <td style="color: goldenrod;font-weight: bolder">
                             <a th:href="@{/customer/edit/{id}(id=${customer.getCustomerId()})}"
-                               class="btn btn-outline-warning" role="button"><span
-                                    class="fas fa-edit mr-3">Edit</span></a>
+                               class="btn btn-outline-warning" role="button"><i class="fas fa-user-edit"></i> Edit</span></a>
                             <button th:href="@{/customer/delete/{id}(id=${customer.getCustomerId()})}"
-                                    class="btn btn-outline-danger" role="button" data-toggle="modal">Delete
+                                    class="btn btn-outline-danger" role="button" data-toggle="modal"
+                                    th:data-target="'#'+${customer.customerId}"><i class="far fa-trash-alt"></i> Delete
                             </button>
                         </td>
+                        <!-- ---------------------------DELETE----------------------------------- -->
+                        <!-- Modal -->
+                        <div class="modal fade" th:id="${customer.getCustomerId()}" tabindex="-1"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header text-center"  >
+                                        <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-2" id="exampleModalLabel" style="color: red"><strong>Do you want to
+                                            delete?</strong></h3>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" style="color: yellowgreen">
+                                        <strong>
+                                        <h5 th:text="'ID-Customer : ' + ${customer.getCustomerId()}"></h5>
+                                        <h5 th:text="'Name-Customer : ' + ${customer.getCustomerName()}"></h5>
+                                        <h5 th:text="'Type-Customer : ' + ${customer.getCustomerType().customerTypeName}"></h5>
+                                        </strong>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-success"
+                                                data-dismiss="modal">Cancel
+                                        </button>
+                                        <a th:href="@{/customer/delete/{id}(id=${customer.getCustomerId()})}">
+                                            <button type="button" class="btn btn-outline-danger">Delete</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </tr>
                     </tbody>
                 </table>
                 <div>
-                    <a th:href="@{'/customer'(page=${customerList.number - 1})}" th:if="${customerList.hasPrevious()}">Previous</a>
+                    <a th:href="@{'/customer'(page=${customerList.number - 1})}" th:if="${customerList.hasPrevious()}"><i class="fas fa-backward"></i></a>
                     <span th:text="${customerList.number + 1}"></span>/<span
                         th:text="${customerList.totalPages}"></span>
                     <a th:href="@{'/customer'(page=${customerList.number + 1})}"
-                       th:if="${customerList.hasNext()}">Next</a>
+                       th:if="${customerList.hasNext()}"><i class="fas fa-forward"></i></a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-----------------------------------------------CREATE-CUSTOMER----------------------------------------------->
+<form th:object="${customer}" th:action="@{/customer/save}" method="post">
+    <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <!--Content-->
+            <div class="modal-content form-elegant">
+                <!--Header-->
+                <div class="modal-header text-center">
+                    <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-2" id="myModalLabel" style="color: darkblue"><strong>Add New
+                        Customer</strong></h3>
+<!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                        <span aria-hidden="true">&times;</span>-->
+<!--                    </button>-->
+                </div>
+                <!--Body-->
+                <div class="modal-body" style="text-align:center">
+                    <!--Body-->
+
+                    <div class="row">
+                        <div class="col-xl-1"></div>
+                        <div class="row col-xl-10">
+                            <div class="col-xl-5">
+                                <div class="form-group">
+                                    <label>ID Customer:</label>
+                                    <input type="text" th:field="*{customerId}" class="form-control" placeholder="Example: KH-1234" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Name Customer :</label>
+                                    <input type="text" th:field="*{customerName}" class="form-control" id="name" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="birthday">Date Of Birthday :</label>
+                                    <input type="text" th:field="*{customerBirthday}" class="form-control" id="birthday" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender">Gender:</label>
+                                    <select  id="gender" th:field="*{customerGender}" style="width: 100%; height: 37px">
+                                        <option value="1">Male</option>
+                                        <option value="0">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="card">ID-Card Customer :</label>
+                                    <input type="text" th:field="*{customerIdCard}" class="form-control" id="card">
+                                </div>
+                            </div>
+                            <div class="col-xl-2"></div>
+                            <div class="col-xl-5">
+                                <div class="form-group">
+                                    <label for="phone">Phone Customer :</label>
+                                    <input type="text" th:field="*{customerPhone}" class="form-control" id="phone" placeholder="Example: 090XXXXXXX" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Customer :</label>
+                                    <input type="text" th:field="*{customerEmail}" class="form-control" id="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Address Customer :</label>
+                                    <input type="text" th:field="*{customerAddress}" class="form-control" id="address" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="typeId">Type Customer :</label><br>
+                                    <select id="typeId" th:field="*{customerType}" style="width: 100%; height: 37px">
+                                        <option th:each="type : ${typeCustomer}" th:value="${type.customerTypeId}" th:text="${type.customerTypeName}"></option>
+                                    </select>
+                                </div>
+                                <div style="padding-top:11px">
+                                    <br>
+                                    <input class="btn btn-danger" style="width: 80px;float: left" type="submit" role="button"
+                                           value="Save">
+                                    <a role="button" th:href="@{/customer}" class="btn btn-success"
+                                       style="width: 80px;float: right">Back</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-1"></div>
+                    <!--Footer-->
+                    <div class="modal-footer mx-5 pt-3 mb-1 text-center">
+                        <h4 class="font-small grey-text d-flex justify-content-end"></h4>
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+    </div>
+</form>
 <footer th:replace="~{/common/layout::footer}"></footer>
 </body>
+<script th:src="@{/jquery-ui-1.12.1/jquery-ui.min.js}"></script>
+<script>
+    $( document ).ready(function() {
+        $("#birthday").datepicker({ dateFormat: "dd/mm/yy" });
+    });
+</script>
 </html>

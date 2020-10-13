@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/common/layout::header}">
+    <meta charset="UTF-8">
+    <title>Contract-LIST</title>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/jquery-ui-1.12.1/jquery-ui.min.css}">
+<style>
+    th {
+        align-items: center;
+        color: #fd7e14;
+        background-color: darkslategray;
+        font-size: 20px;
+    }
+
+    td {
+
+        height: 35px;
+
+    }
+
+    tr {
+        text-align: center;
+        align-content: center;
+    }
+    label {
+        color: black;
+        font-weight: bolder;
+
+    }
+</style>
+<body>
+<div th:replace="~{/common/layout::navbar}"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12" style="border: 1px solid darkblue">
+            <div style="text-align: center;padding-top: 10px">
+                <h2 style="color: red;font-weight: bold;font-size: 25px">List Contract Detail of Furama </h2>
+            </div>
+            <div style="padding-top: 0px">
+                <a class="btn btn-outline-success" data-toggle="modal" data-target="#elegantModalForm" role="button"
+                   style="font-weight: bolder;font-size: 20px"><i class="fas fa-plus-square"></i> Add New Contract Detail</a>
+            </div>
+            <div class="table-responsive-lg">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">ID-Contract</th>
+                        <th scope="col">Attach Service</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="detail,rowStat:${contractDetailList}">
+                        <td th:text="${detail.contractDetailId}"></td>
+                        <td th:text="${detail.quantity}"></td>
+                        <td th:text="${detail.contract.contractId}"></td>
+                        <td th:text="${detail.attachService.attachServiceName}"></td>
+                        <td style="color: goldenrod;font-weight: bolder">
+                            <a th:href="@{/contractDetail/edit/{id}(id=${detail.getContractDetailId()})}"
+                               class="btn btn-outline-warning" role="button"><i class="fas fa-user-edit"></i> Edit</span></a>
+                            <button th:href="@{/contractDetail/delete/{id}(id=${detail.getContractDetailId()})}"
+                                    class="btn btn-outline-danger" role="button" data-toggle="modal"
+                                    th:data-target="'#delete'+${detail.getContractDetailId()}"><i class="far fa-trash-alt"></i> Delete
+                            </button>
+                        </td>
+                        <!-- ---------------------------DELETE----------------------------------- -->
+                        <!-- Modal -->
+                        <div class="modal fade" th:id="'delete'+${detail.getContractDetailId()}" tabindex="-1"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header text-center"  >
+                                        <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-2" id="exampleModalLabel" style="color: red"><strong>Do you want to
+                                            delete?</strong></h3>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" style="color: yellowgreen">
+                                        <strong>
+                                            <h5 th:text="'ID: ' + ${detail.getContractDetailId()}"></h5>
+                                            <h5 th:text="'Name-Attach Service : ' + ${detail.getAttachService().getAttachServiceName()}"></h5>
+                                        </strong>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-success"
+                                                data-dismiss="modal">Cancel
+                                        </button>
+                                        <a th:href="@{/contract/delete/{id}(id=${detail.getContractDetailId()})}">
+                                            <button type="button" class="btn btn-outline-danger">Delete</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <a th:href="@{'/contractDetail'(page=${contractDetailList.number - 1})}" th:if="${contractDetailList.hasPrevious()}"><i class="fas fa-backward"></i></a>
+                    <span th:text="${contractDetailList.number + 1}"></span>/<span
+                        th:text="${contractDetailList.totalPages}"></span>
+                    <a th:href="@{'/contractDetail'(page=${contractDetailList.number + 1})}"
+                       th:if="${contractDetailList.hasNext()}"><i class="fas fa-forward"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-----------------------------------------------CREATE-CONTRACT----------------------------------------------->
+<form th:object="${contractDetail}" th:action="@{/contractDetail/save}" method="post">
+    <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <!--Content-->
+            <div class="modal-content form-elegant">
+                <!--Header-->
+                <div class="modal-header text-center">
+                    <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-2" id="myModalLabel" style="color: darkblue"><strong>Add New
+                        Contract</strong></h3>
+                    <!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                    <!--                        <span aria-hidden="true">&times;</span>-->
+                    <!--                    </button>-->
+                </div>
+                <!--Body-->
+                <div class="modal-body" style="text-align:center">
+                    <!--Body-->
+
+                    <div class="row">
+                        <div class="col-xl-1"></div>
+                        <div class="row col-xl-10">
+                            <div class="col-xl-5">
+                                <div class="form-group">
+                                    <label>ID Contract Detail:</label>
+                                    <input type="text" th:field="*{contractDetailId}" class="form-control"  >
+                                </div>
+                                <div class="form-group">
+                                    <label for="start">Quantity :</label>
+                                    <input type="text" th:field="*{quantity}" class="form-control" id="start" >
+                                </div>
+                            </div>
+                            <div class="col-xl-2"></div>
+                            <div class="col-xl-5">
+                                <div class="form-group">
+                                    <label for="customer">ID-Contract</label><br>
+                                    <select id="customer" th:field="*{contract}" style="width: 100%; height: 37px">
+                                        <option th:each="c: ${contractList}" th:value="${c.contractId}" th:text="${c.contractId}"></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="typeId">Attach Service :</label><br>
+                                    <select id="typeId" th:field="*{attachService}" style="width: 100%; height: 37px">
+                                        <option th:each="a : ${attachList}" th:value="${a.attachServiceId}" th:text="${a.attachServiceName}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-1"></div>
+                    <div style="padding-top:11px">
+                        <br>
+                        <input class="btn btn-danger" style="width: 80px;float: left" type="submit" role="button"
+                               value="Save">
+                        <a role="button" th:href="@{/contractDetail}" class="btn btn-success"
+                           style="width: 80px;float: right">Back</a>
+                    </div>
+                    <!--Footer-->
+                    <div class="modal-footer mx-5 pt-3 mb-1 text-center">
+                        <h4 class="font-small grey-text d-flex justify-content-end"></h4>
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+    </div>
+</form>
+<footer th:replace="~{/common/layout::footer}"></footer>
+</body>
+<script th:src="@{/jquery-ui-1.12.1/jquery-ui.min.js}"></script>
+</html>
