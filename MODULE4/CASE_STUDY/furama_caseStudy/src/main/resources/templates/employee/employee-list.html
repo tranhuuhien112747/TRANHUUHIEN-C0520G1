@@ -39,6 +39,9 @@
             <div style="padding-top: 0px">
                 <a class="btn btn-outline-success" th:href="@{/employee/create}" role="button"
                    style="font-weight: bolder;font-size: 20px"><i class="fas fa-plus-square"></i> Add New Employee</a>
+                <th:block th:if="${ != null}">
+                    <div class="alert alert-success col-4 d-flex justify-content-center" role="alert" th:text="${m}"></div>
+                </th:block>
             </div>
             <div class="table-responsive-lg">
                 <table class="table table-striped">

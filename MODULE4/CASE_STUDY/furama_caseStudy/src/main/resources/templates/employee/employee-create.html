@@ -9,7 +9,7 @@
 <body>
 <form method="POST" th:action="@{/employee/save}" th:object="${employee}">
     <div class="container-fluid">
-        <h3 style="text-align: center;color: #fd7e14;background-color: darkslategray">Add New Customer</h3>
+        <h3 style="text-align: center;color: #fd7e14;background-color: darkslategray">Add New Employee</h3>
         <div class="row">
             <div class="col-xl-2"></div>
             <div class="row col-xl-8" style="background-color: ghostwhite">
@@ -17,37 +17,45 @@
                     <div class="form-group">
                         <label>ID Employee:</label>
                         <input type="text" th:field="*{employeeId}" class="form-control" placeholder="Example: NV-1234" >
+                        <span style="color: red" th:field="*{#fields.hasErrors('employeeId')}" th:errors="*{employeeId}"></span>
                     </div>
                     <div class="form-group">
                         <label for="name">Name Employee :</label>
                         <input type="text" th:field="*{employeeName}" class="form-control" id="name" >
+                        <span style="color: red" th:field="*{#fields.hasErrors('employeeName')}" th:errors="*{employeeName}"></span>
                     </div>
                     <div class="form-group">
                         <label for="birthday">Date Of Birthday :</label>
                         <input type="text" th:field="*{employeeBirthday}" class="form-control" id="birthday" >
+                        <span style="color: red" th:field="*{#fields.hasErrors('employeeBirthday')}" th:errors="*{employeeBirthday}"></span>
                     </div>
                     <div class="form-group">
                         <label for="card">ID-Card Employee :</label>
                         <input type="text" th:field="*{employeeIdCard}" class="form-control" id="card">
+                        <span style="color: red" th:field="*{#fields.hasErrors('employeeIdCard')}" th:errors="*{employeeIdCard}"></span>
                     </div>
                     <div class="form-group">
                         <label for="salary">Salary :</label>
                         <input type="text" th:field="*{employeeSalary}" class="form-control" id="salary" >
+                        <span style="color: red" th:field="*{#fields.hasErrors('employeeSalary')}" th:errors="*{employeeSalary}"></span>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Employee :</label>
                         <input type="text" th:field="*{employeePhone}" class="form-control" id="phone" placeholder="Example: 090XXXXXXX" >
+                        <span style="color: red" th:field="*{#fields.hasErrors('employeePhone')}" th:errors="*{employeePhone}"></span>
                     </div>
                 </div>
                 <div class="col-xl-2"></div>
                 <div class="col-xl-5">
                     <div class="form-group">
                         <label for="email">Email Employee :</label>
-                        <input type="text" th:field="*{employeeEmail}" class="form-control" id="email" required>
+                        <input type="text" th:field="*{employeeEmail}" class="form-control" id="email">
+                        <span style="color: red" th:field="*{#fields.hasErrors('employeeEmail')}" th:errors="*{employeeEmail}"></span>
                     </div>
                     <div class="form-group">
                         <label for="address">Address Employee :</label>
-                        <input type="text" th:field="*{employeeAddress}" class="form-control" id="address" required>
+                        <input type="text" th:field="*{employeeAddress}" class="form-control" id="address">
+                        <span style="color: red" th:field="*{#fields.hasErrors('employeeAddress')}" th:errors="*{employeeAddress}"></span>
                     </div>
                     <div class="form-group">
                         <label for="education">Education :</label><br>
@@ -67,7 +75,7 @@
                             <option th:each="di : ${divisionList}" th:value="${di.divisionId}" th:text="${di.divisionName}"></option>
                         </select>
                     </div>
-                    <div style="padding-top:15px">
+                    <div style="padding-top:25px">
                         <br>
                         <input class="btn btn-danger" style="margin-left: 20px;width: 80px" type="submit" role="button"
                                value="Save">

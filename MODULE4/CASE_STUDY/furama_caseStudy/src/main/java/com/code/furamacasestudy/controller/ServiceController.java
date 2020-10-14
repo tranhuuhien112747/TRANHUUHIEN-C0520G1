@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -42,11 +44,18 @@ public class ServiceController {
     }
 
     @PostMapping("/save")
-    public ModelAndView saveService(@ModelAttribute("service") Service service) {
-        ModelAndView modelAndView = new ModelAndView("redirect:/service");
-        serviceService.save(service);
-        modelAndView.addObject("service", service);
-        return modelAndView;
+    public ModelAndView saveService(@Validated @ModelAttribute("service") Service service, BindingResult bindingResult,@PageableDefault(value = 5) Pageable pageable) {
+       new Service().validate(service,bindingResult);
+       if(bindingResult.hasErrors()){
+           ModelAndView modelAndView = new ModelAndView("/service/service-list");
+           modelAndView.addObject("serviceList", serviceService.finAllService(pageable));
+           return modelAndView;
+       }else {
+           ModelAndView modelAndView = new ModelAndView("redirect:/service");
+           serviceService.save(service);
+           modelAndView.addObject("service", service);
+           return modelAndView;
+       }
     }
 
     @GetMapping("/delete/{id}")

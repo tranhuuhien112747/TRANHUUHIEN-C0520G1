@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/common/layout::header}">
+    <meta charset="UTF-8">
+    <title>EDIT-CUSTOMER</title>
+</head>
+<body>
+<div th:replace="~{/common/layout::navbar}"></div>
+<form th:object="${contract}" th:action="@{/contract/update}" method="post">
+    <div class="container-fluid">
+        <h3 style="text-align: center;color: #fd7e14;background-color: darkslategray">Information Customer</h3>
+        <div class="row">
+            <div class="col-xl-1"></div>
+            <div class="row col-xl-10">
+                <div class="col-xl-5">
+                    <div class="form-group">
+                        <label>ID Contract:</label>
+                        <input type="text" th:field="*{contractId}" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="start">Start :</label>
+                        <input type="text" th:field="*{contractStart}" class="form-control" id="start">
+                    </div>
+                    <div class="form-group">
+                        <label for="end">End :</label>
+                        <input type="text" th:field="*{contractEnd}" class="form-control" id="end">
+                    </div>
+                    <div class="form-group">
+                        <label for="card">Deposit :</label>
+                        <input type="text" th:field="*{contractDeposit}" class="form-control" id="card">
+                    </div>
+                </div>
+                <div class="col-xl-2"></div>
+                <div class="col-xl-5">
+                    <div class="form-group">
+                        <label for="phone">MoneyTotal :</label>
+                        <input type="text" th:field="*{contractMoneyTotal}" class="form-control" id="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="employee">Employee :</label><br>
+                        <select id="employee" th:field="*{employee}" style="width: 100%; height: 37px">
+                            <option th:each="e : ${employeeList}" th:value="${e.employeeId}"
+                                    th:text="${e.employeeName}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer">Customer :</label><br>
+                        <select id="customer" th:field="*{customer}" style="width: 100%; height: 37px">
+                            <option th:each="c: ${customerList}" th:value="${c.customerId}"
+                                    th:text="${c.customerName}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="typeId">Service :</label><br>
+                        <select id="typeId" th:field="*{service}" style="width: 100%; height: 37px">
+                            <option th:each="s : ${serviceList}" th:value="${s.serviceId}"
+                                    th:text="${s.serviceName}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-1"></div>
+        <div style="padding-top:11px">
+            <br>
+            <input class="btn btn-danger" style="width: 80px;float: left" type="submit" role="button"
+                   value="Save">
+            <a role="button" th:href="@{/service}" class="btn btn-success"
+               style="width: 80px;float: right">Back</a>
+        </div>
+    </div>
+</form>
+</body>
+<footer th:replace="~{/common/layout::footer}"></footer>
+</html>

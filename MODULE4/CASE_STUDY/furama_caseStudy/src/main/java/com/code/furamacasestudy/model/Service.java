@@ -1,16 +1,30 @@
 package com.code.furamacasestudy.model;
 
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
+
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import java.lang.annotation.Annotation;
 import java.util.Set;
 
 @Entity
-public class Service {
+public class Service implements Validator {
     @Id
+    @Pattern(regexp = "^(DV)-[0-9]{4}$", message = "Please enter the correct format (DV-XXXX)")
     private String serviceId;
 
+    @NotEmpty(message = "Must be not empty")
     private String serviceName;
+    @Min(value = 30, message = "phai lon hon 30")
     private double area;
     private double serviceCost;
+
+    @Max(value = 20,message = "k dc qua 20 nguoi")
     private int maxPeople;
 
     @ManyToOne
@@ -21,9 +35,14 @@ public class Service {
     @JoinColumn(name = "serviceTypeId")
     private ServiceType serviceType;
 
+    @NotEmpty(message = "Must be not empty")
     private String standardRoom;
+
+    @NotEmpty(message = "Must be not empty")
     private String description;
+
     private double areaPool;
+
     private int numberFloor;
 
     @OneToMany(mappedBy = "service")
@@ -127,5 +146,16 @@ public class Service {
 
     public void setContractSet(Set<Contract> contractSet) {
         this.contractSet = contractSet;
+    }
+
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+
     }
 }

@@ -65,4 +65,18 @@ public class ContractController {
         return modelAndView;
     }
 
+    @GetMapping("/edit/{id}")
+    public ModelAndView editContract(@PathVariable Long id){
+        ModelAndView modelAndView = new ModelAndView("/contract/contract-edit");
+        modelAndView.addObject("contract",contractService.finById(id));
+        return modelAndView;
+    }
+
+    @PostMapping("/update")
+    public ModelAndView updateContract(@ModelAttribute("contract") Contract contract) {
+        ModelAndView modelAndView = new ModelAndView("redirect:/contract");
+        contractService.save(contract);
+        return modelAndView;
+    }
+
 }

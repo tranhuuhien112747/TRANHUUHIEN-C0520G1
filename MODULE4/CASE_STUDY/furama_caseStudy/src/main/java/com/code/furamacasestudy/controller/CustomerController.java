@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,7 +24,7 @@ public class CustomerController {
     private CustomerTypeService customerTypeService;
 
     @ModelAttribute("typeCustomer")
-    public List<CustomerType> customerTypeList(){
+    public List<CustomerType> customerTypeList() {
         return customerTypeService.findAllCustomerType();
     }
 
@@ -30,8 +32,8 @@ public class CustomerController {
     @GetMapping
     public ModelAndView getCustomerPage(@PageableDefault(value = 5) Pageable pageable) {
         ModelAndView modelAndView = new ModelAndView("/customer/customer-list");
-        modelAndView.addObject("customer",new Customer());
-        modelAndView.addObject("customerList",customerService.finAllCustomer(pageable));
+        modelAndView.addObject("customer", new Customer());
+        modelAndView.addObject("customerList", customerService.finAllCustomer(pageable));
         return modelAndView;
     }
 
@@ -43,18 +45,26 @@ public class CustomerController {
 //    }
 
     @PostMapping("/save")
-    public ModelAndView saveCustomer(@ModelAttribute("customer") Customer customer) {
-        ModelAndView modelAndView = new ModelAndView("redirect:/customer");
-        customerService.save(customer);
-        modelAndView.addObject("customer", customer);
-        return modelAndView;
+    public ModelAndView saveCustomer(@Validated({Customer.CheckId.class,Customer.CheckEdit.class}) @ModelAttribute("customer") Customer customer, BindingResult bindingResult,@PageableDefault(value = 5) Pageable pageable) {
+//        new Customer().validate(customer, bindingResult);
+        if (bindingResult.hasErrors()) {
+            ModelAndView modelAndView = new ModelAndView("/customer/customer-list");
+            modelAndView.addObject("customerList", customerService.finAllCustomer(pageable));
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView("redirect:/customer");
+            customerService.save(customer);
+            modelAndView.addObject("customer", customer);
+            return modelAndView;
+        }
+
     }
 
     @GetMapping("/edit/{id}")
-    public ModelAndView editCustomer(@PathVariable String id){
-     ModelAndView modelAndView = new ModelAndView("/customer/customer-edit");
-     modelAndView.addObject("customer",customerService.finById(id));
-     return modelAndView;
+    public ModelAndView editCustomer(@PathVariable String id) {
+        ModelAndView modelAndView = new ModelAndView("/customer/customer-edit");
+        modelAndView.addObject("customer", customerService.finById(id));
+        return modelAndView;
     }
 
     @PostMapping("/update")
@@ -65,7 +75,7 @@ public class CustomerController {
     }
 
     @GetMapping("/delete/{id}")
-    public ModelAndView removeCustomer(@PathVariable String id){
+    public ModelAndView removeCustomer(@PathVariable String id) {
         ModelAndView modelAndView = new ModelAndView("redirect:/customer");
         customerService.remove(id);
         return modelAndView;

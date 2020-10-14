@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -55,16 +58,43 @@ public class EmployeeController {
     }
 
     @PostMapping("/save")
-    public ModelAndView saveCustomer(@ModelAttribute("employee") Employee employee) {
-        ModelAndView modelAndView = new ModelAndView("redirect:/employee");
-        employeeService.save(employee);
-        modelAndView.addObject("employee", employee);
-        return modelAndView;
+    public ModelAndView saveCustomer(@Validated({Employee.CheckID.class,Employee.EditCheck.class} )@ModelAttribute("employee") Employee employee, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()){
+            ModelAndView modelAndView = new ModelAndView("/employee/employee-create");
+            return modelAndView;
+        }else {
+            ModelAndView modelAndView = new ModelAndView("redirect:/employee");
+            employeeService.save(employee);
+            modelAndView.addObject("employee", employee);
+            redirectAttributes.addFlashAttribute("messageAdd","Create Success !!!");
+            return modelAndView;
+        }
     }
+
     @GetMapping("/delete/{id}")
     public ModelAndView removeEmployee(@PathVariable String id){
         ModelAndView modelAndView = new ModelAndView("redirect:/employee");
         employeeService.remove(id);
         return modelAndView;
+    }
+
+    @GetMapping("/edit/{id}")
+    public ModelAndView editEmployee(@PathVariable String id){
+        ModelAndView modelAndView = new ModelAndView("/employee/employee-edit");
+        modelAndView.addObject("employee",employeeService.finById(id));
+        return modelAndView;
+    }
+
+    @PostMapping("/update")
+    public ModelAndView updateCustomer(@Validated @ModelAttribute("customer") Employee employee,BindingResult bindingResult,RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()){
+            ModelAndView modelAndView = new ModelAndView("/employee/employee-edit");
+            return modelAndView;
+        }else {
+            ModelAndView modelAndView = new ModelAndView("redirect:/employee");
+            employeeService.save(employee);
+            modelAndView.addObject("employee", employee);
+            return modelAndView;
+        }
     }
 }

@@ -153,7 +153,7 @@
                 <!--Body-->
                 <div class="modal-body" style="text-align:center">
                     <!--Body-->
-
+                    <input type="hidden" id="valid" th:value="${#fields.hasErrors()}">
                     <div class="row">
                         <div class="col-xl-1"></div>
                         <div class="row col-xl-10" style="background-color: ghostwhite">
@@ -161,15 +161,18 @@
                                 <div class="form-group">
                                     <label for="id">ID Service:</label>
                                     <input type="text" class="form-control" th:field="*{serviceId}" id="id"
-                                           placeholder="Example: DV-1234" required>
+                                           placeholder="Example: DV-1234">
+                                    <span style="color: red" th:field="*{#fields.hasErrors('serviceId')}" th:errors="*{serviceId}"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Name Service:</label>
                                     <input type="text" th:field="*{serviceName}" class="form-control" id="name">
+                                    <span style="color: red" th:field="*{#fields.hasErrors('serviceName')}" th:errors="*{serviceName}"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="area">Area Service:</label>
                                     <input type="text" th:field="*{area}" class="form-control" id="area">
+                                    <span style="color: red" th:field="*{#fields.hasErrors('area')}" th:errors="*{area}"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="cost">Rent-Cost:</label>
@@ -178,6 +181,7 @@
                                 <div class="form-group">
                                     <label for="maxPeople">Max People:</label>
                                     <input type="text" th:field="*{maxPeople}" class="form-control" id="maxPeople">
+                                    <span style="color: red" th:field="*{#fields.hasErrors('maxPeople')}" th:errors="*{maxPeople}"></span>
                                 </div>
                             </div>
                             <div class="col-xl-6">
@@ -192,10 +196,12 @@
                                     <label for="standardRoom">Standard Room:</label>
                                     <input type="text" th:field="*{standardRoom}" class="form-control"
                                            id="standardRoom">
+                                    <span style="color: red" th:field="*{#fields.hasErrors('standardRoom')}" th:errors="*{standardRoom}"></span>
                                 </div>
                                 <div class="form-group" id="hiden2">
                                     <label for="description">Description Other:</label>
                                     <input type="text" class="form-control" th:field="*{description}" id="description">
+                                    <span style="color: red" th:field="*{#fields.hasErrors('description')}" th:errors="*{description}"></span>
                                 </div>
                                 <div class="form-group" id="hiden3">
                                     <label for="areaPool123">Area Pool:</label>
@@ -256,6 +262,32 @@
             areaPool.style.display = "none";
             numberFloor.style.display = "none";
         }
+    }
+</script>
+<script>
+    if ($("#valid").val() == 'true') {
+        let typeService = document.getElementById("typeService").value;
+        let standard = document.getElementById("hiden1");
+        let description = document.getElementById("hiden2");
+        let areaPool = document.getElementById("hiden3");
+        let numberFloor = document.getElementById("hiden4");
+        if (typeService === '1') {
+            standard.style.display = "block";
+            description.style.display = "block";
+            numberFloor.style.display = "block";
+            areaPool.style.display = "block";
+        } else if (typeService === '2') {
+            standard.style.display = "block";
+            description.style.display = "block";
+            numberFloor.style.display = "block";
+            areaPool.style.display = "none";
+        } else if (typeService === '3') {
+            standard.style.display = "none";
+            description.style.display = "none";
+            areaPool.style.display = "none";
+            numberFloor.style.display = "none";
+        }
+        $("#elegantModalForm").modal("show");
     }
 </script>
 </html>
