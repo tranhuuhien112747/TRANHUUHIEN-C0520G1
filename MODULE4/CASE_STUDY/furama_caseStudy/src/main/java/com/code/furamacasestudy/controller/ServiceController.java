@@ -45,7 +45,7 @@ public class ServiceController {
 
     @PostMapping("/save")
     public ModelAndView saveService(@Validated @ModelAttribute("service") Service service, BindingResult bindingResult,@PageableDefault(value = 5) Pageable pageable) {
-       new Service().validate(service,bindingResult);
+//       new Service().validate(service,bindingResult);
        if(bindingResult.hasErrors()){
            ModelAndView modelAndView = new ModelAndView("/service/service-list");
            modelAndView.addObject("serviceList", serviceService.finAllService(pageable));

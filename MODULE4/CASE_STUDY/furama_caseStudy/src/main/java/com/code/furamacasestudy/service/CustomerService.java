@@ -19,4 +19,13 @@ public interface CustomerService {
 
     Page<Customer> finAllCustomer(Pageable pageable);
 
+    Page<Customer> findByIdAndName(String inputSearch, Pageable pageable);
+
+    Page<Customer> findCustomerByCustomerBirthdayContaining(String day, Pageable pageable);
+
+    Page<Customer> findCustomerByCustomerTypeContaining(String type, Pageable pageable);
+
+    Page<Customer> findAllByStatusTrue(Pageable pageable);
+
+    void deleteAllByCustomerIdIn(List<String> list);
 }

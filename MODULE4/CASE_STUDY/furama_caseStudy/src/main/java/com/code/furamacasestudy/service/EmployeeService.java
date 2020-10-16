@@ -19,4 +19,6 @@ public interface EmployeeService {
     void remove(String id);
 
     Page<Employee> finAllEmployee(Pageable pageable);
+
+    Page<Employee> finByNameAndIdEmployee(String inputSearch, Pageable pageable);
 }

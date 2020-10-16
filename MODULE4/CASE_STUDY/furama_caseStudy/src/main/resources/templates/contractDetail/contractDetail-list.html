@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{/common/layout::header}">
     <meta charset="UTF-8">
     <title>Contract-LIST</title>
@@ -37,7 +37,7 @@
             <div style="text-align: center;padding-top: 10px">
                 <h2 style="color: red;font-weight: bold;font-size: 25px">List Contract Detail of Furama </h2>
             </div>
-            <div style="padding-top: 0px">
+            <div style="padding-top: 0px" sec:authorize="hasAnyRole('EDITTOR','ADMIN')">
                 <a class="btn btn-outline-success" data-toggle="modal" data-target="#elegantModalForm" role="button"
                    style="font-weight: bolder;font-size: 20px"><i class="fas fa-plus-square"></i> Add New Contract Detail</a>
             </div>
@@ -49,7 +49,7 @@
                         <th scope="col">Quantity</th>
                         <th scope="col">ID-Contract</th>
                         <th scope="col">Attach Service</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" sec:authorize="hasAnyRole('EDITTOR','ADMIN')">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -58,7 +58,7 @@
                         <td th:text="${detail.quantity}"></td>
                         <td th:text="${detail.contract.contractId}"></td>
                         <td th:text="${detail.attachService.attachServiceName}"></td>
-                        <td style="color: goldenrod;font-weight: bolder">
+                        <td style="color: goldenrod;font-weight: bolder" sec:authorize="hasAnyRole('EDITTOR','ADMIN')">
                             <a th:href="@{/contractDetail/edit/{id}(id=${detail.getContractDetailId()})}"
                                class="btn btn-outline-warning" role="button"><i class="fas fa-user-edit"></i> Edit</span></a>
                             <button th:href="@{/contractDetail/delete/{id}(id=${detail.getContractDetailId()})}"

@@ -9,10 +9,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
+
     @Override
     public List<Customer> finAllCustomer() {
         return customerRepository.findAll();
@@ -25,6 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void save(Customer customer) {
+        customer.setStatus(true);
         customerRepository.save(customer);
     }
 
@@ -36,12 +39,44 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void remove(String id) {
-        customerRepository.deleteById(id);
-
+        Customer customer=customerRepository.findById(id).orElse(null);
+        customer.setStatus(false);
+        customerRepository.save(customer);
     }
 
     @Override
     public Page<Customer> finAllCustomer(Pageable pageable) {
         return customerRepository.findAll(pageable);
     }
+
+    @Override
+    public Page<Customer> findByIdAndName(String inputSearch, Pageable pageable) {
+        return customerRepository.findCustomerByCustomerIdContainingOrCustomerNameContaining(inputSearch, inputSearch, pageable);
+    }
+
+    @Override
+    public Page<Customer> findCustomerByCustomerBirthdayContaining(String day, Pageable pageable) {
+        return customerRepository.findCustomerByCustomerBirthdayContaining(day, pageable);
+    }
+
+    @Override
+    public Page<Customer> findCustomerByCustomerTypeContaining(String type, Pageable pageable) {
+        return customerRepository.findCustomerByCustomerTypeCustomerTypeName(type, pageable);
+    }
+
+    @Override
+    public Page<Customer> findAllByStatusTrue(Pageable pageable) {
+        return customerRepository.findAllByStatusTrue(pageable);
+    }
+
+    @Override
+    public void deleteAllByCustomerIdIn(List<String> list) {
+        for (String id:list){
+            Customer customer=customerRepository.findById(id).orElse(null);
+            customer.setStatus(false);
+            customerRepository.save(customer);
+        }
+    }
+
+
 }

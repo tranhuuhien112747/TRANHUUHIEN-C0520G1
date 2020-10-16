@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" th:href="@{/jquery-ui-1.12.1/jquery-ui.min.css}">
 <div th:replace="~{/common/layout::navbar}"></div>
 <body>
-<form method="POST" th:action="@{/employee/save}" th:object="${employee}">
+<form method="POST" th:action="@{/employee/update}" th:object="${employee}">
     <div class="container-fluid">
         <h3 style="text-align: center;color: #fd7e14;background-color: darkslategray">Information Employee</h3>
         <div class="row">
@@ -16,7 +16,7 @@
                 <div class="col-xl-5">
                     <div class="form-group">
                         <label>ID Employee:</label>
-                        <input type="text" th:field="*{employeeId}" class="form-control" placeholder="Example: NV-1234" >
+                        <input type="text" th:field="*{employeeId}" class="form-control" >
                         <span style="color: red" th:field="*{#fields.hasErrors('employeeId')}" th:errors="*{employeeId}"></span>
                     </div>
                     <div class="form-group">

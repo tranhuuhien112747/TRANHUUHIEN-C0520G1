@@ -6,6 +6,7 @@ import com.code.furamacasestudy.service.EducationService;
 import com.code.furamacasestudy.service.EmployeeService;
 import com.code.furamacasestudy.service.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -31,22 +32,31 @@ public class EmployeeController {
     private DivisionService divisionService;
 
     @ModelAttribute("educationList")
-    public List<Education> getEducationList(){
+    public List<Education> getEducationList() {
         return educationService.findAllEducation();
     }
+
     @ModelAttribute("positionList")
-    public List<Position> getPosition(){
+    public List<Position> getPosition() {
         return positionService.findAllPosition();
     }
+
     @ModelAttribute("divisionList")
-    public List<Division> getDivision(){
+    public List<Division> getDivision() {
         return divisionService.findAllDivision();
     }
 
     @GetMapping
-    public ModelAndView getEmployeePage(@PageableDefault(value = 5) Pageable pageable) {
+    public ModelAndView getEmployeePage(@PageableDefault(value = 5) Pageable pageable, @RequestParam(value = "inputSearch", defaultValue = "") String inputSearch) {
         ModelAndView modelAndView = new ModelAndView("/employee/employee-list");
-        modelAndView.addObject("employeeList", employeeService.finAllEmployee(pageable));
+        Page<Employee> employeeList;
+        if ("".equals(inputSearch)) {
+            employeeList = employeeService.finAllEmployee(pageable);
+        } else {
+            employeeList = employeeService.finByNameAndIdEmployee(inputSearch, pageable);
+        }
+        modelAndView.addObject("employeeList", employeeList);
+        modelAndView.addObject("inputSearch", inputSearch);
         return modelAndView;
     }
 
@@ -58,42 +68,43 @@ public class EmployeeController {
     }
 
     @PostMapping("/save")
-    public ModelAndView saveCustomer(@Validated({Employee.CheckID.class,Employee.EditCheck.class} )@ModelAttribute("employee") Employee employee, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()){
+    public ModelAndView saveCustomer(@Validated({Employee.CheckID.class, Employee.EditCheck.class}) @ModelAttribute("employee") Employee employee, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("/employee/employee-create");
             return modelAndView;
-        }else {
+        } else {
             ModelAndView modelAndView = new ModelAndView("redirect:/employee");
             employeeService.save(employee);
             modelAndView.addObject("employee", employee);
-            redirectAttributes.addFlashAttribute("messageAdd","Create Success !!!");
+            redirectAttributes.addFlashAttribute("message", "Create Success!!!");
             return modelAndView;
         }
     }
 
     @GetMapping("/delete/{id}")
-    public ModelAndView removeEmployee(@PathVariable String id){
+    public ModelAndView removeEmployee(@PathVariable String id) {
         ModelAndView modelAndView = new ModelAndView("redirect:/employee");
         employeeService.remove(id);
         return modelAndView;
     }
 
     @GetMapping("/edit/{id}")
-    public ModelAndView editEmployee(@PathVariable String id){
+    public ModelAndView editEmployee(@PathVariable String id) {
         ModelAndView modelAndView = new ModelAndView("/employee/employee-edit");
-        modelAndView.addObject("employee",employeeService.finById(id));
+        modelAndView.addObject("employee", employeeService.finById(id));
         return modelAndView;
     }
 
     @PostMapping("/update")
-    public ModelAndView updateCustomer(@Validated @ModelAttribute("customer") Employee employee,BindingResult bindingResult,RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()){
+    public ModelAndView updateCustomer(@Validated(Employee.EditCheck.class) @ModelAttribute("employee") Employee employee, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("/employee/employee-edit");
             return modelAndView;
-        }else {
+        } else {
             ModelAndView modelAndView = new ModelAndView("redirect:/employee");
             employeeService.save(employee);
             modelAndView.addObject("employee", employee);
+            redirectAttributes.addFlashAttribute("message","Update Success!!!!(@_@)");
             return modelAndView;
         }
     }

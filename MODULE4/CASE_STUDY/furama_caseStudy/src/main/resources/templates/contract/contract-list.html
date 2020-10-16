@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{/common/layout::header}">
     <meta charset="UTF-8">
     <title>Contract-LIST</title>
@@ -37,7 +37,7 @@
             <div style="text-align: center;padding-top: 10px">
                 <h2 style="color: red;font-weight: bold;font-size: 25px">List Contract of Furama </h2>
             </div>
-            <div style="padding-top: 0px">
+            <div style="padding-top: 0px" sec:authorize="hasAnyRole('EDITTOR','ADMIN')">
                 <a class="btn btn-outline-success" data-toggle="modal" data-target="#elegantModalForm" role="button"
                    style="font-weight: bolder;font-size: 20px"><i class="fas fa-plus-square"></i> Add New Contract</a>
             </div>
@@ -53,7 +53,7 @@
                         <th scope="col">Employee</th>
                         <th scope="col">Customer</th>
                         <th scope="col">Service</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" sec:authorize="hasAnyRole('EDITTOR','ADMIN')">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -66,7 +66,7 @@
                         <td th:text="${contract.employee.employeeName}"></td>
                         <td th:text="${contract.customer.customerName}"></td>
                         <td th:text="${contract.service.serviceName}"></td>
-                        <td style="color: goldenrod;font-weight: bolder">
+                        <td style="color: goldenrod;font-weight: bolder" sec:authorize="hasAnyRole('EDITTOR','ADMIN')">
                             <a th:href="@{/contract/edit/{id}(id=${contract.getContractId()})}"
                                class="btn btn-outline-warning" role="button"><i class="fas fa-user-edit"></i> Edit</span></a>
                             <button th:href="@{/contract/delete/{id}(id=${contract.getContractId()})}"
@@ -193,7 +193,7 @@
                         <br>
                         <input class="btn btn-danger" style="width: 80px;float: left" type="submit" role="button"
                                value="Save">
-                        <a role="button" th:href="@{/service}" class="btn btn-success"
+                        <a role="button" th:href="@{/contract}" class="btn btn-success"
                            style="width: 80px;float: right">Back</a>
                     </div>
                     <!--Footer-->

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{/common/layout::header}">
     <meta charset="UTF-8">
     <title>CUSTOMER-LIST</title>
 </head>
-<link rel="stylesheet" type="text/css" th:href="@{/jquery-ui-1.12.1/jquery-ui.min.css}">
+<!--<link rel="stylesheet" type="text/css" th:href="@{/jquery-ui-1.12.1/jquery-ui.min.css}">-->
 <style>
     th {
         align-items: center;
@@ -39,84 +39,96 @@
                 <h2 style="color: red;font-weight: bold;font-size: 25px">List Customer of Furama </h2>
             </div>
             <div style="padding-top: 0px">
-                <a class="btn btn-outline-success" data-toggle="modal" data-target="#addNewCustomer" role="button"
-                   style="font-weight: bolder;font-size: 20px"><i class="fas fa-plus-square"></i> Add New Customer</a>
+                <th:block sec:authorize="hasAnyRole('EDITTOR','ADMIN')">
+                    <a class="btn btn-outline-success" data-toggle="modal" data-target="#addNewCustomer" role="button"
+                       style="font-weight: bolder;font-size: 20px"><i class="fas fa-plus-square"></i> Add New Customer</a>
+                </th:block>
             </div>
             <div class="table-responsive-lg">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Birthday</th>
-                        <th scope="col">Gender</th>
-                        <th scope="col">ID-Card</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Type-Customer</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="customer,rowStat:${customerList}">
-                        <td th:text="${customer.getCustomerId()}"></td>
-                        <td th:text="${customer.getCustomerName()}"></td>
-                        <td th:text="${customer.getCustomerBirthday()}"></td>
-                        <td>
-                            <span th:if="${customer.getCustomerGender()==0}" th:text="Female"></span>
-                            <span th:if="${customer.getCustomerGender()==1}" th:text="Male"></span>
-                        </td>
-                        <td th:text="${customer.getCustomerIdCard()}"></td>
-                        <td th:text="${customer.getCustomerPhone()}"></td>
-                        <td th:text="${customer.getCustomerType().customerTypeName}"></td>
-                        <td th:text="${customer.getCustomerEmail()}"></td>
-                        <td th:text="${customer.getCustomerAddress()}"></td>
-                        <td style="color: goldenrod;font-weight: bolder">
-                            <a th:href="@{/customer/edit/{id}(id=${customer.getCustomerId()})}"
-                               class="btn btn-outline-warning" role="button"><i class="fas fa-user-edit"></i>
-                                Edit</span></a>
-                            <button th:href="@{/customer/delete/{id}(id=${customer.getCustomerId()})}"
-                                    class="btn btn-outline-danger" role="button" data-toggle="modal"
-                                    th:data-target="'#'+${customer.customerId}"><i class="far fa-trash-alt"></i> Delete
-                            </button>
-                        </td>
-                        <!-- ---------------------------DELETE----------------------------------- -->
-                        <!-- Modal -->
-                        <div class="modal fade" th:id="${customer.getCustomerId()}" tabindex="-1"
-                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header text-center">
-                                        <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-2"
-                                            id="exampleModalLabel" style="color: red"><strong>Do you want to
-                                            delete?</strong></h3>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body" style="color: yellowgreen">
-                                        <strong>
-                                            <h5 th:text="'ID-Customer : ' + ${customer.getCustomerId()}"></h5>
-                                            <h5 th:text="'Name-Customer : ' + ${customer.getCustomerName()}"></h5>
-                                            <h5 th:text="'Type-Customer : ' + ${customer.getCustomerType().customerTypeName}"></h5>
-                                        </strong>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-success"
-                                                data-dismiss="modal">Cancel
-                                        </button>
-                                        <a th:href="@{/customer/delete/{id}(id=${customer.getCustomerId()})}">
-                                            <button type="button" class="btn btn-outline-danger">Delete</button>
-                                        </a>
+<!--                <form>-->
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Birthday</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">ID-Card</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Type-Customer</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Address</th>
+                            <th scope="col" sec:authorize="hasAnyRole('EDITTOR','ADMIN')">Action</th>
+<!--                            <th scope="col" sec:authorize="hasAnyRole('EDITTOR','ADMIN')">-->
+
+<!--                                <input type="submit" formaction="/customer/deleteSelect" value="Delete"-->
+<!--                                       class="btn btn-outline-danger">-->
+<!--                            </th>-->
+                        </tr>
+                        </thead>
+                        <tbody id="myTable">
+                        <tr th:each="customer,rowStat:${customerList}">
+                            <td th:text="${customer.getCustomerId()}"></td>
+                            <td th:text="${customer.getCustomerName()}"></td>
+                            <td th:text="${customer.getCustomerBirthday()}"></td>
+                            <td>
+                                <span th:if="${customer.getCustomerGender()==0}" th:text="Female"></span>
+                                <span th:if="${customer.getCustomerGender()==1}" th:text="Male"></span>
+                            </td>
+                            <td th:text="${customer.getCustomerIdCard()}"></td>
+                            <td th:text="${customer.getCustomerPhone()}"></td>
+                            <td th:text="${customer.getCustomerType().customerTypeName}"></td>
+                            <td th:text="${customer.getCustomerEmail()}"></td>
+                            <td th:text="${customer.getCustomerAddress()}"></td>
+                            <td style="color: goldenrod;font-weight: bolder"
+                                sec:authorize="hasAnyRole('EDITTOR','ADMIN')">
+                                <a th:href="@{/customer/edit/{id}(id=${customer.getCustomerId()})}"
+                                   class="btn btn-outline-warning" role="button"><i class="fas fa-user-edit"></i>
+                                    Edit</span></a>
+                                <button th:href="@{/customer/delete/{id}(id=${customer.getCustomerId()})}"
+                                        class="btn btn-outline-danger" role="button" data-toggle="modal"
+                                        th:data-target="'#'+${customer.customerId}"><i class="far fa-trash-alt"></i>
+                                    Delete
+                                </button>
+                            </td>
+<!--                            <td><input type="checkbox" th:name="select" th:value="${customer.getCustomerId()}"></td>-->
+                            <!-- ---------------------------DELETE----------------------------------- -->
+                            <!-- Modal -->
+                            <div class="modal fade" th:id="${customer.getCustomerId()}" tabindex="-1"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header text-center">
+                                            <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-2"
+                                                id="exampleModalLabel" style="color: red"><strong>Do you want to
+                                                delete?</strong></h3>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body" style="color: yellowgreen">
+                                            <strong>
+                                                <h5 th:text="'ID-Customer : ' + ${customer.getCustomerId()}"></h5>
+                                                <h5 th:text="'Name-Customer : ' + ${customer.getCustomerName()}"></h5>
+                                                <h5 th:text="'Type-Customer : ' + ${customer.getCustomerType().customerTypeName}"></h5>
+                                            </strong>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-success"
+                                                    data-dismiss="modal">Cancel
+                                            </button>
+                                            <a th:href="@{/customer/delete/{id}(id=${customer.getCustomerId()})}">
+                                                <button type="button" class="btn btn-outline-danger">Delete</button>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </tr>
-                    </tbody>
-                </table>
+                        </tr>
+                        </tbody>
+                    </table>
+<!--                </form>-->
                 <div>
                     <a th:href="@{'/customer'(page=${customerList.number - 1})}"
                        th:if="${customerList.hasPrevious()}"><i class="fas fa-backward"></i></a>
@@ -139,8 +151,7 @@
             <!--Header-->
             <div class="modal-header text-center">
                 <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-2" id="myModalLabel"
-                    style="color: darkblue"><strong>Add New
-                    Customer</strong></h3>
+                    style="color: darkblue"><strong>Add New Customer</strong></h3>
                 <!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
                 <!--                        <span aria-hidden="true">&times;</span>-->
                 <!--                    </button>-->
@@ -240,15 +251,25 @@
 </div>
 <footer th:replace="~{/common/layout::footer}"></footer>
 </body>
-<script th:src="@{/jquery-ui-1.12.1/jquery-ui.min.js}"></script>
-<script>
-    $(document).ready(function () {
-        $("#birthday").datepicker({dateFormat: "dd/mm/yy"});
-    });
-</script>
+<!--<script th:src="@{/jquery-ui-1.12.1/jquery-ui.min.js}"></script>-->
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        $("#birthday").datepicker({dateFormat: "dd/mm/yy"});-->
+<!--    });-->
+<!--</script>-->
 <script>
     if ($("#valid").val() == 'true') {
         $("#addNewCustomer").modal("show");
     }
 </script>
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        $('#inputSearch').on('keyup', function () {-->
+<!--            let value = $(this).val().toLowerCase();-->
+<!--            $('#myTable tr').filter(function () {-->
+<!--                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)-->
+<!--            });-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 </html>

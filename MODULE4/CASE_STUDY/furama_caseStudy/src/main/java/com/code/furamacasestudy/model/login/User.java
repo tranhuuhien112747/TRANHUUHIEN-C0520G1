@@ -15,7 +15,7 @@ public class User {
     private Set<Employee> employeeSet;
 
     @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name = "userRole",joinColumns = @JoinColumn(name = "roleId"), inverseJoinColumns = @JoinColumn(name = "userName"))
+    @JoinTable(name = "userRole",joinColumns = @JoinColumn(name = "userName"), inverseJoinColumns = @JoinColumn(name = "roleId"))
     private Set<Role> roles;
 
     public User() {

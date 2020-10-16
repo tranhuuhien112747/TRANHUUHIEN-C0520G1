@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="header">
     <title>HEADER</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
 </head>
-<body th:fragment="navbar" >
-<div class="row" style="background-image: url('https://www.gocbao.com/wp-content/uploads/2020/04/hinh-nen-full-hd-1080-bai-bien-xanh-ngat_022854175-1.jpg')">
+<body th:fragment="navbar">
+<div class="row"
+     style="background-image: url('https://www.gocbao.com/wp-content/uploads/2020/04/hinh-nen-full-hd-1080-bai-bien-xanh-ngat_022854175-1.jpg')">
     <div class="col-4">
         <img src="/image/logo.jpg" style="height: 70px">
     </div>
@@ -14,25 +16,29 @@
     <div class="col-2">
         <img src="/image/unnamed.png" style="height:70px">
     </div>
-    <div style="font-size: 20px;font-weight: bold;color: white;float: right">
-        <a th:href="@{/login}" style="color: white">LOGIN</a>
+    <div class="col-2" sec:authorize="isAuthenticated()">
+        <h4 th:text="${#request.userPrincipal.name}" th:value="admin" style="color: red;font-weight: bolder"></h4>
     </div>
 </div>
 <nav class="navbar navbar-expand-lg"
-     style="background-color: #e3f2fd;border: 2px solid darkblue;height: 60px;padding-left: 20px;" >
+     style="background-color: #e3f2fd;border: 2px solid darkblue;height: 60px;padding-left: 20px;">
     <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-weight: bolder;font-size: 20px">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link " th:href="@{/home}" tabindex="-1" aria-disabled="true"><i class="fas fa-home"></i> Home</a>
+                <a class="nav-link " th:href="@{/home}" tabindex="-1" aria-disabled="true"><i class="fas fa-home"></i>
+                    Home</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link " th:href="@{/employee}" tabindex="-1" aria-disabled="true"><i class="fas fa-user-friends"></i> Employee</a>
+                <a class="nav-link " th:href="@{/employee}" tabindex="-1" aria-disabled="true"><i
+                        class="fas fa-user-friends"></i> Employee</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link " th:href="@{/customer}" tabindex="-1" aria-disabled="true"><i class="fas fa-user-tie"></i> Customer</a>
+                <a class="nav-link " th:href="@{/customer}" tabindex="-1" aria-disabled="true"><i
+                        class="fas fa-user-tie"></i> Customer</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link " th:href="@{/service}"  tabindex="-1" aria-disabled="true"><i class="fab fa-servicestack"></i> Service</a>
+                <a class="nav-link " th:href="@{/service}" tabindex="-1" aria-disabled="true"><i
+                        class="fab fa-servicestack"></i> Service</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -49,12 +55,26 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" style="padding-right: 20px">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search"
-                   value="${search}">
+            <select name="choose" id="choose" class="form-control mr-sm-2">
+                <option th:selected="${choose == 1}" value="1">Day</option>
+                <option th:selected="${choose == 2}" value="2">TYPE CUSTOMER</option>
+                <option th:selected="${choose == 3}" value="3">Name or ID</option>
+            </select>
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                   name="inputSearch"
+                   th:value="${inputSearch}" id="inputSearch">
             <input type="hidden" name="action" value="search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="font-weight: bolder">Search
             </button>
         </form>
+        <div class="nav-item dropdown">
+            <div style="font-size: 20px;font-weight: bold;color: white" sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}" style="color: black"><i class="fas fa-sign-in-alt"></i> LogIn</a>
+            </div>
+            <div style="font-size: 20px;font-weight: bold;color: white;float: right" sec:authorize="isAuthenticated()">
+                <a th:href="@{/logout}" style="color: black"><i class="fas fa-power-off"></i> LogOut</a>
+            </div>
+        </div>
     </div>
 </nav>
 </body>

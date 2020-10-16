@@ -26,7 +26,7 @@ public class Employee{
     @Pattern(regexp = "^\\d{9}$", message = "The card must have 9 numbers",groups = EditCheck.class)
     private String employeeIdCard;
 
-    @Pattern(regexp = "^[-]*\\d+([.]\\d+)?$",message = "Salary must be >0",groups = EditCheck.class)
+    @Pattern(regexp = "^\\d+([.]\\d+)?$",message = "Salary must be >0",groups = EditCheck.class)
     private String employeeSalary;
 
     @Pattern(regexp = "^(090|091|(84)+90|(84)+91)\\d{7}$",message = "Please enter correct format",groups = EditCheck.class)

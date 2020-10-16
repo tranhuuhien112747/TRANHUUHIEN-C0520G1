@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{/common/layout::header}">
     <meta charset="UTF-8">
     <title>CUSTOMER-LIST</title>
@@ -38,7 +38,7 @@
             <div style="text-align: center;padding-top: 10px">
                 <h2 style="color: red;font-weight: bold;font-size: 25px">List Service of Furama </h2>
             </div>
-            <div style="padding-top: 0px">
+            <div style="padding-top: 0px" sec:authorize="hasAnyRole('EDITTOR','ADMIN')">
                 <a class="btn btn-outline-success" data-toggle="modal" data-target="#elegantModalForm" role="button"
                    style="font-weight: bolder;font-size: 20px"><i class="fas fa-plus-square"></i> Add New Service</a>
             </div>
@@ -53,7 +53,7 @@
                         <th scope="col">MaxPeople</th>
                         <th scope="col">Rent-Type</th>
                         <th scope="col">Service-Type</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" sec:authorize="hasAnyRole('EDITTOR','ADMIN')">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -65,7 +65,7 @@
                         <td th:text="${sv.getMaxPeople()}"></td>
                         <td th:text="${sv.getRentType().getRentTypeName()}"></td>
                         <td th:text="${sv.getServiceType().getServiceTypeName()}"></td>
-                        <td style="color: goldenrod;font-weight: bolder">
+                        <td style="color: goldenrod;font-weight: bolder" sec:authorize="hasAnyRole('EDITTOR','ADMIN')">
                             <a th:href="@{/service/edit/{id}(id=${sv.getServiceId()})}"
                                class="btn btn-outline-warning" role="button"><i class="fas fa-user-edit"></i>
                                 Edit</span></a>
@@ -115,11 +115,11 @@
                     </tbody>
                 </table>
                 <div>
-                    <a th:href="@{'/customer'(page=${serviceList.number - 1})}" th:if="${serviceList.hasPrevious()}"><i
+                    <a th:href="@{'/service'(page=${serviceList.number - 1})}" th:if="${serviceList.hasPrevious()}"><i
                             class="fas fa-backward"></i></a>
                     <span th:text="${serviceList.number + 1}"></span>/<span
                         th:text="${serviceList.totalPages}"></span>
-                    <a th:href="@{'/customer'(page=${serviceList.number + 1})}"
+                    <a th:href="@{'/service'(page=${serviceList.number + 1})}"
                        th:if="${serviceList.hasNext()}"><i class="fas fa-forward"></i></a>
                 </div>
             </div>
