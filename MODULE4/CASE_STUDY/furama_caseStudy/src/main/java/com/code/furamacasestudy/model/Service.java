@@ -22,9 +22,11 @@ public class Service implements Validator {
     private String serviceName;
     @Min(value = 30, message = "phai lon hon 30")
     private double area;
-    private double serviceCost;
 
-    @Max(value = 20,message = "k dc qua 20 nguoi")
+    @Min(value = 1 / 10, message = "phai lon hon 0 ")
+    private double serviceCost;
+    @Min(value = 0,message = "k dc be hon o")
+    @Max(value = 20, message = "k dc qua 20 nguoi")
     private int maxPeople;
 
     @ManyToOne
@@ -45,7 +47,7 @@ public class Service implements Validator {
 
     private int numberFloor;
 
-    @OneToMany(mappedBy = "service")
+    @OneToMany(mappedBy = "service",cascade = CascadeType.ALL)
     private Set<Contract> contractSet;
 
     public Service() {

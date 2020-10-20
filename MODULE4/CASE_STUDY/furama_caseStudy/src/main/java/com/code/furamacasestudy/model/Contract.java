@@ -7,7 +7,9 @@ import java.util.Set;
 @Entity
 public class Contract {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long contractId;
+
     private String contractStart;
     private String contractEnd;
     private double contractDeposit;

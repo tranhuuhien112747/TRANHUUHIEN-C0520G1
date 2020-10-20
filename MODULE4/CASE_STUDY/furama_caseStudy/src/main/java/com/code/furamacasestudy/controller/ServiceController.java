@@ -44,24 +44,38 @@ public class ServiceController {
     }
 
     @PostMapping("/save")
-    public ModelAndView saveService(@Validated @ModelAttribute("service") Service service, BindingResult bindingResult,@PageableDefault(value = 5) Pageable pageable) {
+    public ModelAndView saveService(@Validated @ModelAttribute("service") Service service, BindingResult bindingResult, @PageableDefault(value = 5) Pageable pageable) {
 //       new Service().validate(service,bindingResult);
-       if(bindingResult.hasErrors()){
-           ModelAndView modelAndView = new ModelAndView("/service/service-list");
-           modelAndView.addObject("serviceList", serviceService.finAllService(pageable));
-           return modelAndView;
-       }else {
-           ModelAndView modelAndView = new ModelAndView("redirect:/service");
-           serviceService.save(service);
-           modelAndView.addObject("service", service);
-           return modelAndView;
-       }
+        if (bindingResult.hasErrors()) {
+            ModelAndView modelAndView = new ModelAndView("/service/service-list");
+            modelAndView.addObject("serviceList", serviceService.finAllService(pageable));
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView("redirect:/service");
+            serviceService.save(service);
+            modelAndView.addObject("service", service);
+            return modelAndView;
+        }
     }
 
     @GetMapping("/delete/{id}")
-    public ModelAndView removeService(@PathVariable String id){
+    public ModelAndView removeService(@PathVariable String id) {
         ModelAndView modelAndView = new ModelAndView("redirect:/service");
         serviceService.remove(id);
+        return modelAndView;
+    }
+
+    @GetMapping("/deleteSelect")
+    public ModelAndView delete(@RequestParam String[] select) {
+        ModelAndView modelAndView = new ModelAndView("redirect:/service");
+        if (select == null) {
+            return modelAndView;
+        } else {
+            for (int i = 0; i < select.length; i++) {
+                serviceService.remove(select[i]);
+            }
+        }
+
         return modelAndView;
     }
 

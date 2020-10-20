@@ -43,77 +43,111 @@
                    style="font-weight: bolder;font-size: 20px"><i class="fas fa-plus-square"></i> Add New Service</a>
             </div>
             <div class="table-responsive-lg">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Area</th>
-                        <th scope="col">Cost</th>
-                        <th scope="col">MaxPeople</th>
-                        <th scope="col">Rent-Type</th>
-                        <th scope="col">Service-Type</th>
-                        <th scope="col" sec:authorize="hasAnyRole('EDITTOR','ADMIN')">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="sv,rowStat:${serviceList}">
-                        <td th:text="${sv.getServiceId()}"></td>
-                        <td th:text="${sv.getServiceName()}"></td>
-                        <td th:text="${sv.getArea()}"></td>
-                        <td th:text="${sv.getServiceCost()}"></td>
-                        <td th:text="${sv.getMaxPeople()}"></td>
-                        <td th:text="${sv.getRentType().getRentTypeName()}"></td>
-                        <td th:text="${sv.getServiceType().getServiceTypeName()}"></td>
-                        <td style="color: goldenrod;font-weight: bolder" sec:authorize="hasAnyRole('EDITTOR','ADMIN')">
-                            <a th:href="@{/service/edit/{id}(id=${sv.getServiceId()})}"
-                               class="btn btn-outline-warning" role="button"><i class="fas fa-user-edit"></i>
-                                Edit</span></a>
-                            <button th:href="@{/service/delete/{id}(id=${sv.getServiceId()})}"
-                                    class="btn btn-outline-danger" role="button" data-toggle="modal"
-                                    th:data-target="'#'+${sv.getServiceId()}"><i class="far fa-trash-alt"></i> Delete
-                            </button>
-                            <button th:href="@{/service/detail/{id}(id=${sv.getServiceId()})}"
-                                    class="btn btn-outline-success" role="button" data-toggle="modal1"
-                                    th:data-target="'#'+${sv.getServiceId()}"><i class="fas fa-info-circle"></i> Detail
-                            </button>
-                        </td>
-                        <!-- ---------------------------DELETE----------------------------------- -->
-                        <!-- Modal -->
-                        <div class="modal fade" th:id="${sv.getServiceId()}" tabindex="-1"
-                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header text-center">
-                                        <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-2"
-                                            id="exampleModalLabel" style="color: red"><strong>Do you want to
-                                            delete?</strong></h3>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                <form>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Area</th>
+                            <th scope="col">Cost</th>
+                            <th scope="col">MaxPeople</th>
+                            <th scope="col">Rent-Type</th>
+                            <th scope="col">Service-Type</th>
+                            <th scope="col" sec:authorize="hasAnyRole('EDITTOR','ADMIN')">edit</th>
+                            <th scope="col" sec:authorize="hasAnyRole('EDITTOR','ADMIN')">delete</th>
+                            <th><a><i class="fas fa-trash" data-toggle="modal"
+                                      data-target="#delSelect"></i>
+                            </a> Select all <input type="checkbox" name="foo" value="bar1" id="select_all">
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="sv,rowStat:${serviceList}">
+                            <td th:text="${sv.getServiceId()}"></td>
+                            <td th:text="${sv.getServiceName()}"></td>
+                            <td th:text="${sv.getArea()}"></td>
+                            <td th:text="${sv.getServiceCost()}"></td>
+                            <td th:text="${sv.getMaxPeople()}"></td>
+                            <td th:text="${sv.getRentType().getRentTypeName()}"></td>
+                            <td th:text="${sv.getServiceType().getServiceTypeName()}"></td>
+                            <td style="color: goldenrod;font-weight: bolder"
+                                sec:authorize="hasAnyRole('EDITTOR','ADMIN')">
+                                <a th:href="@{/service/edit/{id}(id=${sv.getServiceId()})}"
+                                   class="btn btn-outline-warning" role="button"><i class="fas fa-user-edit"></i>
+                                    Edit</span></a>
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-danger" role="button" data-toggle="modal"
+                                        th:data-target="'#'+${sv.getServiceId()}"><i class="far fa-trash-alt"></i>
+                                    Delete
+                                </button>
+
+                                <!-- ---------------------------DELETE----------------------------------- -->
+                                <!-- Modal -->
+                                <div class="modal fade" th:id="${sv.getServiceId()}" tabindex="-1"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header text-center">
+                                                <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-2"
+                                                    id="exampleModalLabel" style="color: red"><strong>Do you want to
+                                                    delete?</strong></h3>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body" style="color: yellowgreen">
+                                                <strong>
+                                                    <h5 th:text="'ID-Service : ' + ${sv.getServiceId()}"></h5>
+                                                    <h5 th:text="'Name-Service : ' + ${sv.getServiceName()}"></h5>
+                                                    <h5 th:text="'Type-Service : ' + ${sv.getServiceType().getServiceTypeName()}"></h5>
+                                                </strong>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-success"
+                                                        data-dismiss="modal">Cancel
+                                                </button>
+                                                <a th:href="@{/service/delete/{id}(id=${sv.getServiceId()})}">
+                                                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="modal-body" style="color: yellowgreen">
-                                        <strong>
-                                            <h5 th:text="'ID-Service : ' + ${sv.getServiceId()}"></h5>
-                                            <h5 th:text="'Name-Service : ' + ${sv.getServiceName()}"></h5>
-                                            <h5 th:text="'Type-Service : ' + ${sv.getServiceType().getServiceTypeName()}"></h5>
-                                        </strong>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-success"
-                                                data-dismiss="modal">Cancel
-                                        </button>
-                                        <a th:href="@{/service/delete/{id}(id=${sv.getServiceId()})}">
-                                            <button type="button" class="btn btn-outline-danger">Delete</button>
-                                        </a>
-                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <input type="checkbox" th:name="select" th:value="${sv.getServiceId()}">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    DeleteAll
+                    <div class="modal fade" id="delSelect" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel1">Do you want delete?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Do you want delete select checkbox??
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" formaction="/service/deleteSelect">
+                                        Delete all
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                    </tr>
-                    </tbody>
-                </table>
+                    </div>
+                </form>
                 <div>
                     <a th:href="@{'/service'(page=${serviceList.number - 1})}" th:if="${serviceList.hasPrevious()}"><i
                             class="fas fa-backward"></i></a>
@@ -127,7 +161,7 @@
     </div>
 </div>
 
-<!-----------------------------------------------CREATE-CUSTOMER----------------------------------------------->
+<!-----------------------------------------------CREATE-Service----------------------------------------------->
 <form th:object="${service}" th:action="@{/service/save}" method="post">
     <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
@@ -146,9 +180,6 @@
                                     th:text="${type.serviceTypeName}"></option>
                         </select>
                     </div>
-                    <!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                    <!--                        <span aria-hidden="true">&times;</span>-->
-                    <!--                    </button><br>-->
                 </div>
                 <!--Body-->
                 <div class="modal-body" style="text-align:center">
@@ -162,26 +193,32 @@
                                     <label for="id">ID Service:</label>
                                     <input type="text" class="form-control" th:field="*{serviceId}" id="id"
                                            placeholder="Example: DV-1234">
-                                    <span style="color: red" th:field="*{#fields.hasErrors('serviceId')}" th:errors="*{serviceId}"></span>
+                                    <span style="color: red" th:field="*{#fields.hasErrors('serviceId')}"
+                                          th:errors="*{serviceId}"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Name Service:</label>
                                     <input type="text" th:field="*{serviceName}" class="form-control" id="name">
-                                    <span style="color: red" th:field="*{#fields.hasErrors('serviceName')}" th:errors="*{serviceName}"></span>
+                                    <span style="color: red" th:field="*{#fields.hasErrors('serviceName')}"
+                                          th:errors="*{serviceName}"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="area">Area Service:</label>
                                     <input type="text" th:field="*{area}" class="form-control" id="area">
-                                    <span style="color: red" th:field="*{#fields.hasErrors('area')}" th:errors="*{area}"></span>
+                                    <span style="color: red" th:field="*{#fields.hasErrors('area')}"
+                                          th:errors="*{area}"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="cost">Rent-Cost:</label>
                                     <input type="text" th:field="*{serviceCost}" class="form-control" id="cost">
+                                    <span style="color: red" th:field="*{#fields.hasErrors('serviceCost')}"
+                                          th:errors="*{serviceCost}"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="maxPeople">Max People:</label>
                                     <input type="text" th:field="*{maxPeople}" class="form-control" id="maxPeople">
-                                    <span style="color: red" th:field="*{#fields.hasErrors('maxPeople')}" th:errors="*{maxPeople}"></span>
+                                    <span style="color: red" th:field="*{#fields.hasErrors('maxPeople')}"
+                                          th:errors="*{maxPeople}"></span>
                                 </div>
                             </div>
                             <div class="col-xl-6">
@@ -196,12 +233,14 @@
                                     <label for="standardRoom">Standard Room:</label>
                                     <input type="text" th:field="*{standardRoom}" class="form-control"
                                            id="standardRoom">
-                                    <span style="color: red" th:field="*{#fields.hasErrors('standardRoom')}" th:errors="*{standardRoom}"></span>
+                                    <span style="color: red" th:field="*{#fields.hasErrors('standardRoom')}"
+                                          th:errors="*{standardRoom}"></span>
                                 </div>
                                 <div class="form-group" id="hiden2">
                                     <label for="description">Description Other:</label>
                                     <input type="text" class="form-control" th:field="*{description}" id="description">
-                                    <span style="color: red" th:field="*{#fields.hasErrors('description')}" th:errors="*{description}"></span>
+                                    <span style="color: red" th:field="*{#fields.hasErrors('description')}"
+                                          th:errors="*{description}"></span>
                                 </div>
                                 <div class="form-group" id="hiden3">
                                     <label for="areaPool123">Area Pool:</label>
@@ -289,5 +328,19 @@
         }
         $("#elegantModalForm").modal("show");
     }
+</script>
+<script>
+    $('#select_all').click(function (event) {
+        if (this.checked) {
+// Iterate each checkbox
+            $(':checkbox').each(function () {
+                this.checked = true;
+            });
+        } else {
+            $(':checkbox').each(function () {
+                this.checked = false;
+            });
+        }
+    });
 </script>
 </html>

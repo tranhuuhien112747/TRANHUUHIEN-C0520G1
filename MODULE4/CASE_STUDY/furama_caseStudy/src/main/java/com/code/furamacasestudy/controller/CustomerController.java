@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class CustomerController {
 
     @GetMapping
     public ModelAndView getCustomerPage(@PageableDefault(value = 5)
-                                        @SortDefault(sort = {"customerName","customerId"}, direction = Sort.Direction.DESC) Pageable pageable,
+                                        @SortDefault(sort = {"customerName","customerId"}, direction = Sort.Direction.ASC) Pageable pageable,
                                         @RequestParam(value = "inputSearch", defaultValue = "") String inputSearch,
                                         @RequestParam(value = "choose", defaultValue = "-1") int choose) {
 //        ModelAndView modelAndView = new ModelAndView("/customer/customer-list");
@@ -69,6 +70,7 @@ public class CustomerController {
             }
         }
         modelAndView.addObject("customer", new Customer());
+        modelAndView.addObject("customer2", new Customer());
         modelAndView.addObject("customerList", customerList);
         modelAndView.addObject("inputSearch", inputSearch);
         modelAndView.addObject("choose", choose);
@@ -83,7 +85,8 @@ public class CustomerController {
 //    }
 
     @PostMapping("/save")
-    public ModelAndView saveCustomer(@Validated({Customer.CheckId.class, Customer.CheckEdit.class}) @ModelAttribute("customer") Customer customer, BindingResult bindingResult, @PageableDefault(value = 5) Pageable pageable) {
+    public ModelAndView saveCustomer(@Validated({Customer.CheckId.class, Customer.CheckEdit.class}) @ModelAttribute("customer") Customer customer,
+                                     BindingResult bindingResult, @PageableDefault(value = 5) Pageable pageable,RedirectAttributes redirectAttributes) {
 //        new Customer().validate(customer, bindingResult);
         if (bindingResult.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("/customer/customer-list");
@@ -92,24 +95,34 @@ public class CustomerController {
         } else {
             ModelAndView modelAndView = new ModelAndView("redirect:/customer");
             customerService.save(customer);
-            modelAndView.addObject("customer", customer);
+            modelAndView.addObject("customer2", customer);
+            redirectAttributes.addFlashAttribute("message","CreateSUCCSEADS!!1");
             return modelAndView;
         }
 
     }
 
-    @GetMapping("/edit/{id}")
-    public ModelAndView editCustomer(@PathVariable String id) {
-        ModelAndView modelAndView = new ModelAndView("/customer/customer-edit");
-        modelAndView.addObject("customer", customerService.finById(id));
-        return modelAndView;
-    }
+//    @GetMapping("/edit/{id}")
+//    public ModelAndView editCustomer(@PathVariable String id) {
+//        ModelAndView modelAndView = new ModelAndView("/customer/customer-edit");
+//        modelAndView.addObject("customer", customerService.finById(id));
+//        return modelAndView;
+//    }
 
     @PostMapping("/update")
-    public ModelAndView updateCustomer(@ModelAttribute("customer") Customer customer) {
-        ModelAndView modelAndView = new ModelAndView("redirect:/customer");
-        customerService.save(customer);
-        return modelAndView;
+    public ModelAndView updateCustomer(@Validated(Customer.CheckEdit.class)@ModelAttribute("customer2") Customer customer,
+                                       BindingResult bindingResult , Pageable pageable, RedirectAttributes redirectAttributes) {
+        if(bindingResult.hasErrors()){
+            ModelAndView modelAndView = new ModelAndView("/customer/customer-list");
+            modelAndView.addObject("customerList", customerService.findAllByStatusTrue(pageable));
+            modelAndView.addObject("customer", new Customer());
+            return modelAndView;
+        }else {
+            ModelAndView modelAndView = new ModelAndView("redirect:/customer");
+            customerService.save(customer);
+            redirectAttributes.addFlashAttribute("message","UpDateSuccess");
+            return modelAndView;
+        }
     }
 
     @GetMapping("/delete/{id}")
@@ -122,12 +135,16 @@ public class CustomerController {
     @GetMapping("/deleteSelect")
     public ModelAndView deleteSelect(@RequestParam String[] select) {
         ModelAndView modelAndView = new ModelAndView("redirect:/customer");
-        List<String> listDelete = new ArrayList<>();
         for (String string : select) {
-            listDelete.add(string);
+          customerService.remove(string);
         }
-        modelAndView.addObject("listSelect", listDelete);
-        customerService.deleteAllByCustomerIdIn(listDelete);
+        return modelAndView;
+    }
+
+    @GetMapping("/detail/{id}")
+    public ModelAndView getDetail(@PathVariable String id ){
+        ModelAndView modelAndView = new ModelAndView("redirect:/customer");
+        modelAndView.addObject("customer",customerService.finById(id));
         return modelAndView;
     }
 

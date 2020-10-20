@@ -58,7 +58,11 @@
                     </thead>
                     <tbody>
                     <tr th:each="contract,rowStat:${contractList}">
-                        <td th:text="${contract.contractId}"></td>
+                        <td>
+                        <span th:if="${contract.contractId < 5}" th:text="'HD-000'+ ${contract.contractId}"></span>
+                        <span th:if="${contract.contractId >=5 && contract.contractId <7 }" th:text="'HD-00'+ ${contract.contractId}"></span>
+                        <span th:if="${contract.contractId >=8}" th:text="'HD-0'+ ${contract.contractId}"></span>
+                        </td>
                         <td th:text="${contract.contractStart}"></td>
                         <td th:text="${contract.contractEnd}"></td>
                         <td th:text="${contract.contractDeposit}"></td>
@@ -146,7 +150,7 @@
                             <div class="col-xl-5">
                                 <div class="form-group">
                                     <label>ID Contract:</label>
-                                    <input type="text" th:field="*{contractId}" class="form-control"  >
+                                    <input type="hidden" th:field="*{contractId}" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="start">Start :</label>

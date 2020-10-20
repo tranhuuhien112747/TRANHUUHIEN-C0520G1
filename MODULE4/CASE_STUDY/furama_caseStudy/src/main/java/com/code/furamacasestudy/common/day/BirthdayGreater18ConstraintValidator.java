@@ -28,7 +28,7 @@ public class BirthdayGreater18ConstraintValidator implements ConstraintValidator
         }
         String[] array = value.split("/");
         int year = Calendar.getInstance().get(Calendar.YEAR);
-        if ( year - Integer.parseInt(array[2]) < 18) {
+        if ( year - Integer.parseInt(array[2]) < 18 || year-Integer.parseInt(array[2])>100) {
             context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate("Not old enough").addConstraintViolation();
             return false;
