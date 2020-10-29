@@ -1,0 +1,31 @@
+<fieldset style="width: 600px;margin-left: 350px;border:4px solid brown">
+  <legend style="color: darkblue; font-size: 25px;font-weight: bold">Awesome Calculator</legend>
+  <div>
+    <input type="number" class="form-input"
+           [value]="first"
+           (change)="onFirstChange($event.target.value)">
+    <select
+      class="form-input"
+      [value]="operator"
+      (change)="onSelectChange($event.target.value)">
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">*</option>
+      <option value="/">/</option>
+    </select>
+    <input type="number" class="form-input"
+           [value]="second"
+           (change)="onSecondChange($event.target.value)">
+  </div>
+  <div>
+    <br>
+    <button class="form-input" (click)="calculate()" style="background-color: yellow">
+      Enter
+    </button>
+  </div>
+  <br>
+  <div class="output" style="color: red;font-weight: bold">
+    Result: {{output}}
+  </div>
+</fieldset>
+<hr>

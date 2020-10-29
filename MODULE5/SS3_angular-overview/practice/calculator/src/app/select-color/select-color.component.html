@@ -1,0 +1,12 @@
+<fieldset style="width: 600px;margin-left: 350px;border:4px solid purple">
+  <legend style="color: darkblue; font-size: 25px;font-weight: bold">Color Picker</legend>
+  <div>
+    <label><b>Chọn màu:</b></label> &nbsp;&nbsp;&nbsp;
+    <input [value]="background" type="color" (change)="onChange($event.target.value)">
+  </div>
+  <p style="color: red;font-weight: bold">Output:</p>
+  <div class="color-preview" [style.background]="background" style="height: 50px">
+  </div>
+</fieldset>
+<hr>
+<br>

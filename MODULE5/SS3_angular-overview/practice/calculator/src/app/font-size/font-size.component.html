@@ -1,0 +1,13 @@
+<fieldset style="width: 600px;margin-left: 350px;border:4px solid green">
+  <legend style="color: darkblue; font-size: 25px;font-weight: bold">Font size editor</legend>
+  <div>
+    <label><b>Enter font size (px):</b></label>&nbsp;&nbsp;&nbsp;
+    <input type="number" [value]="fontSize" (change)="onChange($event.target.value)">
+  </div>
+
+  <p class="output" [style.fontSize.px]="fontSize" style="color: red">
+    Tran Huu Hien - C0520G1
+  </p>
+</fieldset>
+<br>
+<hr>
