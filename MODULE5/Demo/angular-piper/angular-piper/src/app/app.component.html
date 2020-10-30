@@ -1,0 +1,74 @@
+<div class="container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Pipes name</th>
+      <th>Input data</th>
+      <th>Out data</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td scope="row">1</td>
+      <td>uppercase</td>
+      <td>{{dataInput}}</td>
+      <td>{{dataInput | uppercase}}</td>
+    </tr>
+    <tr>
+      <td scope="row">2</td>
+      <td>lowercase</td>
+      <td>{{dataInput}}</td>
+      <td>{{dataInput | lowercase}}</td>
+    </tr>
+    <tr>
+      <td scope="row">3</td>
+      <td>titlecase</td>
+      <td>{{dataInput}}</td>
+      <td>{{dataInput | titlecase}}</td>
+    </tr>
+    <tr>
+      <td slice="row">4</td>
+      <td>slice</td>
+      <td>{{dataInput}}</td>
+      <td>{{dataInput | slice:3:6}}</td>
+    </tr>
+    <tr>
+      <td slice="row">4</td>
+      <td>slice array</td>
+      <td>{{dataArray}}</td>
+      <td>{{dataArray | slice:1:2}}</td>
+    </tr>
+    <tr>
+      <td slice="row">4</td>
+      <td>number</td>
+      <td>{{inputNumber}}</td>
+      <td>{{inputNumber | number:'1.0-3'}}</td>
+    </tr>
+    <tr>
+      <td slice="row">4</td>
+      <td>percent</td>
+      <td>{{inputPercent}}</td>
+      <td>{{inputPercent | percent:'1.0-3'}}</td>
+    </tr>
+    <tr>
+      <td slice="row">4</td>
+      <td>currency</td>
+      <td>{{money}}</td>
+      <td>{{money | currency:'VND': true}}</td>
+    </tr>
+    <tr>
+      <td slice="row">4</td>
+      <td>date</td>
+      <td>{{today}}</td>
+      <td>{{today|date: 'd/M/yyyy h:mm:ss'}}</td>
+    </tr>
+    <tr>
+      <td slice="row">4</td>
+      <td>Multi</td>
+      <td>{{dataInput}}</td>
+      <td>{{dataInput|uppercase |slice:3:6}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
