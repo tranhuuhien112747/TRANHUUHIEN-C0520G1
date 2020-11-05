@@ -18,18 +18,8 @@
       <thead>
       <tr class="text-center font-italic font-weight-bolder btn-dark">
         <th>ID</th>
-        <th> Name
-          <i class="fa fa-sort-alpha-desc pl-2" *ngIf="reverse; else blockReverse" (click)="sort('nameCus')"></i>
-          <ng-template #blockReverse>
-            <i class="fa fa-sort-alpha-asc pl-2" (click)="sort('nameCus')"></i>
-          </ng-template>
-        </th>
-        <th>Birthday
-          <i class="fa fa-sort-alpha-desc pl-2" *ngIf="reverse; else blockReverse" (click)="sort('birthday')"></i>
-          <ng-template #blockReverse>
-            <i class="fa fa-sort-alpha-asc pl-2" (click)="sort('birthday')"></i>
-          </ng-template>
-        </th>
+        <th (click)="sort('nameCus')"> Name</th>
+        <th (click)="sort('birthday')">Birthday</th>
         <th>ID-Card</th>
         <th>Phone</th>
         <th>Email</th>
