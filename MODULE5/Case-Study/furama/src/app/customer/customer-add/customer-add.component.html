@@ -1,0 +1,108 @@
+<style>
+  label {
+    font-weight: bolder;
+    font-size: 15px;
+  }
+</style>
+<form class="p-0" [formGroup]="formAddCustomer">
+  <h4 style="text-align: center;color: #fd7e14;background: #0c5460" class="font-weight-bold border border-dark">
+    Add New Customer
+  </h4>
+  <div class="row font-italic p-2 m-2" style="background-color: ghostwhite;color: darkblue">
+    <!--      <div class="col-1"></div>-->
+    <div class="col-4">
+      <div class="form-group">
+        <label>Name :</label>
+        <input type="text" class="form-control" formControlName="nameCus" style="width: 80%;">
+        <div style="height: 30px;width: 80%;color: red" class="alert alert-danger shadow p-0 m-0 text-center font-italic"
+             role="alert"
+             *ngIf="formAddCustomer.get('nameCus').invalid && formAddCustomer.get('nameCus').touched">
+          Name is required!
+        </div>
+      </div>
+      <div class="form-group">
+        <label>ID-Card :</label>
+        <input type="text" class="form-control" formControlName="idCard" style="width: 80%">
+        <div style="height: 30px;width: 80%;color: red" class="alert alert-danger shadow p-0 m-0 text-center font-italic"
+             role="alert"
+             *ngIf="formAddCustomer.get('idCard').invalid && formAddCustomer.get('idCard').touched">
+          <span *ngIf="formAddCustomer.get('idCard').hasError('required')">Card is required</span>
+          <span
+            *ngIf="formAddCustomer.get('idCard').hasError('pattern')">Card incorrect format</span>
+        </div>
+      </div>
+    </div>
+    <!--      <div class="col-1"></div>-->
+    <div class="col-4">
+      <div class="form-group">
+        <label>Phone :</label>
+        <input type="text" class="form-control" formControlName="phoneCus" placeholder="Example: 090XXXXXXX" style="width: 80%">
+        <div style="height: 30px;width: 80%;color: red" class="alert alert-danger shadow p-0 m-0 text-center font-italic"
+             role="alert"
+             *ngIf="formAddCustomer.get('phoneCus').invalid && formAddCustomer.get('phoneCus').touched">
+          <span *ngIf="formAddCustomer.get('phoneCus').hasError('required')">Phone is required</span>
+          <span
+            *ngIf="formAddCustomer.get('phoneCus').hasError('pattern')">Phone incorrect format</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email :</label>
+        <input type="text" class="form-control" id="email" formControlName="email" style="width: 80%">
+        <div style="height: 30px;width: 80%;color: red" class="alert alert-danger shadow p-0 m-0 text-center font-italic"
+             role="alert"
+             *ngIf="formAddCustomer.get('email').invalid && formAddCustomer.get('email').touched">
+          <span *ngIf="formAddCustomer.get('email').hasError('required')">Email is required</span>
+          <span
+            *ngIf="formAddCustomer.get('email').hasError('pattern')">Email incorrect format</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Address :</label>
+        <input type="text" class="form-control" formControlName="addressCus" style="width: 80%">
+        <div style="height: 30px ;width: 80%;color: red" class="alert alert-danger shadow p-0 m-0 text-center font-italic"
+             role="alert"
+             *ngIf="formAddCustomer.get('addressCus').invalid && formAddCustomer.get('addressCus').touched">
+          Address is required!
+        </div>
+      </div>
+    </div>
+    <!--      <div class="col-1"></div>-->
+    <div class="col-4">
+      <div class="form-group">
+        <label>Birthday :</label>
+        <!--          <input type="text" class="form-control" formControlName="birthday">-->
+        <!--          <div style="height: 30px;color: red" class="alert alert-danger shadow p-0 m-0 text-center font-italic"-->
+        <!--               role="alert"-->
+        <!--               *ngIf="formAddCustomer.get('birthday').invalid && formAddCustomer.get('birthday').touched">-->
+        <!--            Birthday is required!-->
+        <!--          </div>-->
+        <mat-form-field>
+          <input [min]="minDate" [max]="maxDate" class="form-control font-italic" formControlName="birthday"
+                 matInput [matDatepicker]="myDatepicker" placeholder="Select day of birth">
+          <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+          <mat-datepicker #myDatepicker style="width: 80%"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <label>Type Customer:</label><br>
+        <select style="width: 80%; height: 37px" formControlName="customerType">
+          <option value="" disabled>Select Type Customer</option>
+          <option *ngFor="let type of typeCustomer" [ngValue]="type">{{type.name}}</option>
+        </select>
+        <div style="height: 30px ;width: 80%;color: red" class="alert alert-danger shadow p-0 m-0 text-center font-italic"
+             role="alert"
+             *ngIf="formAddCustomer.get('customerType').invalid && formAddCustomer.get('customerType').touched">
+          Customer Type is required!
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<hr class="border border-dark">
+<div class="row justify-content-end p-0 m-0">
+  <button class="btn btn-danger text-center mr-5 font-weight-bold font-italic"
+          type="submit" [disabled]="formAddCustomer.invalid" (click)="addNewCustomer()">Create
+  </button>
+  <a role="button" mat-dialog-close class="btn btn-success font-weight-bold font-italic">Back</a>
+</div>
+

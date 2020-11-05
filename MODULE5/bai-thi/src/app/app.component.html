@@ -1,0 +1,31 @@
+<div class="container-fluid px-0" style="height: 100vh" xmlns:height="http://www.w3.org/1999/xhtml">
+  <nav class="navbar navbar-expand-sm navbar-light border border-primary  " style="height:8%;background-color: #088d56">
+    <!-- Brand -->
+    <p></p>
+    <!--    <img src="../assets/image/unnamed.png" style="height: 50px ;width: 180px" class="mr-4">-->
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item mr-5 mr-5">
+        <a style="font-size: 25px" class="nav-link font-weight-bolder form-control-lg " href="#"> Home</a>
+      </li>
+      <li class="nav-item mr-5 mr-5">
+        <a style="font-size: 20px" class="nav-link font-weight-bolder form-control-lg " href="#"
+           [routerLink]="['']"> Product</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="row px-0 mx-0" style="height: 92%">
+    <div class="col-2 px-0 ">
+      <div class="list-group border border-primary rounded  h-100">
+        <img class=" list-group-item list-group-item-action" style="height: 10%"
+             src="https://codegym.vn/wp-content/uploads/2017/03/CodeGym-3-02-copy.jpg">
+        <div class="d-block mr-3 p-3 font-italic" style="font-size: 12px">
+        </div>
+      </div>
+    </div>
+    <div class="col-10 px-0 mx-0" style="height: 92%">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="p-5">
+  <div class="row justify-content-between">
+    <h3 style="color: #ff0003" class="font-weight-bolder font-italic">List Employee</h3>
+    <div class="d-flex">
+      <input type="text" class="form-control mr-2" style="width: 400px" placeholder="search by Employee"
+             [(ngModel)]="term">
+      <button class="btn btn-outline-success"><i class="fa fa-search"></i> Search</button>
+    </div>
+  </div>
+  <div class="row justify-content-between mt-2 ">
+    <button class="btn btn-outline-success font-italic font-weight-bolder border border-success"
+            [routerLink]="['/employee-create']">
+      <i class="fa fa-plus-square"></i> Add New
+    </button>
+    <div class="d-flex font-italic font-weight-bolder">
+      <h4 style="color: red">{{messageCreate}} {{messageEdit}} {{messageDelete}}</h4>
+    </div>
+    <table class="table mt-3 table-striped">
+      <thead>
+      <tr class="text-center btn-dark font-italic font-weight-bolder">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Birthday</th>
+        <th>ID-Card</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Position</th>
+        <th>Division</th>
+        <th style="text-align: center">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="text-center "
+          *ngFor="let employee of employeeList| paginate: { itemsPerPage: 4, currentPage: p }| filter:term ">
+        <td>
+          <span *ngIf="employee.id <= 9"> {{"NV-000" + employee.id}}</span>
+          <span *ngIf="employee.id > 9 && employee.id <=99"> {{"NV-00" + employee.id}}</span>
+        </td>
+        <td>{{employee.employeeName}}</td>
+        <td>{{employee.employeeBirthday|date : 'dd/MM/yyyy'}}</td>
+        <td>{{employee.employeeIdCard}}</td>
+        <td>{{employee.employeePhone}}</td>
+        <td>{{employee.employeeAddress}}</td>
+        <td>{{employee.employeePosition.name}}</td>
+        <td>{{employee.employeeDivision.name}}</td>
+        <td style="text-align: center">
+          <button class="btn btn-outline-primary mr-3" (click)="openViewDetail(employee.id)"><i
+            class="fa fa-address-book"></i></button>
+          <button class="btn btn-outline-warning mr-3" [routerLink]="['/employee-edit/'+ employee.id]">
+            <i class="fa fa-pencil-square"></i></button>
+          <button class="btn btn-outline-danger" (click)="removeEmployeeDialog(employee.id)"><i
+            class="fa fa-trash-o"></i></button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <pagination-controls class="d-block" (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>

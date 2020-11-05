@@ -1,0 +1,226 @@
+{
+  "employee": [
+    {
+      "employeeName": "L.Tony",
+      "employeeBirthday": "2020-10-10",
+      "employeeIdCard": "251442563",
+      "employeeSalary": "8000",
+      "employeePhone": "0914255785",
+      "employeeEmail": "tony@gmail.com",
+      "employeeAddress": "Hà Nội",
+      "employeePosition": {
+        "id": 3,
+        "name": "Monitoring"
+      },
+      "employeeDivision": {
+        "id": 3,
+        "name": "Serve"
+      },
+      "employeeEducation": {
+        "id": 1,
+        "name": "Intermediate"
+      },
+      "id": 2
+    },
+    {
+      "employeeName": "A.Elena",
+      "employeeBirthday": "2020-09-26T00:00:00.000Z",
+      "employeeIdCard": "251442563",
+      "employeeSalary": "8000",
+      "employeePhone": "0914255555",
+      "employeeEmail": "elena@gmail.com",
+      "employeeAddress": "Hải Phòng",
+      "employeePosition": {
+        "id": 2,
+        "name": "Professional"
+      },
+      "employeeDivision": {
+        "id": 2,
+        "name": "Administration"
+      },
+      "employeeEducation": {
+        "id": 4,
+        "name": "After-university"
+      },
+      "id": 3
+    },
+    {
+      "employeeName": "Maris",
+      "employeeBirthday": "2020-10-19T17:00:00.000Z",
+      "employeeIdCard": "251442563",
+      "employeeSalary": "8000",
+      "employeePhone": "0914255555",
+      "employeeEmail": "maric@gmail.com",
+      "employeeAddress": "Huế",
+      "employeePosition": {
+        "id": 2,
+        "name": "Professional"
+      },
+      "employeeDivision": {
+        "id": 4,
+        "name": "Management"
+      },
+      "employeeEducation": {
+        "id": 4,
+        "name": "After-university"
+      },
+      "id": 4
+    },
+    {
+      "employeeName": "Lucian",
+      "employeeBirthday": "2020-08-09T17:00:00.000Z",
+      "employeeIdCard": "251442563",
+      "employeeSalary": "8000",
+      "employeePhone": "0914255555",
+      "employeeEmail": "lucian@gmail.com",
+      "employeeAddress": "Đà Nẵng",
+      "employeePosition": {
+        "id": 3,
+        "name": "Monitoring"
+      },
+      "employeeDivision": {
+        "id": 4,
+        "name": "Management"
+      },
+      "employeeEducation": {
+        "id": 4,
+        "name": "After-university"
+      },
+      "id": 5
+    }
+  ],
+  "employeePosition": [
+    {
+      "id": 1,
+      "name": "Serve"
+    },
+    {
+      "id": 2,
+      "name": "Professional"
+    },
+    {
+      "id": 3,
+      "name": "Monitoring"
+    },
+    {
+      "id": 4,
+      "name": "Manager"
+    },
+    {
+      "id": 5,
+      "name": "President"
+    }
+  ],
+  "employeeDivision": [
+    {
+      "id": 1,
+      "name": "Sale – Marketing"
+    },
+    {
+      "id": 2,
+      "name": "Administration"
+    },
+    {
+      "id": 3,
+      "name": "Serve"
+    },
+    {
+      "id": 4,
+      "name": "Manager"
+    }
+  ],
+  "employeeEducation": [
+    {
+      "id": 1,
+      "name": "Intermediate"
+    },
+    {
+      "id": 1,
+      "name": "Colleges"
+    },
+    {
+      "id": 1,
+      "name": "University"
+    },
+    {
+      "id": 1,
+      "name": "After university"
+    }
+  ],
+  "customerType": [
+    {
+      "id": 1,
+      "name": "Diamond"
+    },
+    {
+      "id": 2,
+      "name": "Platinum"
+    },
+    {
+      "id": 3,
+      "name": "Gold"
+    },
+    {
+      "id": 4,
+      "name": "Silver"
+    },
+    {
+      "id": 5,
+      "name": "Member"
+    }
+  ],
+  "customer": [
+    {
+      "nameCus": "HKV. Chương",
+      "birthday": "2020-09-05T00:00:00.000Z",
+      "idCard": "125485965",
+      "phoneCus": "0908596535",
+      "email": "chuong@gmail.com",
+      "addressCus": "Mỹ",
+      "customerType": {
+        "id": 2,
+        "name": "Platinum"
+      },
+      "id": 1
+    },
+    {
+      "nameCus": "Lê Toàn",
+      "birthday": "1997-02-07T00:00:00.000Z",
+      "idCard": "985698578",
+      "phoneCus": "0912536589",
+      "email": "letoan@gmail.com",
+      "addressCus": "Đức",
+      "customerType": {
+        "id": 1,
+        "name": "Diamond"
+      },
+      "id": 2
+    },
+    {
+      "nameCus": "NT.Hải",
+      "birthday": "2020-09-17T00:00:00.000Z",
+      "idCard": "525478596",
+      "phoneCus": "0905895638",
+      "email": "garen@gmail.com",
+      "addressCus": "Ai Cập",
+      "customerType": {
+        "id": 5,
+        "name": "Member"
+      },
+      "id": 3
+    },
+    {
+      "nameCus": "NH.Quang",
+      "birthday": "2002-02-03T00:00:00.000Z",
+      "idCard": "125425487",
+      "phoneCus": "0908987587",
+      "email": "quang@gmail.com",
+      "addressCus": "Nhật Bản",
+      "customerType": {
+        "id": 3,
+        "name": "Gold"
+      },
+      "id": 4
+    }
+  ]
+}

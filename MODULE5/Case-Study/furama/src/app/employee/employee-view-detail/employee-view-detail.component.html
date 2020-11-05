@@ -1,0 +1,71 @@
+<style>
+  tr {
+    font-style: italic;
+    height: 38px;
+  }
+
+  td {
+    width: 150px;
+  }
+
+  table {
+    font-size: 15px;
+  }
+</style>
+<h4 class="font-weight-bold font-italic " style="color: #ff1d0f;margin-left: 38px"><i class="fa fa-street-view"></i> Information Employee</h4>
+<hr class="border border-primary">
+<table class="table-striped form-control-sm " style="margin-left: 8%">
+  <tbody class="m-0 p-0">
+  <tr style="height: 10px">
+    <td style="color: #0b0c58;font-weight: bolder">ID:</td>
+    <td>
+      <span *ngIf="dataEmployee.id <= 9"> {{"NV-000" + dataEmployee.id}}</span>
+      <span *ngIf="dataEmployee.id > 9 && dataEmployee.id <=99"> {{"NV-00" + dataEmployee.id}}</span>
+    </td>
+  </tr>
+  <tr>
+    <td style="color: #0b0c58;font-weight: bolder">Name:</td>
+    <td>{{dataEmployee.employeeName}}</td>
+  </tr>
+  <tr>
+    <td style="color: #0b0c58;font-weight: bolder">Birth Day:</td>
+    <td>{{dataEmployee.employeeBirthday|date: 'dd/MM/yyyy'}}</td>
+  </tr>
+  <tr>
+    <td style="color: #0b0c58;font-weight: bolder">Card:</td>
+    <td>{{dataEmployee.employeeIdCard}}</td>
+  </tr>
+  <tr>
+    <td style="color: #0b0c58;font-weight: bolder">Phone:</td>
+    <td>{{dataEmployee.employeePhone}}</td>
+  </tr>
+  <tr>
+    <td style="color: #0b0c58;font-weight: bolder">Address:</td>
+    <td>{{dataEmployee.employeeAddress}}</td>
+  </tr>
+  <tr>
+    <td style="color: #0b0c58;font-weight: bolder">Email:</td>
+    <td>{{dataEmployee.employeeEmail}}</td>
+  </tr>
+  <tr>
+    <td style="color: #0b0c58;font-weight: bolder">Salary:</td>
+    <td>{{dataEmployee.employeeSalary}}</td>
+  </tr>
+  <tr>
+    <td style="color: #0b0c58;font-weight: bolder">Position:</td>
+    <td>{{dataEmployee.employeePosition.name}}</td>
+  </tr>
+  <tr>
+    <td style="color: #0b0c58;font-weight: bolder">Division:</td>
+    <td>{{dataEmployee.employeeDivision.name}}</td>
+  </tr>
+  <tr>
+    <td style="color: #0b0c58;font-weight: bolder">Education:</td>
+    <td>{{dataEmployee.employeeEducation.name}}</td>
+  </tr>
+  </tbody>
+</table>
+<hr class="border border-primary">
+<div class="row d-flex justify-content-end">
+  <button mat-dialog-close class="btn btn-success mr-4 " style="width: 80px;margin-left: 155px">Close</button>
+</div>

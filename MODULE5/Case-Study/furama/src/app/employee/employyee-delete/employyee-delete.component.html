@@ -1,0 +1,12 @@
+<h4 class="font-weight-bold font-italic form-text m-0 p-0" style="color: #0b0c58">Confirm employee delete</h4>
+<hr class="border-primary">
+<div class="alert alert-success" role="alert">
+  <p class="mb-0 font-weight-bolder">Are you sure you want to delete
+    <span class="font-weight-bold font-italic badge badge-light" style="color: #ff1904;font-size: 20px"> {{employeeName}}</span> ?</p>
+</div>
+<hr class="border-primary">
+<div class="row d-flex">
+  <p class="row d-flex mr-3 font-italic" style="color:red;margin-left: 10px ;font-size: 14px">(*) Note cannot be undone</p>
+  <button  mat-dialog-close class="btn btn-success mr-4 " style="width: 80px;margin-left: 150px">Cancel</button>
+  <button   class="btn btn-danger " style="width: 80px" (click)="deleteEmployee()">Ok</button>
+</div>

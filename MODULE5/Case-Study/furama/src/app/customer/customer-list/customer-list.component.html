@@ -1,0 +1,70 @@
+<div class="p-4">
+  <div class="row justify-content-between">
+    <h3 style="color: #ff0003" class="font-weight-bolder font-italic">List Customer</h3>
+    <div class="d-flex">
+      <input type="text" class="form-control mr-2" style="width: 400px" placeholder="search by Customer"
+             [(ngModel)]="term">
+      <button class="btn btn-outline-success"><i class="fa fa-search"></i> Search</button>
+    </div>
+  </div>
+  <div class="row justify-content-between mt-2 ">
+    <button class="btn btn-outline-success font-italic font-weight-bolder border border-success" (click)="openAddNew()">
+      <i class="fa fa-plus-square"></i> Add New
+    </button>
+    <div class="d-flex font-italic font-weight-bolder">
+      <h4 style="color: red">{{messageCreate}} {{messageEdit}} {{messageDelete}}</h4>
+    </div>
+    <table class="table mt-3 table-striped ">
+      <thead>
+      <tr class="text-center font-italic font-weight-bolder btn-dark">
+        <th>ID</th>
+        <th> Name
+          <i class="fa fa-sort-alpha-desc pl-2" *ngIf="reverse; else blockReverse" (click)="sort('nameCus')"></i>
+          <ng-template #blockReverse>
+            <i class="fa fa-sort-alpha-asc pl-2" (click)="sort('nameCus')"></i>
+          </ng-template>
+        </th>
+        <th>Birthday
+          <i class="fa fa-sort-alpha-desc pl-2" *ngIf="reverse; else blockReverse" (click)="sort('birthday')"></i>
+          <ng-template #blockReverse>
+            <i class="fa fa-sort-alpha-asc pl-2" (click)="sort('birthday')"></i>
+          </ng-template>
+        </th>
+        <th>ID-Card</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Type Customer</th>
+        <th style="text-align: center">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="text-center "
+          *ngFor="let cus of customerList| paginate: { itemsPerPage: 4, currentPage: p }| filter:term| orderBy: key : reverse ">
+        <td>
+          <span *ngIf="cus.id <= 9"> {{"KH-000" + cus.id}}</span>
+          <span *ngIf="cus.id > 9 && cus.id <=99"> {{"KH-00" + cus.id}}</span>
+        </td>
+        <td>{{cus.nameCus}}</td>
+        <td>{{cus.birthday |date : 'dd/MM/yyyy'}}</td>
+        <td>{{cus.idCard }}</td>
+        <td>{{cus.phoneCus |slice:0:4}}.{{cus.phoneCus |slice:4:7}}.{{cus.phoneCus |slice:7:10}}</td>
+        <td>{{cus.email}}</td>
+        <td>{{cus.addressCus}}</td>
+        <td>{{cus.customerType.name}}</td>
+        <td style="text-align: center">
+          <button class="btn btn-outline-primary mr-3" (click)="openDialogView(cus.id)"><i
+            class="fa fa-address-book"></i></button>
+          <button class="btn btn-outline-warning mr-3" (click)="openDialogEdit(cus.id)">
+            <i class="fa fa-pencil-square"></i></button>
+          <button class="btn btn-outline-danger" (click)="openDialogDelete(cus.id)"><i class="fa fa-trash-o"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <pagination-controls class="d-block" (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+
+

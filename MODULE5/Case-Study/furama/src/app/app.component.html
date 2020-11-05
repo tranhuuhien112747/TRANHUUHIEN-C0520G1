@@ -1,1 +1,63 @@
-<app-common></app-common>
+<div class="container-fluid px-0" style="height: 100vh" xmlns:height="http://www.w3.org/1999/xhtml">
+  <nav class="navbar navbar-expand-xl navbar-light border border-dark" style="height:8%;background-color: #ffd529">
+    <!-- Brand -->
+    <p></p>
+<!--    <img src="../assets/image/unnamed.png" style="height: 50px ;width: 130px" class="mr-5">-->
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item  mr-5">
+        <a class="nav-link font-weight-bolder form-control-lg" href="#" [routerLink]="['']"><i class="fa fa-home"></i> Home</a>
+      </li>
+      <li class="nav-item mr-5">
+        <a class="nav-link font-weight-bolder form-control-lg" href="#" [routerLink]="['#']">
+          <i class="fa fa-globe" ></i> Entertainment</a>
+      </li>
+      <li class="nav-item mr-5">
+        <a class="nav-link font-weight-bolder form-control-lg" href="#" [routerLink]="['#']"> <i class="fa fa-gift"></i> eVoucher</a>
+      </li>
+      <li class="nav-item mr-5">
+        <a class="nav-link font-weight-bolder form-control-lg" href="#" [routerLink]="['#']"><i class="fa fa-wordpress"></i> Events</a>
+      </li>
+
+      <!-- Dropdown -->
+      <!--      <li class="nav-item dropdown">-->
+      <!--        <a class="nav-link dropdown-toggle font-weight-bolder form-control-lg" href="#" id="navbardrop"-->
+      <!--           data-toggle="dropdown">-->
+      <!--          Contract-->
+      <!--        </a>-->
+      <!--        <div class="dropdown-menu">-->
+      <!--          <a class="dropdown-item" href="#">aaaa</a>-->
+      <!--          <a class="dropdown-item" href="#">aaaa</a>-->
+      <!--          <a class="dropdown-item" href="#">Manager Customer User Service</a>-->
+      <!--        </div>-->
+      <!--      </li>-->
+    </ul>
+  </nav>
+  <div class="row px-0 mx-0" style="height: 92%">
+    <div class="col-2 px-0 ">
+      <div class="list-group border border-dark rounded h-100">
+        <img class=" list-group-item list-group-item-action" style="height: 10%" src="https://codegym.vn/wp-content/uploads/2017/03/CodeGym-3-02-copy.jpg">
+<!--        <a href="#" class="list-group-item list-group-item-action bg-warning font-weight-bolder font-italic form-control-lg">-&#45;&#45; List Manager -&#45;&#45;</a>-->
+        <a  href="#" [routerLink]="['customer']" class="list-group-item list-group-item-action font-italic font-weight-bold" > Customer</a>
+        <a href="#" [routerLink]="['employee']" class="list-group-item list-group-item-action font-italic font-weight-bold"> Employee</a>
+        <a  href="#" [routerLink]="['#']" class="list-group-item list-group-item-action font-italic font-weight-bold">Service</a>
+        <a  href="#" [routerLink]="['#']" class="list-group-item list-group-item-action font-italic font-weight-bold">Contract</a>
+        <a  href="#"[routerLink]="['#']" class="list-group-item list-group-item-action font-italic font-weight-bold">Contract Detail</a>
+        <a  href="#" [routerLink]="['#']" class="list-group-item list-group-item-action font-italic font-weight-bold">Customer User
+          Service</a>
+        <div class="d-block m-0 pt-4 font-italic" style="font-size: 11px">
+          <img src="../assets/image/unnamed.png" style="width: 100%" >
+          <div class="ml-4 mt-3 mt-1" ><i class="fa fa-facebook-square"></i> Hiên Trần</div>
+          <div class="ml-4 mt-1" ><i class="fa fa-envelope"></i> tranhuuhien@gmail.com</div>
+          <div  class="ml-4 mt1"><i class="fa fa-phone-square"> 0369.589.536</i></div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-10 px-0 mx-0" style="height: 92%">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</div>

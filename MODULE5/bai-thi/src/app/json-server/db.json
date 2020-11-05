@@ -1,0 +1,48 @@
+{
+  "product": [
+    {
+      "id": 1,
+      "codeProduct": "SP-XX",
+      "nameProduct": "Reno-3",
+      "producer": "Oppo",
+      "category": {
+        "id": 1,
+        "name": "smart phone"
+      }
+    },
+    {
+      "id": 2,
+      "codeProduct": "SP-XX",
+      "nameProduct": "Nokia",
+      "producer": "india",
+      "category": {
+        "id": 1,
+        "name": "smart phone"
+      }
+    },
+    {
+      "id": 3,
+      "codeProduct": "SP-XX",
+      "nameProduct": "Nokia",
+      "producer": "india",
+      "category": {
+        "id": 1,
+        "name": "Smart phone"
+      }
+    }
+  ],
+  "category": [
+    {
+      "id": 1,
+      "name": "Smart phone"
+    },
+    {
+      "id": 2,
+      "name": "Television"
+    },
+    {
+      "id": 3,
+      "name": "Computer"
+    }
+  ]
+}

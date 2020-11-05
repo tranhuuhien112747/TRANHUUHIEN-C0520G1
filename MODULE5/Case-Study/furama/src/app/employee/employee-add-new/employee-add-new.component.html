@@ -1,0 +1,130 @@
+<style>
+  label {
+    font-weight: bolder;
+    font-size: 15px;
+  }
+</style>
+<form class="p-3" [formGroup]="formAddNewEmployee">
+  <fieldset class="border border-dark">
+    <legend style="text-align: center;color: #fd7e14;background: #0c5460" class="font-weight-bold border border-dark">
+      Add New Employee
+    </legend>
+    <div class="row font-italic p-2 m-2" style="background-color: ghostwhite;color: darkblue">
+      <div class="col-1"></div>
+      <div class="col-3">
+        <div class="form-group">
+          <label>Name :</label>
+          <input type="text" class="form-control" formControlName="employeeName">
+          <div style="height: 30px;color: red" class="alert alert-danger shadow p-0 m-0 text-center font-italic"
+               role="alert"
+               *ngIf="formAddNewEmployee.get('employeeName').invalid && formAddNewEmployee.get('employeeName').touched">
+            Name is required!
+          </div>
+        </div>
+        <div class="form-group">
+          <label>ID-Card :</label>
+          <input type="text" class="form-control" formControlName="employeeIdCard">
+          <div style="height: 30px;color: red" class="alert alert-danger shadow p-0 m-0 text-center font-italic"
+               role="alert"
+               *ngIf="formAddNewEmployee.get('employeeIdCard').invalid && formAddNewEmployee.get('employeeIdCard').touched">
+            <span *ngIf="formAddNewEmployee.get('employeeIdCard').hasError('required')">Card is required</span>
+            <span
+              *ngIf="formAddNewEmployee.get('employeeIdCard').hasError('pattern')">Card incorrect format</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Salary :</label>
+          <input type="text" class="form-control" formControlName="employeeSalary">
+          <div style="height: 30px;color: red" class="alert alert-danger shadow p-0 m-0 text-center font-italic"
+               role="alert"
+               *ngIf="formAddNewEmployee.get('employeeSalary').invalid && formAddNewEmployee.get('employeeSalary').touched">
+            <span *ngIf="formAddNewEmployee.get('employeeSalary').hasError('required')">Salary is required</span>
+            <span
+              *ngIf="formAddNewEmployee.get('employeeSalary').hasError('pattern')">Salary must be greater than 0</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-3">
+        <div class="form-group">
+          <label>Phone :</label>
+          <input type="text" class="form-control" formControlName="employeePhone" placeholder="Example: 090XXXXXXX">
+          <div style="height: 30px;color: red" class="alert alert-danger shadow p-0 m-0 text-center font-italic"
+               role="alert"
+               *ngIf="formAddNewEmployee.get('employeePhone').invalid && formAddNewEmployee.get('employeePhone').touched">
+            <span *ngIf="formAddNewEmployee.get('employeePhone').hasError('required')">Phone is required</span>
+            <span
+              *ngIf="formAddNewEmployee.get('employeePhone').hasError('pattern')">Phone incorrect format</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email :</label>
+          <input type="text" class="form-control" id="email" formControlName="employeeEmail">
+          <div style="height: 30px;color: red" class="alert alert-danger shadow p-0 m-0 text-center font-italic"
+               role="alert"
+               *ngIf="formAddNewEmployee.get('employeeEmail').invalid && formAddNewEmployee.get('employeeEmail').touched">
+            <span *ngIf="formAddNewEmployee.get('employeeEmail').hasError('required')">Email is required</span>
+            <span
+              *ngIf="formAddNewEmployee.get('employeeEmail').hasError('pattern')">Email incorrect format</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Address :</label>
+          <input type="text" class="form-control" formControlName="employeeAddress">
+          <div style="height: 30px;color: red" class="alert alert-danger shadow p-0 m-0 text-center font-italic"
+               role="alert"
+               *ngIf="formAddNewEmployee.get('employeeAddress').invalid && formAddNewEmployee.get('employeeAddress').touched">
+            Address is required!
+          </div>
+        </div>
+      </div>
+      <div class="col-1"></div>
+      <div class="col-3">
+        <div class="form-group">
+          <label>Birthday :</label>
+<!--          <input type="text" class="form-control" formControlName="employeeBirthday">-->
+<!--          <div style="height: 30px;color: red" class="alert alert-danger shadow p-0 m-0 text-center font-italic"-->
+<!--               role="alert"-->
+<!--               *ngIf="formAddNewEmployee.get('employeeBirthday').invalid && formAddNewEmployee.get('employeeBirthday').touched">-->
+<!--            Birthday is required!-->
+<!--          </div>-->
+          <mat-form-field>
+            <input [min]="minDate" [max]="maxDate" class="form-control font-italic" formControlName="employeeBirthday"
+                   matInput
+                   [matDatepicker]="myDatepicker"
+                   placeholder="Select day of birth">
+            <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <label>Education :</label><br>
+          <select style="width: 100%; height: 37px" formControlName="employeeEducation">
+            <option value="" disabled>------ Select Education ------</option>
+            <option *ngFor="let t3 of educationList" [ngValue]="t3">{{t3.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Position :</label><br>
+          <select style="width: 100%; height: 37px" formControlName="employeePosition">
+            <option value="" disabled>------- Select Position -------</option>
+            <option *ngFor="let t1 of positionList" [ngValue]="t1">{{t1.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Division:</label><br>
+          <select style="width: 100%; height: 37px" formControlName="employeeDivision">
+            <option value="" disabled>------- Select Division -------</option>
+            <option *ngFor="let t2 of divisionList" [ngValue]="t2">{{t2.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</form>
+<div style="margin-left: 42%">
+  <button class="btn btn-danger text-center mr-5 font-weight-bold font-italic"
+          type="submit" [disabled]="formAddNewEmployee.invalid" (click)="addNewEmployee()">Create
+  </button>
+  <a role="button" class="btn btn-success font-weight-bold font-italic" [routerLink]="['/employee']">Back</a>
+</div>
